@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "no-use-before-define": ["off"],
+    "react/jsx-filename-extension": ["off"],
+    "react/no-unused-prop-types": ["off"]
+  }
+}
