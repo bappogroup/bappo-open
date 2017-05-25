@@ -2,7 +2,6 @@
   "name": "bappo-components",
   "version": "0.0.1",
   "description": "Cross-platform React components for building Bappo apps",
-  "main": "index.js",
   "scripts": {
     "build": "rm -rf lib && babel src/ -d lib/",
     "prepublish": "yarn run build"
