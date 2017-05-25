@@ -1,6 +1,6 @@
 {
   "name": "bappo-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cross-platform React components for building Bappo apps",
   "scripts": {
     "build": "rm -rf lib && babel src/ -d lib/",
