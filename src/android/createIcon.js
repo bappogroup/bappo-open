@@ -54,7 +54,7 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
           }}
           style={iconStyles}
         >
-          {children}
+          {glyph}
         </Text>
       );
     }
