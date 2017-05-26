@@ -78,4 +78,6 @@ theme: meteor
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:williamfeng91/bappo-components.git
+  branch: gh-pages
