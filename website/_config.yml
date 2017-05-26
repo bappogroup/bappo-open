@@ -14,7 +14,7 @@ versions:
 sidebar_categories:
   null:
     - index
-github_repo: williamfeng91/bappo-components-docs
+github_repo: williamfeng91/bappo-components
 content_root: docs
 
 social_links:
@@ -22,8 +22,8 @@ social_links:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://williamfeng91.github.io/bappo-components-docs
-root: /bappo-components-docs/
+url: https://williamfeng91.github.io/bappo-components
+root: /bappo-components/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -78,5 +78,4 @@ theme: meteor
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@github.com:williamfeng91/bappo-components-docs.git
+  type:
