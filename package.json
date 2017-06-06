@@ -1,7 +1,19 @@
 {
   "name": "bappo-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Cross-platform React components for building Bappo apps",
+  "files": [
+    ".flowconfig",
+    "fonts",
+    "fonts.gradle",
+    "glyphmaps",
+    "index.android.js",
+    "index.ios.js",
+    "index.js",
+    "index.windows.js",
+    "lib",
+    "src"
+  ],
   "scripts": {
     "build": "rm -rf lib && babel src/ -d lib/",
     "prepublish": "yarn run build"
