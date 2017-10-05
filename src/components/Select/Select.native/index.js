@@ -2,15 +2,14 @@
 
 import * as React from 'react';
 import {
-  Picker,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import Menu from './Menu';
 import Popup from './Popup';
 import SearchBar from './SearchBar';
-import SelectedOptionContainer from './SelectedOptionContainer';
+import SelectedOption from './SelectedOption';
 import {
   Container,
   Control,
@@ -28,12 +27,10 @@ import {
 import type {
   Option,
   renderOptionType,
-  renderSelectedOptionType,
   Value,
 } from '../types.js.flow';
 
 type Props = {
-  autoBlur: ?boolean,
   autoFocus: ?boolean,
   clearable: ?boolean,
   clearAllText: string,
@@ -52,14 +49,12 @@ type Props = {
   options?: ?Array<Option>,
   placeholder: string,
   renderOption?: ?renderOptionType,
-  renderSelectedOption?: ?renderSelectedOptionType,
   searchable: ?boolean,
   value?: Value,
   valueKey: string,
 };
 
 type State = {
-  focusedOption: ?Option,
   inputValue: string,
   isOpen: boolean,
 };
@@ -78,7 +73,6 @@ class Select extends React.Component<Props, State> {
   };
 
   static defaultProps = {
-    autoBlur: true,
     autoFocus: false,
     clearable: true,
     clearAllText: 'Clear all',
@@ -105,23 +99,10 @@ class Select extends React.Component<Props, State> {
     return null;
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    const { defaultValue, options, value, valueKey } = this.props;
-    let focusedOption = null;
-    if (options) {
-      focusedOption =
-        Select._findOption(options, valueKey, value) ||
-        Select._findOption(options, valueKey, defaultValue) ||
-        (options.length > 0 ? options[0] : null);
-    }
-    this.state = {
-      focusedOption,
-      inputValue: '',
-      isOpen: false,
-    };
-  }
+  state: State = {
+    inputValue: '',
+    isOpen: false,
+  };
 
   componentDidMount() {
     if (this.props.autoFocus) {
@@ -136,13 +117,10 @@ class Select extends React.Component<Props, State> {
       visibleOptions,
     } = selectState;
 
-    const { focusedOption } = this.state;
-
     return (
       <Container>
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={this.focus}
-          underlayColor="transparent"
         >
           <Control>
             <MultiValueWrapper>
@@ -150,13 +128,18 @@ class Select extends React.Component<Props, State> {
             </MultiValueWrapper>
             {this._renderDropdownIcon()}
           </Control>
-        </TouchableHighlight>
-        {this._renderPopup(visibleOptions, selectedOptions, focusedOption)}
+        </TouchableOpacity>
+        {this._renderPopup(visibleOptions, selectedOptions)}
       </Container>
     );
   }
 
   _searchInput = (null: any);
+
+  _addValue = (option: Option) => {
+    const selectedOptions = this._getSelectedOptions();
+    this._setValue(selectedOptions.concat(option));
+  };
 
   _captureSearchInput = (ref) => {
     this._searchInput = ref;
@@ -182,12 +165,6 @@ class Select extends React.Component<Props, State> {
       if (!filterValue) return true;
       const labelTest = String(option[labelKey]).toLowerCase();
       return labelTest.indexOf(filterValue) >= 0;
-    });
-  };
-
-  _focusOption = (option: ?Option) => {
-    this.setState({
-      focusedOption: option,
     });
   };
 
@@ -217,12 +194,15 @@ class Select extends React.Component<Props, State> {
       clearable,
       disabled,
       isLoading,
+      multi,
       searchable,
     } = this.props;
     const selectedOptions = this._getSelectedOptions();
     const visibleOptions = this._filterOptions();
     return {
       hasValue: selectedOptions.length > 0,
+      isMulti: multi,
+      isSingle: !multi,
       isClearable: clearable,
       isDisabled: disabled,
       isLoading,
@@ -235,13 +215,6 @@ class Select extends React.Component<Props, State> {
 
   _onCancel = () => {
     this.blur();
-  };
-
-  _onPickerValueChange = (value: Value) => {
-    const option = this._getOptionFromValue(value);
-    if (option) {
-      this._focusOption(option);
-    }
   };
 
   _onSearchBarInputChange = (inputValue: string) => {
@@ -264,7 +237,11 @@ class Select extends React.Component<Props, State> {
   };
 
   _selectOption = (option: Option) => {
-    this._setValue([option]);
+    if (this.props.multi) {
+      this._addValue(option);
+    } else {
+      this._setValue([option]);
+    }
   };
 
   _setPopupVisible = (visible: boolean) => {
@@ -272,44 +249,69 @@ class Select extends React.Component<Props, State> {
   };
 
   _setValue = (options: Array<Option>) => {
-    const { autoBlur, onValueChange, valueKey } = this.props;
-    if (autoBlur) {
+    const { multi, onValueChange, valueKey } = this.props;
+    if (!multi) {
       this.blur();
     }
     if (onValueChange) {
       const valueArray = options.map(option => option[valueKey]);
-      const value = valueArray.length > 0 ? valueArray[0] : null;
+      const value = multi
+        ? valueArray
+        : (valueArray.length > 0 ? valueArray[0] : null);
       onValueChange(value);
+    }
+  };
+
+  _toggleOption = (option: Option) => {
+    const { valueKey } = this.props;
+    const selectedOptions = this._getSelectedOptions();
+    if (selectedOptions.find(op => op[valueKey] === option[valueKey])) {
+      this._setValue(selectedOptions.filter(op => op[valueKey] !== option[valueKey]));
+    } else {
+      this._selectOption(option);
     }
   };
 
   _renderClear = () => {
     const {
       clearable,
+      clearAllText,
       clearValueText,
       disabled,
       isLoading,
+      multi,
       value,
     } = this.props;
     if (
       !clearable ||
       value === undefined ||
       value === null ||
+      (multi && !value.length) ||
       disabled ||
       isLoading
     ) {
       return null;
     }
 
-    const label = clearValueText;
+    const label = multi ? clearAllText : clearValueText;
 
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         onPress={this._clearValue}
-        underlayColor="transparent"
       >
         <PopupText>{label}</PopupText>
-      </TouchableHighlight>
+      </TouchableOpacity>
+    );
+  };
+
+  _renderConfirmButton = () => {
+    if (!this.props.multi) return null;
+    return (
+      <TouchableOpacity
+        onPress={this.blur}
+      >
+        <OKText>OK</OKText>
+      </TouchableOpacity>
     );
   };
 
@@ -331,7 +333,10 @@ class Select extends React.Component<Props, State> {
     );
   };
 
-  _renderList = (options: Array<Option>) => {
+  _renderMenu = (
+    options: Array<Option>,
+    selectedOptions: Array<Option>,
+  ) => {
     let body = null;
     if (options.length === 0) {
       if (this.props.options && this.props.options.length > 0) {
@@ -349,13 +354,18 @@ class Select extends React.Component<Props, State> {
         </ListEmptyContainer>
       );
     } else {
-      const { labelKey, renderOption } = this.props;
+      const { labelKey, multi, renderOption, valueKey } = this.props;
+      const handleSelect = multi
+        ? this._toggleOption
+        : this._selectOption;
       body = (
         <Menu
           labelKey={labelKey}
-          onSelect={this._selectOption}
+          onSelect={handleSelect}
           options={options}
           renderOption={renderOption}
+          selectedOptions={selectedOptions}
+          valueKey={valueKey}
         />
       );
     }
@@ -368,8 +378,7 @@ class Select extends React.Component<Props, State> {
 
   _renderPopup = (
     options: Array<Option>,
-    selectedOptions: ?Array<Option>,
-    focusedOption: ?Option,
+    selectedOptions: Array<Option>,
   ) => {
     const { searchable } = this.props;
     const popupHeight = searchable ? 359 : 259;
@@ -385,23 +394,17 @@ class Select extends React.Component<Props, State> {
         >
           <PopupContentContainer>
             <PopupTopBar>
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={this._onCancel}
-                underlayColor="transparent"
               >
                 <PopupText>Cancel</PopupText>
-              </TouchableHighlight>
+              </TouchableOpacity>
               <View style={{ flex: 1 }} />
               {this._renderClear()}
-              <TouchableHighlight
-                onPress={() => focusedOption && this._setValue([focusedOption])}
-                underlayColor="transparent"
-              >
-                <OKText>OK</OKText>
-              </TouchableHighlight>
+              {this._renderConfirmButton()}
             </PopupTopBar>
             {this._renderSearchBar()}
-            {this._renderList(options)}
+            {this._renderMenu(options, selectedOptions)}
           </PopupContentContainer>
         </PopupTouchableContainer>
       </Popup>
@@ -423,22 +426,28 @@ class Select extends React.Component<Props, State> {
   _renderSelectedValue = (
     selectedOptions: Array<Option>,
   ) => {
-    const { placeholder, renderSelectedOption } = this.props;
-    const render = renderSelectedOption || this._renderLabel;
+    const { labelKey, multi, placeholder, valueKey } = this.props;
 
     if (selectedOptions.length === 0) {
       return (
         <Placeholder>{placeholder}</Placeholder>
       );
     }
+    if (multi) {
+      return selectedOptions.map(option => (
+        <SelectedOption
+          key={`value-${option[valueKey]}`}
+          labelKey={labelKey}
+          option={option}
+        />
+      ));
+    }
     const option = selectedOptions[0];
     return (
-      <SelectedOptionContainer
-        isSingle
+      <SelectedOption
+        labelKey={labelKey}
         option={option}
-      >
-        {render({ option })}
-      </SelectedOptionContainer>
+      />
     );
   };
 }

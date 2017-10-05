@@ -12,7 +12,3 @@ export type renderOptionType = (info: {
   index: number,
   option: Option,
 }) => ?React.Element<any>;
-
-export type renderSelectedOptionType = (info: {
-  option: Option,
-}) => ?React.Element<any>;

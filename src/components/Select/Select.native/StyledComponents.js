@@ -29,6 +29,7 @@ export const ListEmptyContainer = styled.View`
 
 export const MultiValueWrapper = styled.View`
   flex: 1;
+  flex-direction: row;
 `;
 
 export const Placeholder = styled.Text`

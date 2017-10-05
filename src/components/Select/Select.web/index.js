@@ -2,9 +2,8 @@
 
 import * as React from 'react';
 import OptionContainer from './OptionContainer';
-import SelectedOptionContainer from './SelectedOptionContainer';
+import SelectedOption from './SelectedOption';
 import {
-  AriaOnly,
   Arrow,
   ArrowZone,
   Clear,
@@ -24,12 +23,10 @@ import {
 import type {
   Option,
   renderOptionType,
-  renderSelectedOptionType,
   Value,
 } from '../types.js.flow';
 
 type Props = {
-  autoBlur: ?boolean,
   autoFocus: ?boolean,
   clearable: ?boolean,
   clearAllText: string,
@@ -50,7 +47,6 @@ type Props = {
   pageSize: number,
   placeholder: string,
   renderOption?: ?renderOptionType,
-  renderSelectedOption?: ?renderSelectedOptionType,
   scrollMenuIntoView: boolean,
   searchable: ?boolean,
   tabIndex?: number,
@@ -79,7 +75,6 @@ class Select extends React.Component<Props, State> {
   };
 
   static defaultProps = {
-    autoBlur: true,
     autoFocus: false,
     clearable: true,
     clearAllText: 'Clear all',
@@ -744,8 +739,8 @@ class Select extends React.Component<Props, State> {
   };
 
   _setValue = (options: Array<Option>) => {
-    const { autoBlur, multi, onValueChange, valueKey } = this.props;
-    if (autoBlur) {
+    const { multi, onValueChange, valueKey } = this.props;
+    if (!multi) {
       this.blur();
     }
     if (onValueChange) {
@@ -946,35 +941,31 @@ class Select extends React.Component<Props, State> {
   _renderSelectedValue = (
     selectedOptions: Array<Option>,
   ) => {
-    const { multi, placeholder, renderSelectedOption, valueKey } = this.props;
-    const render = renderSelectedOption || this._renderLabel;
+    const { labelKey, multi, placeholder, valueKey } = this.props;
 
-    if (!selectedOptions.length) {
+    if (selectedOptions.length === 0) {
       return !this.state.inputValue && (
         <Placeholder>{placeholder}</Placeholder>
       );
     }
     if (multi) {
-      return selectedOptions.map((option, index) => (
-        <SelectedOptionContainer
+      return selectedOptions.map(option => (
+        <SelectedOption
           {...this._getSelectState()}
-          key={`value-${index}-${option[valueKey]}`}
+          key={`value-${option[valueKey]}`}
+          labelKey={labelKey}
           onRemove={this._removeValue}
           option={option}
-        >
-          {render({ option })}
-          <AriaOnly>&nbsp;</AriaOnly>
-        </SelectedOptionContainer>
+        />
       ));
     } else if (!this.state.inputValue) {
       const option = selectedOptions[0];
       return (
-        <SelectedOptionContainer
+        <SelectedOption
           {...this._getSelectState()}
+          labelKey={labelKey}
           option={option}
-        >
-          {render({ option })}
-        </SelectedOptionContainer>
+        />
       );
     }
     return null;

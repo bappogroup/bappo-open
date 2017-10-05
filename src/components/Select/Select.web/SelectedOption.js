@@ -5,19 +5,19 @@ import styled from 'styled-components';
 import type { Option } from '../types.js.flow';
 
 type Props = {
-  children?: React.Node,
   hasValue?: ?boolean,
   isDisabled?: ?boolean,
   isMulti?: ?boolean,
+  labelKey: string,
   onRemove?: (option: Option) => void,
   option: Option,
 };
 
-class SelectedOptionContainer extends React.Component<Props> {
+class SelectedOption extends React.Component<Props> {
   props: Props;
 
   render() {
-    const { children, onRemove, option, ...props } = this.props;
+    const { labelKey, onRemove, option, ...props } = this.props;
     return (
       <Container
         {...props}
@@ -58,14 +58,15 @@ class SelectedOptionContainer extends React.Component<Props> {
   };
 
   _renderLabel = () => {
-    const { children, ...props } = this.props;
+    const { labelKey, onRemove, option, ...props } = this.props;
     return (
       <Label
         {...props}
         aria-selected="true"
         role="option"
       >
-        {children}
+        {option[labelKey]}
+        {!!props.isMulti && <AriaOnly>&nbsp;</AriaOnly>}
       </Label>
     );
   };
@@ -87,7 +88,17 @@ class SelectedOptionContainer extends React.Component<Props> {
   };
 }
 
-export default SelectedOptionContainer;
+export default SelectedOption;
+
+export const AriaOnly = styled.span`
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  float: left;
+`;
 
 const Container = styled.div`
   ${({ isDisabled, isMulti }) => (isMulti ? `

@@ -107,7 +107,7 @@ export default Option;
 const Container = styled.div`
   box-sizing: border-box;
   background-color: #fff;
-  color: #666666;
+  color: #666;
   cursor: pointer;
   display: block;
   padding: 8px 10px;
@@ -128,7 +128,7 @@ const Container = styled.div`
   `}
 
   ${props => props.isDisabled && `
-    color: #cccccc;
+    color: #ccc;
     cursor: default;
   `}
 `;

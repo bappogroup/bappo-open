@@ -5,15 +5,15 @@ import styled from 'styled-components/native';
 import type { Option } from '../types.js.flow';
 
 type Props = {
-  children?: React.Node,
+  labelKey: string,
   option: Option,
 };
 
-class SelectedOptionContainer extends React.Component<Props> {
+class SelectedOption extends React.Component<Props> {
   props: Props;
 
   render() {
-    const { children, option, ...props } = this.props;
+    const { option, ...props } = this.props;
     return (
       <Container
         {...props}
@@ -24,18 +24,18 @@ class SelectedOptionContainer extends React.Component<Props> {
   }
 
   _renderLabel = () => {
-    const { children, option, ...props } = this.props;
+    const { labelKey, option, ...props } = this.props;
     return (
       <Label
         {...props}
       >
-        {children}
+        {option[labelKey]}
       </Label>
     );
   };
 }
 
-export default SelectedOptionContainer;
+export default SelectedOption;
 
 const Container = styled.View`
   flex-direction: row;
