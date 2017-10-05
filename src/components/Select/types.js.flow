@@ -1,0 +1,18 @@
+// @flow
+import * as React from 'react';
+
+export type Option = {
+  disabled?: boolean,
+  [string]: any,
+};
+
+export type Value = string | number | null | $ReadOnlyArray<string | number>;
+
+export type renderOptionType = (info: {
+  index: number,
+  option: Option,
+}) => ?React.Element<any>;
+
+export type renderSelectedOptionType = (info: {
+  option: Option,
+}) => ?React.Element<any>;

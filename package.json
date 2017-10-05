@@ -2,15 +2,12 @@
   "name": "bappo-components",
   "version": "0.0.4",
   "description": "Cross-platform React components for building Bappo apps",
+  "main": "lib/index.js",
   "files": [
     ".flowconfig",
     "fonts",
     "fonts.gradle",
     "glyphmaps",
-    "index.android.js",
-    "index.ios.js",
-    "index.js",
-    "index.windows.js",
     "lib",
     "src"
   ],
@@ -28,29 +25,33 @@
   "author": "Bappo",
   "license": "MIT",
   "dependencies": {
-    "reactxp": "^0.42.0-rc.9"
+    "lodash": "^4.17.4",
+    "reactxp": "^0.42.0-rc.9",
+    "styled-components": "^2.2.1"
   },
   "homepage": "https://github.com/williamfeng91/bappo-components#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
-    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-styled-components": "^1.2.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-flowtype": "^2.33.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
-    "eslint-plugin-react": "^7.0.1",
-    "flow-bin": "^0.46.0",
-    "react": "^15.5.4"
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-flowtype": "^2.36.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "flow-bin": "^0.55.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   },
   "peerDependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-native": "^0.42.0",
     "react-native-windows": "^0.33.0"
   }
