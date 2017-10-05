@@ -5,9 +5,9 @@ import {
   Picker,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
   View,
 } from 'react-native';
+import Menu from './Menu';
 import Popup from './Popup';
 import SearchBar from './SearchBar';
 import SelectedOptionContainer from './SelectedOptionContainer';
@@ -16,13 +16,14 @@ import {
   Control,
   IconText,
   ListContainer,
+  ListEmptyContainer,
   MultiValueWrapper,
   OKText,
   Placeholder,
   PopupContentContainer,
   PopupText,
   PopupTopBar,
-  StyledPicker,
+  PopupTouchableContainer,
 } from './StyledComponents';
 import type {
   Option,
@@ -262,6 +263,10 @@ class Select extends React.Component<Props, State> {
     onFocus && onFocus();
   };
 
+  _selectOption = (option: Option) => {
+    this._setValue([option]);
+  };
+
   _setPopupVisible = (visible: boolean) => {
     this.setState({ isOpen: visible });
   };
@@ -338,34 +343,26 @@ class Select extends React.Component<Props, State> {
           <PopupText>No options available</PopupText>
         );
       }
-    } else {
-      const { valueKey } = this.props;
-      const { focusedOption } = this.state;
       body = (
-        <StyledPicker
-          onValueChange={this._onPickerValueChange}
-          selectedValue={focusedOption && focusedOption[valueKey]}
-        >
-          {options.map(this._renderOption)}
-        </StyledPicker>
+        <ListEmptyContainer>
+          {body}
+        </ListEmptyContainer>
+      );
+    } else {
+      const { labelKey, renderOption } = this.props;
+      body = (
+        <Menu
+          labelKey={labelKey}
+          onSelect={this._selectOption}
+          options={options}
+          renderOption={renderOption}
+        />
       );
     }
     return (
       <ListContainer>
         {body}
       </ListContainer>
-    );
-  };
-
-  _renderOption = (option: Option, index: number) => {
-    const { labelKey, valueKey } = this.props;
-
-    return (
-      <Picker.Item
-        key={`option-${index}-${option[valueKey]}`}
-        label={option[labelKey]}
-        value={option[valueKey]}
-      />
     );
   };
 
@@ -382,7 +379,7 @@ class Select extends React.Component<Props, State> {
         onRequestClose={this._onCancel}
         show={this.state.isOpen}
       >
-        <TouchableOpacity
+        <PopupTouchableContainer
           activeOpacity={1}
           onPress={this._blurSearchInput}
         >
@@ -406,7 +403,7 @@ class Select extends React.Component<Props, State> {
             {this._renderSearchBar()}
             {this._renderList(options)}
           </PopupContentContainer>
-        </TouchableOpacity>
+        </PopupTouchableContainer>
       </Popup>
     );
   };

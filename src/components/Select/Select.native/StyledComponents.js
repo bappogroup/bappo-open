@@ -19,6 +19,10 @@ export const IconText = styled.Text`
 `;
 
 export const ListContainer = styled.View`
+  flex: 1;
+`;
+
+export const ListEmptyContainer = styled.View`
   align-items: center;
   justify-content: center;
 `;
@@ -33,6 +37,7 @@ export const Placeholder = styled.Text`
 `;
 
 export const PopupContentContainer = styled.View`
+  flex: 1;
 `;
 
 export const PopupText = styled.Text`
@@ -51,6 +56,6 @@ export const PopupTopBar = styled.View`
   border-bottom-width: 1px;
 `;
 
-export const StyledPicker = styled.Picker`
-  width: 100%;
+export const PopupTouchableContainer = styled.TouchableOpacity`
+  flex: 1;
 `;
