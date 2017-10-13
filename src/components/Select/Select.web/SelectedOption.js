@@ -101,6 +101,7 @@ export const AriaOnly = styled.span`
 `;
 
 const Container = styled.div`
+  margin-left: 5px;
   ${({ isDisabled, isMulti }) => (isMulti ? `
     background-color: #ebf5ff;
     border-radius: 2px;
@@ -108,9 +109,6 @@ const Container = styled.div`
     color: #007eff;
     display: inline-block;
     font-size: 0.9em;
-    line-height: 1.4;
-    margin-left: 5px;
-    margin-top: 5px;
     vertical-align: top;
     ${isDisabled && `
       background-color: #fcfcfc;
@@ -118,12 +116,11 @@ const Container = styled.div`
       color: #333;
     `}
   ` : `
+    display: flex;
+    align-items: center;
     bottom: 0;
     color: #aaa;
     left: 0;
-    line-height: 34px;
-    padding-left: 10px;
-    padding-right: 10px;
     position: absolute;
     right: 0;
     top: 0;
@@ -165,6 +162,6 @@ const Label = styled.span`
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     cursor: default;
-    padding: 2px 5px;
+    padding: 0 5px;
   `}
 `;

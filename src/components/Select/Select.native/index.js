@@ -14,6 +14,7 @@ import {
   Container,
   Control,
   IconText,
+  IconTextContainer,
   ListContainer,
   ListEmptyContainer,
   MultiValueWrapper,
@@ -50,6 +51,7 @@ type Props = {
   placeholder: string,
   renderOption?: ?renderOptionType,
   searchable: ?boolean,
+  style?: any,
   value?: Value,
   valueKey: string,
 };
@@ -111,25 +113,32 @@ class Select extends React.Component<Props, State> {
   }
 
   render() {
+    const {
+      style,
+    } = this.props;
+
     const selectState = this._getSelectState();
     const {
       selectedOptions,
       visibleOptions,
     } = selectState;
 
+    const styleProps = {
+      style,
+    };
+
     return (
-      <Container>
-        <TouchableOpacity
-          onPress={this.focus}
-        >
-          <Control>
-            <MultiValueWrapper>
-              {this._renderSelectedValue(selectedOptions)}
-            </MultiValueWrapper>
-            {this._renderDropdownIcon()}
-          </Control>
-        </TouchableOpacity>
-        {this._renderPopup(visibleOptions, selectedOptions)}
+      <Container
+        {...styleProps}
+        onPress={this.focus}
+      >
+        <Control>
+          <MultiValueWrapper>
+            {this._renderSelectedValue(selectedOptions)}
+          </MultiValueWrapper>
+          {this._renderDropdownIcon()}
+          {this._renderPopup(visibleOptions, selectedOptions)}
+        </Control>
       </Container>
     );
   }
@@ -317,7 +326,9 @@ class Select extends React.Component<Props, State> {
 
   _renderDropdownIcon = () => {
     return (
-      <IconText>⌄</IconText>
+      <IconTextContainer>
+        <IconText>⌄</IconText>
+      </IconTextContainer>
     );
   };
 

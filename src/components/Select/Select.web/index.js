@@ -28,6 +28,7 @@ import type {
 
 type Props = {
   autoFocus: ?boolean,
+  className?: string,
   clearable: ?boolean,
   clearAllText: string,
   clearValueText: string,
@@ -49,6 +50,7 @@ type Props = {
   renderOption?: ?renderOptionType,
   scrollMenuIntoView: boolean,
   searchable: ?boolean,
+  style?: any,
   tabIndex?: number,
   value?: Value,
   valueKey: string,
@@ -154,6 +156,11 @@ class Select extends React.Component<Props, State> {
   }
 
   render() {
+    const {
+      className,
+      style,
+    } = this.props;
+
     const selectState = this._getSelectState();
     const {
       isOpen,
@@ -168,7 +175,9 @@ class Select extends React.Component<Props, State> {
     return (
       <Container
         {...selectState}
+        className={className}
         innerRef={(ref) => { this._wrapper = ref; }}
+        style={style}
       >
         <Control
           {...selectState}

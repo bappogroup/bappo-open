@@ -32,7 +32,6 @@ export const ArrowZone = styled.span`
   text-align: center;
   vertical-align: middle;
   width: 25px;
-  padding-right: 5px;
 
   &:hover {
     ${Arrow} {
@@ -49,7 +48,7 @@ export const ArrowZone = styled.span`
 
 export const Clear = styled.span`
   display: inline-block;
-  font-size: 18px;
+  font-size: 1.15em;
   line-height: 1;
 `;
 
@@ -68,13 +67,13 @@ export const ClearZone = styled.span`
 `;
 
 export const Container = styled.div`
+  font-size: 14px;
   position: relative;
 `;
 
 export const Control = styled.div`
   cursor: default;
   display: table;
-  height: 36px;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -98,21 +97,12 @@ export const Control = styled.div`
 `;
 
 const inputStyle = css`
-  height: 34px;
-  padding-left: 10px;
+  margin-left: 5px;
   padding-right: 10px;
   vertical-align: middle;
   &:focus {
     outline: none;
   }
-  ${({ hasValue, isMulti }) => isMulti && `
-    vertical-align: middle;
-    margin-left: 10px;
-    padding: 0;
-    ${hasValue && `
-      margin-left: 5px;
-    `}
-  `}
 `;
 
 export const FakeInput = styled.div`
@@ -134,9 +124,8 @@ export const Input = styled(TextInputAutoSize)`
     font-size: inherit;
     margin: 0;
     outline: none;
-    line-height: 14px;
-    padding: 8px 0 12px;
-    -webkit-appearance: none;
+    padding: 0;
+    appearance: none;
     ${({ hasValue, isPseudoFocused }) => hasValue && isPseudoFocused && `
       opacity: 0;
     `}
@@ -188,7 +177,7 @@ export const MenuOuter = styled.div`
   -webkit-overflow-scrolling: touch;
 `;
 
-export const MultiValueWrapper = styled.span`
+export const MultiValueWrapper = styled.div`
   ${props => props.isMulti && `
     display: inline-block;
   `}
@@ -205,8 +194,7 @@ export const Placeholder = styled.div`
   bottom: 0;
   color: #aaa;
   left: 0;
-  line-height: 34px;
-  padding-left: 10px;
+  padding-left: 5px;
   padding-right: 10px;
   position: absolute;
   right: 0;
@@ -215,4 +203,6 @@ export const Placeholder = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 `;

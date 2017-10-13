@@ -2,7 +2,7 @@
 
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   position: relative;
 `;
 
@@ -14,8 +14,13 @@ export const Control = styled.View`
 
 export const IconText = styled.Text`
   font-size: 24px;
-  padding-bottom: 10px;
-  padding-horizontal: 10px;
+  transform: translateY(-14px);
+`;
+
+export const IconTextContainer = styled.View`
+  height: 17px;
+  overflow: hidden;
+  margin-left: 10px;
 `;
 
 export const ListContainer = styled.View`
@@ -34,7 +39,6 @@ export const MultiValueWrapper = styled.View`
 
 export const Placeholder = styled.Text`
   color: #aaa;
-  padding-left: 10px;
 `;
 
 export const PopupContentContainer = styled.View`

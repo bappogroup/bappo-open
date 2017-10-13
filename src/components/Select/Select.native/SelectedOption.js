@@ -40,7 +40,6 @@ export default SelectedOption;
 const Container = styled.View`
   flex-direction: row;
   align-items: center;
-  padding-left: 10px;
 `;
 
 const Label = styled.Text`
