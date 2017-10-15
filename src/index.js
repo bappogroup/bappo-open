@@ -1,5 +1,6 @@
 // APIs
 export { default as Platform } from './apis/Platform';
+export * from './apis/Style';
 
 // Components
 export { default as ActivityIndicator } from './components/ActivityIndicator';
