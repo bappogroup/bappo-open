@@ -28,7 +28,7 @@
     "fbjs": "^0.8.16",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "react-native-web": "0.0.130",
+    "react-native-web": "^0.1.9",
     "styled-components": "^2.2.1"
   },
   "homepage": "https://github.com/williamfeng91/bappo-components#readme",
@@ -47,13 +47,11 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "flow-bin": "^0.55.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "flow-bin": "^0.55.0"
   },
   "peerDependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "16.x.x",
+    "react-dom": "16.x.x",
     "react-native": ">=0.42.0"
   }
 }
