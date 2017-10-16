@@ -33,6 +33,8 @@ if (document && document.head) {
   head.appendChild(style);
 }
 
+const isText = element => typeof element === 'string' || typeof element === 'number';
+
 class Text extends React.Component<Props> {
   props: Props;
 
@@ -73,16 +75,29 @@ class Text extends React.Component<Props> {
       style,
     };
 
-    if (Array.isArray(children)) {
-      const flatArray = React.Children.toArray(children);
-      return this._renderContainer(
-        flatArray.map((element, index) => this._renderChild(element, styleProps, `${index}`)),
-        styleProps,
-      );
-    } else if (typeof children !== 'string' && typeof children !== 'number') {
-      return this._renderContainer(children, styleProps);
-    }
-    return this._renderChild(children, styleProps);
+    // Combine adjacent strings/numbers into a single string
+    const flatArray = React.Children.toArray(children)
+      .reduce((accumulator, child) => {
+        if (
+          isText(child) &&
+          accumulator.length > 0 &&
+          isText(accumulator[accumulator.length - 1])
+        ) {
+          const lastText = accumulator[accumulator.length - 1];
+          return [
+            ...accumulator.slice(0, -1),
+            `${lastText}${child}`,
+          ];
+        }
+        return [
+          ...accumulator,
+          child,
+        ];
+      }, []);
+    return this._renderContainer(
+      flatArray.map((element, index) => this._renderChild(element, styleProps, `${index}`)),
+      styleProps,
+    );
   }
 
   _renderChild = (
@@ -90,29 +105,9 @@ class Text extends React.Component<Props> {
     props: Object,
     key?: string,
   ) => {
-    const {
-      selectable,
-    } = this.props;
-
     if (typeof child === 'string' || typeof child === 'number') {
-      if (selectable) {
-        return this._renderContainer(child, {
-          ...props,
-          key,
-        });
-      }
-      // user-select CSS property doesn't prevent the text from being copied to clipboard.
-      // To avoid getting to clipboard, the text from data-text-as-pseudo-element attribute
-      // will be displayed as pseudo element.
-      return (
-        <Div
-          {...props}
-          key={key}
-          data-text-as-pseudo-element={child}
-        />
-      );
+      return this._renderText(child, props, key);
     }
-
     if (typeof child === 'object' && child !== null) {
       return React.cloneElement(child, { key });
     }
@@ -126,6 +121,33 @@ class Text extends React.Component<Props> {
       >
         {children}
       </Div>
+    );
+  };
+
+  _renderText = (
+    text: string | number,
+    props: Object,
+    key?: string,
+  ) => {
+    const {
+      selectable,
+    } = this.props;
+
+    if (selectable) {
+      return this._renderContainer(text, {
+        ...props,
+        key,
+      });
+    }
+    // user-select CSS property doesn't prevent the text from being copied to clipboard.
+    // To avoid getting to clipboard, the text from data-text-as-pseudo-element attribute
+    // will be displayed as pseudo element.
+    return (
+      <Div
+        {...props}
+        key={key}
+        data-text-as-pseudo-element={text}
+      />
     );
   };
 }
