@@ -47,7 +47,9 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "flow-bin": "^0.55.0"
+    "flow-bin": "^0.55.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "peerDependencies": {
     "react": "16.x.x",

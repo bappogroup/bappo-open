@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { throttle } from 'lodash';
 import styled from 'styled-components';
+import View from '../View';
 
 type Props = {
   children?: React.Node,
@@ -72,7 +73,9 @@ class ScrollView extends React.Component<Props> {
         innerRef={this._captureScrollableNodeRef}
         onScroll={this._onScroll}
       >
-        {children}
+        <View>
+          {children}
+        </View>
       </Div>
     );
   }

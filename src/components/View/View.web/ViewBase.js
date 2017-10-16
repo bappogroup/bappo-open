@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import 'react-native-web/dist/modules/injectResponderEventPlugin';
 
 type Props = {
   children?: React.Node,

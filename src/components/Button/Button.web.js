@@ -4,7 +4,6 @@ import * as React from 'react';
 import requestAnimationFrame from 'fbjs/lib/requestAnimationFrame';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
 import styled from 'styled-components';
-import 'react-native-web/dist/modules/injectResponderEventPlugin';
 import ViewBase from '../View/View.web/ViewBase';
 
 type Props = {
