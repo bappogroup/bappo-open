@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.16.2",
-		"bappo-components": "0.0.7",
+		"bappo-components": "0.0.8",
 		"create-react-class": "^15.6.2",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.0"
