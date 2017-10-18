@@ -4,11 +4,15 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import type {
+  ViewLayoutEvent,
+} from '../../../events.js.flow';
 import ViewBase from './ViewBase';
 
 type Props = {
   children?: React.Node,
   className?: string,
+  onLayout?: (event: ViewLayoutEvent) => void,
   /**
    * Controls whether the View can be the target of touch events.
    *
@@ -31,6 +35,7 @@ class View extends React.Component<Props> {
     const {
       children,
       className,
+      onLayout,
       pointerEvents,
       style,
     } = this.props;
@@ -44,6 +49,7 @@ class View extends React.Component<Props> {
     return (
       <StyledViewBase
         {...styleProps}
+        onLayout={onLayout}
       >
         {children}
       </StyledViewBase>

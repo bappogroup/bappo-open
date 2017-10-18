@@ -2,17 +2,31 @@
 
 import * as React from 'react';
 import { throttle } from 'lodash';
+import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
-import View from '../View';
+import ViewBase from '../View/View.web/ViewBase';
+import type {
+  ScrollEvent,
+  ViewLayoutEvent,
+} from '../../events.js.flow';
 
 type Props = {
   children?: React.Node,
   className?: string,
   /**
+   * Called when scrollable content view of the ScrollView changes.
+   * Handler function is passed the content width and content height as parameters:
+   * (contentWidth, contentHeight)
+   * It's implemented using onLayout handler attached to the content container which this ScrollView
+   * renders.
+   */
+  onContentSizeChange?: ?(width: number, height: number) => void,
+  onLayout?: ?(event: ViewLayoutEvent) => void,
+  /**
    * Fires at most once per frame during scrolling. The frequency of the events can be controlled
    * using the scrollEventThrottle prop.
    */
-  onScroll?: ?({ x: number, y: number }) => void,
+  onScroll?: ?(event: ScrollEvent) => void,
   /**
    * This controls how often the scroll event will be fired while scrolling (as a time interval in
    * ms). A lower number yields better accuracy for code that is tracking the scroll position, but
@@ -59,6 +73,7 @@ class ScrollView extends React.Component<Props> {
     const {
       children,
       className,
+      onLayout,
       style,
     } = this.props;
 
@@ -68,37 +83,70 @@ class ScrollView extends React.Component<Props> {
     };
 
     return (
-      <Div
+      <ScrollContainer
         {...styleProps}
         innerRef={this._captureScrollableNodeRef}
+        onLayout={onLayout}
         onScroll={this._onScroll}
       >
-        <View>
+        <ViewBase
+          onLayout={this._onContentLayout}
+        >
           {children}
-        </View>
-      </Div>
+        </ViewBase>
+      </ScrollContainer>
     );
   }
 
-  _scrollableNode: ?HTMLDivElement;
+  _scrollableNode: any;
 
   _captureScrollableNodeRef = (ref) => {
-    this._scrollableNode = ref;
+    this._scrollableNode = findDOMNode(ref);
   };
 
-  _onScroll = throttle((event: SyntheticWheelEvent<HTMLDivElement>) => {
-    const { onScroll } = this.props;
+  _onContentLayout = (event: ViewLayoutEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+
+    const {
+      onContentSizeChange,
+    } = this.props;
+
+    onContentSizeChange && onContentSizeChange(width, height);
+  };
+
+  _onScroll = (event: SyntheticWheelEvent<HTMLDivElement>) => {
+    event.persist();
+    this._onScrollThrottled(event);
+  };
+
+  _onScrollThrottled = throttle((event) => {
+    const {
+      onScroll,
+    } = this.props;
 
     onScroll && onScroll({
-      x: event.currentTarget.scrollLeft,
-      y: event.currentTarget.scrollTop,
+      nativeEvent: {
+        contentOffset: {
+          x: event.target.scrollLeft,
+          y: event.target.scrollTop,
+        },
+        contentSize: {
+          height: event.target.scrollHeight,
+          width: event.target.scrollWidth,
+        },
+        layoutMeasurement: {
+          height: event.target.offsetHeight,
+          width: event.target.offsetWidth,
+        },
+      },
+      timeStamp: Date.now(),
     });
   }, this.props.scrollEventThrottle);
 }
 
 export default ScrollView;
 
-const Div = styled.div`
+const ScrollContainer = styled(ViewBase)`
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;

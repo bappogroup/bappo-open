@@ -6,6 +6,7 @@ export * from './apis/Style';
 export { default as ActivityIndicator } from './components/ActivityIndicator';
 export { default as AsyncSelect } from './components/AsyncSelect';
 export { default as Button } from './components/Button';
+export { default as FlatList } from './components/FlatList';
 // export * from './Icon';
 export { default as Select } from './components/Select';
 export { default as ScrollView } from './components/ScrollView';

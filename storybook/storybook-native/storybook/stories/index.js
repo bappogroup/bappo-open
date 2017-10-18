@@ -5,6 +5,7 @@ addDecorator(centered);
 
 require('./1-components/ActivityIndicator/ActivityIndicatorScreen');
 require('./1-components/Button/ButtonScreen');
+require('./1-components/FlatList/FlatListScreen');
 require('./1-components/ScrollView/ScrollViewScreen');
 require('./1-components/Select/SelectScreen');
 require('./1-components/Text/TextScreen');

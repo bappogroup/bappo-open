@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import requestAnimationFrame from 'fbjs/lib/requestAnimationFrame';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
 import styled from 'styled-components';
+import UIManager from '../../apis/UIManager';
 import ViewBase from '../View/View.web/ViewBase';
 
 type Props = {
@@ -189,19 +189,6 @@ const LONG_PRESS_DELAY_MS = LONG_PRESS_THRESHOLD - HIGHLIGHT_DELAY_MS;
 
 const LONG_PRESS_ALLOWED_MOVEMENT = 10;
 
-const getRect = (node) => {
-  const height = node.offsetHeight;
-  const width = node.offsetWidth;
-  let left = 0;
-  let top = 0;
-  while (node && node.nodeType === 1) {
-    left += node.offsetLeft;
-    top += node.offsetTop;
-    node = node.offsetParent; // eslint-disable-line no-param-reassign
-  }
-  return { height, left, top, width };
-};
-
 type State = {
   touchable: {
     touchState: ?$Values<typeof States>,
@@ -348,6 +335,21 @@ class Button extends React.Component<Props, State> {
     } = this.props;
 
     onPressOut && onPressOut();
+  };
+
+  _handleQueryLayout = (l, t, w, h, globalX, globalY) => {
+    // don't do anything UIManager failed to measure node
+    if (!l && !t && !w && !h && !globalX && !globalY) {
+      return;
+    }
+    this.state.touchable.positionOnActivate = {
+      left: globalX,
+      top: globalY,
+    };
+    this.state.touchable.dimensionsOnActivate = {
+      width: w,
+      height: h,
+    };
   };
 
   _onKeyDownUp = (event: SyntheticKeyboardEvent<>) => {
@@ -533,28 +535,7 @@ class Button extends React.Component<Props, State> {
       return;
     }
 
-    requestAnimationFrame(() => {
-      const node = tag;
-      const relativeNode = node && node.parentNode;
-
-      if (node && relativeNode) {
-        const relativeRect = getRect(relativeNode);
-        const { height, left, top, width } = getRect(node);
-        const x = left - relativeRect.left;
-        const y = top - relativeRect.top;
-        if (!x && !y && !width && !height && !left && !top) {
-          return;
-        }
-        this.state.touchable.positionOnActivate = {
-          left,
-          top,
-        };
-        this.state.touchable.dimensionsOnActivate = {
-          width,
-          height,
-        };
-      }
-    });
+    UIManager.measure(tag, this._handleQueryLayout);
   };
 
   _savePressInLocation = (event: SyntheticEvent<>) => {

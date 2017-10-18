@@ -2,14 +2,27 @@
 
 import * as React from 'react';
 import RN from 'react-native';
+import type {
+  ScrollEvent,
+  ViewLayoutEvent,
+} from '../../events.js.flow';
 
 type Props = {
   children?: React.Node,
   /**
+   * Called when scrollable content view of the ScrollView changes.
+   * Handler function is passed the content width and content height as parameters:
+   * (contentWidth, contentHeight)
+   * It's implemented using onLayout handler attached to the content container which this ScrollView
+   * renders.
+   */
+  onContentSizeChange?: ?(width: number, height: number) => void,
+  onLayout?: ?(event: ViewLayoutEvent) => void,
+  /**
    * Fires at most once per frame during scrolling. The frequency of the events can be controlled
    * using the scrollEventThrottle prop.
    */
-  onScroll?: ?({ x: number, y: number }) => void,
+  onScroll?: ?(event: ScrollEvent) => void,
   /**
    * This controls how often the scroll event will be fired while scrolling (as a time interval in
    * ms). A lower number yields better accuracy for code that is tracking the scroll position, but
@@ -44,6 +57,8 @@ class ScrollView extends React.Component<Props> {
   render() {
     const {
       children,
+      onContentSizeChange,
+      onLayout,
       onScroll,
       scrollEventThrottle,
       style,
@@ -52,6 +67,8 @@ class ScrollView extends React.Component<Props> {
     const props = {
       keyboardDismissMode: 'on-drag',
       keyboardShouldPersistTaps: 'handled',
+      onContentSizeChange,
+      onLayout,
       onScroll,
       scrollEventThrottle,
       style,

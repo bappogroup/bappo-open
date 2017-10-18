@@ -20,6 +20,7 @@
     "no-unused-expressions": ["error", { "allowShortCircuit": true }],
     "no-use-before-define": ["off"],
     "react/jsx-filename-extension": ["off"],
+    "react/no-find-dom-node": ["off"],
     "react/no-unused-prop-types": ["off"],
     "react/require-default-props": ["off"],
     "react/sort-comp": ["off"]

@@ -25,8 +25,28 @@ const ScrollViewScreen = () => (
 
     <Section title="Props">
       <DocItem
+        name="onContentSizeChange?"
+        typeInfo="?(width: number, height: number) => void"
+        description={[
+          <AppText>
+            Called when scrollable content view of the ScrollView changes.
+            Handler function is passed the content width and content height as parameters:
+            <Code>(contentWidth, contentHeight)</Code>
+            It's implemented using onLayout handler attached to the content container which this
+            ScrollView renders.
+          </AppText>,
+        ]}
+      />
+
+      <DocItem
+        name="onLayout?"
+        typeInfo="?(event: ViewLayoutEvent) => void"
+        description="Same as View"
+      />
+
+      <DocItem
         name="onScroll?"
-        typeInfo="function"
+        typeInfo="?(event: ScrollEvent) => void"
         description={[
           <AppText>
             Fires at most once per frame during scrolling. The frequency of the events can be

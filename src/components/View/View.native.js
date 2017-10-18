@@ -2,9 +2,13 @@
 
 import * as React from 'react';
 import RN from 'react-native';
+import type {
+  ViewLayoutEvent,
+} from '../../events.js.flow';
 
 type Props = {
   children?: React.Node,
+  onLayout?: (event: ViewLayoutEvent) => void,
   /**
    * Controls whether the View can be the target of touch events.
    *
@@ -31,11 +35,13 @@ class View extends React.Component<Props> {
   render() {
     const {
       children,
+      onLayout,
       pointerEvents,
       style,
     } = this.props;
 
     const props = {
+      onLayout,
       pointerEvents,
       style,
     };
