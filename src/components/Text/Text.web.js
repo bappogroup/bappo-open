@@ -75,6 +75,10 @@ class Text extends React.Component<Props> {
       style,
     };
 
+    if (typeof children === 'string' || typeof children === 'number') {
+      return this._renderText(children, styleProps);
+    }
+
     // Combine adjacent strings/numbers into a single string
     const flatArray = React.Children.toArray(children)
       .reduce((accumulator, child) => {
