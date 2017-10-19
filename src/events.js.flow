@@ -1,5 +1,17 @@
 // @flow
 
+export type BlurEvent = {
+  nativeEvent: {
+    text: string,
+  },
+};
+
+export type FocusEvent = {
+  nativeEvent: {
+    text: string,
+  },
+};
+
 export type ScrollEvent = {
   nativeEvent: {
     contentOffset: {

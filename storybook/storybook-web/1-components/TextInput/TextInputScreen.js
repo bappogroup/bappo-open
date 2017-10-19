@@ -8,11 +8,11 @@ import UIExplorer, {
   storiesOf,
 } from '../../ui-explorer';
 import PropMultiline from './examples/PropMultiline';
-// import PropNumberOfLines from './examples/PropNumberOfLines';
 import PropPlaceholder from './examples/PropPlaceholder';
 import PropReadOnly from './examples/PropReadOnly';
-import TextInputEvents from './examples/TextInputEvents';
+import PropType from './examples/PropType';
 import TextInputRewrite, { TextInputRewriteInvalidCharacters } from './examples/Rewrite';
+import TextInputEvents from './examples/TextInputEvents';
 import TouchableWrapper from './examples/TouchableWrapper';
 
 const TextInputScreen = () => (
@@ -29,7 +29,12 @@ const TextInputScreen = () => (
       <DocItem
         name="autoFocus?"
         typeInfo="boolean = false"
-        description="If `true`, focuses the input on `componentDidMount`. Only the first form element in a document with `autofocus` is focused."
+        description={
+          <AppText>
+            If <Code>true</Code>, focuses the input on <Code>componentDidMount</Code>. Only the
+            first form element in a document with <Code>autofocus</Code> is focused.
+          </AppText>
+        }
       />
 
       <DocItem
@@ -38,8 +43,8 @@ const TextInputScreen = () => (
         description={
           <AppText>
             Provides an initial value that will change when the user starts typing. Useful for
-            simple use-cases where you don't want to deal with listening to events and updating the{' '}
-            <Code>value</Code> prop to keep the controlled state in sync.
+            simple use-cases where you don't want to deal with listening to events and updating
+            the <Code>value</Code> prop to keep the controlled state in sync.
           </AppText>
         }
       />
@@ -47,43 +52,48 @@ const TextInputScreen = () => (
       <DocItem
         name="multiline?"
         typeInfo="boolean = false"
-        description="If `true`, the text input can be multiple lines."
+        description={
+          <AppText>
+            If <Code>true</Code>, the text input can be multiple lines.
+          </AppText>
+        }
         example={{
           render: () => <PropMultiline />,
         }}
       />
 
-      {/*<DocItem
-        name="numberOfLines?"
-        typeInfo="number"
-        description="Sets the number of lines for a multiline `TextInput`. (Requires `multiline` to be `true`.)"
-        example={{
-          render: () => <PropNumberOfLines />,
-        }}
-      />*/}
-
       <DocItem
         name="onBlur?"
-        typeInfo="(event: Event) => void"
+        typeInfo="(event: BlurEvent) => void"
         description="Callback that is called when the text input is blurred."
       />
 
       <DocItem
         name="onFocus?"
-        typeInfo="(event: Event) => void"
+        typeInfo="(event: FocusEvent) => void"
         description="Callback that is called when the text input is focused."
       />
 
       <DocItem
         name="onValueChange?"
         typeInfo="(value: string) => void"
-        description="Callback that is called when the text input's text changes. The text is passed as an argument to the callback handler."
+        description={
+          <AppText>
+            Callback that is called when the text input's text changes. The text is passed as an
+            argument to the callback handler.
+          </AppText>
+        }
       />
 
       <DocItem
         name="placeholder?"
         typeInfo="string"
-        description="The string that will be rendered in an empty `TextInput` before text has been entered."
+        description={
+          <AppText>
+            The string that will be rendered in an empty <Code>TextInput</Code> before text has been
+            entered.
+          </AppText>
+        }
         example={{
           render: () => <PropPlaceholder />,
         }}
@@ -92,7 +102,11 @@ const TextInputScreen = () => (
       <DocItem
         name="readOnly?"
         typeInfo="boolean = false"
-        description="If `true`, text is not editable (i.e., read-only).  "
+        description={
+          <AppText>
+            If <Code>true</Code>, text is not editable (i.e., read-only).
+          </AppText>
+        }
         example={{
           render: () => <PropReadOnly />,
         }}
@@ -115,6 +129,19 @@ const TextInputScreen = () => (
             ]}
           />`
         }
+      />
+
+      <DocItem
+        name="type?"
+        typeInfo="'email' | 'password' | 'text' = 'text'"
+        description={
+          <AppText>
+            Input type. Only works with <Code>{'multiline={false}'}</Code>.
+          </AppText>
+        }
+        example={{
+          render: () => <PropType />,
+        }}
       />
 
       <DocItem

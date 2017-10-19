@@ -2,8 +2,10 @@
 
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-
-type Event = Object;
+import type {
+  BlurEvent,
+  FocusEvent,
+} from '../../events.js.flow';
 
 type Props = {
   /**
@@ -28,11 +30,11 @@ type Props = {
   /**
    * Callback that is called when the text input is blurred.
    */
-  onBlur?: ?(Event) => void,
+  onBlur?: ?(event: BlurEvent) => void,
   /**
    * Callback that is called when the text input is focused.
    */
-  onFocus?: ?(Event) => void,
+  onFocus?: ?(event: FocusEvent) => void,
   /**
    * Callback that is called when the text input's text changes. Changed text is passed as an
    * argument to the callback handler.
@@ -49,6 +51,10 @@ type Props = {
   // TODO
   style?: any,
   /**
+   * Input type. Only works with `multiline={false}`.
+   */
+  type: 'email' | 'password' | 'text',
+  /**
    * The value to show for the text input. TextInput is a controlled component, which means the
    * native value will be forced to match this value prop if provided.
    */
@@ -56,6 +62,16 @@ type Props = {
 };
 
 class TextInput extends React.Component<Props> {
+  static defaultProps = {
+    autoFocus: false,
+    multiline: false,
+    placeholder: '',
+    readOnly: false,
+    type: 'text',
+  };
+
+  static displayName = 'TextInput';
+
   props: Props;
 
   blur = () => {
@@ -72,15 +88,6 @@ class TextInput extends React.Component<Props> {
     this._input && this._input.focus();
   };
 
-  static defaultProps = {
-    autoFocus: false,
-    multiline: false,
-    placeholder: '',
-    readOnly: false,
-  };
-
-  static displayName = 'TextInput';
-
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
@@ -96,6 +103,7 @@ class TextInput extends React.Component<Props> {
       multiline,
       readOnly,
       style,
+      type,
       value,
     } = this.props;
 
@@ -111,6 +119,7 @@ class TextInput extends React.Component<Props> {
       onFocus: this._createFocusEventHandler(),
       placeholder,
       readOnly,
+      type,
       value,
     };
 
