@@ -38,6 +38,7 @@ const States = {
   KEYBOARD_ACTIVE_LONG_PRESS_IN: 'KEYBOARD_ACTIVE_LONG_PRESS_IN',
   ERROR: 'ERROR',
 };
+type ButtonState = $Values<typeof States>;
 
 /**
 * Quick lookup map for states that are considered to be "active"
@@ -91,6 +92,7 @@ const Signals = {
   KEYBOARD_PRESS: 'KEYBOARD_PRESS',
   KEYBOARD_RELEASE: 'KEYBOARD_RELEASE',
 };
+type Signal = $Values<typeof Signals>;
 
 /**
 * Mapping from States x Signals => States
@@ -191,7 +193,7 @@ const LONG_PRESS_ALLOWED_MOVEMENT = 10;
 
 type State = {
   touchable: {
-    touchState: ?$Values<typeof States>,
+    touchState: ?ButtonState,
     responderID: any,
     positionOnActivate?: {
       left: number,
@@ -273,7 +275,7 @@ class Button extends React.Component<Props, State> {
     this._longPressDelayTimeout = null;
   };
 
-  _getDistanceBetweenPoints = (aX, aY, bX, bY) => {
+  _getDistanceBetweenPoints = (aX: number, aY: number, bX: number, bY: number) => {
     const deltaX = aX - bX;
     const deltaY = aY - bY;
     return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
@@ -337,7 +339,14 @@ class Button extends React.Component<Props, State> {
     onPressOut && onPressOut();
   };
 
-  _handleQueryLayout = (l, t, w, h, globalX, globalY) => {
+  _handleQueryLayout = (
+    l: number,
+    t: number,
+    w: number,
+    h: number,
+    globalX: number,
+    globalY: number,
+  ) => {
     // don't do anything UIManager failed to measure node
     if (!l && !t && !w && !h && !globalX && !globalY) {
       return;
@@ -463,7 +472,12 @@ class Button extends React.Component<Props, State> {
    * @param {Event} event Native event.
    * @sideeffects
    */
-  _performSideEffectsForTransition = (curState, nextState, signal, event: ?SyntheticEvent<>) => {
+  _performSideEffectsForTransition = (
+    curState: ?ButtonState,
+    nextState: ButtonState,
+    signal: Signal,
+    event: ?SyntheticEvent<>,
+  ) => {
     const curIsHighlight = IsPressingIn[curState];
     const newIsHighlight = IsPressingIn[nextState];
 
@@ -506,7 +520,7 @@ class Button extends React.Component<Props, State> {
     }
   };
 
-  _receiveSignal = (signal, event: ?SyntheticEvent<>) => {
+  _receiveSignal = (signal: Signal, event: ?SyntheticEvent<>) => {
     const responderID = this.state.touchable.responderID;
     const curState = this.state.touchable.touchState;
     const nextState = Transitions[curState] && Transitions[curState][signal];

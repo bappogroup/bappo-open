@@ -139,7 +139,7 @@ class TextInput extends React.Component<Props> {
 
   _input: ?(HTMLInputElement | HTMLTextAreaElement);
 
-  _captureInputRef = (ref) => {
+  _captureInputRef = (ref: ?(HTMLInputElement | HTMLTextAreaElement)) => {
     this._input = ref;
   };
 
@@ -149,10 +149,10 @@ class TextInput extends React.Component<Props> {
     } = this.props;
 
     if (onBlur) {
-      return (event) => {
+      return (event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
-          text: event.target.value,
+          text: event.currentTarget.value,
         };
         onBlur(event);
       };
@@ -166,8 +166,8 @@ class TextInput extends React.Component<Props> {
     } = this.props;
 
     if (onValueChange) {
-      return (event) => {
-        onValueChange(event.target.value);
+      return (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        onValueChange(event.currentTarget.value);
       };
     }
     return onValueChange;
@@ -179,10 +179,10 @@ class TextInput extends React.Component<Props> {
     } = this.props;
 
     if (onFocus) {
-      return (event) => {
+      return (event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
-          text: event.target.value,
+          text: event.currentTarget.value,
         };
         onFocus(event);
       };

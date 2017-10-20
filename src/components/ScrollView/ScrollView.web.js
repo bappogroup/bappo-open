@@ -98,10 +98,13 @@ class ScrollView extends React.Component<Props> {
     );
   }
 
-  _scrollableNode: any;
+  _scrollableNode: ?HTMLElement;
 
-  _captureScrollableNodeRef = (ref) => {
-    this._scrollableNode = findDOMNode(ref);
+  _captureScrollableNodeRef = (ref: ?React.ElementRef<typeof ViewBase>) => {
+    const node = findDOMNode(ref);
+    if (node instanceof HTMLElement) {
+      this._scrollableNode = node;
+    }
   };
 
   _onContentLayout = (event: ViewLayoutEvent) => {

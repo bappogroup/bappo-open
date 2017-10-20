@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ActivityIndicator, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
    * If true, the search bar is disabled.
    */
   disabled: ?boolean,
-  inputRef?: ?(ref: any) => void;
+  inputRef?: ?(?React.ElementRef<typeof Text>) => void;
   isLoading: ?boolean,
   /**
    * Callback that is called when the search text changes.
@@ -83,9 +83,9 @@ class SearchBar extends React.Component<Props> {
     );
   }
 
-  _input = (null: any);
+  _input: ?React.ElementRef<typeof Text>;
 
-  _captureInputRef = (ref) => {
+  _captureInputRef = (ref: ?React.ElementRef<typeof Text>) => {
     this._input = ref;
     const { inputRef } = this.props;
     inputRef && inputRef(ref);

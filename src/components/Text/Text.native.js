@@ -52,9 +52,9 @@ class Text extends React.Component<Props> {
     );
   }
 
-  _nativeText = (null: any);
+  _nativeText: ?React.ElementRef<typeof RN.Text>;
 
-  _captureNativeTextRef = (ref) => {
+  _captureNativeTextRef = (ref: ?React.ElementRef<typeof RN.Text>) => {
     this._nativeText = ref;
   };
 }

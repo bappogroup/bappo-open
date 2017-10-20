@@ -251,7 +251,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Scrolls to the end of the content. May be janky without `getItemLayout` prop.
    */
   scrollToEnd() {
-    this._listRef.scrollToEnd();
+    this._listRef && this._listRef.scrollToEnd();
   }
 
   /**
@@ -267,7 +267,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     viewOffset?: number,
     viewPosition?: number,
   }) {
-    this._listRef.scrollToIndex(params);
+    this._listRef && this._listRef.scrollToIndex(params);
   }
 
   /**
@@ -280,7 +280,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     item: ItemT,
     viewPosition?: number,
   }) {
-    this._listRef.scrollToItem(params);
+    this._listRef && this._listRef.scrollToItem(params);
   }
 
   /**
@@ -289,7 +289,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
   scrollToOffset(params: {
     offset: number,
   }) {
-    this._listRef.scrollToOffset(params);
+    this._listRef && this._listRef.scrollToOffset(params);
   }
 
   setNativeProps(props: Object) {
@@ -298,9 +298,9 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     }
   }
 
-  _listRef: VirtualizedList;
+  _listRef: ?React.ElementRef<typeof VirtualizedList>;
 
-  _captureRef = (ref) => {
+  _captureRef = (ref: ?React.ElementRef<typeof VirtualizedList>) => {
     this._listRef = ref;
   };
 

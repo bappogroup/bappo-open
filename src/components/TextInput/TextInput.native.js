@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import RN from 'react-native';
 import styled from 'styled-components/native';
 import type {
   BlurEvent,
@@ -142,9 +143,9 @@ class TextInput extends React.Component<Props> {
     );
   }
 
-  _input = (null: any);
+  _input: ?React.ElementRef<typeof RN.TextInput>;
 
-  _captureInputRef = (ref) => {
+  _captureInputRef = (ref: ?React.ElementRef<typeof RN.TextInput>) => {
     this._input = ref;
   };
 
@@ -154,7 +155,7 @@ class TextInput extends React.Component<Props> {
     } = this.props;
 
     if (onBlur) {
-      return (event) => {
+      return (event: Object) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
           text: event.nativeEvent.text,
@@ -171,7 +172,7 @@ class TextInput extends React.Component<Props> {
     } = this.props;
 
     if (onFocus) {
-      return (event) => {
+      return (event: Object) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
           text: event.nativeEvent.text,

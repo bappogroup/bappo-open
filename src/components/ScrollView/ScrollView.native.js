@@ -84,9 +84,9 @@ class ScrollView extends React.Component<Props> {
     );
   }
 
-  _scrollableNode = (null: any);
+  _scrollableNode: ?React.ElementRef<typeof RN.ScrollView>;
 
-  _captureScrollableNodeRef = (ref) => {
+  _captureScrollableNodeRef = (ref: ?React.ElementRef<typeof RN.ScrollView>) => {
     this._scrollableNode = ref;
   };
 }

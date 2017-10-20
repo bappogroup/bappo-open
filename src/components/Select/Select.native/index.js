@@ -143,14 +143,14 @@ class Select extends React.Component<Props, State> {
     );
   }
 
-  _searchInput = (null: any);
+  _searchInput: ?React.ElementRef<typeof Text>;
 
   _addValue = (option: Option) => {
     const selectedOptions = this._getSelectedOptions();
     this._setValue(selectedOptions.concat(option));
   };
 
-  _captureSearchInput = (ref) => {
+  _captureSearchInput = (ref: ?React.ElementRef<typeof Text>) => {
     this._searchInput = ref;
   };
 

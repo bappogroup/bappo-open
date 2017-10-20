@@ -50,9 +50,9 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
       );
     }
 
-    _text = (null: any);
+    _text: ?React.ElementRef<typeof Text>;
 
-    _captureTextRef = (ref) => {
+    _captureTextRef = (ref: ?React.ElementRef<typeof Text>) => {
       this._text = ref;
     };
   }

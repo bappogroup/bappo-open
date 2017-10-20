@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
 
@@ -47,9 +47,9 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
       );
     }
 
-    _text = (null: any);
+    _text: ?React.ElementRef<typeof Text>;
 
-    _captureTextRef = (ref) => {
+    _captureTextRef = (ref: ?React.ElementRef<typeof Text>) => {
       this._text = ref;
     };
   }

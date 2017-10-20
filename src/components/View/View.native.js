@@ -58,7 +58,7 @@ class View extends React.Component<Props> {
 
   _nativeView = (null: any);
 
-  _captureNativeViewRef = (ref) => {
+  _captureNativeViewRef = (ref: any) => {
     this._nativeView = ref;
   };
 }
