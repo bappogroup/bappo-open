@@ -36,30 +36,79 @@ type Props = {
    * Overrides the text that's read by the screen reader when the user interacts with the element.
    */
   accessibilityLabel?: string,
+  /**
+   * If `true`, focuses the input on `componentDidMount`. The default value is `false`.
+   */
   autoFocus: ?boolean,
+  /**
+   * If `true`, the input value can be cleared by pressing a button. The default value is `true`.
+   */
   clearable: ?boolean,
   clearAllText: string,
   clearValueText: string,
-  defaultValue?: Value,
-  disabled: ?boolean,
   filterOption?: ?(option: Option, searchText: string) => boolean,
+  /**
+   * If `true`, a spinner is displayed. The default value is `false`.
+   */
   isLoading: ?boolean,
   labelKey: string,
+  /**
+   * If `true`, the input becomes a multi-select. The default value is `false`.
+   */
   multi: ?boolean,
+  /**
+   * Text to show when there are no search results.
+   */
   noResultsText: string,
+  /**
+   * Callback that is called when the input is blurred.
+   */
   onBlur?: ?() => void,
+  /**
+   * Callback that is called when the input is focused.
+   */
   onFocus?: ?() => void,
+  /**
+   * Callback that is called when the search input's text changes.
+   */
   onInputChange?: ?(text: string, triggeredByUser: boolean) => void,
+  /**
+   * Callback that is called when the input value changes.
+   */
   onValueChange?: ?(value: Value) => void,
+  /**
+   * An array of options.
+   */
   options?: ?Array<Option>,
+  /**
+   * The string that will be rendered when there is no value.
+   */
   placeholder: string,
+  /**
+   * If `true`, the input is not editable. The default value is `false`.
+   */
+  readOnly: ?boolean,
+  /**
+   * Function to render the dropdown icon.
+   */
+  renderDropdownIcon?: ?() => ?React.Element<any>,
+  /**
+   * Function to render an option.
+   */
   renderOption?: ?renderOptionType,
+  /**
+   * If `true`, user can use the text input to filter options. The default value is `true`.
+   */
   searchable: ?boolean,
+  // TODO
   style?: any,
   /**
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
+  /**
+   * The value of the select input.
+   */
   value?: Value,
   valueKey: string,
 };
@@ -75,12 +124,12 @@ class Select extends React.Component<Props, State> {
     clearable: true,
     clearAllText: 'Clear all',
     clearValueText: 'Clear value',
-    disabled: false,
     isLoading: false,
     labelKey: 'label',
     multi: false,
     noResultsText: 'No results found',
     placeholder: '',
+    readOnly: false,
     searchable: true,
     valueKey: 'value',
   };
@@ -213,9 +262,9 @@ class Select extends React.Component<Props, State> {
   _getSelectState = () => {
     const {
       clearable,
-      disabled,
       isLoading,
       multi,
+      readOnly,
       searchable,
     } = this.props;
     const selectedOptions = this._getSelectedOptions();
@@ -225,7 +274,7 @@ class Select extends React.Component<Props, State> {
       isMulti: multi,
       isSingle: !multi,
       isClearable: clearable,
-      isDisabled: disabled,
+      isDisabled: readOnly,
       isLoading,
       isOpen: this.state.isOpen,
       isSearchable: searchable,
@@ -248,9 +297,9 @@ class Select extends React.Component<Props, State> {
   };
 
   _openPicker = () => {
-    const { disabled, onFocus } = this.props;
+    const { onFocus, readOnly } = this.props;
 
-    if (disabled) return;
+    if (readOnly) return;
 
     this._setPopupVisible(true);
 
@@ -298,9 +347,9 @@ class Select extends React.Component<Props, State> {
       clearable,
       clearAllText,
       clearValueText,
-      disabled,
       isLoading,
       multi,
+      readOnly,
       value,
     } = this.props;
     if (
@@ -308,7 +357,7 @@ class Select extends React.Component<Props, State> {
       value === undefined ||
       value === null ||
       (multi && !value.length) ||
-      disabled ||
+      readOnly ||
       isLoading
     ) {
       return null;
@@ -337,7 +386,11 @@ class Select extends React.Component<Props, State> {
   };
 
   _renderDropdownIcon = () => {
-    return (
+    const {
+      renderDropdownIcon,
+    } = this.props;
+
+    return renderDropdownIcon ? renderDropdownIcon() : (
       <IconTextContainer>
         <IconText>⌄</IconText>
       </IconTextContainer>

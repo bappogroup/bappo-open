@@ -31,35 +31,83 @@ type Props = {
    * Overrides the text that's read by the screen reader when the user interacts with the element.
    */
   accessibilityLabel?: string,
+  /**
+   * If `true`, focuses the input on `componentDidMount`. The default value is `false`.
+   */
   autoFocus: ?boolean,
   className?: string,
+  /**
+   * If `true`, the input value can be cleared by pressing a button. The default value is `true`.
+   */
   clearable: ?boolean,
   clearAllText: string,
   clearValueText: string,
-  defaultValue?: Value,
-  disabled: ?boolean,
   filterOption?: ?(option: Option, searchText: string) => boolean,
+  /**
+   * If `true`, a spinner is displayed. The default value is `false`.
+   */
   isLoading: ?boolean,
   labelKey: string,
   menuBuffer: number,
+  /**
+   * If `true`, the input becomes a multi-select. The default value is `false`.
+   */
   multi: ?boolean,
+  /**
+   * Text to show when there are no search results.
+   */
   noResultsText: string,
+  /**
+   * Callback that is called when the input is blurred.
+   */
   onBlur?: ?() => void,
+  /**
+   * Callback that is called when the input is focused.
+   */
   onFocus?: ?() => void,
+  /**
+   * Callback that is called when the search input's text changes.
+   */
   onInputChange?: ?(text: string, triggeredByUser: boolean) => void,
+  /**
+   * Callback that is called when the input value changes.
+   */
   onValueChange?: ?(value: Value) => void,
+  /**
+   * An array of options.
+   */
   options?: ?Array<Option>,
   pageSize: number,
+  /**
+   * The string that will be rendered when there is no value.
+   */
   placeholder: string,
+  /**
+   * If `true`, the input is not editable. The default value is `false`.
+   */
+  readOnly: ?boolean,
+  /**
+   * Function to render the dropdown icon.
+   */
+  renderDropdownIcon?: ?() => ?React.Element<any>,
+  /**
+   * Function to render an option.
+   */
   renderOption?: ?renderOptionType,
   scrollMenuIntoView: boolean,
+  /**
+   * If `true`, user can use the text input to filter options. The default value is `true`.
+   */
   searchable: ?boolean,
+  // TODO
   style?: any,
-  tabIndex?: number,
   /**
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
+  /**
+   * The value of the select input.
+   */
   value?: Value,
   valueKey: string,
 };
@@ -79,7 +127,6 @@ class Select extends React.Component<Props, State> {
     clearable: true,
     clearAllText: 'Clear all',
     clearValueText: 'Clear value',
-    disabled: false,
     isLoading: false,
     labelKey: 'label',
     menuBuffer: 0,
@@ -87,6 +134,7 @@ class Select extends React.Component<Props, State> {
     noResultsText: 'No results found',
     pageSize: 5,
     placeholder: '',
+    readOnly: false,
     scrollMenuIntoView: true,
     searchable: true,
     valueKey: 'value',
@@ -152,7 +200,7 @@ class Select extends React.Component<Props, State> {
         window.scrollBy(0, menuContainerRect.bottom + this.props.menuBuffer - window.innerHeight);
       }
     }
-    if (prevProps.disabled !== this.props.disabled) {
+    if (prevProps.readOnly !== this.props.readOnly) {
       this.setState({ isFocused: false }); // eslint-disable-line react/no-did-update-set-state
       this._closeMenu();
     }
@@ -439,9 +487,9 @@ class Select extends React.Component<Props, State> {
   _getSelectState = () => {
     const {
       clearable,
-      disabled,
       isLoading,
       multi,
+      readOnly,
       searchable,
     } = this.props;
     const selectedOptions = this._getSelectedOptions();
@@ -462,7 +510,7 @@ class Select extends React.Component<Props, State> {
       isMulti: multi,
       isSingle: !multi,
       isClearable: clearable,
-      isDisabled: disabled,
+      isDisabled: readOnly,
       isFocused: this.state.isFocused,
       isLoading,
       isOpen,
@@ -486,8 +534,8 @@ class Select extends React.Component<Props, State> {
 
   _onControlClick = (event: SyntheticEvent<>) => {
     // if the event was triggered by a click and not the primary
-    // button, or if the component is disabled, ignore it.
-    if (this.props.disabled || (event.type === 'click' && event.button !== 0)) {
+    // button, or if the component is read-only, ignore it.
+    if (this.props.readOnly || (event.type === 'click' && event.button !== 0)) {
       return;
     }
 
@@ -541,7 +589,7 @@ class Select extends React.Component<Props, State> {
   };
 
   _onControlKeyDown = (event: SyntheticKeyboardEvent<>) => {
-    if (this.props.disabled) return;
+    if (this.props.readOnly) return;
 
     switch (event.keyCode) {
       case 8: // backspace
@@ -605,8 +653,8 @@ class Select extends React.Component<Props, State> {
 
   _onDropdownIconClick = (event: SyntheticMouseEvent<>) => {
     // if the event was triggered by a click and not the primary
-    // button, or if the component is disabled, ignore it.
-    if (this.props.disabled || (event.type === 'click' && event.button !== 0)) {
+    // button, or if the component is read-only, ignore it.
+    if (this.props.readOnly || (event.type === 'click' && event.button !== 0)) {
       return;
     }
     // If the menu isn't open, let the event bubble to the main handleClick
@@ -657,7 +705,7 @@ class Select extends React.Component<Props, State> {
   };
 
   _onInputFocus = () => {
-    if (this.props.disabled) return;
+    if (this.props.readOnly) return;
     if (this.props.onFocus) {
       this.props.onFocus();
     }
@@ -669,8 +717,8 @@ class Select extends React.Component<Props, State> {
 
   _onMenuMouseDown = (event: SyntheticMouseEvent<>) => {
     // if the event was triggered by a mousedown and not the primary
-    // button, or if the component is disabled, ignore it.
-    if (this.props.disabled || (event.type === 'mousedown' && event.button !== 0)) {
+    // button, or if the component is read-only, ignore it.
+    if (this.props.readOnly || (event.type === 'mousedown' && event.button !== 0)) {
       return;
     }
     event.stopPropagation();
@@ -788,9 +836,9 @@ class Select extends React.Component<Props, State> {
       clearable,
       clearAllText,
       clearValueText,
-      disabled,
       isLoading,
       multi,
+      readOnly,
       value,
     } = this.props;
     if (
@@ -798,7 +846,7 @@ class Select extends React.Component<Props, State> {
       value === undefined ||
       value === null ||
       (multi && !value.length) ||
-      disabled ||
+      readOnly ||
       isLoading
     ) {
       return null;
@@ -821,7 +869,11 @@ class Select extends React.Component<Props, State> {
   };
 
   _renderDropdownIcon = () => {
-    return (
+    const {
+      renderDropdownIcon,
+    } = this.props;
+
+    return renderDropdownIcon ? renderDropdownIcon() : (
       <ArrowZone
         {...this._getSelectState()}
         onClick={this._onDropdownIconClick}
@@ -837,9 +889,8 @@ class Select extends React.Component<Props, State> {
     const isOpen = !!this.state.isOpen;
 
     const {
-      disabled,
+      readOnly,
       searchable,
-      tabIndex,
     } = this.props;
 
     const inputProps = {
@@ -847,17 +898,16 @@ class Select extends React.Component<Props, State> {
       'aria-expanded': isOpen,
       innerRef: (ref) => { this._input = ref; },
       role: 'combobox',
-      tabIndex,
       onBlur: this._onInputBlur,
       onFocus: this._onInputFocus,
     };
 
-    if (disabled || !searchable) {
+    if (readOnly || !searchable) {
       return (
         <FakeInput
           {...inputProps}
-          aria-readonly={!!disabled}
-          tabIndex={tabIndex || 0}
+          aria-readonly={!!readOnly}
+          tabIndex={0}
         />
       );
     }

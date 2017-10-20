@@ -61,6 +61,7 @@ const SelectStatesExample = createClass({
           options={options}
           ref={(ref) => { this.stateSelect = ref; }}
           searchable={this.state.searchable}
+          style={{ padding: 10 }}
           value={this.state.selectValue}
         />
         <div style={checkboxListStyle}>

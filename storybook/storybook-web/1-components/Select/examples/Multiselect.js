@@ -55,6 +55,7 @@ const SelectMultiselectExample = createClass({
           onValueChange={this.handleSelectChange}
           options={options}
           placeholder="Select your favourite(s)"
+          style={{ padding: 10 }}
           value={value}
         />
 

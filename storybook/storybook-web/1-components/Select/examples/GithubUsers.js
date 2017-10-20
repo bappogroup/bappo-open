@@ -58,6 +58,7 @@ const AsyncSelectGithubUsersExample = createClass({
           valueKey="id"
           labelKey="login"
           loadOptions={this.getUsers}
+          style={{ padding: 10 }}
         />
         <div style={checkboxListStyle}>
           <label style={checkboxStyle}>
