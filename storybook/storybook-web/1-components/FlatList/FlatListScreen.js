@@ -281,6 +281,18 @@ const data = Array.from({ length: 500 })
         typeInfo="number"
         description="Same as ScrollView"
       />
+
+      <DocItem
+        name="style?"
+        typeInfo="style"
+        description="Same as ScrollView"
+      />
+
+      <DocItem
+        name="testID?"
+        typeInfo="string"
+        description="Same as ScrollView"
+      />
     </Section>
 
     <Section title="More examples">

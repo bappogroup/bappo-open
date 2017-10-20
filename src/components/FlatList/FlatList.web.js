@@ -137,6 +137,10 @@ type OptionalProps<ItemT> = {
   scrollEventThrottle?: number,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
 
@@ -337,6 +341,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       onScroll,
       scrollEventThrottle,
       style,
+      testID,
     } = this.props;
 
     const styleProps = {
@@ -366,6 +371,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       ref: this._captureRef,
       renderItem: this._renderItem,
       scrollEventThrottle,
+      testID,
     };
 
     return (

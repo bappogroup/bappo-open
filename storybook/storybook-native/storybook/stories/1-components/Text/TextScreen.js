@@ -61,6 +61,18 @@ const TextScreen = () => (
         typeInfo="style"
         description="Styles"
       />
+
+      <DocItem
+        name="testID?"
+        typeInfo="string"
+        description={
+          <AppText>
+            Used to locate this view in end-to-end tests.
+            On web: it is stored as data attribute "data-testid".
+            On native: it uses the testID prop.
+          </AppText>
+        }
+      />
     </Section>
   </UIExplorer>
 );

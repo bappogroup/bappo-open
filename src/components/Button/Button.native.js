@@ -19,6 +19,10 @@ type Props = {
   onPressOut?: () => void,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 class Button extends React.Component<Props> {
@@ -41,6 +45,7 @@ class Button extends React.Component<Props> {
       onPressIn,
       onPressOut,
       style,
+      testID,
     } = this.props;
 
     const props = {
@@ -51,6 +56,7 @@ class Button extends React.Component<Props> {
       onPressIn,
       onPressOut,
       style,
+      testID,
     };
 
     return (

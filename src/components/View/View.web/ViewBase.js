@@ -27,6 +27,7 @@ type Props = {
   role?: string,
   style?: any,
   tabIndex?: number,
+  testID?: string,
 };
 
 const registry = new Map();
@@ -74,6 +75,7 @@ class ViewBase extends React.Component<Props> {
       role,
       style,
       tabIndex,
+      testID,
     } = this.props;
 
     const props = {
@@ -91,6 +93,7 @@ class ViewBase extends React.Component<Props> {
       role,
       style,
       tabIndex,
+      'data-testid': testID,
     };
 
     return (

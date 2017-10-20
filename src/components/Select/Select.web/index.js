@@ -52,6 +52,10 @@ type Props = {
   searchable: ?boolean,
   style?: any,
   tabIndex?: number,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
   value?: Value,
   valueKey: string,
 };
@@ -159,6 +163,7 @@ class Select extends React.Component<Props, State> {
     const {
       className,
       style,
+      testID,
     } = this.props;
 
     const selectState = this._getSelectState();
@@ -176,6 +181,7 @@ class Select extends React.Component<Props, State> {
       <Container
         {...selectState}
         className={className}
+        data-testid={testID}
         innerRef={(ref) => { this._wrapper = ref; }}
         style={style}
       >

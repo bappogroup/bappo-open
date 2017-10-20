@@ -39,6 +39,10 @@ type Props = {
   scrollEventThrottle?: number,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 class ScrollView extends React.Component<Props> {
@@ -75,6 +79,7 @@ class ScrollView extends React.Component<Props> {
       className,
       onLayout,
       style,
+      testID,
     } = this.props;
 
     const styleProps = {
@@ -88,6 +93,7 @@ class ScrollView extends React.Component<Props> {
         innerRef={this._captureScrollableNodeRef}
         onLayout={onLayout}
         onScroll={this._onScroll}
+        testID={testID}
       >
         <ViewBase
           onLayout={this._onContentLayout}

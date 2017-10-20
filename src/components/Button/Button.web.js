@@ -23,6 +23,10 @@ type Props = {
   onPressOut?: () => void,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 /**
@@ -236,6 +240,7 @@ class Button extends React.Component<Props, State> {
       className,
       disabled,
       style,
+      testID,
     } = this.props;
 
     const styleProps = {
@@ -257,6 +262,7 @@ class Button extends React.Component<Props, State> {
         onStartShouldSetResponder={this._onStartShouldSetResponder}
         role="button"
         tabIndex={this._getTabIndex()}
+        testID={testID}
       >
         {children}
       </StyledButton>

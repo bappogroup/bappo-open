@@ -67,6 +67,18 @@ const ScrollViewScreen = () => (
           </AppText>
         }
       />
+
+      <DocItem
+        name="style?"
+        typeInfo="style"
+        description="Same as View"
+      />
+
+      <DocItem
+        name="testID?"
+        typeInfo="string"
+        description="Same as View"
+      />
     </Section>
 
     <Section title="Instance methods">

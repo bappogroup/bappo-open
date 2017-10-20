@@ -24,6 +24,10 @@ type Props = {
   pointerEvents: 'auto' | 'none' | 'box-none' | 'box-only',
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 class View extends React.Component<Props> {
@@ -38,6 +42,7 @@ class View extends React.Component<Props> {
       onLayout,
       pointerEvents,
       style,
+      testID,
     } = this.props;
 
     const styleProps = {
@@ -50,6 +55,7 @@ class View extends React.Component<Props> {
       <StyledViewBase
         {...styleProps}
         onLayout={onLayout}
+        testID={testID}
       >
         {children}
       </StyledViewBase>

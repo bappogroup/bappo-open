@@ -18,6 +18,10 @@ type Props = {
   selectable?: boolean,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 // Adding a CSS rule to display non-selectable texts. Those texts
@@ -61,6 +65,7 @@ class Text extends React.Component<Props> {
       numberOfLines,
       selectable,
       style,
+      testID,
     } = this.props;
 
     const {
@@ -75,50 +80,39 @@ class Text extends React.Component<Props> {
       style,
     };
 
+    const props = {
+      ...styleProps,
+      'data-testid': testID,
+    };
+
     if (typeof children === 'string' || typeof children === 'number') {
-      return this._renderText(children, styleProps);
+      return this._renderText(children, props);
     }
 
-    // Combine adjacent strings/numbers into a single string
-    const flatArray = React.Children.toArray(children)
-      .reduce((accumulator, child) => {
-        if (
-          isText(child) &&
-          accumulator.length > 0 &&
-          isText(accumulator[accumulator.length - 1])
-        ) {
-          const lastText = accumulator[accumulator.length - 1];
-          return [
-            ...accumulator.slice(0, -1),
-            `${lastText}${child}`,
-          ];
-        }
-        return [
-          ...accumulator,
-          child,
-        ];
-      }, []);
+    const flatArray = React.Children.toArray(children);
     return this._renderContainer(
-      flatArray.map((element, index) => this._renderChild(element, styleProps, `${index}`)),
-      styleProps,
+      flatArray.map((element, index) => this._renderChild(element, { key: `${index}` })),
+      props,
     );
   }
 
   _renderChild = (
     child: ?(number | string | boolean | React.Element<any>),
     props: Object,
-    key?: string,
   ) => {
     if (typeof child === 'string' || typeof child === 'number') {
-      return this._renderText(child, props, key);
+      return this._renderText(child, props);
     }
     if (typeof child === 'object' && child !== null) {
-      return React.cloneElement(child, { key });
+      return React.cloneElement(child, props);
     }
     return child;
   };
 
-  _renderContainer = (children: React.Node, props: Object) => {
+  _renderContainer = (
+    children: React.Node,
+    props: Object,
+  ) => {
     return (
       <Div
         {...props}
@@ -131,17 +125,13 @@ class Text extends React.Component<Props> {
   _renderText = (
     text: string | number,
     props: Object,
-    key?: string,
   ) => {
     const {
       selectable,
     } = this.props;
 
     if (selectable) {
-      return this._renderContainer(text, {
-        ...props,
-        key,
-      });
+      return this._renderContainer(text, props);
     }
     // user-select CSS property doesn't prevent the text from being copied to clipboard.
     // To avoid getting to clipboard, the text from data-text-as-pseudo-element attribute
@@ -149,7 +139,6 @@ class Text extends React.Component<Props> {
     return (
       <Div
         {...props}
-        key={key}
         data-text-as-pseudo-element={text}
       />
     );

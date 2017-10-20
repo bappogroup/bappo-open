@@ -56,7 +56,17 @@ const ButtonScreen = () => (
 
       <DocItem name="onPressOut?" typeInfo="function" />
 
-      <DocItem name="style?" typeInfo="style" />
+      <DocItem
+        name="style?"
+        typeInfo="style"
+        description="Same as View"
+      />
+
+      <DocItem
+        name="testID?"
+        typeInfo="string"
+        description="Same as View"
+      />
     </Section>
 
     <Section title="More examples">

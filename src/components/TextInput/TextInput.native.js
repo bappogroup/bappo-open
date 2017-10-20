@@ -51,6 +51,10 @@ type Props = {
   // TODO
   style?: any,
   /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
+  /**
    * Input type. Only works with `multiline={false}`.
    */
   type: 'email' | 'password' | 'text',
@@ -96,6 +100,7 @@ class TextInput extends React.Component<Props> {
       placeholder,
       readOnly,
       style,
+      testID,
       type,
       value,
     } = this.props;
@@ -112,6 +117,7 @@ class TextInput extends React.Component<Props> {
       onFocus: this._createFocusEventHandler(),
       placeholder,
       style,
+      testID,
       value,
       underlineColorAndroid: 'rgba(0, 0, 0, 0)',
     };

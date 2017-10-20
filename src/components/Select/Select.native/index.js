@@ -52,6 +52,10 @@ type Props = {
   renderOption?: ?renderOptionType,
   searchable: ?boolean,
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
   value?: Value,
   valueKey: string,
 };
@@ -115,6 +119,7 @@ class Select extends React.Component<Props, State> {
   render() {
     const {
       style,
+      testID,
     } = this.props;
 
     const selectState = this._getSelectState();
@@ -131,6 +136,7 @@ class Select extends React.Component<Props, State> {
       <Container
         {...styleProps}
         onPress={this.focus}
+        testID={testID}
       >
         <Control>
           <MultiValueWrapper>

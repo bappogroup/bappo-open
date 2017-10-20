@@ -51,6 +51,10 @@ type Props = {
   // TODO
   style?: any,
   /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
+  /**
    * Input type. Only works with `multiline={false}`.
    */
   type: 'email' | 'password' | 'text',
@@ -103,6 +107,7 @@ class TextInput extends React.Component<Props> {
       multiline,
       readOnly,
       style,
+      testID,
       type,
       value,
     } = this.props;
@@ -121,6 +126,7 @@ class TextInput extends React.Component<Props> {
       readOnly,
       type,
       value,
+      'data-testid': testID,
     };
 
     const styleProps = {

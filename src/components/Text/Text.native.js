@@ -16,6 +16,10 @@ type Props = {
   selectable?: boolean,
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 class Text extends React.Component<Props> {
@@ -34,12 +38,14 @@ class Text extends React.Component<Props> {
       numberOfLines,
       selectable,
       style,
+      testID,
     } = this.props;
 
     const props = {
       numberOfLines,
       selectable,
       style,
+      testID,
     };
 
     return (

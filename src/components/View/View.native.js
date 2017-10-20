@@ -20,6 +20,10 @@ type Props = {
   pointerEvents: 'auto' | 'none' | 'box-none' | 'box-only',
   // TODO
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
 };
 
 class View extends React.Component<Props> {
@@ -38,12 +42,14 @@ class View extends React.Component<Props> {
       onLayout,
       pointerEvents,
       style,
+      testID,
     } = this.props;
 
     const props = {
       onLayout,
       pointerEvents,
       style,
+      testID,
     };
 
     return (
@@ -56,9 +62,9 @@ class View extends React.Component<Props> {
     );
   }
 
-  _nativeView = (null: any);
+  _nativeView: ?React.ElementRef<typeof RN.View>;
 
-  _captureNativeViewRef = (ref: any) => {
+  _captureNativeViewRef = (ref: ?React.ElementRef<typeof RN.View>) => {
     this._nativeView = ref;
   };
 }
