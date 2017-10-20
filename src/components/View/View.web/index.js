@@ -10,6 +10,10 @@ import type {
 import ViewBase from './ViewBase';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
   onLayout?: (event: ViewLayoutEvent) => void,
@@ -31,12 +35,13 @@ type Props = {
 };
 
 class View extends React.Component<Props> {
-  props: Props;
-
   static displayName = 'View';
+
+  props: Props;
 
   render() {
     const {
+      accessibilityLabel,
       children,
       className,
       onLayout,
@@ -54,6 +59,7 @@ class View extends React.Component<Props> {
     return (
       <StyledViewBase
         {...styleProps}
+        accessibilityLabel={accessibilityLabel}
         onLayout={onLayout}
         testID={testID}
       >

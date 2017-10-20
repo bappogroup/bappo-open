@@ -9,6 +9,10 @@ import type {
 
 type Props = {
   /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
+  /**
    * If true, focuses the input on componentDidMount. The default value is false.
    */
   autoFocus: ?boolean,
@@ -100,6 +104,7 @@ class TextInput extends React.Component<Props> {
 
   render() {
     const {
+      accessibilityLabel,
       className,
       defaultValue,
       placeholder,
@@ -126,6 +131,7 @@ class TextInput extends React.Component<Props> {
       readOnly,
       type,
       value,
+      'aria-label': accessibilityLabel,
       'data-testid': testID,
     };
 

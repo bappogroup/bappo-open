@@ -11,6 +11,7 @@ import type {
 } from '../../../events.js.flow';
 
 type Props = {
+  accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
   disabled?: boolean,
@@ -60,6 +61,7 @@ class ViewBase extends React.Component<Props> {
 
   render() {
     const {
+      accessibilityLabel,
       children,
       className,
       disabled,
@@ -93,6 +95,7 @@ class ViewBase extends React.Component<Props> {
       role,
       style,
       tabIndex,
+      'aria-label': accessibilityLabel,
       'data-testid': testID,
     };
 

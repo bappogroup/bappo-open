@@ -27,6 +27,10 @@ import type {
 } from '../types.js.flow';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   autoFocus: ?boolean,
   className?: string,
   clearable: ?boolean,
@@ -70,16 +74,6 @@ type State = {
 };
 
 class Select extends React.Component<Props, State> {
-  props: Props;
-
-  blur = () => {
-    this._input && this._input.blur();
-  };
-
-  focus = () => {
-    this._input && this._input.focus();
-  };
-
   static defaultProps = {
     autoFocus: false,
     clearable: true,
@@ -99,6 +93,16 @@ class Select extends React.Component<Props, State> {
   };
 
   static displayName = 'Select';
+
+  props: Props;
+
+  blur = () => {
+    this._input && this._input.blur();
+  };
+
+  focus = () => {
+    this._input && this._input.focus();
+  };
 
   state: State = {
     inputValue: '',
@@ -161,6 +165,7 @@ class Select extends React.Component<Props, State> {
 
   render() {
     const {
+      accessibilityLabel,
       className,
       style,
       testID,
@@ -180,6 +185,7 @@ class Select extends React.Component<Props, State> {
     return (
       <Container
         {...selectState}
+        aria-label={accessibilityLabel}
         className={className}
         data-testid={testID}
         innerRef={(ref) => { this._wrapper = ref; }}

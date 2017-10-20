@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
   /**
@@ -37,11 +41,7 @@ if (document && document.head) {
   head.appendChild(style);
 }
 
-const isText = element => typeof element === 'string' || typeof element === 'number';
-
 class Text extends React.Component<Props> {
-  props: Props;
-
   static childContextTypes = {
     isParentAText: PropTypes.bool,
   };
@@ -52,6 +52,8 @@ class Text extends React.Component<Props> {
 
   static displayName = 'Text';
 
+  props: Props;
+
   getChildContext() {
     return {
       isParentAText: true,
@@ -60,6 +62,7 @@ class Text extends React.Component<Props> {
 
   render() {
     const {
+      accessibilityLabel,
       children,
       className,
       numberOfLines,
@@ -82,6 +85,7 @@ class Text extends React.Component<Props> {
 
     const props = {
       ...styleProps,
+      'aria-label': accessibilityLabel,
       'data-testid': testID,
     };
 

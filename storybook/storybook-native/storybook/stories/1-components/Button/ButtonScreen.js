@@ -22,6 +22,12 @@ const ButtonScreen = () => (
 
     <Section title="Props">
       <DocItem
+        name="accessibilityLabel?"
+        typeInfo="string"
+        description="Same as View"
+      />
+
+      <DocItem
         name="delayLongPress?"
         typeInfo="number"
         description={

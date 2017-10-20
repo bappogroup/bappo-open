@@ -47,6 +47,12 @@ const FlatListScreen = () => (
       />
 
       <DocItem
+        name="accessibilityLabel?"
+        typeInfo="string"
+        description="Same as ScrollView"
+      />
+
+      <DocItem
         name="extraData?"
         typeInfo="any"
         description={

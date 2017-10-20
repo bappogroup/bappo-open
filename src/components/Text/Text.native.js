@@ -4,6 +4,10 @@ import * as React from 'react';
 import RN from 'react-native';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   /**
    * Used to truncate the text with an ellipsis after computing the text layout, including line
@@ -23,6 +27,8 @@ type Props = {
 };
 
 class Text extends React.Component<Props> {
+  static displayName = 'Text';
+
   props: Props;
 
   // To be able to use Text inside TouchableHighlight/TouchableOpacity
@@ -30,10 +36,9 @@ class Text extends React.Component<Props> {
     this._nativeText && this._nativeText.setNativeProps(...args);
   };
 
-  static displayName = 'Text';
-
   render() {
     const {
+      accessibilityLabel,
       children,
       numberOfLines,
       selectable,
@@ -42,6 +47,7 @@ class Text extends React.Component<Props> {
     } = this.props;
 
     const props = {
+      accessibilityLabel,
       numberOfLines,
       selectable,
       style,

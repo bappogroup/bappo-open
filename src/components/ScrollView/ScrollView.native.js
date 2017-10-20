@@ -8,6 +8,10 @@ import type {
 } from '../../events.js.flow';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   /**
    * Called when scrollable content view of the ScrollView changes.
@@ -42,6 +46,12 @@ type Props = {
 };
 
 class ScrollView extends React.Component<Props> {
+  static defaultProps = {
+    scrollEventThrottle: 16, // Fire at 60fps
+  };
+
+  static displayName = 'ScrollView';
+
   props: Props;
 
   scrollTo = (options: { x?: number, y?: number }) => {
@@ -52,14 +62,9 @@ class ScrollView extends React.Component<Props> {
     this._scrollableNode && this._scrollableNode.scrollToEnd();
   };
 
-  static defaultProps = {
-    scrollEventThrottle: 16, // Fire at 60fps
-  };
-
-  static displayName = 'ScrollView';
-
   render() {
     const {
+      accessibilityLabel,
       children,
       onContentSizeChange,
       onLayout,
@@ -70,6 +75,7 @@ class ScrollView extends React.Component<Props> {
     } = this.props;
 
     const props = {
+      accessibilityLabel,
       keyboardDismissMode: 'on-drag',
       keyboardShouldPersistTaps: 'handled',
       onContentSizeChange,

@@ -42,6 +42,10 @@ type RequiredProps<ItemT> = {
   }) => ?React.Element<any>,
 };
 type OptionalProps<ItemT> = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   className?: string,
   /**
    * A marker property for telling the list to re-render (since it implements `PureComponent`). If
@@ -255,9 +259,9 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
   /**
    * Scrolls to the end of the content. May be janky without `getItemLayout` prop.
    */
-  scrollToEnd() {
+  scrollToEnd = () => {
     this._listRef && this._listRef.scrollToEnd();
-  }
+  };
 
   /**
    * Scrolls to the item at the specified index such that it is positioned in the viewable area
@@ -267,13 +271,13 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Note: cannot scroll to locations outside the render window without specifying the
    * `getItemLayout` prop.
    */
-  scrollToIndex(params: {
+  scrollToIndex = (params: {
     index: number,
     viewOffset?: number,
     viewPosition?: number,
-  }) {
+  }) => {
     this._listRef && this._listRef.scrollToIndex(params);
-  }
+  };
 
   /**
    * Requires linear scan through data - use `scrollToIndex` instead if possible.
@@ -281,48 +285,25 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Note: cannot scroll to locations outside the render window without specifying the
    * `getItemLayout` prop.
    */
-  scrollToItem(params: {
+  scrollToItem = (params: {
     item: ItemT,
     viewPosition?: number,
-  }) {
+  }) => {
     this._listRef && this._listRef.scrollToItem(params);
-  }
+  };
 
   /**
    * Scroll to a specific content pixel offset in the list.
    */
-  scrollToOffset(params: {
+  scrollToOffset = (params: {
     offset: number,
-  }) {
+  }) => {
     this._listRef && this._listRef.scrollToOffset(params);
-  }
-
-  _listRef: ?React.ElementRef<typeof VirtualizedList>;
-
-  _captureRef = (ref: ?React.ElementRef<typeof VirtualizedList>) => {
-    this._listRef = ref;
-  };
-
-  _getItem = (data: Array<ItemT>, index: number) => {
-    return data[index];
-  };
-
-  _getItemCount = (data: Array<ItemT>): number => {
-    return data.length;
-  };
-
-  _keyExtractor = (items: ItemT, index: number) => {
-    const { keyExtractor } = this.props;
-    return keyExtractor(items, index);
-  };
-
-  _renderItem = (info: Object) => {
-    const { renderItem } = this.props;
-    return renderItem(info);
   };
 
   render() {
     const {
+      accessibilityLabel,
       className,
       data,
       extraData,
@@ -350,6 +331,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     };
 
     const props = {
+      accessibilityLabel,
       data,
       extraData,
       getItem: this._getItem,
@@ -381,6 +363,30 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       />
     );
   }
+
+  _listRef: ?React.ElementRef<typeof VirtualizedList>;
+
+  _captureRef = (ref: ?React.ElementRef<typeof VirtualizedList>) => {
+    this._listRef = ref;
+  };
+
+  _getItem = (data: Array<ItemT>, index: number) => {
+    return data[index];
+  };
+
+  _getItemCount = (data: Array<ItemT>): number => {
+    return data.length;
+  };
+
+  _keyExtractor = (items: ItemT, index: number) => {
+    const { keyExtractor } = this.props;
+    return keyExtractor(items, index);
+  };
+
+  _renderItem = (info: Object) => {
+    const { renderItem } = this.props;
+    return renderItem(info);
+  };
 }
 
 export default FlatList;

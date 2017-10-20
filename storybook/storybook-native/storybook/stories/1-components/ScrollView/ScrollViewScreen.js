@@ -25,6 +25,12 @@ const ScrollViewScreen = () => (
 
     <Section title="Props">
       <DocItem
+        name="accessibilityLabel?"
+        typeInfo="string"
+        description="Same as View"
+      />
+
+      <DocItem
         name="onContentSizeChange?"
         typeInfo="?(width: number, height: number) => void"
         description={[

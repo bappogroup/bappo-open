@@ -28,6 +28,19 @@ const TextScreen = () => (
 
     <Section title="Props">
       <DocItem
+        name="accessibilityLabel?"
+        typeInfo="string"
+        description={
+          <AppText>
+            Overrides the text that's read by the screen reader when the user interacts with the
+            element.
+            On web: it is stored as attribute "aria-label".
+            On native: it uses the accessibilityLabel prop.
+          </AppText>
+        }
+      />
+
+      <DocItem
         name="children?"
         typeInfo="React.Node"
         description={

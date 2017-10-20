@@ -32,6 +32,10 @@ import type {
 } from '../types.js.flow';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   autoFocus: ?boolean,
   clearable: ?boolean,
   clearAllText: string,
@@ -66,18 +70,6 @@ type State = {
 };
 
 class Select extends React.Component<Props, State> {
-  props: Props;
-
-  blur = () => {
-    const { onBlur } = this.props;
-    this._setPopupVisible(false);
-    onBlur && onBlur();
-  };
-
-  focus = () => {
-    this._openPicker();
-  };
-
   static defaultProps = {
     autoFocus: false,
     clearable: true,
@@ -105,6 +97,18 @@ class Select extends React.Component<Props, State> {
     return null;
   };
 
+  props: Props;
+
+  blur = () => {
+    const { onBlur } = this.props;
+    this._setPopupVisible(false);
+    onBlur && onBlur();
+  };
+
+  focus = () => {
+    this._openPicker();
+  };
+
   state: State = {
     inputValue: '',
     isOpen: false,
@@ -118,6 +122,7 @@ class Select extends React.Component<Props, State> {
 
   render() {
     const {
+      accessibilityLabel,
       style,
       testID,
     } = this.props;
@@ -135,6 +140,7 @@ class Select extends React.Component<Props, State> {
     return (
       <Container
         {...styleProps}
+        accessibilityLabel={accessibilityLabel}
         onPress={this.focus}
         testID={testID}
       >

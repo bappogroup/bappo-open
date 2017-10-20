@@ -7,6 +7,10 @@ import type {
 } from '../../events.js.flow';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   onLayout?: (event: ViewLayoutEvent) => void,
   /**
@@ -27,14 +31,14 @@ type Props = {
 };
 
 class View extends React.Component<Props> {
+  static displayName = 'View';
+
   props: Props;
 
   // To be able to use View inside TouchableHighlight/TouchableOpacity
   setNativeProps = (...args: Array<any>) => {
     this._nativeView && this._nativeView.setNativeProps(...args);
   };
-
-  static displayName = 'View';
 
   render() {
     const {

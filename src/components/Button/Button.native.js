@@ -4,6 +4,10 @@ import * as React from 'react';
 import RN from 'react-native';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   /**
    * Delay in ms, from onPressIn, before onLongPress is called. Default is 500ms.
@@ -37,6 +41,7 @@ class Button extends React.Component<Props> {
 
   render() {
     const {
+      accessibilityLabel,
       children,
       delayLongPress,
       disabled,
@@ -49,6 +54,7 @@ class Button extends React.Component<Props> {
     } = this.props;
 
     const props = {
+      accessibilityLabel,
       delayLongPress,
       disabled,
       onLongPress,

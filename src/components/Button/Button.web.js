@@ -7,6 +7,10 @@ import UIManager from '../../apis/UIManager';
 import ViewBase from '../View/View.web/ViewBase';
 
 type Props = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
   /**
@@ -236,6 +240,7 @@ class Button extends React.Component<Props, State> {
 
   render() {
     const {
+      accessibilityLabel,
       children,
       className,
       disabled,
@@ -252,6 +257,7 @@ class Button extends React.Component<Props, State> {
     return (
       <StyledButton
         {...styleProps}
+        accessibilityLabel={accessibilityLabel}
         onKeyDown={this._onKeyDownUp}
         onKeyUp={this._onKeyDownUp}
         onResponderGrant={this._onResponderGrant}
