@@ -86,7 +86,7 @@ class Select extends React.Component<Props, State> {
     multi: false,
     noResultsText: 'No results found',
     pageSize: 5,
-    placeholder: 'Select...',
+    placeholder: '',
     scrollMenuIntoView: true,
     searchable: true,
     valueKey: 'value',

@@ -80,7 +80,7 @@ class Select extends React.Component<Props, State> {
     labelKey: 'label',
     multi: false,
     noResultsText: 'No results found',
-    placeholder: 'Select...',
+    placeholder: '',
     searchable: true,
     valueKey: 'value',
   };
