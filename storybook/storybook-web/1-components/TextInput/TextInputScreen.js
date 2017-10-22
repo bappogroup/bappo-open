@@ -158,7 +158,7 @@ const TextInputScreen = () => (
 
       <DocItem
         name="type?"
-        typeInfo="'email' | 'password' | 'text' = 'text'"
+        typeInfo="'email' | 'number' | 'password' | 'tel' | 'text' = 'text'"
         description={
           <AppText>
             Input type. Only works with <Code>{'multiline={false}'}</Code>.

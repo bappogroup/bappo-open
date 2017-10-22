@@ -61,7 +61,7 @@ type Props = {
   /**
    * Input type. Only works with `multiline={false}`.
    */
-  type: 'email' | 'password' | 'text',
+  type: 'email' | 'number' | 'password' | 'tel' | 'text',
   /**
    * The value to show for the text input. TextInput is a controlled component, which means the
    * native value will be forced to match this value prop if provided.
@@ -137,11 +137,21 @@ class TextInput extends React.Component<Props> {
           keyboardType: 'email-address',
         });
         break;
+      case 'number':
+        Object.assign(props, {
+          keyboardType: 'numeric',
+        });
+        break;
       case 'password':
         Object.assign(props, {
           autoCapitalize: 'none',
           autoCorrect: false,
           secureTextEntry: true,
+        });
+        break;
+      case 'tel':
+        Object.assign(props, {
+          keyboardType: 'phone-pad',
         });
         break;
       default:

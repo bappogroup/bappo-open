@@ -61,7 +61,7 @@ type Props = {
   /**
    * Input type. Only works with `multiline={false}`.
    */
-  type: 'email' | 'password' | 'text',
+  type: 'email' | 'number' | 'password' | 'tel' | 'text',
   /**
    * The value to show for the text input. TextInput is a controlled component, which means the
    * native value will be forced to match this value prop if provided.
