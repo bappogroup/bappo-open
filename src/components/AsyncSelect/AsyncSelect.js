@@ -11,7 +11,9 @@ type RequiredProps = {
 type OptionalProps = {
   autoLoad: ?boolean,
   loadingText: string,
+  loadMoreOptions?: (searchText: string) => ?Promise<Array<Option>>,
   noResultsText?: string,
+  onDropdownEndReached?: ?() => void,
   onInputChange?: ?(text: string) => void,
   searchPromptText: string,
 };
@@ -63,6 +65,7 @@ class AsyncSelect extends React.Component<Props, State> {
         {...selectProps}
         ref={this._captureSelectRef}
         isLoading={isLoading}
+        onDropdownEndReached={this._onDropdownEndReached}
         noResultsText={this._getNoResultsText()}
         onInputChange={this._onInputChange}
       />
@@ -101,6 +104,14 @@ class AsyncSelect extends React.Component<Props, State> {
   };
 
   _debouncedLoadOptions = debounce(this._loadOptions, 350);
+
+  _onDropdownEndReached = () => {
+    const { loadMoreOptions, onDropdownEndReached } = this.props;
+
+    onDropdownEndReached && onDropdownEndReached();
+
+    loadMoreOptions && loadMoreOptions(this.state.inputValue);
+  };
 
   _onInputChange = (inputValue: string, triggeredByUser: boolean) => {
     const { onInputChange } = this.props;

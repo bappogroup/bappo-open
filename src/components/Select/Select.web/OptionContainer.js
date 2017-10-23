@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components';
-import type { Option as OptionType } from '../types.js.flow';
+import { styled } from '../../../apis/Style';
+import ViewBase from '../../View/View.web/ViewBase';
+import type { Option } from '../types.js.flow';
 
 type Props = {
   children?: React.Node,
@@ -10,9 +11,9 @@ type Props = {
   isDisabled?: ?boolean,
   isFocused?: ?boolean,
   isSelected?: ?boolean,
-  onFocus: (option: OptionType, event: SyntheticEvent<>) => void,
-  onSelect: (option: OptionType, event: SyntheticEvent<>) => void,
-  option: OptionType,
+  onFocus: (option: Option, event: SyntheticEvent<>) => void,
+  onSelect: (option: Option, event: SyntheticEvent<>) => void,
+  option: Option,
 };
 
 const blockEvent = (event: SyntheticEvent<>) => {
@@ -20,7 +21,7 @@ const blockEvent = (event: SyntheticEvent<>) => {
   event.stopPropagation();
 };
 
-class Option extends React.Component<Props> {
+class OptionContainer extends React.Component<Props> {
   props: Props;
 
   render() {
@@ -102,29 +103,14 @@ class Option extends React.Component<Props> {
   };
 }
 
-export default Option;
+export default OptionContainer;
 
-const Container = styled.div`
-  box-sizing: border-box;
+const Container = styled(ViewBase)`
   background-color: #fff;
-  color: #666;
   cursor: pointer;
-  display: block;
-  padding: 8px 10px;
-
-  &:last-child {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  ${props => props.isSelected && `
-    background-color: #f5faff;
-    color: #333;
-  `}
 
   ${props => props.isFocused && `
-    background-color: #ebf5ff;
-    color: #333;
+    background-color: #f9f9f9;
   `}
 
   ${props => props.isDisabled && `

@@ -54,6 +54,16 @@ const SelectScreen = () => (
       />
 
       <DocItem
+        name="getDropdownItemLayout?"
+        typeInfo="?(options: Array<Option>, index: number) => {length: number, offset: number, index: number}"
+        description={
+          <AppText>
+            See <Code>getItemLayout</Code> of <Code>FlatList</Code>.
+          </AppText>
+        }
+      />
+
+      <DocItem
         name="isLoading?"
         typeInfo="boolean = false"
         description={
@@ -82,6 +92,29 @@ const SelectScreen = () => (
         name="onBlur?"
         typeInfo="() => void"
         description="Callback that is called when the input is blurred."
+      />
+
+      <DocItem
+        name="onDropdownEndReached?"
+        typeInfo="() => void"
+        description={
+          <AppText>
+            Called once when the scroll position gets within{' '}
+            <Code>onDropdownEndReachedThreshold</Code> of the rendered content of the dropdown.
+          </AppText>
+        }
+      />
+
+      <DocItem
+        name="onDropdownEndReachedThreshold?"
+        typeInfo="number"
+        description={
+          <AppText>
+            How far from the end (in units of visible length of the list) the bottom edge of the
+            list must be from the end of the content to trigger the{' '}
+            <Code>onDropdownEndReached</Code> callback.
+          </AppText>
+        }
       />
 
       <DocItem
@@ -132,8 +165,13 @@ const SelectScreen = () => (
 
       <DocItem
         name="renderOption?"
-        typeInfo="(info: { index: number, option: Option }) => ?React.Element<any>"
-        description="Function to render an option."
+        typeInfo="(info: { index: number, isSelected: boolean, option: Option }) => ?React.Element<any>"
+        description={
+          <AppText>
+            Function to render an option. Requires <Code>getDropdownItemLayout</Code> to be
+            implemented.
+          </AppText>
+        }
       />
 
       <DocItem

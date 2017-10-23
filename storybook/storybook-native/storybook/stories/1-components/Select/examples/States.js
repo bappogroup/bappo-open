@@ -3,7 +3,6 @@ import { Button, Select, Text, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
 import STATES from '../data/states';
-import { styles } from '../helpers';
 
 const checkboxListStyle = {
   flexDirection: 'row',
@@ -56,7 +55,6 @@ const SelectStatesExample = createClass({
           options={options}
           ref={(ref) => { this.stateSelect = ref; }}
           searchable={this.state.searchable}
-          style={styles.select}
           value={this.state.selectValue}
         />
         <View style={checkboxListStyle}>

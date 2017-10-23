@@ -108,7 +108,7 @@ const Container = styled.div`
     border: 1px solid #c2e0ff;
     color: #007eff;
     display: inline-block;
-    font-size: 0.9em;
+    font-size: 0.85em;
     vertical-align: top;
     ${isDisabled && `
       background-color: #fcfcfc;
@@ -133,12 +133,11 @@ const Container = styled.div`
 
 const Icon = styled.span`
   display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
   border-right: 1px solid #c2e0ff;
-  padding: 1px 5px 3px;
+  padding: 0 5px;
 
   &:focus &:hover {
     background-color: #d8eafd;

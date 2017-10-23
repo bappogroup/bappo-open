@@ -2,7 +2,6 @@ import React from 'react';
 import { Select, Text, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
-import { styles } from '../helpers';
 
 const FLAVOURS = [
   { label: 'Chocolate', value: 'chocolate' },
@@ -55,7 +54,6 @@ const SelectMultiselectExample = createClass({
           onValueChange={this.handleSelectChange}
           options={options}
           placeholder="Select your favourite(s)"
-          style={styles.select}
           value={this.state.value}
         />
 

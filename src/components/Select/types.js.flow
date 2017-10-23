@@ -11,4 +11,5 @@ export type Value = string | number | null | $ReadOnlyArray<string | number>;
 export type renderOptionType = (info: {
   index: number,
   option: Option,
+  isSelected: boolean,
 }) => ?React.Element<any>;

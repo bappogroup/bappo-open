@@ -48,6 +48,13 @@ type Props = {
   clearValueText: string,
   filterOption?: ?(option: Option, searchText: string) => boolean,
   /**
+   * See `getItemLayout` of `FlatList`.
+   */
+  getDropdownItemLayout?: (
+    options: Array<Option>,
+    index: number,
+  ) => { length: number, offset: number, index: number },
+  /**
    * If `true`, a spinner is displayed. The default value is `false`.
    */
   isLoading: ?boolean,
@@ -64,6 +71,16 @@ type Props = {
    * Callback that is called when the input is blurred.
    */
   onBlur?: ?() => void,
+  /**
+   * Called once when the scroll position gets within `onDropdownEndReachedThreshold` of the
+   * rendered content of the dropdown.
+   */
+  onDropdownEndReached?: ?() => void,
+  /**
+   * How far from the end (in units of visible length of the list) the bottom edge of the
+   * list must be from the end of the content to trigger the `onDropdownEndReached` callback.
+   */
+  onDropdownEndReachedThreshold?: ?number,
   /**
    * Callback that is called when the input is focused.
    */
@@ -93,7 +110,7 @@ type Props = {
    */
   renderDropdownIcon?: ?() => ?React.Element<any>,
   /**
-   * Function to render an option.
+   * Function to render an option. Requires `getDropdownItemLayout` to be implemented.
    */
   renderOption?: ?renderOptionType,
   /**
@@ -397,52 +414,42 @@ class Select extends React.Component<Props, State> {
     );
   };
 
-  _renderLabel = ({
-    option,
-  }: {
-    option: Option,
-  }) => {
-    return (
-      <Text>
-        {this._getOptionLabel(option)}
-      </Text>
-    );
-  };
-
   _renderMenu = (
     options: Array<Option>,
     selectedOptions: Array<Option>,
   ) => {
+    const {
+      labelKey,
+      multi,
+      noResultsText,
+      onDropdownEndReached,
+      onDropdownEndReachedThreshold,
+      renderOption,
+      valueKey,
+    } = this.props;
+
     let body = null;
-    if (options.length === 0) {
-      if (this.props.options && this.props.options.length > 0) {
-        body = (
-          <PopupText>{this.props.noResultsText}</PopupText>
-        );
-      } else {
-        body = (
-          <PopupText>No options available</PopupText>
-        );
-      }
-      body = (
-        <ListEmptyContainer>
-          {body}
-        </ListEmptyContainer>
-      );
-    } else {
-      const { labelKey, multi, renderOption, valueKey } = this.props;
+    if (options.length > 0) {
       const handleSelect = multi
         ? this._toggleOption
         : this._selectOption;
       body = (
         <Menu
           labelKey={labelKey}
-          onSelect={handleSelect}
+          onEndReached={onDropdownEndReached}
+          onEndReachedThreshold={onDropdownEndReachedThreshold}
+          onItemSelect={handleSelect}
           options={options}
           renderOption={renderOption}
           selectedOptions={selectedOptions}
           valueKey={valueKey}
         />
+      );
+    } else if (noResultsText) {
+      body = (
+        <ListEmptyContainer>
+          <PopupText>{noResultsText}</PopupText>
+        </ListEmptyContainer>
       );
     }
     return (

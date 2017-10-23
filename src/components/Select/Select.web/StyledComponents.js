@@ -155,9 +155,10 @@ export const LoadingZone = styled.span`
   width: 16px;
 `;
 
-export const Menu = styled.div`
+export const MenuInner = styled.div`
+  display: flex;
+  flex-direction: column;
   max-height: 198px;
-  overflow-y: auto;
 `;
 
 export const MenuOuter = styled.div`

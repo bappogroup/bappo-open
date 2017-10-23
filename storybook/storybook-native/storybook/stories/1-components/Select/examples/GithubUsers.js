@@ -3,7 +3,6 @@ import axios from 'axios';
 import { AsyncSelect, Text, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
-import { styles } from '../helpers';
 
 const checkboxListStyle = {
   flexDirection: 'row',
@@ -61,7 +60,6 @@ const AsyncSelectGithubUsersExample = createClass({
           valueKey="id"
           labelKey="login"
           loadOptions={this.getUsers}
-          style={styles.select}
         />
         <View style={checkboxListStyle}>
           <View style={checkboxStyle}>
