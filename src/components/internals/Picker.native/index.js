@@ -57,7 +57,9 @@ class PickerNative extends React.Component<Props, State> {
 
     onBlur && onBlur();
 
-    this._closePopup();
+    this.setState({
+      isOpen: false,
+    });
   };
 
   focus = () => {
@@ -113,8 +115,6 @@ class PickerNative extends React.Component<Props, State> {
       </Container>
     );
   }
-
-  _closePopup = () => this.setState({ isOpen: false });
 
   _onControlPress = (event: SyntheticEvent<>) => {
     if (this.props.readOnly) {
@@ -177,7 +177,7 @@ class PickerNative extends React.Component<Props, State> {
 
     return (
       <Popup
-        onRequestClose={this._closePopup}
+        onRequestClose={this.blur}
         show={this.state.isOpen}
       >
         <PopupContentContainer>
