@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Popup from '../../internals/Popup.native';
 import Menu from './Menu';
-import Popup from './Popup';
 import SearchBar from './SearchBar';
 import SelectedOption from './SelectedOption';
 import {

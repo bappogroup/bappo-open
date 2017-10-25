@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import invariant from 'fbjs/lib/invariant';
 import styled, { css } from 'styled-components';
 import type {
   BlurEvent,
@@ -96,10 +97,20 @@ class TextInput extends React.Component<Props> {
     this._input && this._input.focus();
   };
 
+  constructor(props: Props) {
+    super(props);
+
+    this.constructor._checkProps(this.props);
+  }
+
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
     }
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    this.constructor._checkProps(nextProps);
   }
 
   render() {
@@ -146,6 +157,18 @@ class TextInput extends React.Component<Props> {
         {...props}
         {...styleProps}
       />
+    );
+  }
+
+  static _checkProps(props: Props) {
+    const {
+      multiline,
+      type,
+    } = props;
+
+    invariant(
+      !(multiline && type !== 'text'),
+      'Only type="text" is supported for multiline TextInput',
     );
   }
 
