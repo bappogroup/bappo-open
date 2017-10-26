@@ -220,14 +220,16 @@ class PickerWeb extends React.Component<Props, State> {
       renderDropdownIcon,
     } = this.props;
 
-    return renderDropdownIcon ? renderDropdownIcon(this.state) : (
+    return (
       <ArrowZone
         onClick={this._onDropdownIconClick}
         isDisabled={readOnly}
       >
-        <Arrow
-          isOpen={this.state.isOpen}
-        />
+        {renderDropdownIcon ? renderDropdownIcon(this.state) : (
+          <Arrow
+            isOpen={this.state.isOpen}
+          />
+        )}
       </ArrowZone>
     );
   };

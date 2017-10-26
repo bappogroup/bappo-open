@@ -166,7 +166,9 @@ const Cell = styled.div`
   `)}
 `;
 
-const DoneButton = styled.button`
+const DoneButton = styled.button.attrs({
+  tabIndex: -1,
+})`
   background: none;
   border: none;
   cursor: pointer;

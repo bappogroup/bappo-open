@@ -894,14 +894,16 @@ class Select extends React.Component<Props, State> {
       renderDropdownIcon,
     } = this.props;
 
-    return renderDropdownIcon ? renderDropdownIcon() : (
+    return (
       <ArrowZone
         {...this._getSelectState()}
         onClick={this._onDropdownIconClick}
       >
-        <Arrow
-          isOpen={this.state.isOpen}
-        />
+        {renderDropdownIcon ? renderDropdownIcon() : (
+          <Arrow
+            isOpen={this.state.isOpen}
+          />
+        )}
       </ArrowZone>
     );
   };

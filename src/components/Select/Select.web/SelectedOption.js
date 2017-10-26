@@ -101,7 +101,10 @@ export const AriaOnly = styled.span`
 `;
 
 const Container = styled.div`
-  margin-left: 5px;
+  &:not(:first-of-type) {
+    margin-left: 5px;
+  }
+
   ${({ isDisabled, isMulti }) => (isMulti ? `
     background-color: #ebf5ff;
     border-radius: 2px;

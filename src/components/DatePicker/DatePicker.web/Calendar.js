@@ -401,7 +401,9 @@ const MonthContainer = styled.div`
   flex-direction: column;
 `;
 
-const NavigatorButton = styled.button`
+const NavigatorButton = styled.button.attrs({
+  tabIndex: -1,
+})`
   background: none;
   border: 1px solid #ccc;
   cursor: pointer;

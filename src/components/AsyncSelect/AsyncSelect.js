@@ -25,16 +25,16 @@ type State = {
 };
 
 class AsyncSelect extends React.Component<Props, State> {
-  props: Props;
-
-  focus = () => {
-    this._select && this._select.focus();
-  };
-
   static defaultProps = {
     autoLoad: true,
     loadingText: 'Loading...',
     searchPromptText: 'Type to search',
+  };
+
+  props: Props;
+
+  focus = () => {
+    this._select && this._select.focus();
   };
 
   state: State = {
@@ -43,10 +43,10 @@ class AsyncSelect extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    const { autoLoad } = this.props;
+    const { autoLoad, loadOptions } = this.props;
 
     if (autoLoad) {
-      this._loadOptions('');
+      this._load(loadOptions, '');
     }
   }
 
@@ -72,9 +72,10 @@ class AsyncSelect extends React.Component<Props, State> {
     );
   }
 
-  _select = (null: any);
+  _isLoading: ?boolean;
+  _select: ?React.ElementRef<typeof Select>;
 
-  _captureSelectRef = (ref: any) => {
+  _captureSelectRef = (ref: ?React.ElementRef<typeof Select>) => {
     this._select = ref;
   };
 
@@ -90,31 +91,32 @@ class AsyncSelect extends React.Component<Props, State> {
     return searchPromptText;
   };
 
-  _loadOptions = (inputValue: string) => {
-    const { loadOptions } = this.props;
+  _load = (loadFn: (searchText: string) => ?Promise<Array<Option>>, inputValue: string) => {
+    this._isLoading = true;
 
     const callback = () => {
+      this._isLoading = false;
       this.setState({ isLoading: false });
     };
 
-    const promise = loadOptions(inputValue);
+    const promise = loadFn(inputValue);
     if (promise) {
       promise.then(callback, callback);
     }
   };
 
-  _debouncedLoadOptions = debounce(this._loadOptions, 350);
+  _debouncedLoadOptions = debounce(this._load, 350);
 
   _onDropdownEndReached = () => {
     const { loadMoreOptions, onDropdownEndReached } = this.props;
 
     onDropdownEndReached && onDropdownEndReached();
 
-    loadMoreOptions && loadMoreOptions(this.state.inputValue);
+    !this._isLoading && loadMoreOptions && this._load(loadMoreOptions, this.state.inputValue);
   };
 
   _onInputChange = (inputValue: string, triggeredByUser: boolean) => {
-    const { onInputChange } = this.props;
+    const { loadOptions, onInputChange } = this.props;
 
     if (onInputChange) {
       onInputChange(inputValue);
@@ -125,7 +127,7 @@ class AsyncSelect extends React.Component<Props, State> {
       this.setState({
         isLoading: true,
       });
-      this._debouncedLoadOptions(inputValue);
+      this._debouncedLoadOptions(loadOptions, inputValue);
     }
 
     return inputValue;
