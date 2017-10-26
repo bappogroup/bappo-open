@@ -65,6 +65,7 @@ export const Control = styled.div`
   align-items: center;
   cursor: default;
   display: flex;
+  height: 100%;
   overflow: hidden;
   position: relative;
   width: 100%;

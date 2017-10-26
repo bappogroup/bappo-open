@@ -74,6 +74,7 @@ export const Container = styled.div`
 export const Control = styled.div`
   cursor: default;
   display: table;
+  height: 100%;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -97,8 +98,8 @@ export const Control = styled.div`
 `;
 
 const inputStyle = css`
+  height: 100%;
   padding-right: 10px;
-  vertical-align: middle;
   &:focus {
     outline: none;
   }
@@ -113,6 +114,7 @@ export const FakeInput = styled.div`
 
 export const Input = styled(TextInputAutoSize)`
   input {
+    height: 100%;
     width: 100%;
     background: none transparent;
     border: 0 none;
@@ -178,6 +180,7 @@ export const MenuOuter = styled.div`
 `;
 
 export const MultiValueWrapper = styled.div`
+  height: 100%;
   ${props => props.isMulti && `
     display: inline-block;
   `}
@@ -193,6 +196,7 @@ export const NoResults = styled.div`
 export const Placeholder = styled.div`
   bottom: 0;
   color: #aaa;
+  height: 100%;
   left: 0;
   padding-right: 10px;
   position: absolute;
