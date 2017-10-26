@@ -97,7 +97,6 @@ export const Control = styled.div`
 `;
 
 const inputStyle = css`
-  margin-left: 5px;
   padding-right: 10px;
   vertical-align: middle;
   &:focus {
@@ -195,7 +194,6 @@ export const Placeholder = styled.div`
   bottom: 0;
   color: #aaa;
   left: 0;
-  padding-left: 5px;
   padding-right: 10px;
   position: absolute;
   right: 0;
