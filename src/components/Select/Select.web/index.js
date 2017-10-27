@@ -614,7 +614,11 @@ class Select extends React.Component<Props, State> {
       case 13: // enter
         if (!this.state.isOpen) return;
         event.stopPropagation();
-        this._toggleFocusedOption();
+        if (this.props.multi) {
+          this._toggleFocusedOption();
+        } else {
+          this._selectFocusedOption();
+        }
         break;
       case 27: // escape
         if (this.state.isOpen) {
@@ -787,6 +791,12 @@ class Select extends React.Component<Props, State> {
     const selectedOptions = this._getSelectedOptions();
     this._setValue(selectedOptions.filter(i => i !== option));
     this.focus();
+  };
+
+  _selectFocusedOption = () => {
+    if (this._focusedOption) {
+      this._selectOption(this._focusedOption);
+    }
   };
 
   _selectOption = (option: Option) => {

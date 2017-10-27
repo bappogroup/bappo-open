@@ -239,6 +239,7 @@ const inputStyles = css`
   font-size: 14px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   padding: 0;
+  outline: none;
   resize: none;
 `;
 
