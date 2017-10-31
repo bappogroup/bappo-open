@@ -156,7 +156,7 @@ const Div = styled.div`
   display: inline;
   flex-grow: 0;
   flex-shrink: 0;
-  font-family: System;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   position: relative;
   white-space: pre-wrap;
