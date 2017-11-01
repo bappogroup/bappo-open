@@ -403,6 +403,7 @@ const MonthContainer = styled.div`
 
 const NavigatorButton = styled.button.attrs({
   tabIndex: -1,
+  type: 'button',
 })`
   background: none;
   border: 1px solid #ccc;

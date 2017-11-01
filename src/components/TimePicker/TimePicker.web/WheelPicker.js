@@ -168,6 +168,7 @@ const Cell = styled.div`
 
 const DoneButton = styled.button.attrs({
   tabIndex: -1,
+  type: 'button',
 })`
   background: none;
   border: none;
