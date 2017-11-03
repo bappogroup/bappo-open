@@ -29,7 +29,7 @@ const checkboxStyle = {
 const SelectMultiselectExample = createClass({
   getInitialState() {
     return {
-      disabled: false,
+      readOnly: false,
       crazy: false,
       value: [],
     };
@@ -44,13 +44,13 @@ const SelectMultiselectExample = createClass({
     this.setState(newState);
   },
   render() {
-    const { crazy, disabled, value } = this.state;
+    const { crazy, readOnly, value } = this.state;
     const options = crazy ? WHY_WOULD_YOU : FLAVOURS;
     return (
       <View style={{ overflow: 'visible' }}>
         <h3>{this.props.label}</h3>
         <Select
-          disabled={disabled}
+          readOnly={readOnly}
           multi
           onValueChange={this.handleSelectChange}
           options={options}
@@ -63,8 +63,8 @@ const SelectMultiselectExample = createClass({
           <label style={checkboxStyle}>
             <input
               type="checkbox"
-              name="disabled"
-              checked={disabled}
+              name="readOnly"
+              checked={readOnly}
               onChange={this.toggleCheckbox}
             />
             <span>Disable the control</span>

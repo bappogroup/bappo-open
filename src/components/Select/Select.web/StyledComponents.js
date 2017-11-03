@@ -84,10 +84,6 @@ export const Control = styled.div`
     outline: none;
   }
 
-  ${props => props.isDisabled && `
-    background-color: #f9f9f9;
-  `}
-
   ${({ isOpen }) => isOpen && `
     background: #fff;
   `}
