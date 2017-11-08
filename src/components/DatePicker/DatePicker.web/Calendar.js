@@ -338,7 +338,7 @@ const Cell = styled.div`
   align-items: center;
   cursor: pointer;
   display: flex;
-  flex: 1 1 0;
+  flex: 1;
   height: 25px;
   justify-content: center;
 
@@ -391,7 +391,7 @@ const HeaderCell = styled.div`
   align-items: center;
   cursor: default;
   display: flex;
-  flex: 1 1 0;
+  flex: 1;
   height: 25px;
   justify-content: center;
 `;
