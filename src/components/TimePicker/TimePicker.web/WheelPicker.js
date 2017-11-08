@@ -188,8 +188,8 @@ const FooterContainer = styled.div`
 `;
 
 const Wheel = styled.div`
-  flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
+  width: 70px;
 
   &:not(:last-child) {
     border-right: 1px solid #ddd;
