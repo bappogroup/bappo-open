@@ -46,10 +46,10 @@ class Menu extends React.Component<Props> {
     } = this.props;
 
     return (
-      <FlatList
+      <StyledFlatList
         data={options}
         getItemLayout={getItemLayout || this._defaultGetItemLayout}
-        ref={listRef}
+        innerRef={listRef}
         keyExtractor={this._keyExtractor}
         onEndReached={onEndReached}
         onEndReachedThreshold={onEndReachedThreshold}
@@ -118,6 +118,11 @@ class Menu extends React.Component<Props> {
 }
 
 export default Menu;
+
+const StyledFlatList = styled(FlatList)`
+  flex: none;
+  max-height: 198px;
+`;
 
 const Label = styled(Text)`
   flex: 1;
