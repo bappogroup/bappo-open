@@ -34,7 +34,9 @@ export default class ScrollToEndExample extends PureComponent {
 
 const styles = {
   box: {
+    flexBasis: 20,
     flexGrow: 1,
+    flexShrink: 0,
     justifyContent: 'center',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -46,6 +48,7 @@ const styles = {
   },
   scrollViewStyle: {
     borderWidth: 1,
+    borderStyle: 'solid',
     marginBottom: 21,
     backgroundColor: '#eee',
     padding: 10,

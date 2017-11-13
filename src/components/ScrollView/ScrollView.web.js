@@ -18,6 +18,11 @@ type Props = {
   children?: React.Node,
   className?: string,
   /**
+   * When true, the scroll view's children are arranged horizontally in a row instead of vertically
+   * in a column. The default value is `false`.
+   */
+  horizontal?: boolean,
+  /**
    * Called when scrollable content view of the ScrollView changes.
    * Handler function is passed the content width and content height as parameters:
    * (contentWidth, contentHeight)
@@ -82,6 +87,7 @@ class ScrollView extends React.Component<Props> {
       accessibilityLabel,
       children,
       className,
+      horizontal,
       onLayout,
       style,
       testID,
@@ -89,6 +95,7 @@ class ScrollView extends React.Component<Props> {
 
     const styleProps = {
       className,
+      horizontal,
       style,
     };
 
@@ -101,11 +108,12 @@ class ScrollView extends React.Component<Props> {
         onScroll={this._onScroll}
         testID={testID}
       >
-        <ViewBase
+        <ContentContainer
+          horizontal={horizontal}
           onLayout={this._onContentLayout}
         >
           {children}
-        </ViewBase>
+        </ContentContainer>
       </ScrollContainer>
     );
   }
@@ -167,4 +175,16 @@ const ScrollContainer = styled(ViewBase)`
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
+
+  ${({ horizontal }) => horizontal && `
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  `}
+`;
+
+const ContentContainer = styled(ViewBase)`
+  ${({ horizontal }) => horizontal && `
+    flex-direction: row;
+  `}
 `;

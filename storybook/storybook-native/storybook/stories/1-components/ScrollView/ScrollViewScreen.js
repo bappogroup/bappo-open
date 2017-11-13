@@ -9,6 +9,7 @@ import UIExplorer, {
   Section,
   storiesOf,
 } from '../../ui-explorer';
+import PropHorizontal from './examples/PropHorizontal';
 import ScrollToExample from './examples/ScrollTo';
 import ScrollToEndExample from './examples/ScrollToEnd';
 
@@ -31,17 +32,31 @@ const ScrollViewScreen = () => (
       />
 
       <DocItem
+        name="horizontal?"
+        typeInfo="boolean"
+        description={
+          <AppText>
+            When true, the scroll view's children are arranged horizontally in a row instead of
+            vertically in a column. The default value is <Code>false</Code>.
+          </AppText>
+        }
+        example={{
+          render: () => <PropHorizontal />,
+        }}
+      />
+
+      <DocItem
         name="onContentSizeChange?"
         typeInfo="?(width: number, height: number) => void"
-        description={[
+        description={
           <AppText>
             Called when scrollable content view of the ScrollView changes.
             Handler function is passed the content width and content height as parameters:
             <Code>(contentWidth, contentHeight)</Code>
             It's implemented using onLayout handler attached to the content container which this
             ScrollView renders.
-          </AppText>,
-        ]}
+          </AppText>
+        }
       />
 
       <DocItem
@@ -53,12 +68,12 @@ const ScrollViewScreen = () => (
       <DocItem
         name="onScroll?"
         typeInfo="?(event: ScrollEvent) => void"
-        description={[
+        description={
           <AppText>
             Fires at most once per frame during scrolling. The frequency of the events can be
             contolled using the <Code>scrollEventThrottle</Code> prop.
-          </AppText>,
-        ]}
+          </AppText>
+        }
       />
 
       <DocItem
