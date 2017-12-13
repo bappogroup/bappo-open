@@ -241,6 +241,18 @@ const data = Array.from({ length: 500 })
       />
 
       <DocItem
+        name="maxToRenderPerBatch?"
+        typeInfo="number = 10"
+        description={
+          <AppText>
+            The maximum number of items to render in each incremental render batch. The more
+            rendered at once, the better the fill rate, but responsiveness may suffer because
+            rendering content may interfere with responding to button taps or other interactions.
+          </AppText>
+        }
+      />
+
+      <DocItem
         name="onContentSizeChange?"
         typeInfo="?(width: number, height: number) => void"
         description="Same as ScrollView"
@@ -298,6 +310,33 @@ const data = Array.from({ length: 500 })
         name="testID?"
         typeInfo="string"
         description="Same as ScrollView"
+      />
+
+      <DocItem
+        name="updateCellsBatchingPeriod?"
+        typeInfo="number = 50"
+        description={
+          <AppText>
+            Amount of time in ms between low-pri item render batches, e.g. for rendering items quite
+            a ways off screen. Similar fill rate/responsiveness tradeoff as{' '}
+            <Code>maxToRenderPerBatch</Code>.
+          </AppText>
+        }
+      />
+
+      <DocItem
+        name="windowSize?"
+        typeInfo="number = 21"
+        description={
+          <AppText>
+            Determines the maximum number of items rendered outside of the visible area, in units of
+            visible lengths. So if your list fills the screen, then <Code>{'windowSize={21}'}</Code>
+            will render the visible screen area plus up to 10 screens above and 10 below the
+            viewport. Reducing this number will reduce memory consumption and may improve
+            performance, but will increase the chance that fast scrolling may reveal momentary blank
+            areas of unrendered content.
+          </AppText>
+        }
       />
     </Section>
 

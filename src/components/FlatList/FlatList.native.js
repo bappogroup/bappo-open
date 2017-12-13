@@ -122,6 +122,12 @@ type OptionalProps<ItemT> = {
    * a rendered element.
    */
   ListHeaderComponent?: ?(React.ComponentType<any> | React.Element<any>),
+  /**
+   * The maximum number of items to render in each incremental render batch. The more rendered at
+   * once, the better the fill rate, but responsiveness my suffer because rendering content may
+   * interfere with responding to button taps or other interactions.
+   */
+  maxToRenderPerBatch: number,
   onContentSizeChange?: ?(width: number, height: number) => void,
   /**
    * Called once when the scroll position gets within `onEndReachedThreshold` of the rendered
@@ -144,6 +150,19 @@ type OptionalProps<ItemT> = {
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
+  /**
+   * Amount of time between low-pri item render batches, e.g. for rendering items quite a ways off
+   * screen. Similar fill rate/responsiveness tradeoff as `maxToRenderPerBatch`.
+   */
+  updateCellsBatchingPeriod: number,
+  /**
+   * Determines the maximum number of items rendered outside of the visible area, in units of
+   * visible lengths. So if your list fills the screen, then `windowSize={21}` (the default) will
+   * render the visible screen area plus up to 10 screens above and 10 below the viewport. Reducing
+   * this number will reduce memory consumption and may improve performance, but will increase the
+   * chance that fast scrolling may reveal momentary blank areas of unrendered content.
+   */
+  windowSize: number,
 };
 type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
 
@@ -319,6 +338,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       ListEmptyComponent,
       ListFooterComponent,
       ListHeaderComponent,
+      maxToRenderPerBatch,
       onContentSizeChange,
       onEndReached,
       onEndReachedThreshold,
@@ -327,6 +347,8 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       scrollEventThrottle,
       style,
       testID,
+      updateCellsBatchingPeriod,
+      windowSize,
     } = this.props;
 
     const styleProps = {
@@ -348,6 +370,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       ListEmptyComponent,
       ListFooterComponent,
       ListHeaderComponent,
+      maxToRenderPerBatch,
       onContentSizeChange,
       onEndReached,
       onEndReachedThreshold,
@@ -357,6 +380,8 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       renderItem: this._renderItem,
       scrollEventThrottle,
       testID,
+      updateCellsBatchingPeriod,
+      windowSize,
     };
 
     return (
