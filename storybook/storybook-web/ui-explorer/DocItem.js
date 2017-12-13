@@ -54,7 +54,9 @@ const PropText = ({ label, name, typeInfo }) => (
   </AppText>
 );
 
-const Code = styled(Text)`
+const Code = styled(Text).attrs({
+  selectable: true,
+})`
   font-family: monospace, monospace;
   font-size: 1rem;
   line-height: 1.3125em;
@@ -84,7 +86,9 @@ const Label = styled(Text)`
   padding-right: 0.5rem;
 `;
 
-const PropName = styled(Text)`
+const PropName = styled(Text).attrs({
+  selectable: true,
+})`
   font-weight: bold;
 `;
 
