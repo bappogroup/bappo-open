@@ -1352,9 +1352,9 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bappo-components@0.0.20:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.20.tgz#b1dbdb14c3e53e19df5cb7fb2834bad17c4b44de"
+bappo-components@0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.21.tgz#f54b67cae11567b018bee9f4958a29d2e8523146"
   dependencies:
     fbjs "^0.8.16"
     lodash "^4.17.4"
