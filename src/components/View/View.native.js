@@ -2,9 +2,7 @@
 
 import * as React from 'react';
 import RN from 'react-native';
-import type {
-  ViewLayoutEvent,
-} from '../../events.js.flow';
+import type { ViewLayoutEvent } from '../../events.js.flow';
 
 type Props = {
   /**
@@ -42,6 +40,7 @@ class View extends React.Component<Props> {
 
   render() {
     const {
+      accessibilityLabel,
       children,
       onLayout,
       pointerEvents,
@@ -50,6 +49,7 @@ class View extends React.Component<Props> {
     } = this.props;
 
     const props = {
+      accessibilityLabel,
       onLayout,
       pointerEvents,
       style,
@@ -57,10 +57,7 @@ class View extends React.Component<Props> {
     };
 
     return (
-      <RN.View
-        {...props}
-        ref={this._captureNativeViewRef}
-      >
+      <RN.View {...props} ref={this._captureNativeViewRef}>
         {children}
       </RN.View>
     );
