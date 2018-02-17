@@ -3,6 +3,7 @@
   "version": "0.0.22",
   "description": "Cross-platform React components for building Bappo apps",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
     ".flowconfig",
     "fonts",
@@ -12,7 +13,9 @@
     "src"
   ],
   "scripts": {
-    "build": "rm -rf lib && babel src/ -d lib/",
+    "build:cjs": "BABEL_ENV=cjs babel src/ -d lib/",
+    "build:es": "BABEL_ENV=es babel src/ -d es/",
+    "build": "npm run build:cjs && npm run build:es",
     "flow": "flow",
     "prepublish": "yarn run build"
   },
