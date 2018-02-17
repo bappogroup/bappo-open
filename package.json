@@ -6,6 +6,7 @@
   "module": "es/index.js",
   "files": [
     ".flowconfig",
+    "es",
     "fonts",
     "fonts.gradle",
     "glyphmaps",
