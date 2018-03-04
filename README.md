@@ -10,24 +10,22 @@ npm i --save bappo-components
 ## Usage
 ```jsx
 import React from 'react';
-import { Styles, Text, View } from 'bappo-components';
+import { styled, Text, View } from 'bappo-components';
 
 class MyComponent extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         <Text>Hello World</Text>
-      </View>
+      </Container>
     );
   }
 }
 
-const styles = {
-  container: Styles.createViewStyle({
-    flex: 1,
-    backgroundColor: '#fff',
-  }),
-};
+const Container = styled(View)`
+  flex: 1;
+  background-color: white;
+`;
 ```
 
 ## Using built-in Icon components
@@ -78,5 +76,5 @@ apply from: "../../node_modules/bappo-components/fonts.gradle"
 ```
 
 ## Credits
-* This library is implemented on top of [ReactXP](https://github.com/Microsoft/reactxp).
+* This library is inspired by [ReactXP](https://github.com/Microsoft/reactxp) and [React Primitives](https://github.com/lelandrichardson/react-primitives).
 * This library's built-in Icon components are inspired by [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons).
