@@ -1364,16 +1364,15 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bappo-components@0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.21.tgz#f54b67cae11567b018bee9f4958a29d2e8523146"
+bappo-components@0.0.28:
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.28.tgz#dfe23c30f50fc89c9d28037531c8024427812db1"
   dependencies:
     fbjs "^0.8.16"
-    lodash "^4.17.4"
+    lodash-es "^4.17.5"
     moment "^2.19.1"
     prop-types "^15.6.0"
     react-native-web "^0.1.9"
-    styled-components "^2.2.1"
 
 base64-js@^1.0.2:
   version "1.2.1"
@@ -3217,6 +3216,10 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+lodash-es@^4.17.5:
+  version "4.17.7"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.7.tgz#db240a3252c3dd8360201ac9feef91ac977ea856"
+
 lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
@@ -4949,20 +4952,6 @@ style-loader@^0.17.0:
   dependencies:
     loader-utils "^1.0.2"
 
-styled-components@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-2.2.1.tgz#f4835f1001c37bcc301ac3865b5d93466de4dd5b"
-  dependencies:
-    buffer "^5.0.3"
-    css-to-react-native "^2.0.3"
-    fbjs "^0.8.9"
-    hoist-non-react-statics "^1.2.0"
-    is-function "^1.0.1"
-    is-plain-object "^2.0.1"
-    prop-types "^15.5.4"
-    stylis "^3.2.1"
-    supports-color "^3.2.3"
-
 styled-components@^3.0.0:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.2.3.tgz#50f71207320eeb1ef539dec4637f21f5e3c936b4"
@@ -4981,10 +4970,6 @@ styled-components@^3.0.0:
 stylis-rule-sheet@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz#44e64a2b076643f4b52e5ff71efc04d8c3c4a430"
-
-stylis@^3.2.1:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.3.2.tgz#95ef285836e98243f8b8f64a9a72706ea6c893ea"
 
 stylis@^3.5.0:
   version "3.5.0"
