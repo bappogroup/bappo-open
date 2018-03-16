@@ -34,8 +34,7 @@
     "lodash-es": "^4.17.5",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
-    "react-native-web": "^0.1.9",
-    "styled-components": "^2.2.1"
+    "react-native-web": "^0.1.9"
   },
   "homepage": "https://github.com/williamfeng91/bappo-components#readme",
   "devDependencies": {
@@ -55,11 +54,13 @@
     "eslint-plugin-react": "^7.1.0",
     "flow-bin": "^0.57.3",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "styled-components": "^3.0.0"
   },
   "peerDependencies": {
     "react": "16.x.x",
     "react-dom": "16.x.x",
-    "react-native": ">=0.47.0"
+    "react-native": ">=0.47.0",
+    "styled-components": "3.x.x"
   }
 }

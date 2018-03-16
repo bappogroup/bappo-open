@@ -12,7 +12,8 @@
 		"bappo-components": "0.0.21",
 		"create-react-class": "^15.6.2",
 		"react": "16.0.0-alpha.12",
-		"react-native": "0.47.0"
+		"react-native": "0.47.0",
+		"styled-components": "^3.0.0"
 	},
 	"devDependencies": {
 		"@storybook/addon-actions": "^3.2.12",

@@ -7,9 +7,16 @@ module.exports = (baseConfig, env) => {
 
   // config.resolve.alias = {
   //   'bappo-components': path.join(__dirname, '../../../lib'),
-  //   'react': path.join(__dirname, '../../../node_modules/react'),
+  //   react: path.join(__dirname, '../../../node_modules/react'),
   //   'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
-  //   'react-dom/unstable-native-dependencies': path.join(__dirname, '../../../node_modules/react-dom/unstable-native-dependencies'),
+  //   'react-dom/unstable-native-dependencies': path.join(
+  //     __dirname,
+  //     '../../../node_modules/react-dom/unstable-native-dependencies',
+  //   ),
+  //   'styled-components': path.join(
+  //     __dirname,
+  //     '../../../node_modules/styled-components',
+  //   ),
   // };
 
   return config;

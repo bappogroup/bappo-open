@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import RN from 'react-native';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 import type {
   BlurEvent,
   FocusEvent,

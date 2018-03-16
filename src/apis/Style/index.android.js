@@ -1,7 +1,7 @@
 import styled, {
   css,
   keyframes,
-} from 'styled-components/native';
+} from 'styled-components';
 
 export {
   styled,

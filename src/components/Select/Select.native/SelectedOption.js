@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 import type { Option } from '../types.js.flow';
 
 type Props = {

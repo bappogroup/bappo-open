@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text, View } from 'bappo-components';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 const action = msg => () => {
   console.log(msg);

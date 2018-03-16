@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 type Props = {
   /**

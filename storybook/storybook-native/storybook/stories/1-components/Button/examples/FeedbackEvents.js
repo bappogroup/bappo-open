@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Button, Text, View } from 'bappo-components';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 export default class ButtonFeedbackEvents extends PureComponent {
   state = { eventLog: [] };
