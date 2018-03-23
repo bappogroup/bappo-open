@@ -62,5 +62,8 @@
     "react-dom": "16.x.x",
     "react-native": ">=0.47.0",
     "styled-components": "3.x.x"
-  }
+  },
+  "sideEffects": [
+    "./src/components/View/View.web/ViewBase.js"
+  ]
 }
