@@ -95,7 +95,7 @@ class Text extends React.Component<Props> {
 
     const flatArray = React.Children.toArray(children);
     return this._renderContainer(
-      flatArray.map((element, index) => this._renderChild(element, { key: `${index}` })),
+      flatArray.map((element, index) => this._renderChild(element, { key: String(index) })),
       props,
     );
   }
@@ -105,10 +105,16 @@ class Text extends React.Component<Props> {
     props: Object,
   ) => {
     if (typeof child === 'string' || typeof child === 'number') {
-      return this._renderText(child, props);
+      return this._renderText(child, {
+        ...props,
+        isParentAText: true,
+      });
     }
     if (typeof child === 'object' && child !== null) {
-      return React.cloneElement(child, props);
+      return React.cloneElement(child, {
+        ...props,
+        isParentAText: true,
+      });
     }
     return child;
   };
