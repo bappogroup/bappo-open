@@ -34,8 +34,8 @@ type Props = {
 };
 
 /**
-* Touchable states.
-*/
+ * Touchable states.
+ */
 const States = {
   NOT_RESPONDER: 'NOT_RESPONDER', // Not the responder
   RESPONDER_ACTIVE_PRESS_IN: 'RESPONDER_ACTIVE_PRESS_IN', // Responder, active, in the `PressRect`
@@ -49,8 +49,8 @@ const States = {
 type ButtonState = $Values<typeof States>;
 
 /**
-* Quick lookup map for states that are considered to be "active"
-*/
+ * Quick lookup map for states that are considered to be "active"
+ */
 const IsResponderActive: Object = {
   [States.RESPONDER_ACTIVE_PRESS_IN]: true,
   [States.RESPONDER_ACTIVE_PRESS_OUT]: true,
@@ -64,9 +64,9 @@ const IsKeyboardActive: Object = {
 };
 
 /**
-* Quick lookup for states that are considered to be "pressing" and are
-* therefore eligible to result in a "selection" if the press stops.
-*/
+ * Quick lookup for states that are considered to be "pressing" and are
+ * therefore eligible to result in a "selection" if the press stops.
+ */
 const IsResponderPressingIn: Object = {
   [States.RESPONDER_ACTIVE_PRESS_IN]: true,
   [States.RESPONDER_ACTIVE_LONG_PRESS_IN]: true,
@@ -88,8 +88,8 @@ const IsLongPressingIn: Object = {
 };
 
 /**
-* Inputs to the state machine.
-*/
+ * Inputs to the state machine.
+ */
 const Signals = {
   RESPONDER_GRANT: 'RESPONDER_GRANT',
   RESPONDER_RELEASE: 'RESPONDER_RELEASE',
@@ -103,8 +103,8 @@ const Signals = {
 type Signal = $Values<typeof Signals>;
 
 /**
-* Mapping from States x Signals => States
-*/
+ * Mapping from States x Signals => States
+ */
 const Transitions: Object = {
   [States.NOT_RESPONDER]: {
     [Signals.RESPONDER_GRANT]: States.RESPONDER_ACTIVE_PRESS_IN,
@@ -287,16 +287,19 @@ class Button extends React.Component<Props, State> {
     this._longPressDelayTimeout = null;
   };
 
-  _getDistanceBetweenPoints = (aX: number, aY: number, bX: number, bY: number) => {
+  _getDistanceBetweenPoints = (
+    aX: number,
+    aY: number,
+    bX: number,
+    bY: number,
+  ) => {
     const deltaX = aX - bX;
     const deltaY = aY - bY;
     return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
   };
 
   _getLongPressDelayMS = () => {
-    const {
-      delayLongPress,
-    } = this.props;
+    const { delayLongPress } = this.props;
     return isNaN(delayLongPress) ? LONG_PRESS_DELAY_MS : delayLongPress;
   };
 
@@ -320,33 +323,25 @@ class Button extends React.Component<Props, State> {
   };
 
   _handleLongPress = () => {
-    const {
-      onLongPress,
-    } = this.props;
+    const { onLongPress } = this.props;
 
     onLongPress && onLongPress();
   };
 
   _handlePress = () => {
-    const {
-      onPress,
-    } = this.props;
+    const { onPress } = this.props;
 
     onPress && onPress();
   };
 
   _handlePressIn = () => {
-    const {
-      onPressIn,
-    } = this.props;
+    const { onPressIn } = this.props;
 
     onPressIn && onPressIn();
   };
 
   _handlePressOut = () => {
-    const {
-      onPressOut,
-    } = this.props;
+    const { onPressOut } = this.props;
 
     onPressOut && onPressOut();
   };
@@ -381,7 +376,8 @@ class Button extends React.Component<Props, State> {
     if ((which === ENTER || which === SPACE) && !IsResponderActive[curState]) {
       if (type === 'keydown' && this._activeKey === null) {
         this._activeKey = which;
-        this.state.touchable.touchState = this.state.touchable.touchState || States.NOT_RESPONDER;
+        this.state.touchable.touchState =
+          this.state.touchable.touchState || States.NOT_RESPONDER;
         this._receiveSignal(Signals.KEYBOARD_PRESS, event);
 
         const longDelayMS = this._getLongPressDelayMS();
@@ -405,12 +401,18 @@ class Button extends React.Component<Props, State> {
     this._receiveSignal(Signals.RESPONDER_GRANT, event);
 
     const longDelayMS = this._getLongPressDelayMS();
-    this._longPressDelayTimeout = setTimeout(this._handleLongDelay, longDelayMS);
+    this._longPressDelayTimeout = setTimeout(
+      this._handleLongDelay,
+      longDelayMS,
+    );
   };
 
   _onResponderMove = (event: SyntheticEvent<>) => {
     // Measurement may not have returned yet.
-    if (!this.state.touchable.positionOnActivate || !this.state.touchable.dimensionsOnActivate) {
+    if (
+      !this.state.touchable.positionOnActivate ||
+      !this.state.touchable.dimensionsOnActivate
+    ) {
       return;
     }
 
@@ -444,12 +446,12 @@ class Button extends React.Component<Props, State> {
       pageY > positionOnActivate.top - pressExpandTop &&
       pageX <
         positionOnActivate.left +
-        dimensionsOnActivate.width +
-        pressExpandRight &&
+          dimensionsOnActivate.width +
+          pressExpandRight &&
       pageY <
         positionOnActivate.top +
-        dimensionsOnActivate.height +
-        pressExpandBottom;
+          dimensionsOnActivate.height +
+          pressExpandBottom;
     if (isTouchWithinActive) {
       this._receiveSignal(Signals.ENTER_PRESS_RECT, event);
     } else {
@@ -517,15 +519,16 @@ class Button extends React.Component<Props, State> {
     }
 
     if (
-      (IsResponderPressingIn[curState] && signal === Signals.RESPONDER_RELEASE) ||
+      (IsResponderPressingIn[curState] &&
+        signal === Signals.RESPONDER_RELEASE) ||
       (IsKeyboardPressingIn[curState] && signal === Signals.KEYBOARD_RELEASE)
     ) {
       const hasLongPressHandler = !!this.props.onLongPress;
       const pressIsLongButStillCallOnPress =
-        IsLongPressingIn[curState] && // We *are* long pressing..
-        !hasLongPressHandler;         // But has no long handler
+        IsLongPressingIn[curState] && !hasLongPressHandler; // We *are* long pressing.. // But has no long handler
 
-      const shouldInvokePress = !IsLongPressingIn[curState] || pressIsLongButStillCallOnPress;
+      const shouldInvokePress =
+        !IsLongPressingIn[curState] || pressIsLongButStillCallOnPress;
       if (shouldInvokePress) {
         this._handlePress();
       }
@@ -541,12 +544,14 @@ class Button extends React.Component<Props, State> {
     }
     if (!nextState) {
       throw new Error(
-        `Unrecognized signal ${signal} or state ${curState || 'unknown'} for responder ${responderID}`,
+        `Unrecognized signal ${signal} or state ${curState ||
+          'unknown'} for responder ${responderID}`,
       );
     }
     if (nextState === States.ERROR) {
       throw new Error(
-        `Touchable cannot transition from ${curState || 'unknown'} to ${signal} for responder ${responderID}`,
+        `Touchable cannot transition from ${curState ||
+          'unknown'} to ${signal} for responder ${responderID}`,
       );
     }
     if (curState !== nextState) {
@@ -593,10 +598,13 @@ const StyledButton = styled(ViewBase)`
   border-width: 0;
   text-align: left;
 
-  ${({ disabled }) => (disabled ? `
+  ${({ disabled }) =>
+    disabled
+      ? `
     color: inherit;
     cursor: not-allowed;
-  ` : `
+  `
+      : `
     cursor: pointer;
     &:hover {
       opacity: 0.5;
@@ -604,5 +612,5 @@ const StyledButton = styled(ViewBase)`
     &:active {
       opacity: 0.2;
     }
-  `)};
+  `};
 `;

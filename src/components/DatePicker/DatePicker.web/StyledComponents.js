@@ -4,5 +4,4 @@ export const PlaceholderText = styled.span`
   color: #aaa;
 `;
 
-export const ValueText = styled.span`
-`;
+export const ValueText = styled.span``;

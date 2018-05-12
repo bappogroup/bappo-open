@@ -4,9 +4,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import type {
-  ViewLayoutEvent,
-} from '../../../events.js.flow';
+import type { ViewLayoutEvent } from '../../../events.js.flow';
 import ViewBase from './ViewBase';
 
 type Props = {
@@ -108,5 +106,5 @@ const StyledViewBase = styled(ViewBase)`
       return pointerEventsBoxOnly;
     }
     return '';
-  }}
+  }};
 `;

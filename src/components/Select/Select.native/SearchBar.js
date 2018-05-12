@@ -9,7 +9,7 @@ type Props = {
    * If true, the search bar is disabled.
    */
   disabled: ?boolean,
-  inputRef?: ?(?React.ElementRef<typeof Text>) => void;
+  inputRef?: ?(?React.ElementRef<typeof Text>) => void,
   isLoading: ?boolean,
   /**
    * Callback that is called when the search text changes.
@@ -47,22 +47,14 @@ class SearchBar extends React.Component<Props> {
     const { disabled, onInputChange, searchText, style } = this.props;
 
     return (
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={this._onContainerPress}
-      >
-        <Container
-          pointerEvents="none"
-          style={style}
-        >
+      <TouchableOpacity activeOpacity={1} onPress={this._onContainerPress}>
+        <Container pointerEvents="none" style={style}>
           <InnerContainer>
             <IconContainer>
               <IconText>🔍</IconText>
             </IconContainer>
             {disabled ? (
-              <SearchText>
-                {searchText}
-              </SearchText>
+              <SearchText>{searchText}</SearchText>
             ) : (
               <StyledTextInput
                 autoCorrect={false}
@@ -103,9 +95,7 @@ class SearchBar extends React.Component<Props> {
   _renderSpinner = () => {
     return (
       <SpinnerContainer>
-        <ActivityIndicator
-          animating={this.props.isLoading}
-        />
+        <ActivityIndicator animating={this.props.isLoading} />
       </SpinnerContainer>
     );
   };
@@ -138,8 +128,7 @@ const IconContainer = styled.View`
   left: 15px;
 `;
 
-const IconText = styled.Text`
-`;
+const IconText = styled.Text``;
 
 const SearchText = styled.Text.attrs({
   numberOfLines: 1,

@@ -3,10 +3,7 @@
 import * as React from 'react';
 import RN from 'react-native';
 import styled from 'styled-components';
-import type {
-  BlurEvent,
-  FocusEvent,
-} from '../../events.js.flow';
+import type { BlurEvent, FocusEvent } from '../../events.js.flow';
 
 type Props = {
   /**
@@ -158,11 +155,7 @@ class TextInput extends React.Component<Props> {
         break;
     }
 
-    return (
-      <StyledTextInput
-        {...props}
-      />
-    );
+    return <StyledTextInput {...props} />;
   }
 
   _input: ?React.ElementRef<typeof RN.TextInput>;
@@ -172,9 +165,7 @@ class TextInput extends React.Component<Props> {
   };
 
   _createBlurEventHandler = () => {
-    const {
-      onBlur,
-    } = this.props;
+    const { onBlur } = this.props;
 
     if (onBlur) {
       return (event: Object) => {
@@ -189,9 +180,7 @@ class TextInput extends React.Component<Props> {
   };
 
   _createFocusEventHandler = () => {
-    const {
-      onFocus,
-    } = this.props;
+    const { onFocus } = this.props;
 
     if (onFocus) {
       return (event: Object) => {

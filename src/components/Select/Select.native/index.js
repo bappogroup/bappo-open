@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import Popup from '../../internals/Picker.native/Popup';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
@@ -25,11 +21,7 @@ import {
   PopupTopBar,
   PopupTouchableContainer,
 } from './StyledComponents';
-import type {
-  Option,
-  renderOptionType,
-  Value,
-} from '../types.js.flow';
+import type { Option, renderOptionType, Value } from '../types.js.flow';
 
 type Props = {
   /**
@@ -151,7 +143,11 @@ class Select extends React.Component<Props, State> {
     valueKey: 'value',
   };
 
-  static _findOption = (options: ?Array<Option>, valueKey: string, value: ?Value): ?Option => {
+  static _findOption = (
+    options: ?Array<Option>,
+    valueKey: string,
+    value: ?Value,
+  ): ?Option => {
     const valueType = typeof value;
     if (valueType !== 'string' && valueType !== 'number') return null;
 
@@ -187,17 +183,10 @@ class Select extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      accessibilityLabel,
-      style,
-      testID,
-    } = this.props;
+    const { accessibilityLabel, style, testID } = this.props;
 
     const selectState = this._getSelectState();
-    const {
-      selectedOptions,
-      visibleOptions,
-    } = selectState;
+    const { selectedOptions, visibleOptions } = selectState;
 
     const styleProps = {
       style,
@@ -246,8 +235,9 @@ class Select extends React.Component<Props, State> {
     const options = this.props.options || [];
     let excludeValues;
     if (excludeOptions) excludeValues = excludeOptions.map(i => i[valueKey]);
-    return options.filter((option) => {
-      if (excludeValues && excludeValues.indexOf(option[valueKey]) > -1) return false;
+    return options.filter(option => {
+      if (excludeValues && excludeValues.indexOf(option[valueKey]) > -1)
+        return false;
       if (filterOption) return filterOption(option, filterValue);
       if (!filterValue) return true;
       const labelTest = String(option[labelKey]).toLowerCase();
@@ -277,13 +267,7 @@ class Select extends React.Component<Props, State> {
   };
 
   _getSelectState = () => {
-    const {
-      clearable,
-      isLoading,
-      multi,
-      readOnly,
-      searchable,
-    } = this.props;
+    const { clearable, isLoading, multi, readOnly, searchable } = this.props;
     const selectedOptions = this._getSelectedOptions();
     const visibleOptions = this._filterOptions();
     return {
@@ -344,7 +328,9 @@ class Select extends React.Component<Props, State> {
       const valueArray = options.map(option => option[valueKey]);
       const value = multi
         ? valueArray
-        : (valueArray.length > 0 ? valueArray[0] : null);
+        : valueArray.length > 0
+          ? valueArray[0]
+          : null;
       onValueChange(value);
     }
   };
@@ -353,7 +339,9 @@ class Select extends React.Component<Props, State> {
     const { valueKey } = this.props;
     const selectedOptions = this._getSelectedOptions();
     if (selectedOptions.find(op => op[valueKey] === option[valueKey])) {
-      this._setValue(selectedOptions.filter(op => op[valueKey] !== option[valueKey]));
+      this._setValue(
+        selectedOptions.filter(op => op[valueKey] !== option[valueKey]),
+      );
     } else {
       this._selectOption(option);
     }
@@ -383,9 +371,7 @@ class Select extends React.Component<Props, State> {
     const label = multi ? clearAllText : clearValueText;
 
     return (
-      <TouchableOpacity
-        onPress={this._clearValue}
-      >
+      <TouchableOpacity onPress={this._clearValue}>
         <PopupText>{label}</PopupText>
       </TouchableOpacity>
     );
@@ -394,30 +380,25 @@ class Select extends React.Component<Props, State> {
   _renderConfirmButton = () => {
     if (!this.props.multi) return null;
     return (
-      <TouchableOpacity
-        onPress={this.blur}
-      >
+      <TouchableOpacity onPress={this.blur}>
         <OKText>OK</OKText>
       </TouchableOpacity>
     );
   };
 
   _renderDropdownIcon = () => {
-    const {
-      renderDropdownIcon,
-    } = this.props;
+    const { renderDropdownIcon } = this.props;
 
-    return renderDropdownIcon ? renderDropdownIcon() : (
+    return renderDropdownIcon ? (
+      renderDropdownIcon()
+    ) : (
       <IconTextContainer>
         <IconText>⌄</IconText>
       </IconTextContainer>
     );
   };
 
-  _renderMenu = (
-    options: Array<Option>,
-    selectedOptions: Array<Option>,
-  ) => {
+  _renderMenu = (options: Array<Option>, selectedOptions: Array<Option>) => {
     const {
       labelKey,
       multi,
@@ -430,9 +411,7 @@ class Select extends React.Component<Props, State> {
 
     let body = null;
     if (options.length > 0) {
-      const handleSelect = multi
-        ? this._toggleOption
-        : this._selectOption;
+      const handleSelect = multi ? this._toggleOption : this._selectOption;
       body = (
         <Menu
           labelKey={labelKey}
@@ -452,17 +431,10 @@ class Select extends React.Component<Props, State> {
         </ListEmptyContainer>
       );
     }
-    return (
-      <ListContainer>
-        {body}
-      </ListContainer>
-    );
+    return <ListContainer>{body}</ListContainer>;
   };
 
-  _renderPopup = (
-    options: Array<Option>,
-    selectedOptions: Array<Option>,
-  ) => {
+  _renderPopup = (options: Array<Option>, selectedOptions: Array<Option>) => {
     const { searchable } = this.props;
     const popupHeight = searchable ? 359 : 259;
     return (
@@ -477,9 +449,7 @@ class Select extends React.Component<Props, State> {
         >
           <PopupContentContainer>
             <PopupTopBar>
-              <TouchableOpacity
-                onPress={this._onCancel}
-              >
+              <TouchableOpacity onPress={this._onCancel}>
                 <PopupText>Cancel</PopupText>
               </TouchableOpacity>
               <View style={{ flex: 1 }} />
@@ -506,15 +476,11 @@ class Select extends React.Component<Props, State> {
     );
   };
 
-  _renderSelectedValue = (
-    selectedOptions: Array<Option>,
-  ) => {
+  _renderSelectedValue = (selectedOptions: Array<Option>) => {
     const { labelKey, multi, placeholder, valueKey } = this.props;
 
     if (selectedOptions.length === 0) {
-      return (
-        <Placeholder>{placeholder}</Placeholder>
-      );
+      return <Placeholder>{placeholder}</Placeholder>;
     }
     if (multi) {
       return selectedOptions.map(option => (
@@ -526,12 +492,7 @@ class Select extends React.Component<Props, State> {
       ));
     }
     const option = selectedOptions[0];
-    return (
-      <SelectedOption
-        labelKey={labelKey}
-        option={option}
-      />
-    );
+    return <SelectedOption labelKey={labelKey} option={option} />;
   };
 }
 

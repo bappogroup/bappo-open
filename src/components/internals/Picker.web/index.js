@@ -64,12 +64,7 @@ class PickerWeb extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      accessibilityLabel,
-      className,
-      style,
-      testID,
-    } = this.props;
+    const { accessibilityLabel, className, style, testID } = this.props;
 
     const styleProps = {
       className,
@@ -99,9 +94,7 @@ class PickerWeb extends React.Component<Props, State> {
   _input: any;
 
   _clearValue = () => {
-    const {
-      onValueChange,
-    } = this.props;
+    const { onValueChange } = this.props;
 
     onValueChange && onValueChange(null);
   };
@@ -158,9 +151,7 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _onInputBlur = () => {
-    const {
-      onBlur,
-    } = this.props;
+    const { onBlur } = this.props;
 
     onBlur && onBlur();
 
@@ -168,10 +159,7 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _onInputFocus = () => {
-    const {
-      onFocus,
-      readOnly,
-    } = this.props;
+    const { onFocus, readOnly } = this.props;
 
     if (readOnly) return;
     onFocus && onFocus();
@@ -184,7 +172,10 @@ class PickerWeb extends React.Component<Props, State> {
   _onPopoverMouseDown = (event: SyntheticEvent<>) => {
     // if the event was triggered by a mousedown and not the primary
     // button, or if the component is read-only, ignore it.
-    if (this.props.readOnly || (event.type === 'mousedown' && event.button !== 0)) {
+    if (
+      this.props.readOnly ||
+      (event.type === 'mousedown' && event.button !== 0)
+    ) {
       return;
     }
     event.stopPropagation();
@@ -194,11 +185,7 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _renderClear = () => {
-    const {
-      clearable,
-      clearValueText,
-      readOnly,
-    } = this.props;
+    const { clearable, clearValueText, readOnly } = this.props;
     if (!clearable || readOnly) {
       return null;
     }
@@ -215,20 +202,14 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _renderDropdownIcon = () => {
-    const {
-      readOnly,
-      renderDropdownIcon,
-    } = this.props;
+    const { readOnly, renderDropdownIcon } = this.props;
 
     return (
-      <ArrowZone
-        onClick={this._onDropdownIconClick}
-        isDisabled={readOnly}
-      >
-        {renderDropdownIcon ? renderDropdownIcon(this.state) : (
-          <Arrow
-            isOpen={this.state.isOpen}
-          />
+      <ArrowZone onClick={this._onDropdownIconClick} isDisabled={readOnly}>
+        {renderDropdownIcon ? (
+          renderDropdownIcon(this.state)
+        ) : (
+          <Arrow isOpen={this.state.isOpen} />
         )}
       </ArrowZone>
     );
@@ -237,7 +218,9 @@ class PickerWeb extends React.Component<Props, State> {
   _renderInput = () => {
     return (
       <FakeInput
-        innerRef={(ref) => { this._input = ref; }}
+        innerRef={ref => {
+          this._input = ref;
+        }}
         onBlur={this._onInputBlur}
         onFocus={this._onInputFocus}
         tabIndex={0}
@@ -246,28 +229,20 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _renderPopover = () => {
-    const {
-      renderPopover,
-    } = this.props;
+    const { renderPopover } = this.props;
 
     return (
-      <PopoverContainer
-        onMouseDown={this._onPopoverMouseDown}
-      >
+      <PopoverContainer onMouseDown={this._onPopoverMouseDown}>
         {renderPopover && renderPopover()}
       </PopoverContainer>
     );
   };
 
   _renderValue = () => {
-    const {
-      renderValue,
-    } = this.props;
+    const { renderValue } = this.props;
 
     return (
-      <ValueContainer>
-        {renderValue && renderValue(this.state)}
-      </ValueContainer>
+      <ValueContainer>{renderValue && renderValue(this.state)}</ValueContainer>
     );
   };
 }

@@ -40,10 +40,7 @@ class WheelPicker extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const {
-      selectedHour,
-      selectedMinute,
-    } = this.state;
+    const { selectedHour, selectedMinute } = this.state;
 
     if (selectedHour > 4 && this._wheelRefs[0]) {
       this._wheelRefs[0].scrollTop = CELL_HEIGHT * (selectedHour - 4);
@@ -65,18 +62,10 @@ class WheelPicker extends React.Component<Props, State> {
   _wheelRefs: Array<?HTMLDivElement> = [];
 
   _submit = () => {
-    const {
-      onSelect,
-    } = this.props;
-    const {
-      selectedHour,
-      selectedMinute,
-      selectedMeridiem,
-    } = this.state;
+    const { onSelect } = this.props;
+    const { selectedHour, selectedMinute, selectedMeridiem } = this.state;
 
-    const hour = selectedMeridiem === 'AM'
-      ? selectedHour
-      : selectedHour + 12;
+    const hour = selectedMeridiem === 'AM' ? selectedHour : selectedHour + 12;
     const value = moment({
       hour,
       minute: selectedMinute,
@@ -88,7 +77,9 @@ class WheelPicker extends React.Component<Props, State> {
     return (
       <WheelsContainer>
         <Wheel
-          innerRef={(ref) => { this._wheelRefs[0] = ref; }}
+          innerRef={ref => {
+            this._wheelRefs[0] = ref;
+          }}
         >
           {HOURS.map((hour: string, hourNum: number) => (
             <Cell
@@ -101,7 +92,9 @@ class WheelPicker extends React.Component<Props, State> {
           ))}
         </Wheel>
         <Wheel
-          innerRef={(ref) => { this._wheelRefs[1] = ref; }}
+          innerRef={ref => {
+            this._wheelRefs[1] = ref;
+          }}
         >
           {MINUTES.map((minute: string, minuteNum: number) => (
             <Cell
@@ -114,7 +107,9 @@ class WheelPicker extends React.Component<Props, State> {
           ))}
         </Wheel>
         <Wheel
-          innerRef={(ref) => { this._wheelRefs[2] = ref; }}
+          innerRef={ref => {
+            this._wheelRefs[2] = ref;
+          }}
         >
           {MERIDIEMS.map((meridiem: string) => (
             <Cell
@@ -133,11 +128,7 @@ class WheelPicker extends React.Component<Props, State> {
   _renderFooter = () => {
     return (
       <FooterContainer>
-        <DoneButton
-          onClick={this._submit}
-        >
-          Done
-        </DoneButton>
+        <DoneButton onClick={this._submit}>Done</DoneButton>
       </FooterContainer>
     );
   };
@@ -145,8 +136,7 @@ class WheelPicker extends React.Component<Props, State> {
 
 export default WheelPicker;
 
-const Container = styled.div`
-`;
+const Container = styled.div``;
 
 const Cell = styled.div`
   align-items: center;
@@ -156,14 +146,17 @@ const Cell = styled.div`
   justify-content: center;
   padding: 0 25px;
 
-  ${({ isSelected }) => (isSelected ? `
+  ${({ isSelected }) =>
+    isSelected
+      ? `
     background-color: #445;
     color: #fff;
-  ` : `
+  `
+      : `
     &:hover {
       background-color: #eee;
     }
-  `)}
+  `};
 `;
 
 const DoneButton = styled.button.attrs({

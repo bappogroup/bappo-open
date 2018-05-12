@@ -5,10 +5,7 @@ import moment from 'moment';
 import type Moment from 'moment';
 import PickerWeb from '../../internals/Picker.web';
 import Calendar from './Calendar';
-import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -140,12 +137,7 @@ class DatePicker extends React.Component<Props> {
       testID,
     };
 
-    return (
-      <PickerWeb
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerWeb {...styleProps} {...props} />;
   }
 
   _date: Moment;
@@ -157,39 +149,21 @@ class DatePicker extends React.Component<Props> {
   };
 
   _renderPopover = () => {
-    return (
-      <Calendar
-        initialDate={this._date}
-        onSelect={this._selectDate}
-      />
-    );
+    return <Calendar initialDate={this._date} onSelect={this._selectDate} />;
   };
 
   _renderValue = () => {
-    const {
-      placeholder,
-    } = this.props;
+    const { placeholder } = this.props;
 
     if (!this._dateStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {this._dateStr}
-      </ValueText>
-    );
+    return <ValueText>{this._dateStr}</ValueText>;
   };
 
   _selectDate = (date: Moment) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 

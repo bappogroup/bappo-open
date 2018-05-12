@@ -9,11 +9,13 @@ export const Arrow = styled.span`
   width: 0;
   position: relative;
 
-  ${props => props.isOpen && `
+  ${props =>
+    props.isOpen &&
+    `
     top: -2px;
     border-color: transparent transparent #999;
     border-width: 0 5px 5px;
-  `}
+  `};
 `;
 
 export const ArrowZone = styled.div`
@@ -31,11 +33,13 @@ export const ArrowZone = styled.div`
     }
   }
 
-  ${props => props.isDisabled && `
+  ${props =>
+    props.isDisabled &&
+    `
     cursor: default;
     pointer-events: none;
     opacity: 0.35;
-  `}
+  `};
 `;
 
 export const Clear = styled.span`

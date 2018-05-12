@@ -13,15 +13,16 @@ type Props = {
   style?: any,
 };
 
-const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap) => {
+const createIcon = (
+  fontFamily: string,
+  fontFileName: string,
+  glyphMap: GlyphMap,
+) => {
   class Icon extends React.Component<Props> {
     props: Props;
 
     render() {
-      const {
-        name,
-        style,
-      } = this.props;
+      const { name, style } = this.props;
 
       let glyph = glyphMap[name] || '?';
       if (typeof glyph === 'number') {
@@ -34,10 +35,7 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
       };
 
       return (
-        <StyledText
-          {...styleProps}
-          innerRef={this._captureTextRef}
-        >
+        <StyledText {...styleProps} innerRef={this._captureTextRef}>
           {glyph}
         </StyledText>
       );

@@ -32,12 +32,7 @@ class ActivityIndicator extends React.Component<Props> {
   static displayName = 'ActivityIndicator';
 
   render() {
-    const {
-      animating,
-      color,
-      size,
-      style,
-    } = this.props;
+    const { animating, color, size, style } = this.props;
 
     const props = {
       animating,
@@ -46,11 +41,7 @@ class ActivityIndicator extends React.Component<Props> {
       style,
     };
 
-    return (
-      <RN.ActivityIndicator
-        {...props}
-      />
-    );
+    return <RN.ActivityIndicator {...props} />;
   }
 }
 

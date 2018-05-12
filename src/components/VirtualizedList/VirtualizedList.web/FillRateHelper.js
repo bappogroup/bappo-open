@@ -37,7 +37,7 @@ class Info {
   sample_count = 0;
 }
 
-type FrameMetrics = {inLayout?: boolean, length: number, offset: number};
+type FrameMetrics = { inLayout?: boolean, length: number, offset: number };
 
 const DEBUG = false;
 
@@ -61,7 +61,7 @@ class FillRateHelper {
   _mostlyBlankStartTime = (null: ?number);
   _samplesStartTime = (null: ?number);
 
-  static addListener(callback: FillRateInfo => void): {remove: () => void} {
+  static addListener(callback: FillRateInfo => void): { remove: () => void } {
     warning(
       _sampleRate !== null,
       'Call `FillRateHelper.setSampleRate` before `addListener`.',

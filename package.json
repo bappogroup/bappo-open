@@ -18,6 +18,7 @@
     "build:es": "BABEL_ENV=es babel src/ -d es/",
     "build": "npm run build:cjs && npm run build:es",
     "flow": "flow",
+    "lint": "eslint src/",
     "prepublish": "yarn run build"
   },
   "repository": {
@@ -47,12 +48,13 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.4.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-flowtype": "^2.36.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.1",
     "flow-bin": "^0.57.3",
+    "prettier": "^1.12.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "styled-components": "^3.0.0"

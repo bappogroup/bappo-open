@@ -59,7 +59,7 @@ type OptionalProps = {
   getItemLayout?: (
     data: any,
     index: number,
-  ) => {length: number, offset: number, index: number}, // e.g. height, y
+  ) => { length: number, offset: number, index: number }, // e.g. height, y
   horizontal?: ?boolean,
   /**
    * How many items to render in the initial batch. This should be enough to fill the screen but not
@@ -105,7 +105,7 @@ type OptionalProps = {
    * interfere with responding to button taps or other interactions.
    */
   maxToRenderPerBatch: number,
-  onEndReached?: ?(info: {distanceFromEnd: number}) => void,
+  onEndReached?: ?(info: { distanceFromEnd: number }) => void,
   onEndReachedThreshold?: ?number, // units of visible length
   onLayout?: ?Function,
   /**
@@ -145,7 +145,7 @@ export type Props = RequiredProps & OptionalProps;
 
 let _usedIndexForKey = false;
 
-type State = {first: number, last: number};
+type State = { first: number, last: number };
 
 /**
  * Base implementation for the more convenient [`<FlatList>`](/react-native/docs/flatlist.html)
@@ -190,11 +190,15 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         this._scrollMetrics.visibleLength,
     );
     if (this.props.inverted) {
-      offset = this._scrollMetrics.contentLength - this._scrollMetrics.visibleLength - offset;
+      offset =
+        this._scrollMetrics.contentLength -
+        this._scrollMetrics.visibleLength -
+        offset;
     }
-    this._scrollRef && this._scrollRef.scrollTo(
-      this.props.horizontal ? { x: offset } : { y: offset },
-    );
+    this._scrollRef &&
+      this._scrollRef.scrollTo(
+        this.props.horizontal ? { x: offset } : { y: offset },
+      );
   };
 
   // scrollToIndex may be janky without getItemLayout prop
@@ -239,19 +243,18 @@ class VirtualizedList extends React.PureComponent<Props, State> {
             (this._scrollMetrics.visibleLength - frame.length),
       ) - (viewOffset || 0);
     if (inverted) {
-      offset = this._scrollMetrics.contentLength - this._scrollMetrics.visibleLength - offset;
+      offset =
+        this._scrollMetrics.contentLength -
+        this._scrollMetrics.visibleLength -
+        offset;
     }
-    this._scrollRef && this._scrollRef.scrollTo(
-      horizontal ? { x: offset } : { y: offset },
-    );
+    this._scrollRef &&
+      this._scrollRef.scrollTo(horizontal ? { x: offset } : { y: offset });
   };
 
   // scrollToItem may be janky without getItemLayout prop. Required linear scan through items -
   // use scrollToIndex instead if possible.
-  scrollToItem = (params: {
-    item: Item,
-    viewPosition?: number,
-  }) => {
+  scrollToItem = (params: { item: Item, viewPosition?: number }) => {
     const { item } = params;
     const { data, getItem, getItemCount } = this.props;
     const itemCount = getItemCount(data);
@@ -272,9 +275,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
    */
   scrollToOffset = (params: { offset: number }) => {
     const { offset } = params;
-    this._scrollRef && this._scrollRef.scrollTo(
-      this.props.horizontal ? { x: offset } : { y: offset },
-    );
+    this._scrollRef &&
+      this._scrollRef.scrollTo(
+        this.props.horizontal ? { x: offset } : { y: offset },
+      );
   };
 
   static defaultProps = {
@@ -338,10 +342,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const {
-      initialScrollIndex,
-      inverted,
-    } = this.props;
+    const { initialScrollIndex, inverted } = this.props;
 
     if (initialScrollIndex) {
       this._initialScrollIndexTimeout = setTimeout(
@@ -352,16 +353,13 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         0,
       );
     } else if (inverted) {
-      this._initialScrollIndexTimeout = setTimeout(
-        () => {
-          const scrollableNode = findDOMNode(this._scrollRef);
-          if (scrollableNode) {
-            // $FlowFixMe
-            scrollableNode.scrollTop = scrollableNode.scrollHeight;
-          }
-        },
-        0,
-      );
+      this._initialScrollIndexTimeout = setTimeout(() => {
+        const scrollableNode = findDOMNode(this._scrollRef);
+        if (scrollableNode) {
+          // $FlowFixMe
+          scrollableNode.scrollTop = scrollableNode.scrollHeight;
+        }
+      }, 0);
     }
   }
 
@@ -433,7 +431,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
           onLayout={e => this._onCellLayout(e, key, ii)}
           onUnmount={this._onCellUnmount}
           parentProps={this.props}
-          ref={(ref) => {
+          ref={ref => {
             this._cellRefs[key] = ref;
           }}
         />,
@@ -443,7 +441,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   };
 
   _onUpdateSeparators = (keys: Array<?string>, newProps: Object) => {
-    keys.forEach((key) => {
+    keys.forEach(key => {
       const ref = key != null && this._cellRefs[key];
       ref && ref.updateSeparatorProps(newProps);
     });
@@ -533,7 +531,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
                 this._getFrameMetricsApprox(first).offset -
                 (stickyBlock.offset + stickyBlock.length);
               cells.push(
-                <View key="$sticky_trail" style={{ [spacerKey]: trailSpace }} />,
+                <View
+                  key="$sticky_trail"
+                  style={{ [spacerKey]: trailSpace }}
+                />,
               );
               insertedStickySpacer = true;
               break;
@@ -626,13 +627,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       scrollEventThrottle: this.props.scrollEventThrottle, // TODO: Android support
       stickyHeaderIndices,
     };
-    const ret = (
-      <StyledScrollView
-        {...scrollProps}
-      >
-        {cells}
-      </StyledScrollView>
-    );
+    const ret = <StyledScrollView {...scrollProps}>{cells}</StyledScrollView>;
     if (this.props.debug) {
       return (
         <View style={{ flex: 1 }}>
@@ -673,7 +668,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   _totalCellsMeasured = 0;
   _updateCellsToRenderBatcher: Batchinator;
 
-  _captureScrollRef = (ref) => {
+  _captureScrollRef = ref => {
     this._scrollRef = ref;
   };
 
@@ -685,7 +680,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     );
   };
 
-  _defaultRenderScrollComponent = (props) => {
+  _defaultRenderScrollComponent = props => {
     if (this._isNestedWithSameOrientation()) {
       return <View {...props} />;
     }
@@ -744,15 +739,15 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     this._maybeCallOnEndReached();
   };
 
-  _onLayoutEmpty = (e) => {
+  _onLayoutEmpty = e => {
     this.props.onLayout && this.props.onLayout(e);
   };
 
-  _onLayoutFooter = (e) => {
+  _onLayoutFooter = e => {
     this._footerLength = this._selectLength(e.nativeEvent.layout);
   };
 
-  _onLayoutHeader = (e) => {
+  _onLayoutHeader = e => {
     this._headerLength = this._selectLength(e.nativeEvent.layout);
   };
 
@@ -822,11 +817,11 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     );
   };
 
-  _selectLength = (metrics: {height: number, width: number}): number => {
+  _selectLength = (metrics: { height: number, width: number }): number => {
     return !this.props.horizontal ? metrics.height : metrics.width;
   };
 
-  _selectOffset = (metrics: {x: number, y: number}): number => {
+  _selectOffset = (metrics: { x: number, y: number }): number => {
     return !this.props.horizontal ? metrics.y : metrics.x;
   };
 
@@ -949,7 +944,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     if (!data) {
       return;
     }
-    this.setState((state) => {
+    this.setState(state => {
       let newState;
       if (!isVirtualizationDisabled) {
         // If we run this with bogus data, we'll force-render window {first: 0, last: 0},
@@ -988,7 +983,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
 
   _getFrameMetricsApprox = (
     index: number,
-  ): {length: number, offset: number} => {
+  ): { length: number, offset: number } => {
     const frame = this._getFrameMetrics(index);
     if (frame && frame.index === index) {
       // check for invalid frames due to row re-ordering
@@ -1150,10 +1145,7 @@ class CellRenderer extends React.Component<
       );
     }
     return (
-      <CellRendererComponent
-        {...this.props}
-        onLayout={onLayout}
-      >
+      <CellRendererComponent {...this.props} onLayout={onLayout}>
         {element}
         {itemSeparator}
       </CellRendererComponent>
@@ -1164,27 +1156,34 @@ class CellRenderer extends React.Component<
 export default VirtualizedList;
 
 const StyledScrollView = styled(ScrollView)`
-  >div {
-  ${({ horizontal, inverted }) => (inverted
-    ? (horizontal ? 'flex-direction: row-reverse;' : 'flex-direction: column-reverse;')
-    : ''
-  )}
+  > div {
+    ${({ horizontal, inverted }) =>
+      inverted
+        ? horizontal
+          ? 'flex-direction: row-reverse;'
+          : 'flex-direction: column-reverse;'
+        : ''};
   }
 `;
 
 const inversionStyle = css`
-  ${({ horizontal, inverted }) => (inverted
-    ? (horizontal ? 'transform: scaleX(-1);' : 'transform: scaleY(-1);')
-    : ''
-  )}
+  ${({ horizontal, inverted }) =>
+    inverted
+      ? horizontal
+        ? 'transform: scaleX(-1);'
+        : 'transform: scaleY(-1);'
+      : ''};
 `;
 
 const DefaultCellView = styled(View)`
-  ${({ horizontal, inverted }) => (inverted
-    ? (horizontal ? 'flex-direction: row-reverse;' : 'flex-direction: column-reverse;')
-    : (horizontal ? 'flex-direction: row;' : 'flex-direction: column;')
-  )}
+  ${({ horizontal, inverted }) =>
+    inverted
+      ? horizontal
+        ? 'flex-direction: row-reverse;'
+        : 'flex-direction: column-reverse;'
+      : horizontal
+        ? 'flex-direction: row;'
+        : 'flex-direction: column;'};
 `;
 
-const InvertableView = styled(View)`
-`;
+const InvertableView = styled(View)``;

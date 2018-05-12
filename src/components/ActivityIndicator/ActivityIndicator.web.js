@@ -39,13 +39,7 @@ class ActivityIndicator extends React.Component<Props> {
   static displayName = 'ActivityIndicator';
 
   render() {
-    const {
-      animating,
-      className,
-      color,
-      size,
-      style,
-    } = this.props;
+    const { animating, className, color, size, style } = this.props;
 
     const containerStyleProps = {
       className,
@@ -60,17 +54,9 @@ class ActivityIndicator extends React.Component<Props> {
     };
 
     return (
-      <Container
-        {...containerStyleProps}
-      >
-        <SpinnerContainer
-          {...spinnerContainerStyleProps}
-        >
-          <Svg
-            height="100%"
-            viewBox="25 25 50 50"
-            width="100%"
-          >
+      <Container {...containerStyleProps}>
+        <SpinnerContainer {...spinnerContainerStyleProps}>
+          <Svg height="100%" viewBox="25 25 50 50" width="100%">
             <Circle
               {...spinnerStyleProps}
               cx={50}
@@ -92,7 +78,7 @@ export default ActivityIndicator;
 const Container = styled(ViewBase)`
   align-items: center;
   justify-content: center;
-  ${({ hide }) => hide && 'visibility: hidden;'}
+  ${({ hide }) => hide && 'visibility: hidden;'};
 `;
 
 const SpinnerContainer = styled(ViewBase)`

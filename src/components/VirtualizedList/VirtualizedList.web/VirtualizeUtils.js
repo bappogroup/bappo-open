@@ -21,7 +21,7 @@ import invariant from 'fbjs/lib/invariant';
 function elementsThatOverlapOffsets(
   offsets: Array<number>,
   itemCount: number,
-  getFrameMetrics: (index: number) => {length: number, offset: number},
+  getFrameMetrics: (index: number) => { length: number, offset: number },
 ): Array<number> {
   const out = [];
   for (let ii = 0; ii < itemCount; ii++) {
@@ -51,8 +51,8 @@ function elementsThatOverlapOffsets(
  * faster.
  */
 function newRangeCount(
-  prev: {first: number, last: number},
-  next: {first: number, last: number},
+  prev: { first: number, last: number },
+  next: { first: number, last: number },
 ): number {
   return (
     next.last -
@@ -78,15 +78,15 @@ function computeWindowedRenderLimits(
     maxToRenderPerBatch: number,
     windowSize: number,
   },
-  prev: {first: number, last: number},
-  getFrameMetricsApprox: (index: number) => {length: number, offset: number},
+  prev: { first: number, last: number },
+  getFrameMetricsApprox: (index: number) => { length: number, offset: number },
   scrollMetrics: {
     dt: number,
     offset: number,
     velocity: number,
     visibleLength: number,
   },
-): {first: number, last: number} {
+): { first: number, last: number } {
   const { data, getItemCount, maxToRenderPerBatch, windowSize } = props;
   const itemCount = getItemCount(data);
   if (itemCount === 0) {
@@ -126,7 +126,7 @@ function computeWindowedRenderLimits(
     last == null
       ? Math.min(overscanLast, first + maxToRenderPerBatch - 1)
       : last;
-  const visible = {first, last};
+  const visible = { first, last };
 
   // We want to limit the number of new cells we're rendering per batch so that we can fill the
   // content on the screen quickly. If we rendered the entire overscan window at once, the user
@@ -134,7 +134,8 @@ function computeWindowedRenderLimits(
   // render.
   let newCellCount = newRangeCount(prev, visible);
 
-  while (true) { // eslint-disable-line no-constant-condition
+  while (true) {
+    // eslint-disable-line no-constant-condition
     if (first <= overscanFirst && last >= overscanLast) {
       // If we fill the entire overscan range, we're done.
       break;

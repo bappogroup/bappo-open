@@ -33,7 +33,8 @@ type Props = {
 // to clipboard. It's not possible to style pseudo elements with inline
 // styles, so, we're dynamically creating a <style> tag with the rule.
 if (document && document.head) {
-  const textAsPseudoElement = '[data-text-as-pseudo-element]::before { content: attr(data-text-as-pseudo-element); }';
+  const textAsPseudoElement =
+    '[data-text-as-pseudo-element]::before { content: attr(data-text-as-pseudo-element); }';
   const head = document.head;
   const style = document.createElement('style');
   style.type = 'text/css';
@@ -71,9 +72,7 @@ class Text extends React.Component<Props> {
       testID,
     } = this.props;
 
-    const {
-      isParentAText,
-    } = this.context;
+    const { isParentAText } = this.context;
 
     const styleProps = {
       className,
@@ -95,7 +94,9 @@ class Text extends React.Component<Props> {
 
     const flatArray = React.Children.toArray(children);
     return this._renderContainer(
-      flatArray.map((element, index) => this._renderChild(element, { key: String(index) })),
+      flatArray.map((element, index) =>
+        this._renderChild(element, { key: String(index) }),
+      ),
       props,
     );
   }
@@ -119,26 +120,12 @@ class Text extends React.Component<Props> {
     return child;
   };
 
-  _renderContainer = (
-    children: React.Node,
-    props: Object,
-  ) => {
-    return (
-      <Div
-        {...props}
-      >
-        {children}
-      </Div>
-    );
+  _renderContainer = (children: React.Node, props: Object) => {
+    return <Div {...props}>{children}</Div>;
   };
 
-  _renderText = (
-    text: string | number,
-    props: Object,
-  ) => {
-    const {
-      selectable,
-    } = this.props;
+  _renderText = (text: string | number, props: Object) => {
+    const { selectable } = this.props;
 
     if (selectable) {
       return this._renderContainer(text, props);
@@ -146,12 +133,7 @@ class Text extends React.Component<Props> {
     // user-select CSS property doesn't prevent the text from being copied to clipboard.
     // To avoid getting to clipboard, the text from data-text-as-pseudo-element attribute
     // will be displayed as pseudo element.
-    return (
-      <Div
-        {...props}
-        data-text-as-pseudo-element={text}
-      />
-    );
+    return <Div {...props} data-text-as-pseudo-element={text} />;
   };
 }
 
@@ -169,20 +151,27 @@ const Div = styled.div`
   word-wrap: break-word;
   -ms-hyphens: auto;
 
-  ${({ isParentAText }) => isParentAText && `
+  ${({ isParentAText }) =>
+    isParentAText &&
+    `
     font-family: inherit;
     font-size: inherit;
     white-space: inherit;
   `}
 
-  ${({ isSelectable }) => (isSelectable ? `
+  ${({ isSelectable }) =>
+    isSelectable
+      ? `
     cursor: text;
     user-select: text;
-  ` : `
+  `
+      : `
     cursor: inherit;
-  `)}
+  `}
 
-  ${({ isSingleLine }) => isSingleLine && `
+  ${({ isSingleLine }) =>
+    isSingleLine &&
+    `
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

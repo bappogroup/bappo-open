@@ -2,15 +2,13 @@
 
 import * as React from 'react';
 import moment from 'moment';
-import {
-  DatePickerIOS,
-} from 'react-native';
+import { DatePickerIOS } from 'react-native';
 import PickerNative from '../../internals/Picker.native';
-import { DEFAULT_DATE_DISPLAY_FORMAT, DEFAULT_DATE_VALUE_FORMAT } from '../constants';
 import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+  DEFAULT_DATE_DISPLAY_FORMAT,
+  DEFAULT_DATE_VALUE_FORMAT,
+} from '../constants';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -100,10 +98,7 @@ class DatePicker extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const {
-      value,
-      valueFormat,
-    } = this.props;
+    const { value, valueFormat } = this.props;
 
     let initialDate = moment(value || '', valueFormat);
     if (!initialDate.isValid()) {
@@ -140,7 +135,8 @@ class DatePicker extends React.Component<Props, State> {
       clearValueText,
       onBlur,
       onClear: () => this._selectDate(null),
-      onConfirm: () => this._selectDate(this.state.selectedDate || getDefaultDate()),
+      onConfirm: () =>
+        this._selectDate(this.state.selectedDate || getDefaultDate()),
       onFocus,
       readOnly,
       ref: this._capturePickerRef,
@@ -150,12 +146,7 @@ class DatePicker extends React.Component<Props, State> {
       testID,
     };
 
-    return (
-      <PickerNative
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerNative {...styleProps} {...props} />;
   }
 
   _picker: ?React.ElementRef<typeof PickerNative>;
@@ -179,38 +170,20 @@ class DatePicker extends React.Component<Props, State> {
   };
 
   _renderValue = () => {
-    const {
-      displayFormat,
-      placeholder,
-      value,
-      valueFormat,
-    } = this.props;
+    const { displayFormat, placeholder, value, valueFormat } = this.props;
 
     const date = moment(value || '', valueFormat);
-    const dateStr = date.isValid()
-      ? date.format(displayFormat)
-      : '';
+    const dateStr = date.isValid() ? date.format(displayFormat) : '';
 
     if (!dateStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {dateStr}
-      </ValueText>
-    );
+    return <ValueText>{dateStr}</ValueText>;
   };
 
   _selectDate = (date: Date | null) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 

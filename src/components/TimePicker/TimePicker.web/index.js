@@ -4,12 +4,12 @@ import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
 import PickerWeb from '../../internals/Picker.web';
-import { DEFAULT_TIME_DISPLAY_FORMAT, DEFAULT_TIME_VALUE_FORMAT } from '../constants';
-import WheelPicker from './WheelPicker';
 import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+  DEFAULT_TIME_DISPLAY_FORMAT,
+  DEFAULT_TIME_VALUE_FORMAT,
+} from '../constants';
+import WheelPicker from './WheelPicker';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -139,12 +139,7 @@ class TimePicker extends React.Component<Props> {
       testID,
     };
 
-    return (
-      <PickerWeb
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerWeb {...styleProps} {...props} />;
   }
 
   _picker: ?React.ElementRef<typeof PickerWeb>;
@@ -156,39 +151,21 @@ class TimePicker extends React.Component<Props> {
   };
 
   _renderPopover = () => {
-    return (
-      <WheelPicker
-        initialTime={this._time}
-        onSelect={this._selectTime}
-      />
-    );
+    return <WheelPicker initialTime={this._time} onSelect={this._selectTime} />;
   };
 
   _renderValue = () => {
-    const {
-      placeholder,
-    } = this.props;
+    const { placeholder } = this.props;
 
     if (!this._timeStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {this._timeStr}
-      </ValueText>
-    );
+    return <ValueText>{this._timeStr}</ValueText>;
   };
 
   _selectTime = (time: Moment) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 

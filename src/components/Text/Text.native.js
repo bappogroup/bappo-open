@@ -55,10 +55,7 @@ class Text extends React.Component<Props> {
     };
 
     return (
-      <RN.Text
-        {...props}
-        ref={this._captureNativeTextRef}
-      >
+      <RN.Text {...props} ref={this._captureNativeTextRef}>
         {children}
       </RN.Text>
     );

@@ -3,15 +3,13 @@
 import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
-import {
-  DatePickerAndroid,
-} from 'react-native';
+import { DatePickerAndroid } from 'react-native';
 import PickerNative from '../../internals/Picker.native';
-import { DEFAULT_DATE_DISPLAY_FORMAT, DEFAULT_DATE_VALUE_FORMAT } from '../constants';
 import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+  DEFAULT_DATE_DISPLAY_FORMAT,
+  DEFAULT_DATE_VALUE_FORMAT,
+} from '../constants';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -134,12 +132,7 @@ class DatePicker extends React.Component<Props> {
       testID,
     };
 
-    return (
-      <PickerNative
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerNative {...styleProps} {...props} />;
   }
 
   _picker: ?React.ElementRef<typeof PickerNative>;
@@ -151,22 +144,23 @@ class DatePicker extends React.Component<Props> {
   };
 
   _openPicker = () => {
-    const {
-      onFocus,
-    } = this.props;
+    const { onFocus } = this.props;
 
     onFocus && onFocus();
 
-    DatePickerAndroid
-      .open({
-        year: this._date.year(),
-        month: this._date.month(),
-        day: this._date.day(),
-      })
-      .then(this._onDateSelect);
+    DatePickerAndroid.open({
+      year: this._date.year(),
+      month: this._date.month(),
+      day: this._date.day(),
+    }).then(this._onDateSelect);
   };
 
-  _onDateSelect = ({ action, year, month, day }: {
+  _onDateSelect = ({
+    action,
+    year,
+    month,
+    day,
+  }: {
     action: string,
     year: number,
     month: number,
@@ -181,30 +175,17 @@ class DatePicker extends React.Component<Props> {
   };
 
   _renderValue = () => {
-    const {
-      placeholder,
-    } = this.props;
+    const { placeholder } = this.props;
 
     if (!this._dateStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {this._dateStr}
-      </ValueText>
-    );
+    return <ValueText>{this._dateStr}</ValueText>;
   };
 
   _selectDate = (date: Moment) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 

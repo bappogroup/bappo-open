@@ -109,12 +109,14 @@ const Container = styled(ViewBase)`
   background-color: #fff;
   cursor: pointer;
 
-  ${props => props.isFocused && `
+  ${props =>
+    props.isFocused &&
+    `
     background-color: #f9f9f9;
-  `}
-
-  ${props => props.isDisabled && `
+  `} ${props =>
+    props.isDisabled &&
+    `
     color: #ccc;
     cursor: default;
-  `}
+  `};
 `;

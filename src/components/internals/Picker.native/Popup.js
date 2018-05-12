@@ -1,12 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Animated,
-  Modal,
-  StyleSheet,
-  TouchableHighlight,
-} from 'react-native';
+import { Animated, Modal, StyleSheet, TouchableHighlight } from 'react-native';
 
 type Props = {
   /**
@@ -65,9 +60,7 @@ class Popup extends React.Component<Props, State> {
           style={styles.modalBackdrop}
           underlayColor="#00000075"
         >
-          <TouchableHighlight
-            underlayColor="#fff"
-          >
+          <TouchableHighlight underlayColor="#fff">
             <Animated.View
               style={[styles.container, { height: this.state.animatedHeight }]}
             >
@@ -84,13 +77,10 @@ class Popup extends React.Component<Props, State> {
 
     // slide animation
     if (visible) {
-      Animated.timing(
-        this.state.animatedHeight,
-        {
-          toValue: this.props.height,
-          duration: 300,
-        },
-      ).start();
+      Animated.timing(this.state.animatedHeight, {
+        toValue: this.props.height,
+        duration: 300,
+      }).start();
     } else {
       this.setState({
         animatedHeight: new Animated.Value(0),

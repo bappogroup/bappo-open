@@ -1,10 +1,3 @@
-import styled, {
-  css,
-  keyframes,
-} from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-export {
-  styled,
-  css,
-  keyframes,
-};
+export { styled, css, keyframes };

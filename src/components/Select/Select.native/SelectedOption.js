@@ -14,24 +14,12 @@ class SelectedOption extends React.Component<Props> {
 
   render() {
     const { option, ...props } = this.props;
-    return (
-      <Container
-        {...props}
-      >
-        {this._renderLabel()}
-      </Container>
-    );
+    return <Container {...props}>{this._renderLabel()}</Container>;
   }
 
   _renderLabel = () => {
     const { labelKey, option, ...props } = this.props;
-    return (
-      <Label
-        {...props}
-      >
-        {option[labelKey]}
-      </Label>
-    );
+    return <Label {...props}>{option[labelKey]}</Label>;
   };
 }
 

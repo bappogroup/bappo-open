@@ -13,7 +13,11 @@ type Props = {
   style?: any,
 };
 
-const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap) => {
+const createIcon = (
+  fontFamily: string,
+  fontFileName: string,
+  glyphMap: GlyphMap,
+) => {
   // Android doesn't care about actual fontFamily name, it will only look in fonts folder
   const fontReference = fontFileName.replace(/\.(otf|ttf)$/, '');
 
@@ -25,10 +29,7 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
     };
 
     render() {
-      const {
-        name,
-        style,
-      } = this.props;
+      const { name, style } = this.props;
 
       let glyph = glyphMap[name] || '?';
       if (typeof glyph === 'number') {
@@ -41,10 +42,7 @@ const createIcon = (fontFamily: string, fontFileName: string, glyphMap: GlyphMap
       };
 
       return (
-        <StyledText
-          {...styleProps}
-          innerRef={this._captureTextRef}
-        >
+        <StyledText {...styleProps} innerRef={this._captureTextRef}>
           {glyph}
         </StyledText>
       );

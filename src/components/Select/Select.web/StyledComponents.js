@@ -18,11 +18,13 @@ export const Arrow = styled.span`
   width: 0;
   position: relative;
 
-  ${props => props.isOpen && `
+  ${props =>
+    props.isOpen &&
+    `
     top: -2px;
     border-color: transparent transparent #999;
     border-width: 0 5px 5px;
-  `}
+  `};
 `;
 
 export const ArrowZone = styled.span`
@@ -39,11 +41,13 @@ export const ArrowZone = styled.span`
     }
   }
 
-  ${props => props.isDisabled && `
+  ${props =>
+    props.isDisabled &&
+    `
     cursor: default;
     pointer-events: none;
     opacity: 0.35;
-  `}
+  `};
 `;
 
 export const Clear = styled.span`
@@ -62,7 +66,7 @@ export const ClearZone = styled.span`
   width: 17px;
 
   &:hover {
-    color: #D0021B;
+    color: #d0021b;
   }
 `;
 
@@ -84,13 +88,16 @@ export const Control = styled.div`
     outline: none;
   }
 
-  ${({ isOpen }) => isOpen && `
+  ${({ isOpen }) =>
+    isOpen &&
+    `
     background: #fff;
-  `}
-
-  ${({ isFocused, isOpen, isSearchable }) => isSearchable && (isOpen || isFocused) && `
+  `} ${({ isFocused, isOpen, isSearchable }) =>
+    isSearchable &&
+    (isOpen || isFocused) &&
+    `
     cursor: text;
-  `}
+  `};
 `;
 
 const inputStyle = css`
@@ -102,8 +109,7 @@ const inputStyle = css`
 `;
 
 export const FakeInput = styled.div`
-  ${inputStyle}
-  border: 0;
+  ${inputStyle} border: 0;
   width: 1px;
   display: inline-block;
 `;
@@ -123,11 +129,14 @@ export const Input = styled(TextInputAutoSize)`
     outline: none;
     padding: 0;
     appearance: none;
-    ${({ hasValue, isPseudoFocused }) => hasValue && isPseudoFocused && `
+    ${({ hasValue, isPseudoFocused }) =>
+      hasValue &&
+      isPseudoFocused &&
+      `
       opacity: 0;
-    `}
+    `};
   }
-  ${inputStyle}
+  ${inputStyle};
 `;
 
 export const Loading = styled.span`
@@ -177,9 +186,11 @@ export const MenuOuter = styled.div`
 
 export const MultiValueWrapper = styled.div`
   height: 100%;
-  ${props => props.isMulti && `
+  ${props =>
+    props.isMulti &&
+    `
     display: inline-block;
-  `}
+  `};
 `;
 
 export const NoResults = styled.div`

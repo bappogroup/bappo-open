@@ -3,15 +3,13 @@
 import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
-import {
-  TimePickerAndroid,
-} from 'react-native';
+import { TimePickerAndroid } from 'react-native';
 import PickerNative from '../../internals/Picker.native';
-import { DEFAULT_TIME_DISPLAY_FORMAT, DEFAULT_TIME_VALUE_FORMAT } from '../constants';
 import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+  DEFAULT_TIME_DISPLAY_FORMAT,
+  DEFAULT_TIME_VALUE_FORMAT,
+} from '../constants';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -134,12 +132,7 @@ class TimePicker extends React.Component<Props> {
       testID,
     };
 
-    return (
-      <PickerNative
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerNative {...styleProps} {...props} />;
   }
 
   _picker: ?React.ElementRef<typeof PickerNative>;
@@ -151,21 +144,21 @@ class TimePicker extends React.Component<Props> {
   };
 
   _openPicker = () => {
-    const {
-      onFocus,
-    } = this.props;
+    const { onFocus } = this.props;
 
     onFocus && onFocus();
 
-    TimePickerAndroid
-      .open({
-        hour: this._time.hour(),
-        minute: this._time.minute(),
-      })
-      .then(this._onTimeSelect);
+    TimePickerAndroid.open({
+      hour: this._time.hour(),
+      minute: this._time.minute(),
+    }).then(this._onTimeSelect);
   };
 
-  _onTimeSelect = ({ action, hour, minute }: {
+  _onTimeSelect = ({
+    action,
+    hour,
+    minute,
+  }: {
     action: string,
     hour: number,
     minute: number,
@@ -179,30 +172,17 @@ class TimePicker extends React.Component<Props> {
   };
 
   _renderValue = () => {
-    const {
-      placeholder,
-    } = this.props;
+    const { placeholder } = this.props;
 
     if (!this._timeStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {this._timeStr}
-      </ValueText>
-    );
+    return <ValueText>{this._timeStr}</ValueText>;
   };
 
   _selectTime = (time: Moment) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 

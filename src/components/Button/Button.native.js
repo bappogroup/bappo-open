@@ -65,13 +65,7 @@ class Button extends React.Component<Props> {
       testID,
     };
 
-    return (
-      <RN.TouchableOpacity
-        {...props}
-      >
-        {children}
-      </RN.TouchableOpacity>
-    );
+    return <RN.TouchableOpacity {...props}>{children}</RN.TouchableOpacity>;
   }
 }
 

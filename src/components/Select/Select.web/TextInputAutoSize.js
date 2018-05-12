@@ -88,14 +88,20 @@ class TextInputAutoSize extends React.Component<Props, State> {
   };
 
   updateInputWidth = () => {
-    if (!this.mounted || !this.sizer || typeof this.sizer.scrollWidth === 'undefined') {
+    if (
+      !this.mounted ||
+      !this.sizer ||
+      typeof this.sizer.scrollWidth === 'undefined'
+    ) {
       return;
     }
     const { minWidth, placeholder } = this.props;
     let newInputWidth = this.state.inputWidth;
     if (placeholder) {
       if (this.placeHolderSizer) {
-        newInputWidth = Math.max(this.sizer.scrollWidth, this.placeHolderSizer.scrollWidth) + 2;
+        newInputWidth =
+          Math.max(this.sizer.scrollWidth, this.placeHolderSizer.scrollWidth) +
+          2;
       }
     } else {
       newInputWidth = this.sizer.scrollWidth + 2;
@@ -135,17 +141,17 @@ class TextInputAutoSize extends React.Component<Props, State> {
       value,
       ...inputProps
     } = this.props;
-    const sizerValue = [defaultValue, value, ''].reduce((previousValue, currentValue) => {
-      if (previousValue !== null && previousValue !== undefined) {
-        return previousValue;
-      }
-      return currentValue;
-    });
+    const sizerValue = [defaultValue, value, ''].reduce(
+      (previousValue, currentValue) => {
+        if (previousValue !== null && previousValue !== undefined) {
+          return previousValue;
+        }
+        return currentValue;
+      },
+    );
 
     return (
-      <Container
-        className={className}
-      >
+      <Container className={className}>
         <Input
           {...inputProps}
           innerRef={this.inputRef}
@@ -155,10 +161,11 @@ class TextInputAutoSize extends React.Component<Props, State> {
           value={value}
         />
         <Sizer innerRef={this.sizerRef}>{sizerValue}</Sizer>
-        {this.props.placeholder
-          ? <Sizer innerRef={this.placeHolderSizerRef}>{this.props.placeholder}</Sizer>
-          : null
-        }
+        {this.props.placeholder ? (
+          <Sizer innerRef={this.placeHolderSizerRef}>
+            {this.props.placeholder}
+          </Sizer>
+        ) : null}
       </Container>
     );
   }

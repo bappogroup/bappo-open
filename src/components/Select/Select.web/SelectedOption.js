@@ -19,9 +19,7 @@ class SelectedOption extends React.Component<Props> {
   render() {
     const { labelKey, onRemove, option, ...props } = this.props;
     return (
-      <Container
-        {...props}
-      >
+      <Container {...props}>
         {this._renderRemoveIcon()}
         {this._renderLabel()}
       </Container>
@@ -60,11 +58,7 @@ class SelectedOption extends React.Component<Props> {
   _renderLabel = () => {
     const { labelKey, onRemove, option, ...props } = this.props;
     return (
-      <Label
-        {...props}
-        aria-selected="true"
-        role="option"
-      >
+      <Label {...props} aria-selected="true" role="option">
         {option[labelKey]}
         {!!props.isMulti && <AriaOnly>&nbsp;</AriaOnly>}
       </Label>
@@ -105,7 +99,9 @@ const Container = styled.div`
     margin-left: 5px;
   }
 
-  ${({ isDisabled, isMulti }) => (isMulti ? `
+  ${({ isDisabled, isMulti }) =>
+    isMulti
+      ? `
     background-color: #ebf5ff;
     border-radius: 2px;
     border: 1px solid #c2e0ff;
@@ -113,12 +109,14 @@ const Container = styled.div`
     display: inline-block;
     font-size: 0.85em;
     vertical-align: top;
-    ${isDisabled && `
+    ${isDisabled &&
+      `
       background-color: #fcfcfc;
       border: 1px solid #e3e3e3;
       color: #333;
     `}
-  ` : `
+  `
+      : `
     display: flex;
     align-items: center;
     bottom: 0;
@@ -131,7 +129,7 @@ const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  `)}
+  `};
 `;
 
 const Icon = styled.span`
@@ -155,15 +153,19 @@ const Icon = styled.span`
 `;
 
 const Label = styled.span`
-  ${({ hasValue, isSingle }) => hasValue && isSingle && `
+  ${({ hasValue, isSingle }) =>
+    hasValue &&
+    isSingle &&
+    `
     color: #333;
-  `}
-  ${({ isMulti }) => isMulti && `
+  `} ${({ isMulti }) =>
+    isMulti &&
+    `
     display: inline-block;
     vertical-align: middle;
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     cursor: default;
     padding: 0 5px;
-  `}
+  `};
 `;

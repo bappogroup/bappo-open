@@ -91,7 +91,10 @@ class AsyncSelect extends React.Component<Props, State> {
     return searchPromptText;
   };
 
-  _load = (loadFn: (searchText: string) => ?Promise<Array<Option>>, inputValue: string) => {
+  _load = (
+    loadFn: (searchText: string) => ?Promise<Array<Option>>,
+    inputValue: string,
+  ) => {
     this._isLoading = true;
 
     const callback = () => {
@@ -112,7 +115,9 @@ class AsyncSelect extends React.Component<Props, State> {
 
     onDropdownEndReached && onDropdownEndReached();
 
-    !this._isLoading && loadMoreOptions && this._load(loadMoreOptions, this.state.inputValue);
+    !this._isLoading &&
+      loadMoreOptions &&
+      this._load(loadMoreOptions, this.state.inputValue);
   };
 
   _onInputChange = (inputValue: string, triggeredByUser: boolean) => {

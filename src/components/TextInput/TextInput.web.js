@@ -3,10 +3,7 @@
 import * as React from 'react';
 import invariant from 'fbjs/lib/invariant';
 import styled, { css } from 'styled-components';
-import type {
-  BlurEvent,
-  FocusEvent,
-} from '../../events.js.flow';
+import type { BlurEvent, FocusEvent } from '../../events.js.flow';
 
 type Props = {
   /**
@@ -152,19 +149,11 @@ class TextInput extends React.Component<Props> {
       style,
     };
 
-    return (
-      <InputComponent
-        {...props}
-        {...styleProps}
-      />
-    );
+    return <InputComponent {...props} {...styleProps} />;
   }
 
   static _checkProps(props: Props) {
-    const {
-      multiline,
-      type,
-    } = props;
+    const { multiline, type } = props;
 
     invariant(
       !(multiline && type !== 'text'),
@@ -179,12 +168,12 @@ class TextInput extends React.Component<Props> {
   };
 
   _createBlurEventHandler = () => {
-    const {
-      onBlur,
-    } = this.props;
+    const { onBlur } = this.props;
 
     if (onBlur) {
-      return (event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      return (
+        event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
           text: event.currentTarget.value,
@@ -196,12 +185,12 @@ class TextInput extends React.Component<Props> {
   };
 
   _createChangeEventHandler = () => {
-    const {
-      onValueChange,
-    } = this.props;
+    const { onValueChange } = this.props;
 
     if (onValueChange) {
-      return (event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      return (
+        event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
         onValueChange(event.currentTarget.value);
       };
     }
@@ -209,12 +198,12 @@ class TextInput extends React.Component<Props> {
   };
 
   _createFocusEventHandler = () => {
-    const {
-      onFocus,
-    } = this.props;
+    const { onFocus } = this.props;
 
     if (onFocus) {
-      return (event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      return (
+        event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
         // eslint-disable-next-line no-param-reassign
         event.nativeEvent = {
           text: event.currentTarget.value,
@@ -244,9 +233,9 @@ const inputStyles = css`
 `;
 
 const Input = styled.input`
-  ${inputStyles}
+  ${inputStyles};
 `;
 
 const TextArea = styled.textarea`
-  ${inputStyles}
+  ${inputStyles};
 `;

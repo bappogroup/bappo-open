@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type {
-  ScrollEvent,
-  ViewLayoutEvent,
-} from '../../events.js.flow';
+import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 import VirtualizedList from '../VirtualizedList';
 
 type RequiredProps<ItemT> = {
@@ -76,7 +73,7 @@ type OptionalProps<ItemT> = {
   getItemLayout?: (
     data: Array<ItemT>,
     index: number,
-  ) => {length: number, offset: number, index: number},
+  ) => { length: number, offset: number, index: number },
   /**
    * How many items to render in the initial batch. This should be enough to fill the screen but not
    * much more. Note these items will never be unmounted as part of the windowed rendering in order
@@ -133,7 +130,7 @@ type OptionalProps<ItemT> = {
    * Called once when the scroll position gets within `onEndReachedThreshold` of the rendered
    * content.
    */
-  onEndReached?: ?(info: {distanceFromEnd: number}) => void,
+  onEndReached?: ?(info: { distanceFromEnd: number }) => void,
   /**
    * How far from the end (in units of visible length of the list) the bottom edge of the
    * list must be from the end of the content to trigger the `onEndReached` callback.
@@ -303,19 +300,14 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Note: cannot scroll to locations outside the render window without specifying the
    * `getItemLayout` prop.
    */
-  scrollToItem = (params: {
-    item: ItemT,
-    viewPosition?: number,
-  }) => {
+  scrollToItem = (params: { item: ItemT, viewPosition?: number }) => {
     this._listRef && this._listRef.scrollToItem(params);
   };
 
   /**
    * Scroll to a specific content pixel offset in the list.
    */
-  scrollToOffset = (params: {
-    offset: number,
-  }) => {
+  scrollToOffset = (params: { offset: number }) => {
     this._listRef && this._listRef.scrollToOffset(params);
   };
 
@@ -384,12 +376,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       windowSize,
     };
 
-    return (
-      <VirtualizedList
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <VirtualizedList {...styleProps} {...props} />;
   }
 
   _listRef: ?React.ElementRef<typeof VirtualizedList>;

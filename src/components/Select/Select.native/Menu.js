@@ -6,13 +6,13 @@ import Button from '../../Button';
 import FlatList from '../../FlatList';
 import Text from '../../Text';
 import View from '../../View';
-import type {
-  Option,
-  renderOptionType,
-} from '../types.js.flow';
+import type { Option, renderOptionType } from '../types.js.flow';
 
 type Props = {
-  getItemLayout?: (item: Option, index: number) => {
+  getItemLayout?: (
+    item: Option,
+    index: number,
+  ) => {
     length: number,
     offset: number,
     index: number,
@@ -58,41 +58,31 @@ class Menu extends React.Component<Props> {
     index,
   });
 
-  _defaultRenderOption = ({ option, isSelected }: {
+  _defaultRenderOption = ({
+    option,
+    isSelected,
+  }: {
     option: Option,
     isSelected: boolean,
   }) => (
     <Row>
-      <Label
-        numberOfLines={2}
-        isDisabled={option.disabled}
-      >
+      <Label numberOfLines={2} isDisabled={option.disabled}>
         {option[this.props.labelKey]}
       </Label>
-      <SelectedIcon
-        show={isSelected}
-      >
-        ✓
-      </SelectedIcon>
+      <SelectedIcon show={isSelected}>✓</SelectedIcon>
     </Row>
   );
 
   _keyExtractor = (option: Option) => option[this.props.valueKey];
 
-  _renderItem = ({ item: option, index }: {
-    item: Option,
-    index: number,
-  }) => {
+  _renderItem = ({ item: option, index }: { item: Option, index: number }) => {
     const { onItemSelect, selectedOptions } = this.props;
     const renderOption = this.props.renderOption || this._defaultRenderOption;
 
     const isSelected = selectedOptions.indexOf(option) > -1;
 
     return (
-      <Button
-        disabled={option.disabled}
-        onPress={() => onItemSelect(option)}
-      >
+      <Button disabled={option.disabled} onPress={() => onItemSelect(option)}>
         {renderOption({ option, index, isSelected })}
       </Button>
     );
@@ -103,9 +93,11 @@ export default Menu;
 
 const Label = styled(Text)`
   flex: 1;
-  ${({ isDisabled }) => isDisabled && `
+  ${({ isDisabled }) =>
+    isDisabled &&
+    `
     color: #ccc;
-  `}
+  `};
 `;
 
 const Row = styled(View)`

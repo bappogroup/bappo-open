@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import RN from 'react-native';
-import type {
-  ScrollEvent,
-  ViewLayoutEvent,
-} from '../../events.js.flow';
+import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 
 type Props = {
   /**
@@ -94,10 +91,7 @@ class ScrollView extends React.Component<Props> {
     };
 
     return (
-      <RN.ScrollView
-        {...props}
-        ref={this._captureScrollableNodeRef}
-      >
+      <RN.ScrollView {...props} ref={this._captureScrollableNodeRef}>
         {children}
       </RN.ScrollView>
     );
@@ -105,7 +99,9 @@ class ScrollView extends React.Component<Props> {
 
   _scrollableNode: ?React.ElementRef<typeof RN.ScrollView>;
 
-  _captureScrollableNodeRef = (ref: ?React.ElementRef<typeof RN.ScrollView>) => {
+  _captureScrollableNodeRef = (
+    ref: ?React.ElementRef<typeof RN.ScrollView>,
+  ) => {
     this._scrollableNode = ref;
   };
 }

@@ -5,10 +5,7 @@ import { throttle } from 'lodash-es';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import ViewBase from '../View/View.web/ViewBase';
-import type {
-  ScrollEvent,
-  ViewLayoutEvent,
-} from '../../events.js.flow';
+import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 
 type Props = {
   /**
@@ -130,9 +127,7 @@ class ScrollView extends React.Component<Props> {
   _onContentLayout = (event: ViewLayoutEvent) => {
     const { width, height } = event.nativeEvent.layout;
 
-    const {
-      onContentSizeChange,
-    } = this.props;
+    const { onContentSizeChange } = this.props;
 
     onContentSizeChange && onContentSizeChange(width, height);
   };
@@ -142,28 +137,27 @@ class ScrollView extends React.Component<Props> {
     this._onScrollThrottled(event);
   };
 
-  _onScrollThrottled = throttle((event) => {
-    const {
-      onScroll,
-    } = this.props;
+  _onScrollThrottled = throttle(event => {
+    const { onScroll } = this.props;
 
-    onScroll && onScroll({
-      nativeEvent: {
-        contentOffset: {
-          x: event.target.scrollLeft,
-          y: event.target.scrollTop,
+    onScroll &&
+      onScroll({
+        nativeEvent: {
+          contentOffset: {
+            x: event.target.scrollLeft,
+            y: event.target.scrollTop,
+          },
+          contentSize: {
+            height: event.target.scrollHeight,
+            width: event.target.scrollWidth,
+          },
+          layoutMeasurement: {
+            height: event.target.offsetHeight,
+            width: event.target.offsetWidth,
+          },
         },
-        contentSize: {
-          height: event.target.scrollHeight,
-          width: event.target.scrollWidth,
-        },
-        layoutMeasurement: {
-          height: event.target.offsetHeight,
-          width: event.target.offsetWidth,
-        },
-      },
-      timeStamp: Date.now(),
-    });
+        timeStamp: Date.now(),
+      });
   }, this.props.scrollEventThrottle);
 }
 
@@ -176,15 +170,19 @@ const ScrollContainer = styled(ViewBase)`
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
 
-  ${({ horizontal }) => horizontal && `
+  ${({ horizontal }) =>
+    horizontal &&
+    `
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-  `}
+  `};
 `;
 
 const ContentContainer = styled(ViewBase)`
-  ${({ horizontal }) => horizontal && `
+  ${({ horizontal }) =>
+    horizontal &&
+    `
     flex-direction: row;
-  `}
+  `};
 `;

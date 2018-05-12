@@ -6,9 +6,7 @@ import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import 'react-native-web/dist/modules/injectResponderEventPlugin';
 import UIManager from '../../../apis/UIManager';
-import type {
-  ViewLayoutEvent,
-} from '../../../events.js.flow';
+import type { ViewLayoutEvent } from '../../../events.js.flow';
 
 type Props = {
   accessibilityLabel?: string,
@@ -34,7 +32,7 @@ type Props = {
 const registry = new Map();
 
 const triggerAll = () => {
-  registry.forEach((instance) => {
+  registry.forEach(instance => {
     instance._onLayout();
   });
 };
@@ -75,13 +73,7 @@ class ViewBase extends React.Component<Props> {
       'data-testid': testID,
     };
 
-    return (
-      <Div
-        {...props}
-      >
-        {children}
-      </Div>
-    );
+    return <Div {...props}>{children}</Div>;
   }
 
   _isMounted: ?boolean;
@@ -89,9 +81,7 @@ class ViewBase extends React.Component<Props> {
   _onLayoutId: ?string;
 
   _onLayout = () => {
-    const {
-      onLayout,
-    } = this.props;
+    const { onLayout } = this.props;
 
     if (onLayout) {
       UIManager.measure(findDOMNode(this), (x, y, width, height) => {

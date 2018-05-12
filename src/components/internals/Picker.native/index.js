@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Platform,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Platform, TouchableOpacity, View } from 'react-native';
 import Popup from './Popup';
 import {
   Container,
@@ -51,9 +47,7 @@ class PickerNative extends React.Component<Props, State> {
   props: Props;
 
   blur = () => {
-    const {
-      onBlur,
-    } = this.props;
+    const { onBlur } = this.props;
 
     onBlur && onBlur();
 
@@ -63,10 +57,7 @@ class PickerNative extends React.Component<Props, State> {
   };
 
   focus = () => {
-    const {
-      onFocus,
-      readOnly,
-    } = this.props;
+    const { onFocus, readOnly } = this.props;
 
     if (readOnly) return;
 
@@ -88,12 +79,7 @@ class PickerNative extends React.Component<Props, State> {
   }
 
   render() {
-    const {
-      accessibilityLabel,
-      readOnly,
-      style,
-      testID,
-    } = this.props;
+    const { accessibilityLabel, readOnly, style, testID } = this.props;
 
     const styleProps = {
       style,
@@ -105,9 +91,7 @@ class PickerNative extends React.Component<Props, State> {
         accessibilityLabel={accessibilityLabel}
         testID={testID}
       >
-        <Control
-          onPress={this._onControlPress}
-        >
+        <Control onPress={this._onControlPress}>
           {this._renderValue()}
           {this._renderDropdownIcon()}
         </Control>
@@ -129,20 +113,13 @@ class PickerNative extends React.Component<Props, State> {
   };
 
   _renderClear = () => {
-    const {
-      clearable,
-      clearValueText,
-      onClear,
-      readOnly,
-    } = this.props;
+    const { clearable, clearValueText, onClear, readOnly } = this.props;
     if (!clearable || readOnly) {
       return null;
     }
 
     return (
-      <TouchableOpacity
-        onPress={onClear}
-      >
+      <TouchableOpacity onPress={onClear}>
         <PopupText>{clearValueText}</PopupText>
       </TouchableOpacity>
     );
@@ -150,20 +127,18 @@ class PickerNative extends React.Component<Props, State> {
 
   _renderConfirmButton = () => {
     return (
-      <TouchableOpacity
-        onPress={this.props.onConfirm}
-      >
+      <TouchableOpacity onPress={this.props.onConfirm}>
         <OKText>Done</OKText>
       </TouchableOpacity>
     );
   };
 
   _renderDropdownIcon = () => {
-    const {
-      renderDropdownIcon,
-    } = this.props;
+    const { renderDropdownIcon } = this.props;
 
-    return renderDropdownIcon ? renderDropdownIcon(this.state) : (
+    return renderDropdownIcon ? (
+      renderDropdownIcon(this.state)
+    ) : (
       <IconTextContainer>
         <IconText>⌄</IconText>
       </IconTextContainer>
@@ -171,20 +146,13 @@ class PickerNative extends React.Component<Props, State> {
   };
 
   _renderPopup = () => {
-    const {
-      renderPopup,
-    } = this.props;
+    const { renderPopup } = this.props;
 
     return (
-      <Popup
-        onRequestClose={this.blur}
-        show={this.state.isOpen}
-      >
+      <Popup onRequestClose={this.blur} show={this.state.isOpen}>
         <PopupContentContainer>
           <PopupTopBar>
-            <TouchableOpacity
-              onPress={this.blur}
-            >
+            <TouchableOpacity onPress={this.blur}>
               <PopupText>Cancel</PopupText>
             </TouchableOpacity>
             <View style={{ flex: 1 }} />
@@ -198,14 +166,10 @@ class PickerNative extends React.Component<Props, State> {
   };
 
   _renderValue = () => {
-    const {
-      renderValue,
-    } = this.props;
+    const { renderValue } = this.props;
 
     return (
-      <ValueContainer>
-        {renderValue && renderValue(this.state)}
-      </ValueContainer>
+      <ValueContainer>{renderValue && renderValue(this.state)}</ValueContainer>
     );
   };
 }

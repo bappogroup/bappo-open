@@ -20,9 +20,17 @@ type State = {
 };
 
 const getMonthDatesGroupedByWeek = (year: number, month: number) => {
-  const monthMoment = moment().year(year).month(month);
-  const start = monthMoment.clone().startOf('month').startOf('week');
-  const end = monthMoment.clone().endOf('month').endOf('week');
+  const monthMoment = moment()
+    .year(year)
+    .month(month);
+  const start = monthMoment
+    .clone()
+    .startOf('month')
+    .startOf('week');
+  const end = monthMoment
+    .clone()
+    .endOf('month')
+    .endOf('week');
   const arr = [];
   while (start.isSameOrBefore(end)) {
     arr.push(start.clone());
@@ -33,8 +41,9 @@ const getMonthDatesGroupedByWeek = (year: number, month: number) => {
 
 const getGroupedMonths = (year: number) => {
   const yearMoment = moment().year(year);
-  const arr = Array.from({ length: 12 })
-    .map((_unused, index) => yearMoment.clone().month(index));
+  const arr = Array.from({ length: 12 }).map((_unused, index) =>
+    yearMoment.clone().month(index),
+  );
   return chunk(arr, 4);
 };
 
@@ -77,7 +86,7 @@ class Calendar extends React.Component<Props, State> {
   }
 
   _changeGranularity = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       let newGranularity;
       switch (prevState.granularity) {
         case 'day':
@@ -136,10 +145,11 @@ class Calendar extends React.Component<Props, State> {
     });
   };
 
-  _renderDayGrid = () => React.Children.toArray([
-    this._renderHeader(),
-    this._renderMonth(this.state.displayedYear, this.state.displayedMonth),
-  ]);
+  _renderDayGrid = () =>
+    React.Children.toArray([
+      this._renderHeader(),
+      this._renderMonth(this.state.displayedYear, this.state.displayedMonth),
+    ]);
 
   _renderGrid = () => {
     let content = null;
@@ -156,25 +166,17 @@ class Calendar extends React.Component<Props, State> {
       default:
         break;
     }
-    return (
-      <Grid>
-        {content}
-      </Grid>
-    );
+    return <Grid>{content}</Grid>;
   };
 
   _renderHeader = () => {
     const now = moment();
     return (
       <HeaderContainer>
-        {[0, 1, 2, 3, 4, 5, 6].map((weekDayNum) => {
+        {[0, 1, 2, 3, 4, 5, 6].map(weekDayNum => {
           return (
-            <HeaderCell
-              key={weekDayNum}
-            >
-              <GridText>
-                {now.day(weekDayNum).format('ddd.')}
-              </GridText>
+            <HeaderCell key={weekDayNum}>
+              <GridText>{now.day(weekDayNum).format('ddd.')}</GridText>
             </HeaderCell>
           );
         })}
@@ -188,14 +190,9 @@ class Calendar extends React.Component<Props, State> {
       <MonthContainer>
         {weeks.map((weekDays: Array<Moment>, weekNum: number) => {
           return (
-            <Row
-              key={weekNum}
-            >
+            <Row key={weekNum}>
               {weekDays.map((day: Moment, dayNum: number) => {
-                const {
-                  initialDate,
-                  onSelect,
-                } = this.props;
+                const { initialDate, onSelect } = this.props;
 
                 return (
                   <Cell
@@ -205,9 +202,7 @@ class Calendar extends React.Component<Props, State> {
                     isSelected={initialDate && day.isSame(initialDate, 'day')}
                     isToday={day.isSame(moment(), 'day')}
                   >
-                    <GridText>
-                      {day.date()}
-                    </GridText>
+                    <GridText>{day.date()}</GridText>
                   </Cell>
                 );
               })}
@@ -226,67 +221,49 @@ class Calendar extends React.Component<Props, State> {
         granularity: 'day',
       });
     };
-    return getGroupedMonths(this.state.displayedYear).map((months, groupNum) => (
-      <Row
-        key={groupNum}
-      >
-        {months.map((month, monthNum) => (
-          <Cell
-            key={monthNum}
-            onClick={() => handleClick(month)}
-          >
-            <GridText>
-              {month.format('MMM.')}
-            </GridText>
-          </Cell>
-        ))}
-      </Row>
-    ));
+    return getGroupedMonths(this.state.displayedYear).map(
+      (months, groupNum) => (
+        <Row key={groupNum}>
+          {months.map((month, monthNum) => (
+            <Cell key={monthNum} onClick={() => handleClick(month)}>
+              <GridText>{month.format('MMM.')}</GridText>
+            </Cell>
+          ))}
+        </Row>
+      ),
+    );
   };
 
   _renderNavigator = () => {
-    const {
-      onSelect,
-    } = this.props;
-    const {
-      displayedMonth,
-      displayedYear,
-      granularity,
-    } = this.state;
-    const displayedMoment = moment().year(displayedYear).month(displayedMonth);
+    const { onSelect } = this.props;
+    const { displayedMonth, displayedYear, granularity } = this.state;
+    const displayedMoment = moment()
+      .year(displayedYear)
+      .month(displayedMonth);
     return (
       <NavigatorContainer>
-        <DisplayContainer
-          onClick={this._changeGranularity}
-        >
-          {(granularity === 'day' || granularity === 'month') && React.Children.toArray([
-            <DisplayText>
-              {this._getDisplayText(displayedMoment)}
-            </DisplayText>,
-            <Arrow />,
-          ])}
+        <DisplayContainer onClick={this._changeGranularity}>
+          {(granularity === 'day' || granularity === 'month') &&
+            React.Children.toArray([
+              <DisplayText>
+                {this._getDisplayText(displayedMoment)}
+              </DisplayText>,
+              <Arrow />,
+            ])}
         </DisplayContainer>
         <NavigatorButtonContainer>
           <NavigatorButton
             onClick={() => this._navigate('backward', displayedMoment)}
           >
-            <NavigatorButtonText>
-              &lt;
-            </NavigatorButtonText>
+            <NavigatorButtonText>&lt;</NavigatorButtonText>
           </NavigatorButton>
-          <NavigatorButton
-            onClick={() => onSelect && onSelect(moment())}
-          >
-            <NavigatorButtonText>
-              Today
-            </NavigatorButtonText>
+          <NavigatorButton onClick={() => onSelect && onSelect(moment())}>
+            <NavigatorButtonText>Today</NavigatorButtonText>
           </NavigatorButton>
           <NavigatorButton
             onClick={() => this._navigate('forward', displayedMoment)}
           >
-            <NavigatorButtonText>
-              &gt;
-            </NavigatorButtonText>
+            <NavigatorButtonText>&gt;</NavigatorButtonText>
           </NavigatorButton>
         </NavigatorButtonContainer>
       </NavigatorContainer>
@@ -301,17 +278,10 @@ class Calendar extends React.Component<Props, State> {
       });
     };
     return getGroupedYears(this.state.displayedYear).map((years, groupNum) => (
-      <Row
-        key={groupNum}
-      >
+      <Row key={groupNum}>
         {years.map((year, yearNum) => (
-          <Cell
-            key={yearNum}
-            onClick={() => handleClick(year)}
-          >
-            <GridText>
-              {year.format('YYYY')}
-            </GridText>
+          <Cell key={yearNum} onClick={() => handleClick(year)}>
+            <GridText>{year.format('YYYY')}</GridText>
           </Cell>
         ))}
       </Row>
@@ -331,8 +301,7 @@ const Arrow = styled.span`
   position: relative;
 `;
 
-const CalendarContainer = styled.div`
-`;
+const CalendarContainer = styled.div``;
 
 const Cell = styled.div`
   align-items: center;
@@ -342,23 +311,30 @@ const Cell = styled.div`
   height: 25px;
   justify-content: center;
 
-  ${({ isGray }) => isGray && `
+  ${({ isGray }) =>
+    isGray &&
+    `
     color: #c3c3c3;
   `}
 
-  ${({ isToday }) => isToday && `
+  ${({ isToday }) =>
+    isToday &&
+    `
     border: 1px solid #ccc;
     height: 23px;
   `}
 
-  ${({ isSelected }) => (isSelected ? `
+  ${({ isSelected }) =>
+    isSelected
+      ? `
     background-color: #445;
     color: #fff;
-  ` : `
+  `
+      : `
     &:hover {
       background-color: #eee;
     }
-  `)}
+  `}
 `;
 
 const DisplayContainer = styled.div`
@@ -423,8 +399,7 @@ const NavigatorButtonContainer = styled.div`
   padding: 3px;
 `;
 
-const NavigatorButtonText = styled.span`
-`;
+const NavigatorButtonText = styled.span``;
 
 const NavigatorContainer = styled.div`
   display: flex;

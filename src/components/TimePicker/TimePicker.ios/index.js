@@ -2,15 +2,13 @@
 
 import * as React from 'react';
 import moment from 'moment';
-import {
-  DatePickerIOS,
-} from 'react-native';
+import { DatePickerIOS } from 'react-native';
 import PickerNative from '../../internals/Picker.native';
-import { DEFAULT_TIME_DISPLAY_FORMAT, DEFAULT_TIME_VALUE_FORMAT } from '../constants';
 import {
-  PlaceholderText,
-  ValueText,
-} from './StyledComponents';
+  DEFAULT_TIME_DISPLAY_FORMAT,
+  DEFAULT_TIME_VALUE_FORMAT,
+} from '../constants';
+import { PlaceholderText, ValueText } from './StyledComponents';
 
 type Props = {
   /**
@@ -74,7 +72,10 @@ type State = {
   selectedTime: Date | null,
 };
 
-const getDefaultTime = (): Date => moment().startOf('minute').toDate();
+const getDefaultTime = (): Date =>
+  moment()
+    .startOf('minute')
+    .toDate();
 
 class TimePicker extends React.Component<Props, State> {
   static defaultProps = {
@@ -100,10 +101,7 @@ class TimePicker extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const {
-      value,
-      valueFormat,
-    } = this.props;
+    const { value, valueFormat } = this.props;
 
     let initialTime = moment(value || '', valueFormat);
     if (!initialTime.isValid()) {
@@ -140,7 +138,8 @@ class TimePicker extends React.Component<Props, State> {
       clearValueText,
       onBlur,
       onClear: () => this._selectTime(null),
-      onConfirm: () => this._selectTime(this.state.selectedTime || getDefaultTime()),
+      onConfirm: () =>
+        this._selectTime(this.state.selectedTime || getDefaultTime()),
       onFocus,
       readOnly,
       ref: this._capturePickerRef,
@@ -150,12 +149,7 @@ class TimePicker extends React.Component<Props, State> {
       testID,
     };
 
-    return (
-      <PickerNative
-        {...styleProps}
-        {...props}
-      />
-    );
+    return <PickerNative {...styleProps} {...props} />;
   }
 
   _picker: ?React.ElementRef<typeof PickerNative>;
@@ -179,38 +173,20 @@ class TimePicker extends React.Component<Props, State> {
   };
 
   _renderValue = () => {
-    const {
-      displayFormat,
-      placeholder,
-      value,
-      valueFormat,
-    } = this.props;
+    const { displayFormat, placeholder, value, valueFormat } = this.props;
 
     const time = moment(value || '', valueFormat);
-    const timeStr = time.isValid()
-      ? time.format(displayFormat)
-      : '';
+    const timeStr = time.isValid() ? time.format(displayFormat) : '';
 
     if (!timeStr) {
-      return (
-        <PlaceholderText>
-          {placeholder}
-        </PlaceholderText>
-      );
+      return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return (
-      <ValueText>
-        {timeStr}
-      </ValueText>
-    );
+    return <ValueText>{timeStr}</ValueText>;
   };
 
   _selectTime = (time: Date | null) => {
-    const {
-      onValueChange,
-      valueFormat,
-    } = this.props;
+    const { onValueChange, valueFormat } = this.props;
 
     this.blur();
 
