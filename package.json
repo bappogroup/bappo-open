@@ -14,8 +14,8 @@
     "src"
   ],
   "scripts": {
-    "build:cjs": "BABEL_ENV=cjs babel src/ -d lib/",
-    "build:es": "BABEL_ENV=es babel src/ -d es/",
+    "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel src/ -d lib/",
+    "build:es": "rimraf es/ && BABEL_ENV=es babel src/ -d es/",
     "build": "npm run build:cjs && npm run build:es",
     "flow": "flow",
     "lint": "eslint src/",
@@ -57,6 +57,7 @@
     "prettier": "^1.12.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "rimraf": "^2.6.2",
     "styled-components": "^3.0.0"
   },
   "peerDependencies": {
