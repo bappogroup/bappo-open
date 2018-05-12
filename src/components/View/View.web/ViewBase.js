@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { debounce, uniqueId } from 'lodash-es';
+import { uniqueId } from 'lodash-es';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import 'react-native-web/dist/modules/injectResponderEventPlugin';
@@ -29,22 +29,16 @@ type Props = {
   testID?: string,
 };
 
-const registry = new Map();
-
-const triggerAll = () => {
-  registry.forEach(instance => {
-    instance._onLayout();
-  });
-};
-window.addEventListener('resize', debounce(triggerAll, 16), false);
-
 class ViewBase extends React.Component<Props> {
   props: Props;
 
   componentDidMount() {
     this._isMounted = true;
-    this._onLayoutId = uniqueId('onLayout');
-    registry.set(this._onLayoutId, this);
+
+    // Defer adding resize event handler to window to support server-side
+    // rendering
+    this._resizeDetector = require('./detectResize');
+    this._resizeDetector.register(this._onLayoutId, this);
     this._onLayout();
   }
 
@@ -54,7 +48,7 @@ class ViewBase extends React.Component<Props> {
 
   componentWillUnmount() {
     this._isMounted = false;
-    registry.delete(this._onLayoutId);
+    this._resizeDetector.unregister(this._onLayoutId);
   }
 
   render() {
@@ -78,7 +72,11 @@ class ViewBase extends React.Component<Props> {
 
   _isMounted: ?boolean;
   _lastLayout = {};
-  _onLayoutId: ?string;
+  _onLayoutId: string = uniqueId('onLayout');
+  _resizeDetector: {
+    register: (id: string, instance: ViewBase) => void,
+    unregister: (id: string) => void,
+  };
 
   _onLayout = () => {
     const { onLayout } = this.props;

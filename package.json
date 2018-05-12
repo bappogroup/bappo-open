@@ -53,7 +53,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.1",
-    "flow-bin": "^0.57.3",
+    "flow-bin": "^0.72.0",
     "prettier": "^1.12.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -66,6 +66,7 @@
     "styled-components": "3.x.x"
   },
   "sideEffects": [
+    "./src/components/View/View.web/detectResize.js",
     "./src/components/View/View.web/ViewBase.js"
   ]
 }
