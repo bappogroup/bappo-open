@@ -3,7 +3,7 @@
 /* eslint-disable react/no-array-index-key */
 
 import * as React from 'react';
-import { chunk } from 'lodash-es';
+import chunk from 'lodash/chunk';
 import moment from 'moment';
 import type Moment from 'moment';
 import styled from 'styled-components';

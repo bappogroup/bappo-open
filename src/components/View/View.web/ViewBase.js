@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { uniqueId } from 'lodash-es';
+import uniqueId from 'lodash/uniqueId';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import 'react-native-web/dist/modules/injectResponderEventPlugin';

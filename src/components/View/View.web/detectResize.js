@@ -1,6 +1,6 @@
 // @flow
 
-import { debounce } from 'lodash-es';
+import debounce from 'lodash/debounce';
 import ViewBase from './ViewBase';
 
 const registry: Map<string, ViewBase> = new Map();

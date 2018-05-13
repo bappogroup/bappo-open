@@ -1,4 +1,4 @@
-import { padStart } from 'lodash-es';
+import padStart from 'lodash/padStart';
 
 export const DEFAULT_TIME_DISPLAY_FORMAT = 'h:mm A';
 export const DEFAULT_TIME_VALUE_FORMAT = 'HH:mm:ss';

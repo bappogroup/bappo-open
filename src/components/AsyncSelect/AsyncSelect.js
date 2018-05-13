@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { debounce } from 'lodash-es';
+import debounce from 'lodash/debounce';
 import Select from '../Select';
 import type { Option } from '../Select/types.js.flow';
 

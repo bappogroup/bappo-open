@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { throttle } from 'lodash-es';
+import throttle from 'lodash/throttle';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
 import ViewBase from '../View/View.web/ViewBase';
