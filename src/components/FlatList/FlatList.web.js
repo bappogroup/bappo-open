@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
-import VirtualizedList from '../VirtualizedList';
+import VirtualizedList from '../internals/VirtualizedList.web';
 
 type RequiredProps<ItemT> = {
   /**
    * For simplicity, data is just a plain array. If you want to use something else, like an
    * immutable list, use the underlying `VirtualizedList` directly.
    */
-  data: $ReadOnlyArray<ItemT>,
+  data: ?$ReadOnlyArray<ItemT>,
   /**
    * Takes an item from `data` and renders it into the list. Example usage:
    *
@@ -72,9 +72,13 @@ type OptionalProps<ItemT> = {
    * specify `ItemSeparatorComponent`.
    */
   getItemLayout?: (
-    data: Array<ItemT>,
+    data: ?Array<ItemT>,
     index: number,
   ) => { length: number, offset: number, index: number },
+  /**
+   * If true, renders items next to each other horizontally instead of stacked vertically.
+   */
+  horizontal?: ?boolean,
   /**
    * How many items to render in the initial batch. This should be enough to fill the screen but not
    * much more. Note these items will never be unmounted as part of the windowed rendering in order
@@ -138,7 +142,7 @@ type OptionalProps<ItemT> = {
    * Thus a value of 0.5 will trigger `onEndReached` when the end of the content is
    * within half the visible length of the list.
    */
-  onEndReachedThreshold: ?number,
+  onEndReachedThreshold?: ?number,
   onLayout?: ?(event: ViewLayoutEvent) => void,
   onScroll?: ?(event: ScrollEvent) => void,
   scrollEventThrottle?: number,
@@ -164,10 +168,16 @@ type OptionalProps<ItemT> = {
 };
 type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
 
+const defaultProps = {
+  ...VirtualizedList.defaultProps,
+};
+export type DefaultProps = typeof defaultProps;
+
 /**
  * A performant interface for rendering simple, flat lists, supporting the most handy features:
  *
  *  - Fully cross-platform.
+ *  - Optional horizontal mode.
  *  - Header support.
  *  - Footer support.
  *  - Separator support.
@@ -181,8 +191,7 @@ type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
  *       renderItem={({item}) => <Text>{item.key}</Text>}
  *     />
  *
- * More complex, multi-select example demonstrating `PureComponent` usage for perf optimization and
- * avoiding bugs.
+ * More complex, multi-select example demonstrating `PureComponent` usage for perf optimization and avoiding bugs.
  *
  * - By binding the `onPressItem` handler, the props will remain `===` and `PureComponent` will
  *   prevent wasteful re-renders unless the actual `id`, `selected`, or `title` props change, even
@@ -191,8 +200,7 @@ type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
  *   when the `state.selected` changes. Without setting this prop, `FlatList` would not know it
  *   needs to re-render any items because it is also a `PureComponent` and the prop comparison will
  *   not show any changes.
- * - `keyExtractor` tells the list to use the `id`s for the react keys instead of the default `key`
- *   property.
+ * - `keyExtractor` tells the list to use the `id`s for the react keys instead of the default `key` property.
  *
  *
  *     class MyListItem extends React.PureComponent {
@@ -265,19 +273,19 @@ type Props<ItemT> = RequiredProps<ItemT> & OptionalProps<ItemT>;
  * - By default, the list looks for a `key` prop on each item and uses that for the React key.
  *   Alternatively, you can provide a custom `keyExtractor` prop.
  */
-class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
-  static defaultProps = {
-    ...VirtualizedList.defaultProps,
-  };
+class FlatList<ItemT> extends React.PureComponent<Props<ItemT>, void> {
+  static defaultProps: DefaultProps = defaultProps;
 
   props: Props<ItemT>;
 
   /**
    * Scrolls to the end of the content. May be janky without `getItemLayout` prop.
    */
-  scrollToEnd = () => {
-    this._listRef && this._listRef.scrollToEnd();
-  };
+  scrollToEnd() {
+    if (this._listRef) {
+      this._listRef.scrollToEnd();
+    }
+  }
 
   /**
    * Scrolls to the item at the specified index such that it is positioned in the viewable area
@@ -287,13 +295,15 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Note: cannot scroll to locations outside the render window without specifying the
    * `getItemLayout` prop.
    */
-  scrollToIndex = (params: {
+  scrollToIndex(params: {
     index: number,
     viewOffset?: number,
     viewPosition?: number,
-  }) => {
-    this._listRef && this._listRef.scrollToIndex(params);
-  };
+  }) {
+    if (this._listRef) {
+      this._listRef.scrollToIndex(params);
+    }
+  }
 
   /**
    * Requires linear scan through data - use `scrollToIndex` instead if possible.
@@ -301,16 +311,20 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
    * Note: cannot scroll to locations outside the render window without specifying the
    * `getItemLayout` prop.
    */
-  scrollToItem = (params: { item: ItemT, viewPosition?: number }) => {
-    this._listRef && this._listRef.scrollToItem(params);
-  };
+  scrollToItem(params: { item: ItemT, viewPosition?: number }) {
+    if (this._listRef) {
+      this._listRef.scrollToItem(params);
+    }
+  }
 
   /**
    * Scroll to a specific content pixel offset in the list.
    */
-  scrollToOffset = (params: { offset: number }) => {
-    this._listRef && this._listRef.scrollToOffset(params);
-  };
+  scrollToOffset(params: { offset: number }) {
+    if (this._listRef) {
+      this._listRef.scrollToOffset(params);
+    }
+  }
 
   render() {
     const {
@@ -319,6 +333,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       data,
       extraData,
       getItemLayout,
+      horizontal,
       initialNumToRender,
       initialScrollIndex,
       inverted,
@@ -351,6 +366,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
       getItem: this._getItem,
       getItemCount: this._getItemCount,
       getItemLayout,
+      horizontal,
       initialNumToRender,
       initialScrollIndex,
       inverted,
@@ -376,9 +392,9 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     return <VirtualizedList {...styleProps} {...props} />;
   }
 
-  _listRef: ?React.ElementRef<typeof VirtualizedList>;
+  _listRef: null | VirtualizedList;
 
-  _captureRef = (ref: ?React.ElementRef<typeof VirtualizedList>) => {
+  _captureRef = ref => {
     this._listRef = ref;
   };
 
