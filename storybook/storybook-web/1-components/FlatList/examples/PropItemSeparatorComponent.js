@@ -3,7 +3,7 @@ import { FlatList, Text, View } from 'bappo-components';
 
 const data = Array.from({ length: 50 })
   .map((num, index) => ({
-    key: index,
+    key: String(index),
   }));
 
 const PropItemSeparatorComponent = () => {

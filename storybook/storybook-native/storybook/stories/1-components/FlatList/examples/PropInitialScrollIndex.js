@@ -4,7 +4,7 @@ import { styles } from '../helpers';
 
 const data = Array.from({ length: 500 })
   .map((num, index) => ({
-    key: index,
+    key: String(index),
   }));
 
 const PropInitialScrollIndex = () => {

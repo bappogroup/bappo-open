@@ -11,6 +11,7 @@ import HeaderFooter from './examples/HeaderFooter';
 import Minimal from './examples/Minimal';
 import OnEndReached from './examples/OnEndReached';
 import PropGetItemLayout from './examples/PropGetItemLayout';
+import PropHorizontal from './examples/PropHorizontal';
 import PropInitialScrollIndex from './examples/PropInitialScrollIndex';
 import PropInverted from './examples/PropInverted';
 import PropItemSeparatorComponent from './examples/PropItemSeparatorComponent';
@@ -115,6 +116,15 @@ const data = Array.from({ length: 500 })
 />
           `,
           render: () => <PropGetItemLayout />,
+        }}
+      />
+
+      <DocItem
+        name="horizontal?"
+        typeInfo="?boolean"
+        description="If true, renders items next to each other horizontally instead of stacked vertically."
+        example={{
+          render: () => <PropHorizontal />,
         }}
       />
 

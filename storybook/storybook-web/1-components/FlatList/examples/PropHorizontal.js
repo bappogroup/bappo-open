@@ -2,27 +2,23 @@ import React from 'react';
 import { FlatList, Text, View } from 'bappo-components';
 import { styles } from '../helpers';
 
-const data = Array.from({ length: 500 })
+const data = Array.from({ length: 50 })
   .map((num, index) => ({
     key: String(index),
   }));
 
-const Minimal = () => {
+const PropInverted = () => {
   return (
-    <View style={{ height: 300 }}>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={data}
-        getItemLayout={(_data, index) => ({
-          length: 30,
-          offset: 30 * index,
-          index,
-        })}
+        horizontal
         renderItem={({ item }) => (
-          <Text style={styles.row}>{item.key}</Text>
+          <Text style={styles.column}>{item.key}</Text>
         )}
       />
     </View>
   );
 };
 
-export default Minimal;
+export default PropInverted;
