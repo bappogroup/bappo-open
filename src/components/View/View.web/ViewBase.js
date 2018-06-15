@@ -2,11 +2,17 @@
 
 import * as React from 'react';
 import uniqueId from 'lodash/uniqueId';
-import { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
+import ResponderEventPlugin from 'react-native-web/dist/modules/ResponderEventPlugin';
 import styled from 'styled-components';
-import 'react-native-web/dist/modules/injectResponderEventPlugin';
 import UIManager from '../../../apis/UIManager';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
+
+const { EventPluginHub } = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+
+EventPluginHub.injection.injectEventPluginsByName({
+  ResponderEventPlugin
+});
 
 type Props = {
   accessibilityLabel?: string,
@@ -82,7 +88,7 @@ class ViewBase extends React.Component<Props> {
     const { onLayout } = this.props;
 
     if (onLayout) {
-      UIManager.measure(findDOMNode(this), (x, y, width, height) => {
+      UIManager.measure(ReactDOM.findDOMNode(this), (x, y, width, height) => {
         if (!this._isMounted) return;
 
         if (

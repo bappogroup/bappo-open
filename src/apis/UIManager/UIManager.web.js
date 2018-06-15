@@ -1,3 +1,3 @@
-import UIManager from 'react-native-web/dist/apis/UIManager';
+import UIManager from 'react-native-web/dist/exports/UIManager';
 
 export default UIManager;
