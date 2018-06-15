@@ -3,9 +3,9 @@
 import * as React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import ReactDOM from 'react-dom';
+import UIManager from 'react-native-web/dist/exports/UIManager';
 import ResponderEventPlugin from 'react-native-web/dist/modules/ResponderEventPlugin';
 import styled from 'styled-components';
-import UIManager from '../../../apis/UIManager';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 
 const { EventPluginHub } = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;

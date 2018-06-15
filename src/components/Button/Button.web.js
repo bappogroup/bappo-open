@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
+import UIManager from 'react-native-web/dist/exports/UIManager';
 import styled from 'styled-components';
-import UIManager from '../../apis/UIManager';
 import ViewBase from '../View/View.web/ViewBase';
 
 type Props = {
