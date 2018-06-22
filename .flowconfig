@@ -8,10 +8,8 @@ node_modules/react-native/flow/
 flow-typed
 
 ; From React Native
-src/components/VirtualizedList/VirtualizedList.web/index.js
+src/components/internals/VirtualizedList.web/index.js
 
 [options]
 suppress_type=$FlowFixMe
 suppress_type=$FlowFixMeState
-
-unsafe.enable_getters_and_setters=true
