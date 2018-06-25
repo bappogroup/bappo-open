@@ -100,14 +100,15 @@ class TextInput extends React.Component<Props> {
     this.constructor._checkProps(this.props);
   }
 
+  static getDerivedStateFromProps(nextProps: Props) {
+    TextInput._checkProps(nextProps);
+    return null;
+  }
+
   componentDidMount() {
     if (this.props.autoFocus) {
       this.focus();
     }
-  }
-
-  componentWillReceiveProps(nextProps: Props) {
-    this.constructor._checkProps(nextProps);
   }
 
   render() {
@@ -174,11 +175,11 @@ class TextInput extends React.Component<Props> {
       return (
         event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
-        // eslint-disable-next-line no-param-reassign
-        event.nativeEvent = {
-          text: event.currentTarget.value,
-        };
-        onBlur(event);
+        onBlur({
+          nativeEvent: {
+            text: event.currentTarget.value,
+          },
+        });
       };
     }
     return onBlur;
@@ -204,11 +205,11 @@ class TextInput extends React.Component<Props> {
       return (
         event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
-        // eslint-disable-next-line no-param-reassign
-        event.nativeEvent = {
-          text: event.currentTarget.value,
-        };
-        onFocus(event);
+        onFocus({
+          nativeEvent: {
+            text: event.currentTarget.value,
+          },
+        });
       };
     }
     return onFocus;

@@ -276,7 +276,7 @@ class Button extends React.Component<Props, State> {
   }
 
   _activeKey: ?number = null;
-  _longPressDelayTimeout: ?number;
+  _longPressDelayTimeout: ?TimeoutID;
   _pressInLocation: ?{
     pageX: number,
     pageY: number,
@@ -314,7 +314,7 @@ class Button extends React.Component<Props, State> {
     return this.props.disabled ? undefined : 0;
   };
 
-  _handleLongDelay = (event: SyntheticEvent<>) => {
+  _handleLongDelay = (event?: SyntheticEvent<>) => {
     this._longPressDelayTimeout = null;
     const curState = this.state.touchable.touchState;
     if (IsPressingIn[curState]) {
@@ -378,16 +378,16 @@ class Button extends React.Component<Props, State> {
         this._activeKey = which;
         this.state.touchable.touchState =
           this.state.touchable.touchState || States.NOT_RESPONDER;
-        this._receiveSignal(Signals.KEYBOARD_PRESS, event);
+        this._receiveSignal(Signals.KEYBOARD_PRESS);
 
         const longDelayMS = this._getLongPressDelayMS();
         this._longPressDelayTimeout = setTimeout(
-          this._handleLongDelay.bind(event),
+          this._handleLongDelay,
           longDelayMS,
         );
       } else if (type === 'keyup' && which === this._activeKey) {
         this._activeKey = null;
-        this._receiveSignal(Signals.KEYBOARD_RELEASE, event);
+        this._receiveSignal(Signals.KEYBOARD_RELEASE);
       }
       event.stopPropagation();
     }
@@ -402,7 +402,7 @@ class Button extends React.Component<Props, State> {
 
     const longDelayMS = this._getLongPressDelayMS();
     this._longPressDelayTimeout = setTimeout(
-      this._handleLongDelay,
+      this._handleLongDelay.bind(this, event),
       longDelayMS,
     );
   };
@@ -490,7 +490,7 @@ class Button extends React.Component<Props, State> {
     curState: ?ButtonState,
     nextState: ButtonState,
     signal: Signal,
-    event: ?SyntheticEvent<>,
+    event?: SyntheticEvent<>,
   ) => {
     const curIsHighlight = IsPressingIn[curState];
     const newIsHighlight = IsPressingIn[nextState];
@@ -535,7 +535,7 @@ class Button extends React.Component<Props, State> {
     }
   };
 
-  _receiveSignal = (signal: Signal, event: ?SyntheticEvent<>) => {
+  _receiveSignal = (signal: Signal, event?: SyntheticEvent<>) => {
     const responderID = this.state.touchable.responderID;
     const curState = this.state.touchable.touchState;
     const nextState = Transitions[curState] && Transitions[curState][signal];
@@ -578,7 +578,7 @@ class Button extends React.Component<Props, State> {
     };
   };
 
-  _startHighlight = (event: ?SyntheticEvent<>) => {
+  _startHighlight = (event?: SyntheticEvent<>) => {
     if (event) {
       this._savePressInLocation(event);
     }

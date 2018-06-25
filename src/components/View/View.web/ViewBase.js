@@ -8,6 +8,7 @@ import ResponderEventPlugin from 'react-native-web/dist/modules/ResponderEventPl
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 
+// $FlowFixMe
 const { EventPluginHub } = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 EventPluginHub.injection.injectEventPluginsByName({

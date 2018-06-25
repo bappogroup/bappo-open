@@ -394,7 +394,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>, void> {
 
   _listRef: null | VirtualizedList;
 
-  _captureRef = ref => {
+  _captureRef = (ref: null | VirtualizedList) => {
     this._listRef = ref;
   };
 
