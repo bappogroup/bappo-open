@@ -1,23 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
-const genDefaultConfig = require('@storybook/react/dist/server/config/defaults/webpack.config.js');
 
-module.exports = (baseConfig, env) => {
-  const config = genDefaultConfig(baseConfig, env);
+module.exports = (baseConfig, env, defaultConfig) => {
+  defaultConfig.resolve.alias = {
+    'bappo-components': path.join(__dirname, '../../../lib'),
+    react: path.join(__dirname, '../../../node_modules/react'),
+    'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
+    'react-dom/unstable-native-dependencies': path.join(
+      __dirname,
+      '../../../node_modules/react-dom/unstable-native-dependencies',
+    ),
+    'styled-components': path.join(
+      __dirname,
+      '../../../node_modules/styled-components',
+    ),
+  };
 
-  // config.resolve.alias = {
-  //   'bappo-components': path.join(__dirname, '../../../lib'),
-  //   react: path.join(__dirname, '../../../node_modules/react'),
-  //   'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
-  //   'react-dom/unstable-native-dependencies': path.join(
-  //     __dirname,
-  //     '../../../node_modules/react-dom/unstable-native-dependencies',
-  //   ),
-  //   'styled-components': path.join(
-  //     __dirname,
-  //     '../../../node_modules/styled-components',
-  //   ),
-  // };
-
-  return config;
+  return defaultConfig;
 };

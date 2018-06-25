@@ -1,4 +1,5 @@
 [ignore]
+<PROJECT_ROOT>/es
 <PROJECT_ROOT>/lib
 <PROJECT_ROOT>/storybook/.*
 

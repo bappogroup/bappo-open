@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { setOptions } from '@storybook/addon-options';
 import centered from './decorator-centered';
 import { configure, addDecorator } from '@storybook/react';

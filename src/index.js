@@ -8,6 +8,7 @@ export { default as AsyncSelect } from './components/AsyncSelect';
 export { default as Button } from './components/Button';
 export { default as DatePicker } from './components/DatePicker';
 export { default as FlatList } from './components/FlatList';
+export { Form } from './components/Form';
 // export * from './Icon';
 export { default as Select } from './components/Select';
 export { default as ScrollView } from './components/ScrollView';
