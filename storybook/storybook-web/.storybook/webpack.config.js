@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.resolve.alias = {
-    'bappo-components': path.join(__dirname, '../../../lib'),
+    'bappo-components': path.join(__dirname, '../../../'),
     react: path.join(__dirname, '../../../node_modules/react'),
     'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
     'react-dom/unstable-native-dependencies': path.join(

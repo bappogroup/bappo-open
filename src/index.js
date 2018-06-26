@@ -8,7 +8,7 @@ export { default as AsyncSelect } from './components/AsyncSelect';
 export { default as DatePicker } from './components/DatePicker';
 export { default as FlatList } from './components/FlatList';
 export { Form } from './components/Form';
-// export * from './Icon';
+export { default as Icon } from './components/Icon';
 export { default as Select } from './components/Select';
 export { default as ScrollView } from './components/ScrollView';
 export { default as Text } from './components/Text';

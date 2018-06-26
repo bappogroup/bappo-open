@@ -30,6 +30,11 @@
   ],
   "author": "Bappo",
   "license": "MIT",
+  "rnpm": {
+    "assets": [
+      "fonts"
+    ]
+  },
   "dependencies": {
     "es6-error": "^4.1.1",
     "fbjs": "^0.8.16",

@@ -11,6 +11,7 @@ type GlyphMap = {
 type Props = {
   name: string,
   style?: any,
+  className?: any,
 };
 
 const createIcon = (
@@ -22,7 +23,7 @@ const createIcon = (
     props: Props;
 
     render() {
-      const { name, style } = this.props;
+      const { className, name, style } = this.props;
 
       let glyph = glyphMap[name] || '?';
       if (typeof glyph === 'number') {
@@ -30,6 +31,7 @@ const createIcon = (
       }
 
       const styleProps = {
+        className,
         fontFamily,
         style,
       };
@@ -54,5 +56,6 @@ const createIcon = (
 export default createIcon;
 
 const StyledText = styled(Text)`
+  font-family: ${props => props.fontFamily};
   text-align: center;
 `;

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { styled } from '../../apis/Style';
+import Icon from '../Icon';
 import Text from '../Text';
 import TouchableView from '../TouchableView';
 import { buttonContainerStyle, buttonTextStyle } from './styles';
@@ -27,6 +28,7 @@ const Button = ({ disabled, icon, loading, onPress, text, type }: Props) => {
       text={text}
       type={type}
     >
+      {icon ? <StyledIcon name={icon} disabled={disabled} type={type} /> : null}
       {text ? (
         <ButtonLabel disabled={disabled} type={type}>
           {text}
@@ -40,6 +42,10 @@ export default Button;
 
 const StyledTouchableView = styled(TouchableView)`
   ${buttonContainerStyle};
+`;
+
+const StyledIcon = styled(Icon)`
+  ${buttonTextStyle};
 `;
 
 const ButtonLabel = styled(Text)`

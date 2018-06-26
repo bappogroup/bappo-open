@@ -39,6 +39,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		68271BF03D8F4C2D8109D91F /* Quicksand_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84C038ABC7FE409A90F3C8C5 /* Quicksand_bold.ttf */; };
 		EA3367FE5A904061AFB6C7E7 /* Quicksand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BC90192A6D84AF98ABD132E /* Quicksand.ttf */; };
+		BFAD19ED75604B96B376AE1A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B6B3CE6A38145A385440F60 /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -346,6 +347,7 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		84C038ABC7FE409A90F3C8C5 /* Quicksand_bold.ttf */ = {isa = PBXFileReference; name = "Quicksand_bold.ttf"; path = "../assets/fonts/Quicksand/Quicksand_bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		0BC90192A6D84AF98ABD132E /* Quicksand.ttf */ = {isa = PBXFileReference; name = "Quicksand.ttf"; path = "../assets/fonts/Quicksand/Quicksand.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B6B3CE6A38145A385440F60 /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/bappo-components/fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -613,6 +615,7 @@
 			children = (
 				84C038ABC7FE409A90F3C8C5 /* Quicksand_bold.ttf */,
 				0BC90192A6D84AF98ABD132E /* Quicksand.ttf */,
+				9B6B3CE6A38145A385440F60 /* MaterialIcons.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1066,6 +1069,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				68271BF03D8F4C2D8109D91F /* Quicksand_bold.ttf in Resources */,
 				EA3367FE5A904061AFB6C7E7 /* Quicksand.ttf in Resources */,
+				BFAD19ED75604B96B376AE1A /* MaterialIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

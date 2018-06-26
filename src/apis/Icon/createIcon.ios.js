@@ -58,5 +58,6 @@ const createIcon = (
 export default createIcon;
 
 const StyledText = styled(Text)`
+  font-family: ${props => props.fontFamily};
   text-align: center;
 `;
