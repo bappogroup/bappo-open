@@ -214,7 +214,7 @@ type State = {
   },
 };
 
-class Button extends React.Component<Props, State> {
+class TouchableView extends React.Component<Props, State> {
   props: Props;
 
   static defaultProps = {
@@ -222,7 +222,7 @@ class Button extends React.Component<Props, State> {
     disabled: false,
   };
 
-  static displayName = 'Button';
+  static displayName = 'TouchableView';
 
   state: State = {
     touchable: {
@@ -255,7 +255,7 @@ class Button extends React.Component<Props, State> {
     };
 
     return (
-      <StyledButton
+      <Container
         {...styleProps}
         accessibilityLabel={accessibilityLabel}
         onKeyDown={this._onKeyDownUp}
@@ -266,12 +266,10 @@ class Button extends React.Component<Props, State> {
         onResponderTerminate={this._onResponderTerminate}
         onResponderTerminationRequest={this._onResponderTerminationRequest}
         onStartShouldSetResponder={this._onStartShouldSetResponder}
-        role="button"
-        tabIndex={this._getTabIndex()}
         testID={testID}
       >
         {children}
-      </StyledButton>
+      </Container>
     );
   }
 
@@ -309,10 +307,6 @@ class Button extends React.Component<Props, State> {
     top: PRESS_EXPAND_PX,
     bottom: PRESS_EXPAND_PX,
   });
-
-  _getTabIndex = () => {
-    return this.props.disabled ? undefined : 0;
-  };
 
   _handleLongDelay = (event?: SyntheticEvent<>) => {
     this._longPressDelayTimeout = null;
@@ -590,12 +584,16 @@ class Button extends React.Component<Props, State> {
   };
 }
 
-export default Button;
+export default TouchableView;
 
-const StyledButton = styled(ViewBase)`
+const Container = styled(ViewBase).attrs({
+  role: 'button',
+  tabIndex: ({ disabled }) => (disabled ? undefined : 0),
+})`
   background-color: transparent;
   border-color: transparent;
   border-width: 0;
+  padding: 0;
   text-align: left;
 
   ${({ disabled }) =>
@@ -606,9 +604,6 @@ const StyledButton = styled(ViewBase)`
   `
       : `
     cursor: pointer;
-    &:hover {
-      opacity: 0.5;
-    }
     &:active {
       opacity: 0.2;
     }

@@ -29,7 +29,7 @@ type Props = {
   testID?: string,
 };
 
-class Button extends React.Component<Props> {
+class TouchableView extends React.Component<Props> {
   props: Props;
 
   static defaultProps = {
@@ -37,7 +37,7 @@ class Button extends React.Component<Props> {
     disabled: false,
   };
 
-  static displayName = 'Button';
+  static displayName = 'TouchableView';
 
   render() {
     const {
@@ -69,4 +69,4 @@ class Button extends React.Component<Props> {
   }
 }
 
-export default Button;
+export default TouchableView;

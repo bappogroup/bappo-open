@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Select, Text, View } from 'bappo-components';
+import { Select, Text, TouchableView, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
 import STATES from '../../../../data/states';
@@ -60,7 +60,7 @@ const SelectStatesExample = createClass({
           value={this.state.selectValue}
         />
         <View style={checkboxListStyle}>
-          <Button onPress={this.focusStateSelect} title="Focus Select" />
+          <TouchableView onPress={this.focusStateSelect} title="Focus Select" />
           <View style={checkboxStyle}>
             <Switch
               value={this.state.searchable}

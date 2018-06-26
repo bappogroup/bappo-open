@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { styled } from '../../apis/Style';
-import TouchableView from '../Button';
 import Text from '../Text';
+import TouchableView from '../TouchableView';
 import { buttonContainerStyle, buttonTextStyle } from './styles';
 
 type RequiredProps = {

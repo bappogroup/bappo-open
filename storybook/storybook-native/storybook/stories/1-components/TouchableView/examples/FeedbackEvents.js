@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Button, Text, View } from 'bappo-components';
+import { Text, TouchableView, View } from 'bappo-components';
 import styled from 'styled-components';
 
-export default class ButtonFeedbackEvents extends PureComponent {
+export default class TouchableViewFeedbackEvents extends PureComponent {
   state = { eventLog: [] };
 
   render() {
@@ -25,10 +25,10 @@ export default class ButtonFeedbackEvents extends PureComponent {
     );
   }
 
-  _createPressHandler = (eventName) => {
+  _createPressHandler = eventName => {
     return () => {
       const limit = 6;
-      this.setState((state) => {
+      this.setState(state => {
         const eventLog = state.eventLog.slice(0, limit - 1);
         eventLog.unshift(eventName);
         return { eventLog };
@@ -37,14 +37,14 @@ export default class ButtonFeedbackEvents extends PureComponent {
   };
 }
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(TouchableView)`
   border: 1px solid black;
   border-radius: 8px;
   padding: 5px;
 `;
 
 const TouchableText = styled(Text)`
-  color: #007AFF;
+  color: #007aff;
   text-align: center;
 `;
 

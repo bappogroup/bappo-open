@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { styled } from '../../../apis/Style';
-import Button from '../../Button';
 import FlatList from '../../FlatList';
 import Text from '../../Text';
+import TouchableView from '../../TouchableView';
 import View from '../../View';
 import type { Option, renderOptionType } from '../types.js.flow';
 
@@ -82,9 +82,12 @@ class Menu extends React.Component<Props> {
     const isSelected = selectedOptions.indexOf(option) > -1;
 
     return (
-      <Button disabled={option.disabled} onPress={() => onItemSelect(option)}>
+      <TouchableView
+        disabled={option.disabled}
+        onPress={() => onItemSelect(option)}
+      >
         {renderOption({ option, index, isSelected })}
-      </Button>
+      </TouchableView>
     );
   };
 }

@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-no-bind */
 
 import React, { PureComponent } from 'react';
-import { Button, ScrollView, Text, View } from 'bappo-components';
+import { ScrollView, Text, TouchableView, View } from 'bappo-components';
 
 export default class ScrollToEndExample extends PureComponent {
   render() {
     return (
       <View style={styles.scrollViewContainer}>
         <ScrollView
-          ref={(scrollview) => {
+          ref={scrollview => {
             this.scrollview = scrollview;
           }}
           scrollEventThrottle={16} // ~60 events per second
@@ -20,13 +20,13 @@ export default class ScrollToEndExample extends PureComponent {
             </View>
           ))}
         </ScrollView>
-        <Button
+        <TouchableView
           onPress={() => {
             this.scrollview.scrollToEnd();
           }}
         >
           <Text>Scroll to end</Text>
-        </Button>
+        </TouchableView>
       </View>
     );
   }

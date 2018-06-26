@@ -19,12 +19,6 @@ export const buttonContainerStyle = css`
       case 'primary':
         return `
           background-color: #FF7800;
-          &:hover, &:focus {
-            background-color: #FF9333;
-          }
-          &:active {
-            background-color: #E36A00;
-          }
         `;
       case 'secondary':
         return `
@@ -32,28 +26,10 @@ export const buttonContainerStyle = css`
           border-color: #DDDBDA;
           border-style: solid;
           border-width: 1px;
-          &:hover, &:focus {
-            background-color: #F2F1F1;
-            border-width: 0;
-          }
-          &:active {
-            background-color: #0070D2;
-            border-color: #0031AC;
-          }
         `;
       case 'tertiary':
         return `
           background-color: transparent;
-          &:hover, &:focus {
-            background-color: white;
-            border-color: #DDDBDA;
-            border-style: solid;
-            border-width: 1px;
-          }
-          &:active {
-            background-color: #0070D2;
-            border-color: #0031AC;
-          }
         `;
       case 'destructive':
         return `
@@ -61,9 +37,6 @@ export const buttonContainerStyle = css`
           border-color: #C23934;
           border-style: solid;
           border-width: 1px;
-          &:hover, &:focus, &:active {
-            background-color: #C23934;
-          }
         `;
       default:
         break;
@@ -90,9 +63,6 @@ export const buttonTextStyle = css`
       case 'destructive':
         return `
           color: #C23934;
-          &:hover {
-            background-color: white;
-          }
         `;
       default:
         break;

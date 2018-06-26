@@ -1,21 +1,14 @@
 import React from 'react';
-import { Button, ScrollView, Text, View } from 'bappo-components';
+import { ScrollView, Text, TouchableView, View } from 'bappo-components';
 
 const PropHorizontal = () => {
   return (
     <View style={styles.scrollViewContainer}>
-      <ScrollView
-        horizontal
-        style={styles.scrollViewStyle}
-      >
+      <ScrollView horizontal style={styles.scrollViewStyle}>
         {Array.from({ length: 50 }).map((item, i) => (
-          <Button
-            key={i}
-            onPress={() => {}}
-            style={styles.box}
-          >
+          <TouchableView key={i} onPress={() => {}} style={styles.box}>
             <Text>{i}</Text>
-          </Button>
+          </TouchableView>
         ))}
       </ScrollView>
     </View>

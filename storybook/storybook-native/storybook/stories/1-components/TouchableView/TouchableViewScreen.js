@@ -12,12 +12,10 @@ import UIExplorer, {
 import FeedbackEvents from './examples/FeedbackEvents';
 import PropDisabled from './examples/PropDisabled';
 
-const ButtonScreen = () => (
-  <UIExplorer title="Button" url="1-components/Button">
+const TouchableViewScreen = () => (
+  <UIExplorer title="TouchableView" url="1-components/TouchableView">
     <Description>
-      <AppText>
-        A view that responds to touches.
-      </AppText>
+      <AppText>A view that responds to touches.</AppText>
     </Description>
 
     <Section title="Props">
@@ -32,7 +30,8 @@ const ButtonScreen = () => (
         typeInfo="number"
         description={
           <AppText>
-            Delay in ms, from <Code>onPressIn</Code>, before <Code>onLongPress</Code> is called.
+            Delay in ms, from <Code>onPressIn</Code>, before{' '}
+            <Code>onLongPress</Code> is called.
           </AppText>
         }
       />
@@ -62,17 +61,9 @@ const ButtonScreen = () => (
 
       <DocItem name="onPressOut?" typeInfo="function" />
 
-      <DocItem
-        name="style?"
-        typeInfo="style"
-        description="Same as View"
-      />
+      <DocItem name="style?" typeInfo="style" description="Same as View" />
 
-      <DocItem
-        name="testID?"
-        typeInfo="string"
-        description="Same as View"
-      />
+      <DocItem name="testID?" typeInfo="string" description="Same as View" />
     </Section>
 
     <Section title="More examples">
@@ -86,4 +77,4 @@ const ButtonScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('Button', ButtonScreen);
+storiesOf('Components', module).add('TouchableView', TouchableViewScreen);

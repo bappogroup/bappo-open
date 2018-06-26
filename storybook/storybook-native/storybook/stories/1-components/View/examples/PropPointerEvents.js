@@ -1,28 +1,28 @@
 import React from 'react';
-import { Button, Text, View } from 'bappo-components';
+import { Text, TouchableView, View } from 'bappo-components';
 
 const ViewStyleExample = () => (
   <View pointerEvents="box-none">
     <View pointerEvents="box-none">
       <View pointerEvents="none">
-        <Button onPress={() => console.log('none')}>
+        <TouchableView onPress={() => console.log('none')}>
           <Text>none</Text>
-        </Button>
+        </TouchableView>
       </View>
       <View pointerEvents="auto">
-        <Button onPress={() => console.log('auto')}>
+        <TouchableView onPress={() => console.log('auto')}>
           <Text>auto</Text>
-        </Button>
+        </TouchableView>
       </View>
       <View pointerEvents="box-only">
-        <Button onPress={() => console.log('box-only')}>
+        <TouchableView onPress={() => console.log('box-only')}>
           <Text>box-only</Text>
-        </Button>
+        </TouchableView>
       </View>
       <View pointerEvents="box-none">
-        <Button onPress={() => console.log('box-none')}>
+        <TouchableView onPress={() => console.log('box-none')}>
           <Text>box-none</Text>
-        </Button>
+        </TouchableView>
       </View>
     </View>
   </View>
