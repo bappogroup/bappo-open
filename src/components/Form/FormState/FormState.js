@@ -4,14 +4,14 @@ import * as React from 'react';
 import { get, flow, identity, merge, pick, set, unset } from 'lodash/fp';
 import { ReComponent, NoUpdate, Update } from 'react-recomponent';
 import type {
-  ActionSenders,
+  FormActionSenders,
   ActionTypes,
   Errors,
   FieldValidator,
   FormState,
   FormValidator,
-  StateAndHelpers,
-  StateAndHelpersAndActions,
+  FormStateAndHelpers,
+  FormStateAndHelpersAndActions,
   Values,
 } from './types.js.flow';
 import { deepEqual, unwrapChildren } from './utils';
@@ -20,7 +20,7 @@ import SubmissionError from './SubmissionError';
 
 type Props = {
   children: (
-    stateAndHelpersAndActions: StateAndHelpersAndActions,
+    stateAndHelpersAndActions: FormStateAndHelpersAndActions,
   ) => React.Node,
   initialValues?: mixed,
 };
@@ -44,7 +44,7 @@ const formStateKeys = [
   'values',
 ];
 const getFormState = (state: State): FormState => pick(formStateKeys, state);
-const getStateAndHelpers = (state: State): StateAndHelpers => {
+const getStateAndHelpers = (state: State): FormStateAndHelpers => {
   const { allTouched, fieldErrors, fieldStates, initialValues, values } = state;
 
   const pristine = deepEqual(initialValues, values);
@@ -258,9 +258,9 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
     }
 
     const stateAndHelpers = getStateAndHelpers(this.state);
-    const stateAndHelpersAndActions: StateAndHelpersAndActions = {
+    const stateAndHelpersAndActions: FormStateAndHelpersAndActions = {
       ...stateAndHelpers,
-      ...this._getActions(stateAndHelpers),
+      actions: this._getActions(stateAndHelpers),
     };
     console.log(stateAndHelpersAndActions);
 
@@ -271,7 +271,7 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
     );
   }
 
-  _getActions(stateAndHelpers: StateAndHelpers): ActionSenders {
+  _getActions(stateAndHelpers: FormStateAndHelpers): FormActionSenders {
     return {
       blur: fieldName =>
         this.send({

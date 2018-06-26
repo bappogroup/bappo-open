@@ -3,23 +3,26 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import FlexButton from '../../internals/web/FlexButton';
-import { buttonContainerStyle, buttonTextStyle } from '../../NewButton/styles';
-import Text from '../../Text';
+import ActivityIndicator from '../../ActivityIndicator';
+import { buttonContainerStyle } from '../../NewButton/styles';
 import { FormStateConsumer } from '../FormState';
+import { SubmitButtonText } from '../StyledComponents';
 
 type Props = {
-  submittingText?: string,
   text?: string,
 };
 
-const SubmitButton = ({ submittingText, text }: Props) => {
+const SubmitButton = ({ text }: Props) => {
   return (
     <FormStateConsumer>
       {({ submitting }) => {
-        const buttonText = submitting ? submittingText : text;
         return (
-          <StyledButton text={buttonText} type="submit">
-            <SubmitButtonText>{buttonText}</SubmitButtonText>
+          <StyledButton type="submit" text={text}>
+            {submitting ? (
+              <ActivityIndicator />
+            ) : (
+              <SubmitButtonText>{text}</SubmitButtonText>
+            )}
           </StyledButton>
         );
       }}
@@ -28,7 +31,6 @@ const SubmitButton = ({ submittingText, text }: Props) => {
 };
 
 SubmitButton.defaultProps = {
-  submittingText: 'Submitting...',
   text: 'Submit',
 };
 
@@ -38,10 +40,4 @@ const StyledButton = styled(FlexButton).attrs({
   type: 'primary',
 })`
   ${buttonContainerStyle};
-`;
-
-const SubmitButtonText = styled(Text).attrs({
-  type: 'primary',
-})`
-  ${buttonTextStyle};
 `;

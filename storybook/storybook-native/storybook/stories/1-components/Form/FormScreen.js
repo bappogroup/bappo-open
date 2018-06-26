@@ -89,7 +89,7 @@ const FormScreen = () => (
         description="Minimal"
         example={{
           code: `
-<Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
+<Form onSubmit={values => Alert.alert(JSON.stringify(values, null, 2))}>
   <Form.Field
     name="firstName"
     component={TextInput}
@@ -110,7 +110,7 @@ const FormScreen = () => (
         description="Field-level validation"
         example={{
           code: `
-<Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
+<Form onSubmit={values => Alert.alert(JSON.stringify(values, null, 2))}>
   <Form.Field
     name="email"
     component={TextInput}
@@ -135,7 +135,7 @@ const FormScreen = () => (
         description="Dependent Field"
         example={{
           code: `
-<Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
+<Form onSubmit={values => Alert.alert(JSON.stringify(values, null, 2))}>
   {({ getFieldValue }) => {
     const country = getFieldValue('country');
     return (
@@ -169,7 +169,7 @@ const FormScreen = () => (
         description="Show/Hide field based on form state"
         example={{
           code: `
-<Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
+<Form onSubmit={values => Alert.alert(JSON.stringify(values, null, 2))}>
   {({ getFieldValue }) => {
     const deliveryMethod = getFieldValue('deliveryMethod');
     return (

@@ -26,7 +26,7 @@ export type FormState = {
   values: Values,
 };
 
-export type StateAndHelpers = FormState & {
+export type FormStateAndHelpers = FormState & {
   dirty: boolean,
   pristine: boolean,
   fieldActive: (fieldName: string) => boolean,
@@ -40,12 +40,12 @@ export type StateAndHelpers = FormState & {
 
 export type FieldValidator = (
   value: mixed,
-  stateAndHelpers: StateAndHelpers,
+  stateAndHelpers: FormStateAndHelpers,
 ) => mixed;
 
-export type FormValidator = (stateAndHelpers: StateAndHelpers) => Errors;
+export type FormValidator = (stateAndHelpers: FormStateAndHelpers) => Errors;
 
-export type ActionSenders = {
+export type FormActionSenders = {
   blur: (fieldName: string) => void,
   changeValue: (fieldName: string, value: mixed) => void,
   focus: (fieldName: string) => void,
@@ -56,7 +56,9 @@ export type ActionSenders = {
   submit: <T>(doSubmit: () => Promise<T> | T) => Promise<T>,
 };
 
-export type StateAndHelpersAndActions = StateAndHelpers & ActionSenders;
+export type FormStateAndHelpersAndActions = FormStateAndHelpers & {
+  actions: FormActionSenders,
+};
 
 export type ActionTypes =
   | 'BLUR'

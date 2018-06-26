@@ -18,11 +18,12 @@ type OptionalProps = {
 };
 type Props = RequiredProps & OptionalProps;
 
-const Button = ({ disabled, icon, loading, text, type }: Props) => {
+const Button = ({ disabled, icon, loading, onPress, text, type }: Props) => {
   return (
     <StyledTouchableView
       disabled={disabled}
       icon={icon}
+      onPress={onPress}
       text={text}
       type={type}
     >

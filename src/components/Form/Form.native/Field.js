@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import FlexDiv from '../../internals/web/FlexDiv';
 import Paragraph from '../../Paragraph';
 import type { FieldValidator } from '../FormState/types.js.flow';
 import { FieldState } from '../FormState';
@@ -74,7 +73,7 @@ class Field extends React.Component<Props> {
             ref: this._inputRef,
           });
           return (
-            <FieldContainer onClick={() => this.focus()}>
+            <FieldContainer onPress={() => this.focus()}>
               <FieldLabelContainer>
                 <FieldLabel>{label}</FieldLabel>
               </FieldLabelContainer>
@@ -93,6 +92,8 @@ class Field extends React.Component<Props> {
 
 export default Field;
 
-const FieldContainer = styled(FlexDiv)`
+const FieldContainer = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
   padding: 8px;
 `;

@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import type { StateAndHelpersAndActions } from './types.js.flow';
+import type { FormStateAndHelpersAndActions } from './types.js.flow';
 
 const { Provider, Consumer } = React.createContext();
 
 const FormStateProvider = ({ children, value }: {
-  value: StateAndHelpersAndActions,
+  value: FormStateAndHelpersAndActions,
   children?: ?React.Node,
 }) => (
   <Provider value={value}>{children}</Provider>
@@ -15,10 +15,10 @@ const FormStateProvider = ({ children, value }: {
 const FormStateConsumer = ({
   children,
 }: {
-  children: StateAndHelpersAndActions => React.Node,
+  children: FormStateAndHelpersAndActions => React.Node,
 }): React.Element<typeof Consumer> => (
   <Consumer>
-    {(stateAndHelpersAndActions: ?StateAndHelpersAndActions) => {
+    {(stateAndHelpersAndActions: ?FormStateAndHelpersAndActions) => {
       if (!stateAndHelpersAndActions) {
         throw new Error(
           `FormStateConsumer must be used inside a FormStateProvider`,

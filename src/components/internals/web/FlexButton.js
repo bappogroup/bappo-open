@@ -1,18 +1,12 @@
 import styled from 'styled-components';
+import { flex } from './styles';
 
 const FlexButton = styled.button`
-  align-items: stretch;
+  ${flex};
   background-color: transparent;
   border-color: transparent;
   border-width: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flow-shrink: 0;
-  min-height: 0;
-  min-width: 0;
-  position: relative;
+  padding: 0;
   text-align: left;
 
   ${({ disabled }) =>

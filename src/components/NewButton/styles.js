@@ -3,9 +3,9 @@ import { css } from 'styled-components';
 export const buttonContainerStyle = css`
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   border-radius: 4px;
   height: 32px;
-  outline: none;
   padding-left: ${({ icon, text }) => (icon && text ? 8 : text ? 16 : 0)}px;
   padding-right: ${({ text }) => (text ? 16 : 0)}px;
 
@@ -19,8 +19,11 @@ export const buttonContainerStyle = css`
       case 'primary':
         return `
         background-color: #FF7800;
-        &:hover {
+        &:hover, &:focus {
           background-color: #FF9333;
+        }
+        &:active {
+          background-color: #E36A00;
         }
       `;
       case 'secondary':
@@ -29,19 +32,27 @@ export const buttonContainerStyle = css`
         border-color: #DDDBDA;
         border-style: solid;
         border-width: 1px;
-        &:hover {
+        &:hover, &:focus {
           background-color: #F2F1F1;
           border-width: 0;
+        }
+        &:active {
+          background-color: #0070D2;
+          border-color: #0031AC;
         }
       `;
       case 'tertiary':
         return `
         background-color: transparent;
-        &:hover {
+        &:hover, &:focus {
           background-color: white;
           border-color: #DDDBDA;
           border-style: solid;
           border-width: 1px;
+        }
+        &:active {
+          background-color: #0070D2;
+          border-color: #0031AC;
         }
       `;
       case 'destructive':
@@ -50,7 +61,7 @@ export const buttonContainerStyle = css`
         border-color: #C23934;
         border-style: solid;
         border-width: 1px;
-        &:hover {
+        &:hover, &:focus, &:active {
           background-color: #C23934;
         }
       `;

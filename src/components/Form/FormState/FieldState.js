@@ -3,7 +3,7 @@
 import * as React from 'react';
 import type {
   FieldValidator,
-  StateAndHelpersAndActions,
+  FormStateAndHelpersAndActions,
 } from './types.js.flow';
 import { unwrapChildren } from './utils';
 import withFormState from './withFormState';
@@ -25,7 +25,7 @@ type OptionalProps = {
   validate?: FieldValidator,
 };
 type HOCProps = {
-  formState: StateAndHelpersAndActions,
+  formState: FormStateAndHelpersAndActions,
 };
 type Props = RequiredProps & OptionalProps & HOCProps;
 
@@ -42,7 +42,7 @@ class FieldStateManager extends React.Component<Props> {
     const { formState, name, validate } = this.props;
 
     if (validate) {
-      formState.setFieldValidators(name, validate);
+      formState.actions.setFieldValidators(name, validate);
     }
   }
 
@@ -56,11 +56,10 @@ class FieldStateManager extends React.Component<Props> {
       fieldVisited,
       getFieldError,
       getFieldValue,
-      changeValue,
     } = formState;
 
     return {
-      // state
+      // field state
       active: fieldActive(name),
       dirty: fieldDirty(name),
       error: getFieldError(name),
@@ -68,8 +67,8 @@ class FieldStateManager extends React.Component<Props> {
       touched: fieldTouched(name),
       value: getFieldValue(name),
       visited: fieldVisited(name),
-      // actions
-      changeValue,
+      // form state
+      formState,
     };
   }
 

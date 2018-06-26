@@ -1,5 +1,19 @@
 import { styled } from '../../../apis/Style';
+import Text from '../../Text';
 import View from '../../View';
+import { buttonTextStyle } from '../../NewButton/styles';
+
+export const FieldLabelContainer = styled(View)`
+  align-items: flex-start;
+`;
+
+export const FieldLabel = styled(Text).attrs({
+  selectable: true,
+})`
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+`;
 
 export const FieldInputContainer = styled(View)`
   flex: none;
@@ -13,6 +27,8 @@ export const FieldInputContainer = styled(View)`
   padding: 10px 16px;
 `;
 
-export const FieldLabelContainer = styled(View)`
-  align-items: flex-start;
+export const SubmitButtonText = styled(Text).attrs({
+  type: 'primary',
+})`
+  ${buttonTextStyle};
 `;

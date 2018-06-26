@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, View } from 'bappo-components';
 import createClass from 'create-react-class';
-import STATES from '../data/states';
+import STATES from '../../../data/states';
 
 const checkboxListStyle = {
   marginTop: 14,

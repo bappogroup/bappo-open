@@ -6,7 +6,7 @@ import Text from '../Text';
 
 type Props = {
   children?: string,
-  type?: 'default' | 'bold' | 'small' | 'small-bold' | 'error' | 'success',
+  type?: 'default' | 'bold' | 'small' | 'error' | 'success',
 };
 
 const Paragraph = ({ children, type }: Props) => {
@@ -24,8 +24,6 @@ Paragraph.defaultProps = {
 export default Paragraph;
 
 const StyledText = styled(Text)`
-  font-size: 14px;
-  color: #191e26;
   height: 22px;
   line-height: 22px;
 
@@ -38,13 +36,7 @@ const StyledText = styled(Text)`
       case 'small':
         return `
           font-size: 12px;
-          height: 15px;
-          line-height: 15px;
-        `;
-      case 'small-bold':
-        return `
-          font-size: 12px;
-          font-weight: bold;
+          color: #2B2826;
           height: 15px;
           line-height: 15px;
         `;

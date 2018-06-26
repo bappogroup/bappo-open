@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Select, Text, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
-import STATES from '../data/states';
+import STATES from '../../../../data/states';
 
 const checkboxListStyle = {
   flexDirection: 'row',
@@ -53,15 +53,14 @@ const SelectStatesExample = createClass({
           disabled={this.state.disabled}
           onValueChange={this.updateValue}
           options={options}
-          ref={(ref) => { this.stateSelect = ref; }}
+          ref={ref => {
+            this.stateSelect = ref;
+          }}
           searchable={this.state.searchable}
           value={this.state.selectValue}
         />
         <View style={checkboxListStyle}>
-          <Button
-            onPress={this.focusStateSelect}
-            title="Focus Select"
-          />
+          <Button onPress={this.focusStateSelect} title="Focus Select" />
           <View style={checkboxStyle}>
             <Switch
               value={this.state.searchable}
