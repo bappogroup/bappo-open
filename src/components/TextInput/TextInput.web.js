@@ -225,7 +225,7 @@ const inputStyles = css`
   border-radius: 0;
   border-width: 0;
   box-sizing: border-box;
-  font-family: System;
+  font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   padding: 0;

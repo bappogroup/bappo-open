@@ -198,6 +198,7 @@ class TextInput extends React.Component<Props> {
 export default TextInput;
 
 const StyledTextInput = styled.TextInput`
+  font-family: 'Quicksand';
   font-size: 14px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   margin: 0;
