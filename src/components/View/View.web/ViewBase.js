@@ -7,12 +7,15 @@ import UIManager from 'react-native-web/dist/exports/UIManager';
 import ResponderEventPlugin from 'react-native-web/dist/modules/ResponderEventPlugin';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
+import { flex } from '../../internals/web/styles';
 
-// $FlowFixMe
-const { EventPluginHub } = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+const {
+  EventPluginHub,
+  // $FlowFixMe
+} = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
 EventPluginHub.injection.injectEventPluginsByName({
-  ResponderEventPlugin
+  ResponderEventPlugin,
 });
 
 type Props = {
@@ -121,13 +124,5 @@ const Div = styled.div.attrs({
   onResponderTerminationRequest: props => props.onResponderTerminationRequest,
   onStartShouldSetResponder: props => props.onStartShouldSetResponder,
 })`
-  align-items: stretch;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flex-shrink: 0;
-  position: relative;
-  min-height: 0;
-  min-width: 0;
+  ${flex};
 `;

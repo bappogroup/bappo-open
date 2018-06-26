@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
+import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/exports/UIManager';
 import styled from 'styled-components';
 import ViewBase from '../View/View.web/ViewBase';
@@ -11,8 +12,8 @@ type Props = {
    * Overrides the text that's read by the screen reader when the user interacts with the element.
    */
   accessibilityLabel?: string,
+  activeOpacity: number,
   children?: React.Node,
-  className?: string,
   /**
    * Delay in ms, from onPressIn, before onLongPress is called. Default is 500ms.
    */
@@ -31,6 +32,8 @@ type Props = {
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
+  // Will be removed
+  className?: string,
 };
 
 /**
@@ -218,6 +221,7 @@ class TouchableView extends React.Component<Props, State> {
   props: Props;
 
   static defaultProps = {
+    activeOpacity: 0.2,
     delayLongPress: LONG_PRESS_THRESHOLD,
     disabled: false,
   };
@@ -572,14 +576,33 @@ class TouchableView extends React.Component<Props, State> {
     };
   };
 
+  _setOpacityTo(opacity: number, duration?: number) {
+    const containerRef = ReactDOM.findDOMNode(this);
+    if (containerRef) {
+      // $FlowFixMe
+      containerRef.style.transitionDuration = duration
+        ? `${duration / 1000}s`
+        : '0s';
+      // $FlowFixMe
+      containerRef.style.opacity = String(opacity);
+    }
+  }
+
   _startHighlight = (event?: SyntheticEvent<>) => {
     if (event) {
       this._savePressInLocation(event);
+    }
+    // $FlowFixMe
+    if (event && event.dispatchConfig.registrationName === 'onResponderGrant') {
+      this._setOpacityTo(this.props.activeOpacity, 0);
+    } else {
+      this._setOpacityTo(this.props.activeOpacity, 150);
     }
     this._handlePressIn();
   };
 
   _endHighlight = () => {
+    this._setOpacityTo(1, 250);
     this._handlePressOut();
   };
 }
@@ -604,8 +627,5 @@ const Container = styled(ViewBase).attrs({
   `
       : `
     cursor: pointer;
-    &:active {
-      opacity: 0.2;
-    }
   `};
 `;
