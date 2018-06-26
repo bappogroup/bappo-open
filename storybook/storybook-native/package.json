@@ -7,6 +7,11 @@
 		"test": "jest",
 		"storybook": "storybook start -p 7007"
 	},
+	"rnpm": {
+		"assets": [
+			"./assets/fonts/"
+		]
+	},
 	"dependencies": {
 		"axios": "^0.16.2",
 		"bappo-components": "0.0.28",

@@ -55,7 +55,11 @@ class Text extends React.Component<Props> {
     };
 
     return (
-      <RN.Text {...props} ref={this._captureNativeTextRef}>
+      <RN.Text
+        {...props}
+        style={[styles.default, style]}
+        ref={this._captureNativeTextRef}
+      >
         {children}
       </RN.Text>
     );
@@ -69,3 +73,11 @@ class Text extends React.Component<Props> {
 }
 
 export default Text;
+
+const styles = RN.StyleSheet.create({
+  default: {
+    fontFamily: 'Quicksand',
+    fontSize: 14,
+    color: '#191E26',
+  },
+});

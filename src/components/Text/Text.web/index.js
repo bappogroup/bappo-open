@@ -131,10 +131,11 @@ export default Text;
 
 const Div = styled.div`
   box-sizing: border-box;
+  color: #191E26;
   display: inline;
   flex-grow: 0;
   flex-shrink: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 14px;
   position: relative;
   white-space: pre-wrap;
