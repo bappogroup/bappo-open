@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { styled } from '../../../apis/Style';
-import FlatList from '../../../primitives/FlatList';
-import Text from '../../../primitives/Text';
-import View from '../../../primitives/View';
-import type { Option, renderOptionType } from '../types.js.flow';
+import { styled } from '../../../../../apis/Style';
+import FlatList from '../../../../../primitives/FlatList';
+import Text from '../../../../../primitives/Text';
+import View from '../../../../../primitives/View';
+import type { Option, renderOptionType } from '../../types.js.flow';
 import OptionContainer from './OptionContainer';
 
 type Props = {

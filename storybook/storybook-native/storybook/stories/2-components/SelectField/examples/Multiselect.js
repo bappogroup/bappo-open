@@ -1,6 +1,7 @@
 import React from 'react';
-import { Select, View } from 'bappo-components';
+import { SelectField, Text, View } from 'bappo-components';
 import createClass from 'create-react-class';
+import { Switch } from 'react-native';
 
 const FLAVOURS = [
   { label: 'Chocolate', value: 'chocolate' },
@@ -16,14 +17,13 @@ const WHY_WOULD_YOU = [
 ].concat(FLAVOURS.slice(1));
 
 const checkboxListStyle = {
+  flexDirection: 'row',
   marginTop: 14,
-  overflow: 'hidden',
 };
 
 const checkboxStyle = {
-  clear: 'left',
-  float: 'left',
-  marginTop: 14,
+  flexDirection: 'row',
+  marginLeft: 10,
 };
 
 const SelectMultiselectExample = createClass({
@@ -38,47 +38,41 @@ const SelectMultiselectExample = createClass({
     console.log('You\'ve selected:', value);
     this.setState({ value });
   },
-  toggleCheckbox(e) {
+  toggleCheckbox(name, value) {
     const newState = {};
-    newState[e.target.name] = e.target.checked;
+    newState[name] = value;
     this.setState(newState);
   },
   render() {
-    const { crazy, readOnly, value } = this.state;
-    const options = crazy ? WHY_WOULD_YOU : FLAVOURS;
+    const options = this.state.crazy ? WHY_WOULD_YOU : FLAVOURS;
     return (
       <View style={{ overflow: 'visible' }}>
-        <h3>{this.props.label}</h3>
-        <Select
-          readOnly={readOnly}
+        <Text>{this.props.label}</Text>
+        <SelectField
+          readOnly={this.state.readOnly}
           multi
           onValueChange={this.handleSelectChange}
           options={options}
           placeholder="Select your favourite(s)"
-          style={{ padding: 10 }}
-          value={value}
+          value={this.state.value}
         />
 
-        <div style={checkboxListStyle}>
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              name="readOnly"
-              checked={readOnly}
-              onChange={this.toggleCheckbox}
+        <View style={checkboxListStyle}>
+          <View style={checkboxStyle}>
+            <Switch
+              value={this.state.readOnly}
+              onValueChange={value => this.toggleCheckbox('readOnly', value)}
             />
-            <span>Disable the control</span>
-          </label>
-          <label style={checkboxStyle}>
-            <input
-              type="checkbox"
-              name="crazy"
-              checked={crazy}
-              onChange={this.toggleCheckbox}
+            <Text>Disable the control</Text>
+          </View>
+          <View style={checkboxStyle}>
+            <Switch
+              value={this.state.crazy}
+              onValueChange={value => this.toggleCheckbox('crazy', value)}
             />
-            <span>I don't like Chocolate (disabled the option)</span>
-          </label>
-        </div>
+            <Text>I don't like Chocolate (disabled the option)</Text>
+          </View>
+        </View>
       </View>
     );
   },

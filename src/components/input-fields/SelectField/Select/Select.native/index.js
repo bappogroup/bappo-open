@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import Popup from '../../../internals/Picker.native/Popup';
+import Popup from '../../../../../internals/Picker.native/Popup';
+import type { Option, renderOptionType, Value } from '../../types.js.flow';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
 import SelectedOption from './SelectedOption';
@@ -21,7 +22,6 @@ import {
   PopupTopBar,
   PopupTouchableContainer,
 } from './StyledComponents';
-import type { Option, renderOptionType, Value } from '../types.js.flow';
 
 type Props = {
   /**

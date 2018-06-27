@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import FlatList from '../../../primitives/FlatList';
+import FlatList from '../../../../../primitives/FlatList';
+import type { Option, renderOptionType, Value } from '../../types.js.flow';
 import Menu from './Menu';
 import SelectedOption from './SelectedOption';
 import {
@@ -21,7 +22,6 @@ import {
   NoResults,
   Placeholder,
 } from './StyledComponents';
-import type { Option, renderOptionType, Value } from '../types.js.flow';
 
 type Props = {
   /**

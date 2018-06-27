@@ -7,15 +7,15 @@ import UIExplorer, {
   Section,
   storiesOf,
 } from '../../../ui-explorer';
-import GithubUsers from './examples/GithubUsers';
+// import GithubUsers from './examples/GithubUsers';
 import Multiselect from './examples/Multiselect';
 import States from './examples/States';
 
-const SelectScreen = () => (
-  <UIExplorer title="Select" url="2-components/Select">
+const SelectFieldScreen = () => (
+  <UIExplorer title="SelectField" url="2-components/SelectField">
     <Description>
       <AppText>
-        Select is an input that let you pick value(s) from a dropdown.
+        SelectField is an input that let you pick value(s) from a dropdown.
       </AppText>
     </Description>
 
@@ -217,14 +217,14 @@ const SelectScreen = () => (
         }}
       />
 
-      <DocItem
+      {/* <DocItem
         description="AsyncSelect"
         example={{
           render: () => <GithubUsers />,
         }}
-      />
+      /> */}
     </Section>
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('Select', SelectScreen);
+storiesOf('Components', module).add('SelectField', SelectFieldScreen);

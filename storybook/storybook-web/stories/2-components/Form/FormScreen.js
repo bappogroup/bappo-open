@@ -92,12 +92,12 @@ const FormScreen = () => (
 <Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
   <Form.Field
     name="firstName"
-    component={TextInput}
+    component={TextField}
     label="First Name"
   />
   <Form.Field
     name="lastName"
-    component={TextInput}
+    component={TextField}
     label="Last Name"
   />
   <Form.SubmitButton />
@@ -113,14 +113,14 @@ const FormScreen = () => (
 <Form onSubmit={values => alert(JSON.stringify(values, null, 2))}>
   <Form.Field
     name="email"
-    component={TextInput}
+    component={TextField}
     label="Email"
     validate={value => (isEmail(value) ? undefined : 'Invalid email')}
     props={{ type: 'email' }}
   />
   <Form.Field
     name="password"
-    component={TextInput}
+    component={TextField}
     label="Password"
     validate={value => (value ? undefined : 'Password is required')}
     props={{ type: 'password' }}
@@ -142,7 +142,7 @@ const FormScreen = () => (
       <React.Fragment>
         <Form.Field
           name="country"
-          component={Select}
+          component={SelectField}
           label="Country"
           props={{
             options: countryOptions,
@@ -150,7 +150,7 @@ const FormScreen = () => (
         />
         <Form.Field
           name="state"
-          component={Select}
+          component={SelectField}
           label="State"
           props={{
             options: country ? stateOptionsByCountry[country] : [],
@@ -176,7 +176,7 @@ const FormScreen = () => (
       <React.Fragment>
         <Form.Field
           name="deliveryMethod"
-          component={Select}
+          component={SelectField}
           label="Delivery Method"
           props={{
             options: deliveryMethodOptions,
@@ -185,14 +185,14 @@ const FormScreen = () => (
         {deliveryMethod === 'deliver' && (
           <Form.Field
             name="address"
-            component={TextInput}
+            component={TextField}
             label="Address"
           />
         )}
         {deliveryMethod === 'pick_up' && (
           <Form.Field
             name="pickupPoint"
-            component={Select}
+            component={SelectField}
             label="Pick-up point"
             props={{
               options: pickupPointOptions,

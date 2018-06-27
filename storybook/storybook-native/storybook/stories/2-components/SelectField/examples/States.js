@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Text, TouchableView, View } from 'bappo-components';
+import { SelectField, Text, TouchableView, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import { Switch } from 'react-native';
 import STATES from '../../../../data/states';
@@ -48,7 +48,7 @@ const SelectStatesExample = createClass({
     const options = STATES[this.state.country];
     return (
       <View style={{ overflow: 'visible' }}>
-        <Select
+        <SelectField
           clearable={this.state.clearable}
           disabled={this.state.disabled}
           onValueChange={this.updateValue}

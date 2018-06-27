@@ -12,10 +12,8 @@ export { default as TouchableView } from './primitives/TouchableView';
 export { default as View } from './primitives/View';
 
 // Components
-export { default as AsyncSelect } from './components/AsyncSelect';
 export { default as DatePicker } from './components/DatePicker';
 export { Form } from './components/Form';
 export * from './components/input-fields';
 export { default as Icon } from './components/Icon';
-export { default as Select } from './components/Select';
 export { default as TimePicker } from './components/TimePicker';

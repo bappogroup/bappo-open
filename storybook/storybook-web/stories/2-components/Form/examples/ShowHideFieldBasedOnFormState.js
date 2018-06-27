@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select, TextField, View } from 'bappo-components';
+import { Form, SelectField, TextField, View } from 'bappo-components';
 
 const deliveryMethodOptions = [
   { label: 'Deliver', value: 'deliver' },
@@ -20,7 +20,7 @@ const ShowHideFieldBasedOnFormState = () => {
             <React.Fragment>
               <Form.Field
                 name="deliveryMethod"
-                component={Select}
+                component={SelectField}
                 label="Delivery Method"
                 props={{ options: deliveryMethodOptions }}
               />
@@ -34,7 +34,7 @@ const ShowHideFieldBasedOnFormState = () => {
               {deliveryMethod === 'pick_up' && (
                 <Form.Field
                   name="pickupPoint"
-                  component={Select}
+                  component={SelectField}
                   label="Pick-up point"
                   props={{ options: pickupPointOptions }}
                 />

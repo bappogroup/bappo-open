@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import ViewBase from '../../../internals/web/ViewBase';
-import { styled } from '../../../apis/Style';
-import type { Option } from '../types.js.flow';
+import ViewBase from '../../../../../internals/web/ViewBase';
+import { styled } from '../../../../../apis/Style';
+import type { Option } from '../../types.js.flow';
 
 type Props = {
   children?: React.Node,

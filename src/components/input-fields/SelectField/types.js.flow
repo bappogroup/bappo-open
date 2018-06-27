@@ -2,8 +2,8 @@
 import * as React from 'react';
 
 export type Option = {
-  disabled?: boolean,
   [string]: any,
+  disabled?: boolean,
 };
 
 export type Value = string | number | null | $ReadOnlyArray<string | number>;
@@ -12,4 +12,4 @@ export type renderOptionType = (info: {
   index: number,
   option: Option,
   isSelected: boolean,
-}) => ?React.Element<any>;
+}) => ?React.Node;

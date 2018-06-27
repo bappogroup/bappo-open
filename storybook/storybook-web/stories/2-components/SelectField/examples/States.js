@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, View } from 'bappo-components';
+import { SelectField, View } from 'bappo-components';
 import createClass from 'create-react-class';
 import STATES from '../../../../data/states';
 
@@ -54,7 +54,7 @@ const SelectStatesExample = createClass({
     const options = STATES[this.state.country];
     return (
       <View style={{ overflow: 'visible' }}>
-        <Select
+        <SelectField
           clearable={this.state.clearable}
           disabled={this.state.disabled}
           onValueChange={this.updateValue}

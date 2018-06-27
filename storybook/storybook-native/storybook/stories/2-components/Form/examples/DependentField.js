@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select, View } from 'bappo-components';
+import { Form, SelectField, View } from 'bappo-components';
 import { Alert } from 'react-native';
 import stateOptionsByCountry from '../../../../data/states';
 
@@ -18,13 +18,13 @@ const DependentField = () => {
             <React.Fragment>
               <Form.Field
                 name="country"
-                component={Select}
+                component={SelectField}
                 label="Country"
                 props={{ options: countryOptions }}
               />
               <Form.Field
                 name="state"
-                component={Select}
+                component={SelectField}
                 label="State"
                 props={{
                   options: country ? stateOptionsByCountry[country] : [],
