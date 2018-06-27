@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { styled } from '../../apis/Style';
-import Text from '../Text';
+import Text from '../../primitives/Text';
 
 type Props = {
   children?: string,

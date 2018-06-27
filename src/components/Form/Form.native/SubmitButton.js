@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import Button from '../../NewButton';
+import Button from '../../Button';
 import { FormStateConsumer } from '../FormState';
 import { FormConfigConsumer } from './FormConfigContext';
 

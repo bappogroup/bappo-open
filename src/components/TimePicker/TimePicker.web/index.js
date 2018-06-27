@@ -3,7 +3,7 @@
 import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
-import PickerWeb from '../../internals/Picker.web';
+import PickerWeb from '../../../internals/Picker.web';
 import {
   DEFAULT_TIME_DISPLAY_FORMAT,
   DEFAULT_TIME_VALUE_FORMAT,

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import FlatList from '../../FlatList';
+import FlatList from '../../../primitives/FlatList';
 import Menu from './Menu';
 import SelectedOption from './SelectedOption';
 import {

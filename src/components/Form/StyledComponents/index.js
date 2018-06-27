@@ -1,7 +1,9 @@
+// @flow
+
 import { styled } from '../../../apis/Style';
-import Text from '../../Text';
-import View from '../../View';
-import { buttonTextStyle } from '../../NewButton/styles';
+import Text from '../../../primitives/Text';
+import View from '../../../primitives/View';
+import { buttonTextStyle } from '../../Button/styles';
 
 export const FieldLabelContainer = styled(View)`
   align-items: flex-start;

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import moment from 'moment';
 import { DatePickerIOS } from 'react-native';
-import PickerNative from '../../internals/Picker.native';
+import PickerNative from '../../../internals/Picker.native';
 import {
   DEFAULT_DATE_DISPLAY_FORMAT,
   DEFAULT_DATE_VALUE_FORMAT,

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import Popup from '../../internals/Picker.native/Popup';
+import Popup from '../../../internals/Picker.native/Popup';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
 import SelectedOption from './SelectedOption';

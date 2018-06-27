@@ -1,1 +1,3 @@
+// @flow
+
 export { default as Form } from './Form.native';

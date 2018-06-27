@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import FlexButton from '../../internals/web/FlexButton';
-import ActivityIndicator from '../../ActivityIndicator';
-import { buttonContainerStyle } from '../../NewButton/styles';
+import FlexButton from '../../../internals/web/FlexButton';
+import ActivityIndicator from '../../../primitives/ActivityIndicator';
+import { buttonContainerStyle } from '../../Button/styles';
 import { FormStateConsumer } from '../FormState';
 import { SubmitButtonText } from '../StyledComponents';
 

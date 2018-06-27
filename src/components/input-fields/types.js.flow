@@ -1,0 +1,22 @@
+// @flow
+
+import * as React from 'react';
+
+type InputFieldValue = mixed;
+
+export interface InputField {
+  blur(): void;
+  focus(): void;
+}
+
+export type InputFieldProps = {
+  error?: string,
+  label?: string,
+  onBlur?: () => void,
+  onFocus?: () => void,
+  onValueChange?: (value: InputFieldValue) => void,
+  value?: InputFieldValue,
+};
+
+export type InputFieldComponent = React.Component<InputFieldProps, any> &
+  InputField;

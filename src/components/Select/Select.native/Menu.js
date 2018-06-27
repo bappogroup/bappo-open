@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { styled } from '../../../apis/Style';
-import FlatList from '../../FlatList';
-import Text from '../../Text';
-import TouchableView from '../../TouchableView';
-import View from '../../View';
+import FlatList from '../../../primitives/FlatList';
+import Text from '../../../primitives/Text';
+import TouchableView from '../../../primitives/TouchableView';
+import View from '../../../primitives/View';
 import type { Option, renderOptionType } from '../types.js.flow';
 
 type Props = {

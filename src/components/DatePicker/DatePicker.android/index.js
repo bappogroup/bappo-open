@@ -4,7 +4,7 @@ import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
 import { DatePickerAndroid } from 'react-native';
-import PickerNative from '../../internals/Picker.native';
+import PickerNative from '../../../internals/Picker.native';
 import {
   DEFAULT_DATE_DISPLAY_FORMAT,
   DEFAULT_DATE_VALUE_FORMAT,
