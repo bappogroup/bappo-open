@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select, TextInput, View } from 'bappo-components';
+import { Form, Select, TextField, View } from 'bappo-components';
 import { Alert } from 'react-native';
 
 const deliveryMethodOptions = [
@@ -28,7 +28,7 @@ const ShowHideFieldBasedOnFormState = () => {
               {deliveryMethod === 'deliver' && (
                 <Form.Field
                   name="address"
-                  component={TextInput}
+                  component={TextField}
                   label="Address"
                 />
               )}

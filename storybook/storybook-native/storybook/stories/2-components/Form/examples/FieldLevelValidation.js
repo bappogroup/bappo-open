@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, TextInput, View } from 'bappo-components';
+import { Form, TextField, View } from 'bappo-components';
 import { Alert } from 'react-native';
 import { isEmail } from 'validator';
 
@@ -12,7 +12,7 @@ const FieldLevelValidation = () => {
       >
         <Form.Field
           name="email"
-          component={TextInput}
+          component={TextField}
           label="Email"
           validate={value =>
             value && isEmail(value) ? undefined : 'Invalid email'
@@ -21,7 +21,7 @@ const FieldLevelValidation = () => {
         />
         <Form.Field
           name="password"
-          component={TextInput}
+          component={TextField}
           label="Password"
           validate={value => (value ? undefined : 'Password is required')}
           props={{ type: 'password' }}

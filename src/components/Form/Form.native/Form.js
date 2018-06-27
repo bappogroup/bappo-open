@@ -6,9 +6,9 @@ import type {
   FormStateAndHelpersAndActions,
   Values,
 } from '../FormState/types.js.flow';
+import Field from '../Field';
 import { FormState } from '../FormState';
 import { FormConfigProvider } from './FormConfigContext';
-import Field from './Field';
 import SubmitButton from './SubmitButton';
 
 type Props = {

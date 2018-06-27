@@ -2,14 +2,7 @@
 
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
-import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
-
-export const FieldContainer = styled(TouchableView).attrs({
-  activeOpacity: 1,
-})`
-  padding: 8px;
-`;
 
 export const FieldLabelContainer = styled(View)`
   align-items: flex-start;

@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import type { InputFieldComponent } from '../../input-fields/types.js.flow';
-import type { FieldValidator } from '../FormState/types.js.flow';
-import { FieldState } from '../FormState';
+import type { InputFieldComponent } from '../input-fields/types.js.flow';
+import type { FieldValidator } from './FormState/types.js.flow';
+import { FieldState } from './FormState';
 
 type RequiredProps = {
   component: Class<InputFieldComponent>,
@@ -17,8 +17,8 @@ type OptionalProps = {
 type Props = RequiredProps & OptionalProps;
 
 // $FlowFixMe: forwardRef is not supported yet
-export default React.forwardRef((props: Props, ref) => {
-  const { component, label, name, validate } = props;
+export default React.forwardRef((fieldProps: Props, ref) => {
+  const { component, label, name, props, validate } = fieldProps;
 
   if (!name) {
     throw new Error(`Field name is required`);

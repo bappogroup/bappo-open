@@ -4,8 +4,8 @@ import * as React from 'react';
 import TextInput from '../../primitives/TextInput';
 import Paragraph from '../Paragraph';
 import type { InputField, InputFieldProps } from './types.js.flow';
+import FieldContainer from './FieldContainer';
 import {
-  FieldContainer,
   FieldInputContainer,
   FieldLabel,
   FieldLabelContainer,
@@ -27,7 +27,7 @@ class TextField extends React.Component<Props> implements InputField {
   render() {
     const { error, label, onBlur, onFocus, onValueChange, value } = this.props;
     return (
-      <FieldContainer>
+      <FieldContainer onPress={() => this.focus()}>
         {label && (
           <FieldLabelContainer>
             <FieldLabel>{label}</FieldLabel>
