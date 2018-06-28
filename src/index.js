@@ -6,6 +6,7 @@ export * from './apis/Style';
 export { default as ActivityIndicator } from './primitives/ActivityIndicator';
 export { default as FlatList } from './primitives/FlatList';
 export { default as ScrollView } from './primitives/ScrollView';
+export { default as Switch } from './primitives/Switch';
 export { default as Text } from './primitives/Text';
 export { default as TextInput } from './primitives/TextInput';
 export { default as TouchableView } from './primitives/TouchableView';
