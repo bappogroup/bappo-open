@@ -24,6 +24,7 @@ type Props = {
   className?: string,
   disabled?: boolean,
   onKeyDown?: (event: SyntheticEvent<>) => void,
+  onKeyPress?: (event: SyntheticEvent<>) => void,
   onKeyUp?: (event: SyntheticEvent<>) => void,
   onLayout?: (event: ViewLayoutEvent) => void,
   onResponderGrant?: (event: SyntheticEvent<>) => void,

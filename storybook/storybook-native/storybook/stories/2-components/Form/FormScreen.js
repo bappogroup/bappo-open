@@ -125,6 +125,11 @@ const FormScreen = () => (
     validate={value => (value ? undefined : 'Password is required')}
     props={{ type: 'password' }}
   />
+  <Form.Field
+    name="rememberMe"
+    component={SwitchField}
+    label="Remember Me"
+  />
   <Form.SubmitButton />
 </Form>
           `,

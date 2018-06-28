@@ -3,8 +3,9 @@
 import * as React from 'react';
 import Paragraph from '../../Paragraph';
 import type { InputField, InputFieldProps } from '../types.js.flow';
-import FieldContainer from '../FieldContainer';
+import TouchToFocusArea from '../TouchToFocusArea';
 import {
+  FieldContainer,
   FieldInputContainer,
   FieldLabel,
   FieldLabelContainer,
@@ -87,22 +88,24 @@ class SelectField extends React.Component<Props> implements InputField {
       ...rest
     } = this.props;
     return (
-      <FieldContainer onPress={() => this.focus()}>
-        {label && (
-          <FieldLabelContainer>
-            <FieldLabel>{label}</FieldLabel>
-          </FieldLabelContainer>
-        )}
-        <FieldInputContainer>
-          <Select
-            {...rest}
-            ref={this._selectRef}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onValueChange={onValueChange}
-            value={value}
-          />
-        </FieldInputContainer>
+      <FieldContainer>
+        <TouchToFocusArea onPress={() => this.focus()}>
+          {label && (
+            <FieldLabelContainer>
+              <FieldLabel>{label}</FieldLabel>
+            </FieldLabelContainer>
+          )}
+          <FieldInputContainer>
+            <Select
+              {...rest}
+              ref={this._selectRef}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onValueChange={onValueChange}
+              value={value}
+            />
+          </FieldInputContainer>
+        </TouchToFocusArea>
         <Paragraph type="error">{error}</Paragraph>
       </FieldContainer>
     );

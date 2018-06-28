@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, TextField, View } from 'bappo-components';
+import { Form, SwitchField, TextField, View } from 'bappo-components';
 import { isEmail } from 'validator';
 
 const FieldLevelValidation = () => {
@@ -24,6 +24,11 @@ const FieldLevelValidation = () => {
           label="Password"
           validate={value => (value ? undefined : 'Password is required')}
           props={{ type: 'password' }}
+        />
+        <Form.Field
+          name="rememberMe"
+          component={SwitchField}
+          label="Remember Me"
         />
         <Form.SubmitButton />
       </Form>

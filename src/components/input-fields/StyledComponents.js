@@ -4,6 +4,10 @@ import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
 
+export const FieldContainer = styled(View)`
+  padding: 8px 0;
+`;
+
 export const FieldLabelContainer = styled(View)`
   align-items: flex-start;
 `;
@@ -24,6 +28,5 @@ export const FieldInputContainer = styled(View)`
   border-width: 1px;
   border-radius: 4px;
   height: 40px;
-  margin: 2px 0;
   padding: 10px 16px;
 `;

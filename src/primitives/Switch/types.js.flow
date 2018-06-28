@@ -1,5 +1,7 @@
 // @flow
 
+import type { BlurEvent, FocusEvent } from '../../events.js.flow';
+
 export type SwitchProps = {
   /**
    * Overrides the text that's read by the screen reader when the user interacts with the element.
@@ -10,11 +12,19 @@ export type SwitchProps = {
    */
   disabled?: ?boolean,
   /**
+   * Callback that is called when the switch is blurred.
+   */
+  onBlur?: ?(event: BlurEvent) => void,
+  /**
+   * Callback that is called when the switch is focused.
+   */
+  onFocus?: ?(event: FocusEvent) => void,
+  /**
    * Invoked with the new value when the value changes.
    */
   onValueChange?: (value: boolean) => void,
   // TODO
-  style: any,
+  style?: any,
   /**
    * Used to locate this view in end-to-end tests.
    */

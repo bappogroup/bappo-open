@@ -21,7 +21,10 @@ class Switch extends React.Component<Props> {
 
     const props = {
       accessibilityLabel,
+      onBlur: this._onBlur,
       onClick: this._toggle,
+      onFocus: this._onFocus,
+      onKeyPress: this._onKeyPress,
       testID,
     };
 
@@ -38,6 +41,39 @@ class Switch extends React.Component<Props> {
     );
   }
 
+  _onBlur = (event: SyntheticFocusEvent<HTMLDivElement>) => {
+    const { onBlur, value } = this.props;
+
+    onBlur &&
+      onBlur({
+        nativeEvent: {
+          value,
+        },
+      });
+  };
+
+  _onFocus = (event: SyntheticFocusEvent<HTMLDivElement>) => {
+    const { onFocus, value } = this.props;
+
+    onFocus &&
+      onFocus({
+        nativeEvent: {
+          value,
+        },
+      });
+  };
+
+  _onKeyPress = (event: SyntheticKeyboardEvent<HTMLDivElement>) => {
+    const ENTER = 13;
+    const SPACE = 32;
+
+    if (event.which === ENTER || event.which === SPACE) {
+      event.preventDefault();
+      event.stopPropagation();
+      this._toggle();
+    }
+  };
+
   _toggle = () => {
     const { disabled, onValueChange, value } = this.props;
 
@@ -47,11 +83,14 @@ class Switch extends React.Component<Props> {
 
 export default Switch;
 
-const SwitchContainer = styled(ViewBase)`
+const SwitchContainer = styled(ViewBase).attrs({
+  tabIndex: 0,
+})`
   flex: none;
   flex-direction: row;
   background-color: ${({ value }) => (value ? '#FF7800' : '#B0ADAB')};
   border-radius: 12px;
+  cursor: pointer;
   height: 24px;
   width: 48px;
 `;
