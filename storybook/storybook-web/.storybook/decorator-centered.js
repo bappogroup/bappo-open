@@ -1,14 +1,19 @@
 import React from 'react';
-import { Styles, View } from 'bappo-components';
+import { ScrollView, Styles, View } from 'bappo-components';
 
 const styles = {
   root: {
-    minHeight: '100vh',
+    height: '100vh',
+  },
+  scrollView: {
     maxWidth: 1080,
-    marginHorizontal: 'auto',
   },
 };
 
 export default function(renderStory) {
-  return <View style={styles.root}>{renderStory()}</View>;
+  return (
+    <View style={styles.root}>
+      <ScrollView style={styles.scrollView}>{renderStory()}</ScrollView>
+    </View>
+  );
 }
