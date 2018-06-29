@@ -5,7 +5,7 @@ const styles = {
   root: {
     height: '100vh',
   },
-  scrollView: {
+  inner: {
     maxWidth: 1080,
   },
 };
@@ -13,7 +13,9 @@ const styles = {
 export default function(renderStory) {
   return (
     <View style={styles.root}>
-      <ScrollView style={styles.scrollView}>{renderStory()}</ScrollView>
+      <ScrollView>
+        <View style={styles.inner}>{renderStory()}</View>
+      </ScrollView>
     </View>
   );
 }
