@@ -1364,12 +1364,12 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bappo-components@0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.28.tgz#dfe23c30f50fc89c9d28037531c8024427812db1"
+bappo-components@0.0.36:
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.0.36.tgz#ee33d641d08f5ffbd8b43746becdcd942293132d"
   dependencies:
     fbjs "^0.8.16"
-    lodash-es "^4.17.5"
+    lodash "^4.17.10"
     moment "^2.19.1"
     prop-types "^15.6.0"
     react-native-web "^0.1.9"
@@ -3216,10 +3216,6 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.5:
-  version "4.17.7"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.7.tgz#db240a3252c3dd8360201ac9feef91ac977ea856"
-
 lodash-es@^4.2.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
@@ -3287,6 +3283,10 @@ lodash@4.x.x, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.1:
 lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+
+lodash@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 lodash@^4.3.0:
   version "4.17.5"
