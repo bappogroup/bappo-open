@@ -44,7 +44,7 @@ class Modal extends React.Component<Props, State> {
       >
         <ModalContentContainer
           layout={this.state.modalContentLayout}
-          onLayout={this._modalContentLayout}
+          onLayout={this._onModalContentLayout}
           windowDimensions={Dimensions.get('window')}
         >
           {children}
@@ -53,7 +53,7 @@ class Modal extends React.Component<Props, State> {
     );
   }
 
-  _modalContentLayout = (event: SyntheticEvent<>) => {
+  _onModalContentLayout = (event: SyntheticEvent<>) => {
     // $FlowFixMe
     this.setState({ modalContentLayout: event.nativeEvent.layout });
   };
@@ -76,12 +76,11 @@ const ModalContentContainer = styled.View`
   `
       : // large screen
         `
-    top: ${windowDimensions.height / 2}px;
+    top: ${(windowDimensions.height - layout.height) / 2}px;
     margin-left: auto;
     margin-right: auto;
     max-height: 768px;
     min-height: 384px;
-    transform: translate(0, -${layout.height / 2}px);
     width: 576px;
   `};
 `;

@@ -100,7 +100,10 @@ class ViewBase extends React.Component<Props> {
   };
 }
 
-export default ViewBase;
+// $FlowFixMe: forwardRef not supported yet
+export default React.forwardRef((props, ref) => {
+  return <ViewBase {...props} innerRef={ref} />;
+});
 
 // Manually pass on responder event handlers since styled-components filters them out
 const Div = styled.div.attrs({
