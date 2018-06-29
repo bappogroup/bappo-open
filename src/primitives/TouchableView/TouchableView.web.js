@@ -388,6 +388,7 @@ class TouchableView extends React.Component<Props, State> {
         this._receiveSignal(Signals.KEYBOARD_RELEASE);
       }
       event.stopPropagation();
+      event.preventDefault();
     }
   };
 

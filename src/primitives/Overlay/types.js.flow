@@ -1,0 +1,13 @@
+// @flow
+
+import * as React from 'react';
+import type { ViewLayoutEvent } from '../../events.js.flow';
+
+export type OverlayProps = {
+  onRequestClose: () => void,
+  children?: ?React.Node,
+  color?: string,
+  onLayout?: (event: ViewLayoutEvent) => void,
+  onPress?: () => void,
+  visible?: ?boolean,
+};

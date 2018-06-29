@@ -1,0 +1,27 @@
+// @flow
+
+import * as React from 'react';
+import type {
+  FormStateAndHelpersAndActions,
+  Values,
+} from './FormState/types.js.flow';
+
+export type FormNonStyleProps = {
+  /**
+   * Overrides the text that's read by the screen reader when the user interacts with the element.
+   */
+  accessibilityLabel?: string,
+  children?:
+    | ?React.Node
+    | ((formState: FormStateAndHelpersAndActions) => React.Node),
+  initialValues?: Values,
+  onSubmit?: ?(values: Values) => mixed,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
+};
+
+export type FormProps = FormNonStyleProps & {
+  style?: any,
+};

@@ -22,21 +22,14 @@ type Props = {
   accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
-  disabled?: boolean,
-  onKeyDown?: (event: SyntheticEvent<>) => void,
-  onKeyPress?: (event: SyntheticEvent<>) => void,
-  onKeyUp?: (event: SyntheticEvent<>) => void,
   onLayout?: (event: ViewLayoutEvent) => void,
   onResponderGrant?: (event: SyntheticEvent<>) => void,
   onResponderMove?: (event: SyntheticEvent<>) => void,
   onResponderRelease?: (event: SyntheticEvent<>) => void,
   onResponderTerminate?: (event: SyntheticEvent<>) => void,
   onResponderTerminationRequest?: (event: SyntheticEvent<>) => boolean,
-  onScroll?: (event: SyntheticEvent<>) => void,
   onStartShouldSetResponder?: (event: SyntheticEvent<>) => boolean,
-  role?: string,
   style?: any,
-  tabIndex?: number,
   testID?: string,
 };
 
@@ -63,17 +56,10 @@ class ViewBase extends React.Component<Props> {
   }
 
   render() {
-    const {
-      accessibilityLabel,
-      children,
-      onScroll,
-      testID,
-      ...rest
-    } = this.props;
+    const { accessibilityLabel, children, testID, ...rest } = this.props;
 
     const props = {
       ...rest,
-      onScroll,
       'aria-label': accessibilityLabel,
       'data-testid': testID,
     };

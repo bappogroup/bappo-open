@@ -5,6 +5,7 @@ export * from './apis/Style';
 // Primitives
 export { default as ActivityIndicator } from './primitives/ActivityIndicator';
 export { default as FlatList } from './primitives/FlatList';
+export { default as Overlay } from './primitives/Overlay';
 export { default as ScrollView } from './primitives/ScrollView';
 export { default as Switch } from './primitives/Switch';
 export { default as Text } from './primitives/Text';
@@ -13,8 +14,10 @@ export { default as TouchableView } from './primitives/TouchableView';
 export { default as View } from './primitives/View';
 
 // Components
+export { default as Button } from './components/Button';
 export { default as DatePicker } from './components/DatePicker';
 export { Form } from './components/Form';
 export * from './components/input-fields';
 export { default as Icon } from './components/Icon';
+export { default as Modal } from './components/Modal';
 export { default as TimePicker } from './components/TimePicker';
