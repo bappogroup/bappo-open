@@ -12,6 +12,7 @@ require('./1-primitives/TextInput/TextInputScreen');
 require('./1-primitives/TouchableView/TouchableViewScreen');
 require('./1-primitives/View/ViewScreen');
 
+require('./2-components/Avatar/AvatarScreen');
 require('./2-components/DatePicker/DatePickerScreen');
 require('./2-components/Icon/IconScreen');
 require('./2-components/Form/FormScreen');

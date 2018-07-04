@@ -1,4 +1,5 @@
 // APIs
+export { default as Colors } from './apis/Colors';
 export { default as Platform } from './apis/Platform';
 export * from './apis/Style';
 
@@ -14,6 +15,7 @@ export { default as TouchableView } from './primitives/TouchableView';
 export { default as View } from './primitives/View';
 
 // Components
+export { default as Avatar } from './components/Avatar';
 export { default as Button } from './components/Button';
 export { default as DatePicker } from './components/DatePicker';
 export { Form } from './components/Form';
