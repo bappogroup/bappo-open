@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Paragraph, Background } from 'bappo-components';
+import { Paragraph, Background } from 'bappo-components';
 
 const CardTypeExample = () => (
   <Background>
