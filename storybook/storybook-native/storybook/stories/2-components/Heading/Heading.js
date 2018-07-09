@@ -12,9 +12,7 @@ const Heading = ({ children }: Props) => {
   return <StyledText selectable>{children}</StyledText>;
 };
 
-Heading.defaultProps = {
-  type: 'default',
-};
+Heading.defaultProps = {};
 
 export default Heading;
 
