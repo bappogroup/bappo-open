@@ -4,6 +4,7 @@ import * as React from 'react';
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
+import Badge from '../Badge';
 import Icon from '../Icon';
 import type { AvatarProps } from './types.js.flow';
 import AvatarDefaultProps from './defaultProps';
@@ -20,7 +21,15 @@ class Avatar extends React.Component<Props> {
   static defaultProps = AvatarDefaultProps;
 
   render() {
-    const { backgroundColor, className, icon, name, size, style } = this.props;
+    const {
+      backgroundColor,
+      className,
+      icon,
+      name,
+      size,
+      style,
+      badge,
+    } = this.props;
 
     return (
       <AvatarContainer
@@ -29,6 +38,7 @@ class Avatar extends React.Component<Props> {
         size={size}
         style={style}
       >
+        {badge && <Badge number={badge} />}
         {icon ? (
           <StyledIcon name={icon} size={size} />
         ) : (
