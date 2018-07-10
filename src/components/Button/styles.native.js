@@ -1,6 +1,9 @@
 import { css } from 'styled-components';
+import Text from '../../primitives/Text';
+import TouchableView from '../../primitives/TouchableView';
+import Icon from '../Icon';
 
-export const buttonContainerStyle = css`
+const buttonContainerStyle = css`
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -44,7 +47,7 @@ export const buttonContainerStyle = css`
   }};
 `;
 
-export const buttonTextStyle = css`
+const buttonTextStyle = css`
   font-size: 14px;
 
   ${({ disabled, type }) => {
@@ -68,4 +71,16 @@ export const buttonTextStyle = css`
         break;
     }
   }};
+`;
+
+export const StyledTouchableView = styled(TouchableView)`
+  ${buttonContainerStyle};
+`;
+
+export const StyledIcon = styled(Icon)`
+  ${buttonTextStyle};
+`;
+
+export const ButtonLabel = styled(Text)`
+  ${buttonTextStyle};
 `;
