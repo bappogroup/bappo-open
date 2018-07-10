@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
 import Icon from '../Icon';

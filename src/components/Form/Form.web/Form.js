@@ -5,7 +5,7 @@ import FlexForm from '../../../internals/web/FlexForm';
 import type { FormProps } from '../types.js.flow';
 import Field from '../Field';
 import { FormState } from '../FormState';
-import SubmitButton from './SubmitButton';
+import SubmitButton from '../SubmitButton';
 
 type Props = FormProps & {
   // Will be removed

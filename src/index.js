@@ -22,6 +22,7 @@ export { Form } from './components/Form';
 export * from './components/input-fields';
 export { default as Icon } from './components/Icon';
 export { default as Modal } from './components/Modal';
+export { default as ModalForm } from './components/ModalForm';
 export { default as TimePicker } from './components/TimePicker';
 export { default as Paragraph } from './components/Paragraph';
 export { default as Heading } from './components/Heading';

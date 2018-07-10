@@ -17,5 +17,6 @@ require('./2-components/DatePicker/DatePickerScreen');
 require('./2-components/Icon/IconScreen');
 require('./2-components/Form/FormScreen');
 require('./2-components/Modal/ModalScreen');
+require('./2-components/ModalForm/ModalFormScreen');
 require('./2-components/SelectField/SelectFieldScreen');
 require('./2-components/TimePicker/TimePickerScreen');

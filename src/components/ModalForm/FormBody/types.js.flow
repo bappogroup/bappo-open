@@ -1,0 +1,13 @@
+// @flow
+
+import * as React from 'react';
+import type { Values } from '../../Form/FormState/types.js.flow';
+
+export type FormBodyPropTypes = {
+  children?: React.Node,
+  initialValues?: Values,
+  onCancel?: () => void,
+  onClose?: () => void,
+  onSubmit?: ?(values: Values) => mixed,
+  title?: string,
+};

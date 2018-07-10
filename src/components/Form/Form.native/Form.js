@@ -5,8 +5,8 @@ import { View } from 'react-native';
 import type { FormProps } from '../types.js.flow';
 import Field from '../Field';
 import { FormState } from '../FormState';
+import SubmitButton from '../SubmitButton';
 import { FormConfigProvider } from './FormConfigContext';
-import SubmitButton from './SubmitButton';
 
 type Props = FormProps;
 

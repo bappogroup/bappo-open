@@ -23,6 +23,7 @@ export const FieldLabel = styled(Text).attrs({
 export const FieldInputContainer = styled(View)`
   flex: none;
   justify-content: center;
+  background-color: white;
   border-color: #dddbda;
   border-style: solid;
   border-width: 1px;

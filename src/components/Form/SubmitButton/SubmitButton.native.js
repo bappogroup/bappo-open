@@ -1,18 +1,18 @@
 // @flow
 
 import * as React from 'react';
-import Button from '../../Button';
+import { TouchableOpacity } from 'react-native';
 import { FormStateConsumer } from '../FormState';
-import { FormConfigConsumer } from './FormConfigContext';
+import { FormConfigConsumer } from '../Form.native/FormConfigContext';
+import type { SubmitButtonProps } from './types.js.flow';
 
-type Props = {
-  text?: string,
-};
+type Props = SubmitButtonProps;
 
-const SubmitButton = ({ text }: Props) => {
+const SubmitButton = ({ children, style }: Props) => {
   return (
     <FormStateConsumer>
-      {({ fieldErrors, submitting, values, actions }) => {
+      {formState => {
+        const { fieldErrors, values, actions } = formState;
         return (
           <FormConfigConsumer>
             {({ onSubmit }) => {
@@ -23,12 +23,11 @@ const SubmitButton = ({ text }: Props) => {
                 }
               };
               return (
-                <Button
-                  loading={submitting}
-                  onPress={handleSubmit}
-                  text={text}
-                  type="primary"
-                />
+                <TouchableOpacity onPress={handleSubmit} style={style}>
+                  {typeof children === 'function'
+                    ? children(formState)
+                    : children}
+                </TouchableOpacity>
               );
             }}
           </FormConfigConsumer>
@@ -36,10 +35,6 @@ const SubmitButton = ({ text }: Props) => {
       }}
     </FormStateConsumer>
   );
-};
-
-SubmitButton.defaultProps = {
-  text: 'Submit',
 };
 
 export default SubmitButton;

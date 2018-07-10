@@ -6,7 +6,7 @@ import type {
   Values,
 } from './FormState/types.js.flow';
 
-export type FormNonStyleProps = {
+export type FormProps = {
   /**
    * Overrides the text that's read by the screen reader when the user interacts with the element.
    */
@@ -16,12 +16,9 @@ export type FormNonStyleProps = {
     | ((formState: FormStateAndHelpersAndActions) => React.Node),
   initialValues?: Values,
   onSubmit?: ?(values: Values) => mixed,
+  style?: any,
   /**
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
-};
-
-export type FormProps = FormNonStyleProps & {
-  style?: any,
 };

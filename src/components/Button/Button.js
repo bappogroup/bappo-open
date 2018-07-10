@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { styled } from '../../apis/Style';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
 import {
   StyledTouchableView,
@@ -18,28 +17,32 @@ type OptionalProps = {
   icon?: string,
   loading?: boolean,
   onPress?: () => void,
-  text?: string,
   style?: any,
+  text?: string,
+  // Will be removed
+  className?: string,
 };
 type Props = RequiredProps & OptionalProps;
 
 const Button = ({
+  className,
   disabled,
   icon,
   loading,
   onPress,
+  style,
   text,
   type,
-  style,
 }: Props) => {
   return (
     <StyledTouchableView
       disabled={disabled}
-      icon={icon}
       onPress={onPress}
+      className={className}
+      icon={icon}
+      style={style}
       text={text}
       type={type}
-      style={style}
     >
       {loading && (
         <ActivityIndicator
