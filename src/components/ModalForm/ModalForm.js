@@ -50,7 +50,6 @@ class ModalForm extends React.Component<Props> {
         <ModalFormBody
           initialValues={initialValues}
           onCancel={onRequestClose}
-          onClose={onRequestClose}
           onSubmit={this._onSubmit}
           onDelete={onDelete && this._onDelete}
           title={title}

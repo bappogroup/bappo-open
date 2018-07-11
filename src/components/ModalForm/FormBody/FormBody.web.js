@@ -25,19 +25,17 @@ const FormBody = ({
   children,
   initialValues,
   onCancel,
-  onClose,
   onSubmit,
   onDelete,
   title,
 }: FormBodyPropTypes) => {
-  console.log('od', onDelete);
   return (
     <StyledForm initialValues={initialValues} onSubmit={onSubmit}>
       {formState => {
         return (
           <React.Fragment>
             <ModalFormHeader>
-              <ModalFormCloseButton onPress={onClose} />
+              <ModalFormCloseButton onPress={onCancel} />
               <ModalFormHeaderMobileContainer>
                 <ModalFormHeaderCancelButton onPress={onCancel} />
                 <ModalFormHeaderSubmitButton />
