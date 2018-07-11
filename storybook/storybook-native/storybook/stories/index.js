@@ -20,3 +20,5 @@ require('./2-components/Modal/ModalScreen');
 require('./2-components/ModalForm/ModalFormScreen');
 require('./2-components/SelectField/SelectFieldScreen');
 require('./2-components/TimePicker/TimePickerScreen');
+
+require('./3-apis/Alert/AlertScreen');
