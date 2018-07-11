@@ -4,6 +4,7 @@ import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
 class ModalFormMinimalExample extends React.Component {
   state = {
     modalVisible: false,
+    modalActive: false,
   };
 
   render() {
