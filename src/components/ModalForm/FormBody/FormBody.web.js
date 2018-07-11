@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Icon from '../../../components/Icon';
 import FlexDiv from '../../../internals/web/FlexDiv';
 import ActivityIndicator from '../../../primitives/ActivityIndicator';
+import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
 import TouchableView from '../../../primitives/TouchableView';
 import Button from '../../Button';
 import { buttonContainerStyle, buttonTextStyle } from '../../Button/styles';
-import SubmitButton from '../../Form/SubmitButton';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
@@ -140,7 +140,7 @@ const ModalFormFooterCancelButton = styled(Button).attrs({
   margin-right: 16px;
 `;
 
-const StyledSubmitButton = styled(SubmitButton).attrs({
+const StyledSubmitButton = styled(Form.SubmitButton).attrs({
   type: 'primary',
 })`
   ${buttonContainerStyle};
