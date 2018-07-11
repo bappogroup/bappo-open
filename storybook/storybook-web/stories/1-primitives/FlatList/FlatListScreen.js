@@ -383,11 +383,9 @@ const data = Array.from({ length: 50 })
           code: `
 <FlatList
   data={data}
-  onEndReached={() => alert('onEndReached fired!')}
+  onEndReached={() => Alert.alert({ title: 'onEndReached fired!' })}
   onEndReachedThreshold={0.5}
-  renderItem={({ item }) => (
-    <Text style={styles.row}>{item.key}</Text>
-  )}
+  renderItem={({ item }) => <Text style={styles.row}>{item.key}</Text>}
 />
           `,
           render: () => <OnEndReached />,

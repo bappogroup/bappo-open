@@ -1,0 +1,13 @@
+// @flow
+
+export type AlertAction = {
+  text: string,
+  onPress?: ?() => void,
+  style?: 'default' | 'cancel' | 'destructive',
+};
+
+export type AlertOptions = {
+  actions: AlertAction[],
+  message?: string,
+  title?: string,
+};

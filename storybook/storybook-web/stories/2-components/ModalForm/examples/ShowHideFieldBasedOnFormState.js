@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   Button,
   Form,
   ModalForm,
@@ -31,7 +32,9 @@ class ModalFormShowHideFieldBasedOnFormStateExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values =>
+            Alert.alert({ message: JSON.stringify(values, null, 2) })
+          }
           title="Modal Form Show/Hide Field Based on Form State Example"
           visible={this.state.modalVisible}
         >
