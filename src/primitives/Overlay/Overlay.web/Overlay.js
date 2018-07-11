@@ -40,14 +40,10 @@ class Overlay extends React.Component<Props> {
       return null;
     }
 
-    const { children, color, onLayout, visible } = this.props;
+    const { children, onLayout, visible } = this.props;
 
     const portalChild = visible ? (
-      <OverlayContainer
-        onClick={this._onClick}
-        onLayout={onLayout}
-        color={color}
-      >
+      <OverlayContainer onClick={this._onClick} onLayout={onLayout}>
         {children}
       </OverlayContainer>
     ) : null;
@@ -76,5 +72,5 @@ const OverlayContainer = styled(ViewBase).attrs({
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: ${props => props.color};
+  background-color: rgba(178, 178, 178, 0.8);
 `;
