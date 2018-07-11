@@ -10,7 +10,7 @@ import ModalFormBody from './FormBody';
 import { StyledForm } from './StyledComponents';
 
 type RequiredProps = {
-  onRequestClose: () => void,
+  onRequestClose: () => any,
 };
 type OptionalProps = {
   children?:
@@ -20,7 +20,6 @@ type OptionalProps = {
   onOverlayPress?: () => void,
   onSubmit?: ?(values: Values) => mixed,
   onDelete?: ?(values: Values) => mixed,
-  overlayColor?: string,
   title?: string,
   visible?: ?boolean,
 };

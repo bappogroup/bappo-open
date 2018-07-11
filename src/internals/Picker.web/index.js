@@ -110,6 +110,7 @@ class PickerWeb extends React.Component<Props, State> {
   _onControlClick = (event: SyntheticEvent<>) => {
     // if the event was triggered by a click and not the primary button, or if the component is
     // read-only, ignore it.
+    // $FlowFixMe
     if (this.props.readOnly || (event.type === 'click' && event.button !== 0)) {
       return;
     }
@@ -133,6 +134,7 @@ class PickerWeb extends React.Component<Props, State> {
   _onDropdownIconClick = (event: SyntheticEvent<>) => {
     // if the event was triggered by a click and not the primary
     // button, or if the component is read-only, ignore it.
+    // $FlowFixMe
     if (this.props.readOnly || (event.type === 'click' && event.button !== 0)) {
       return;
     }
@@ -174,6 +176,7 @@ class PickerWeb extends React.Component<Props, State> {
     // button, or if the component is read-only, ignore it.
     if (
       this.props.readOnly ||
+      // $FlowFixMe
       (event.type === 'mousedown' && event.button !== 0)
     ) {
       return;

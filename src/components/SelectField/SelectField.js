@@ -11,11 +11,7 @@ type Props = {
 
 const SelectField = ({  }: Props) => {
   return (
-    <TextField
-      {...getInputProps()}
-      label="Test label"
-      onValueChange={e => console.log({ e })}
-    />
+    <TextField label="Test label" onValueChange={e => console.log({ e })} />
   );
 };
 

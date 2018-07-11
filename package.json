@@ -14,7 +14,6 @@
     "src"
   ],
   "scripts": {
-    "precommit": "yarn flow",
     "prepush": "yarn flow",
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel src/ -d es/",
