@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type { InputFieldComponent } from '../input-fields/types.js.flow';
+import type { InputFieldComponent } from '../../components/input-fields/types.js.flow';
 import type { FieldValidator } from './FormState/types.js.flow';
 import { FieldState } from './FormState';
 

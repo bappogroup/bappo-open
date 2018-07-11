@@ -3,11 +3,10 @@
 import * as React from 'react';
 import { styled, css } from '../../apis/Style';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
+import { Form } from '../../primitives/Form';
 import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
-import { Form } from '../Form';
-import SubmitButton from '../Form/SubmitButton';
 import type {
   ModalFormCancelButtonProps,
   ModalFormSubmitButtonProps,
@@ -65,7 +64,7 @@ export const ModalFormHeaderCancelButton = ({
   </CancelButton>
 );
 
-const StyledSubmitButton = styled(SubmitButton)`
+const StyledSubmitButton = styled(Form.SubmitButton)`
   ${buttonStyle};
 `;
 

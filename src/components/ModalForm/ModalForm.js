@@ -4,7 +4,7 @@ import * as React from 'react';
 import type {
   FormStateAndHelpersAndActions,
   Values,
-} from '../Form/FormState/types.js.flow';
+} from '../../primitives/Form/FormState/types.js.flow';
 import Modal from '../Modal';
 import ModalFormBody from './FormBody';
 

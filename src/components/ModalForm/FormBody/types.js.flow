@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type { Values } from '../../Form/FormState/types.js.flow';
+import type { Values } from '../../../primitives/Form/FormState/types.js.flow';
 
 export type FormBodyPropTypes = {
   children?: React.Node,
