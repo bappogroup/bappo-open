@@ -9,7 +9,7 @@ type Props = {
   onSelect: () => void,
 };
 
-const Select = ({  }: Props) => {
+const SelectField = ({  }: Props) => {
   return (
     <TextField
       {...getInputProps()}
@@ -19,8 +19,8 @@ const Select = ({  }: Props) => {
   );
 };
 
-Select.defaultProps = {
+SelectField.defaultProps = {
   items: [],
 };
 
-export default Select;
+export default SelectField;
