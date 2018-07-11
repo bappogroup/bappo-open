@@ -16,7 +16,7 @@
   "scripts": {
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel src/ -d es/",
-    "build": "npm run build:cjs && npm run build:es",
+    "build": "npm run build:cjs && npm run build:es && rimraf storybook/storybook-native/node_modules/bappo-components/lib/ && cp -r lib storybook/storybook-native/node_modules/bappo-components/lib",
     "flow": "flow",
     "lint": "eslint src/",
     "prepublish": "yarn run build"
