@@ -23,7 +23,7 @@ import ViewabilityHelper, {
   type ViewabilityConfigCallbackPair,
 } from 'react-native-web/dist/vendor/react-native/ViewabilityHelper';
 import { computeWindowedRenderLimits } from 'react-native-web/dist/vendor/react-native/VirtualizeUtils';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import ScrollView from '../../primitives/ScrollView';
 import View from '../../primitives/View';
 
@@ -595,7 +595,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   static getDerivedStateFromProps(newProps: Props, prevState: State) {
-    const { data, extraData, getItemCount, maxToRenderPerBatch } = newProps;
+    const { data, getItemCount, maxToRenderPerBatch } = newProps;
     // first and last could be stale (e.g. if a new, shorter items props is passed in), so we make
     // sure we're rendering a reasonable range here.
     return {
@@ -1679,15 +1679,6 @@ const StyledScrollView = styled(ScrollView)`
           : 'flex-direction: column-reverse;'
         : ''};
   }
-`;
-
-const inversionStyle = css`
-  ${({ horizontal, inverted }) =>
-    inverted
-      ? horizontal
-        ? 'transform: scaleX(-1);'
-        : 'transform: scaleY(-1);'
-      : ''};
 `;
 
 const DefaultCellView = styled(View)`
