@@ -18,6 +18,7 @@ type OptionalProps = {
   initialValues?: Values,
   onOverlayPress?: () => void,
   onSubmit?: ?(values: Values) => mixed,
+  onDelete?: ?(values: Values) => mixed,
   overlayColor?: string,
   title?: string,
   visible?: ?boolean,
@@ -50,6 +51,7 @@ class ModalForm extends React.Component<Props> {
           onCancel={onRequestClose}
           onClose={onRequestClose}
           onSubmit={this._onSubmit}
+          onDelete={this._onDelete}
           title={title}
         >
           {children}
@@ -62,6 +64,20 @@ class ModalForm extends React.Component<Props> {
     const { onRequestClose, onSubmit } = this.props;
 
     const res = onSubmit && (await onSubmit(values));
+
+    onRequestClose();
+
+    return res;
+  };
+
+  _onDelete = async (values: Values) => {
+    const { onRequestClose, onDelete } = this.props;
+
+    console.log('od', onDelete, !onDelete);
+
+    if (!onDelete) return null;
+
+    const res = await onDelete(values);
 
     onRequestClose();
 

@@ -9,5 +9,6 @@ export type FormBodyPropTypes = {
   onCancel?: () => void,
   onClose?: () => void,
   onSubmit?: ?(values: Values) => mixed,
+  onDelete?: ?(values: Values) => mixed,
   title?: string,
 };

@@ -9,6 +9,7 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import DependentField from './examples/DependentField';
 import Minimal from './examples/Minimal';
+import Delete from './examples/Delete';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
 import FieldLevelValidation from './examples/FieldLevelValidation';
 
@@ -87,6 +88,50 @@ class ModalFormMinimalExample extends React.Component {
 }
           `,
           render: () => <Minimal />,
+        }}
+      />
+      <DocItem
+        description="Delete"
+        example={{
+          code: `
+import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
+
+class ModalFormDeleteExample extends React.Component {
+  state = {
+    modalVisible: false,
+  };
+
+  render() {
+    return (
+      <View>
+        <Button
+          onPress={() => this.setState({ modalVisible: true })}
+          text="Open form"
+        />
+        <ModalForm
+          onRequestClose={() => this.setState({ modalVisible: false })}
+          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          title="Modal Form Delete Example"
+          visible={this.state.modalVisible}
+          onDelete={() => alert('deleting!')}
+        >
+          <Form.Field
+            name="firstName"
+            component={TextField}
+            label="First Name"
+          />
+          <Form.Field
+            name="lastName"
+            component={TextField}
+            label="Last Name"
+          />
+        </ModalForm>
+      </View>
+    );
+  }
+}
+          `,
+          render: () => <Delete />,
         }}
       />
       <DocItem
