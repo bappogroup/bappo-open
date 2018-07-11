@@ -73,7 +73,7 @@ class ModalForm extends React.Component<Props> {
     return;
   };
 
-  _onCancel = async (formState: FormStateAndHelpersAndActions) => {
+  _onCancel = (formState: FormStateAndHelpersAndActions) => {
     const { onRequestClose } = this.props;
 
     if (formState.dirty) {
