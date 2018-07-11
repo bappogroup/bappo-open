@@ -30,3 +30,4 @@ export { default as SubHeading } from './components/SubHeading';
 export { default as Card } from './components/Card';
 export { default as Background } from './components/Background';
 export { default as Select } from './components/Select';
+export { default as Separator } from './components/Separator';
