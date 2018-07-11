@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
+import {
+  Alert,
+  Button,
+  Form,
+  ModalForm,
+  TextField,
+  View,
+} from 'bappo-components';
 
 class ModalFormDeleteExample extends React.Component {
   state = {
@@ -15,10 +22,12 @@ class ModalFormDeleteExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values =>
+            Alert.alert({ message: JSON.stringify(values, null, 2) })
+          }
           title="Modal Form Delete Example"
           visible={this.state.modalVisible}
-          onDelete={() => alert('deleting!')}
+          onDelete={() => Alert.alert({ title: 'deleting!' })}
         >
           <Form.Field
             name="firstName"

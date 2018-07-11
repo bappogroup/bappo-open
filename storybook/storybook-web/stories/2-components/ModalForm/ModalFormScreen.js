@@ -9,7 +9,6 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import DependentField from './examples/DependentField';
 import Minimal from './examples/Minimal';
-import Delete from './examples/Delete';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
 import FieldLevelValidation from './examples/FieldLevelValidation';
 
@@ -51,7 +50,14 @@ const ModalFormScreen = () => (
         description="Minimal"
         example={{
           code: `
-import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
+import {
+  Alert,
+  Button,
+  Form,
+  ModalForm,
+  TextField,
+  View,
+} from 'bappo-components';
 
 class ModalFormMinimalExample extends React.Component {
   state = {
@@ -67,7 +73,7 @@ class ModalFormMinimalExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
           title="Modal Form Minimal Example"
           visible={this.state.modalVisible}
         >
@@ -91,54 +97,11 @@ class ModalFormMinimalExample extends React.Component {
         }}
       />
       <DocItem
-        description="Delete"
-        example={{
-          code: `
-import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
-
-class ModalFormDeleteExample extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.setState({ modalVisible: true })}
-          text="Open form"
-        />
-        <ModalForm
-          onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
-          title="Modal Form Delete Example"
-          visible={this.state.modalVisible}
-          onDelete={() => alert('deleting!')}
-        >
-          <Form.Field
-            name="firstName"
-            component={TextField}
-            label="First Name"
-          />
-          <Form.Field
-            name="lastName"
-            component={TextField}
-            label="Last Name"
-          />
-        </ModalForm>
-      </View>
-    );
-  }
-}
-          `,
-          render: () => <Delete />,
-        }}
-      />
-      <DocItem
         description="Field-level validation"
         example={{
           code: `
 import {
+  Alert,
   Button,
   Form,
   ModalForm,
@@ -162,7 +125,7 @@ class ModalFormFieldLevelValidationExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
           title="Modal Form Field Level Validation Example"
           visible={this.state.modalVisible}
         >
@@ -200,7 +163,14 @@ class ModalFormFieldLevelValidationExample extends React.Component {
         description="Dependent Field"
         example={{
           code: `
-import { Button, Form, ModalForm, SelectField, View } from 'bappo-components';
+import {
+  Alert,
+  Button,
+  Form,
+  ModalForm,
+  SelectField,
+  View,
+} from 'bappo-components';
 
 class ModalFormDependentFieldExample extends React.Component {
   state = {
@@ -216,7 +186,7 @@ class ModalFormDependentFieldExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
           title="Modal Form Dependent Field Example"
           visible={this.state.modalVisible}
         >
@@ -255,6 +225,7 @@ class ModalFormDependentFieldExample extends React.Component {
         example={{
           code: `
 import {
+  Alert,
   Button,
   Form,
   ModalForm,
@@ -277,7 +248,7 @@ class ModalFormShowHideFieldBasedOnFormStateExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => alert(JSON.stringify(values, null, 2))}
+          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
           title="Modal Form Show/Hide Field Based on Form State Example"
           visible={this.state.modalVisible}
         >
