@@ -54,9 +54,14 @@ const FormBody = ({
               />
             </ModalFormContent>
             <ModalFormFooter>
-              {onDelete && (
-                <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
-              )}
+              <ModalFormRow>
+                {onDelete && (
+                  <ModalFormFooterDeleteButton
+                    onPress={onDelete}
+                    text="Delete"
+                  />
+                )}
+              </ModalFormRow>
               <ModalFormRow>
                 <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
                 <ModalFormFooterSubmitButton text="Submit" />
@@ -128,9 +133,6 @@ const ModalFormHeaderMobileDeleteButton = styled(Button).attrs({
 
   @media (max-width: 576px) {
     display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
   }
 `;
 
