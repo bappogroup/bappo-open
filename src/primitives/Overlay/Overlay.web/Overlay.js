@@ -39,14 +39,10 @@ class Overlay extends React.Component<Props> {
       return null;
     }
 
-    const { children, color, onLayout, visible } = this.props;
+    const { children, onLayout, visible } = this.props;
 
     const portalChild = visible ? (
-      <OverlayContainer
-        onClick={this._onClick}
-        onLayout={onLayout}
-        color={color}
-      >
+      <OverlayContainer onClick={this._onClick} onLayout={onLayout}>
         {children}
       </OverlayContainer>
     ) : null;

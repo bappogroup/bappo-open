@@ -76,12 +76,6 @@ class ModalPropOnOverlayPressExample extends React.Component {
       />
 
       <DocItem
-        name="overlayColor?"
-        typeInfo="string"
-        description="Overlay color."
-      />
-
-      <DocItem
         name="visible?"
         typeInfo="boolean"
         description="Determines whether the modal is visible."

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Text from '../../../primitives/Text';
+import Button from '../../Button';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
@@ -16,30 +17,25 @@ import type { FormBodyPropTypes } from './types.js.flow';
 
 const FormBody = ({
   children,
-  initialValues,
   onCancel,
-  onSubmit,
+  onDelete,
   title,
+  formState,
 }: FormBodyPropTypes) => {
   return (
-    <StyledForm initialValues={initialValues} onSubmit={onSubmit}>
-      {formState => {
-        return (
-          <React.Fragment>
-            <ModalFormHeader>
-              <ModalFormHeaderCancelButton onPress={onCancel} />
-              <ModalFormHeaderSubmitButton />
-              <ModalFormTitleContainer>
-                <ModalFormTitleText>{title}</ModalFormTitleText>
-              </ModalFormTitleContainer>
-            </ModalFormHeader>
-            <ModalFormContent>
-              {typeof children === 'function' ? children(formState) : children}
-            </ModalFormContent>
-          </React.Fragment>
-        );
-      }}
-    </StyledForm>
+    <React.Fragment>
+      <ModalFormHeader>
+        <ModalFormHeaderCancelButton onPress={onCancel} />
+        <ModalFormHeaderSubmitButton />
+        <ModalFormTitleContainer>
+          <ModalFormTitleText>{title}</ModalFormTitleText>
+        </ModalFormTitleContainer>
+      </ModalFormHeader>
+      <ModalFormContent>
+        {typeof children === 'function' ? children(formState) : children}
+        <ModalFormHeaderDeleteButton onPress={onDelete} text="Delete" />
+      </ModalFormContent>
+    </React.Fragment>
   );
 };
 
@@ -55,4 +51,14 @@ const ModalFormHeader = styled.SafeAreaView`
 
 const ModalFormContent = styled.View`
   ${modalFormContentStyle};
+`;
+
+const ModalFormHeaderDeleteButton = styled(Button).attrs({
+  type: 'destructive',
+})`
+  display: none;
+
+  @media (max-width: 576px) {
+    display: flex;
+  }
 `;

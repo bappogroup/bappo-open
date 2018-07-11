@@ -40,11 +40,10 @@ class Modal extends React.Component<Props, State> {
   }
 
   render() {
-    const { children, onRequestClose, overlayColor, visible } = this.props;
+    const { children, onRequestClose, visible } = this.props;
 
     return (
       <Overlay
-        color={overlayColor}
         onLayout={this._onOverlayLayout}
         onPress={onRequestClose}
         visible={visible}

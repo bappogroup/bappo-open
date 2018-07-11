@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import type { Values } from '../../../primitives/Form/FormState/types.js.flow';
+import type { FormState, Values } from '../../../primitives/Form/FormState/types.js.flow';
 
 export type FormBodyPropTypes = {
   children?: React.Node,
-  initialValues?: Values,
   onCancel?: () => void,
   onClose?: () => void,
-  onSubmit?: ?(values: Values) => mixed,
   onDelete?: ?(values: Values) => mixed,
   title?: string,
+  formState: FormState
 };

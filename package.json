@@ -14,6 +14,7 @@
     "src"
   ],
   "scripts": {
+    "prepush": "yarn flow",
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel src/ -d es/",
     "build": "npm run build:cjs && npm run build:es && rimraf storybook/storybook-native/node_modules/bappo-components/lib/ && cp -r lib storybook/storybook-native/node_modules/bappo-components/lib",
@@ -40,6 +41,7 @@
     "es6-error": "^4.1.1",
     "exenv": "^1.2.2",
     "fbjs": "^0.8.16",
+    "husky": "^0.14.3",
     "lodash": "^4.17.10",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",

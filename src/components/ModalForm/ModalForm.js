@@ -10,7 +10,7 @@ import ModalFormBody from './FormBody';
 import { StyledForm } from './StyledComponents';
 
 type RequiredProps = {
-  onRequestClose: () => void,
+  onRequestClose: () => any,
 };
 type OptionalProps = {
   children?:
@@ -20,7 +20,6 @@ type OptionalProps = {
   onOverlayPress?: () => void,
   onSubmit?: ?(values: Values) => mixed,
   onDelete?: ?(values: Values) => mixed,
-  overlayColor?: string,
   title?: string,
   visible?: ?boolean,
 };
@@ -67,24 +66,24 @@ class ModalForm extends React.Component<Props> {
 
   _onDelete = async (values: Values) => {
     const { onRequestClose, onDelete } = this.props;
+    if (!onDelete) return;
 
-    const res = await onDelete(values);
-
+    await onDelete(values);
     onRequestClose();
-
-    return res;
+    return;
   };
 
-  _onCancel = async (formState: any) => {
+  _onCancel = (formState: FormStateAndHelpersAndActions) => {
     const { onRequestClose } = this.props;
 
     if (formState.dirty) {
       // TODO: use proper alert component, quit if user confirms
-      return !alert('not today, punk');
+      !alert('not today, punk');
+      return;
     }
 
-    const res = await onRequestClose();
-    return res;
+    onRequestClose();
+    return;
   };
 }
 
