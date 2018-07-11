@@ -37,6 +37,7 @@ class ModalForm extends React.Component<Props> {
       overlayColor,
       title,
       visible,
+      onDelete,
     } = this.props;
 
     return (
@@ -51,7 +52,7 @@ class ModalForm extends React.Component<Props> {
           onCancel={onRequestClose}
           onClose={onRequestClose}
           onSubmit={this._onSubmit}
-          onDelete={this._onDelete}
+          onDelete={onDelete && this._onDelete}
           title={title}
         >
           {children}
@@ -72,10 +73,6 @@ class ModalForm extends React.Component<Props> {
 
   _onDelete = async (values: Values) => {
     const { onRequestClose, onDelete } = this.props;
-
-    console.log('od', onDelete, !onDelete);
-
-    if (!onDelete) return null;
 
     const res = await onDelete(values);
 

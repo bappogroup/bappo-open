@@ -52,7 +52,7 @@ class Modal extends React.Component<Props, State> {
       <Overlay
         color={overlayColor}
         onLayout={this._onOverlayLayout}
-        onPress={onOverlayPress}
+        onPress={onRequestClose}
         onRequestClose={onRequestClose}
         visible={visible}
       >
@@ -93,6 +93,8 @@ const ModalContentContainer = styled(ViewBase).attrs({
   position: absolute;
   left: 0;
   right: 0;
+  border-radius: 4px;
+  overflow: hidden;
 
   &:focus {
     outline: none;

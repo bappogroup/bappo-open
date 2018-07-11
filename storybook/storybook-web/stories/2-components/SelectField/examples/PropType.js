@@ -1,7 +1,7 @@
 import React from 'react';
-import { Select } from 'bappo-components';
+import { SelectField } from 'bappo-components';
 
-const SelectTypeExample = () => {
+const SelectFieldTypeExample = () => {
   const items = [
     { value: 'apple' },
     { value: 'pear' },
@@ -10,7 +10,7 @@ const SelectTypeExample = () => {
     { value: 'banana' },
   ];
 
-  return <Select items={items} />;
+  return <SelectField items={items} />;
 };
 
-export default SelectTypeExample;
+export default SelectFieldTypeExample;
