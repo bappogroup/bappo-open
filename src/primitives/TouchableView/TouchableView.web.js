@@ -1,5 +1,7 @@
 // @flow
 
+/* eslint-disable react/no-direct-mutation-state */
+
 import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
 import ReactDOM from 'react-dom';
