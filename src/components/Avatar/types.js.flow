@@ -6,4 +6,5 @@ export type AvatarProps = {
   name: string,
   size: 'large' | 'medium',
   style?: any,
+  badge?: number
 };
