@@ -87,6 +87,7 @@ const SwitchContainer = styled(ViewBase).attrs({
   tabIndex: 0,
 })`
   flex: none;
+  outline: none;
   flex-direction: row;
   background-color: ${({ value }) => (value ? '#FF7800' : '#B0ADAB')};
   border-radius: 12px;
