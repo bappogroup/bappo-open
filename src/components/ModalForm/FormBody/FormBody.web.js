@@ -14,7 +14,6 @@ import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
-  StyledForm,
   modalFormContentStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
@@ -23,54 +22,39 @@ import type { FormBodyPropTypes } from './types.js.flow';
 
 const FormBody = ({
   children,
-  initialValues,
   onCancel,
-  onClose,
-  onSubmit,
   onDelete,
   title,
+  formState,
 }: FormBodyPropTypes) => {
-  console.log('od', onDelete);
   return (
-    <StyledForm initialValues={initialValues} onSubmit={onSubmit}>
-      {formState => {
-        return (
-          <React.Fragment>
-            <ModalFormHeader>
-              <ModalFormCloseButton onPress={onClose} />
-              <ModalFormHeaderMobileContainer>
-                <ModalFormHeaderCancelButton onPress={onCancel} />
-                <ModalFormHeaderSubmitButton />
-              </ModalFormHeaderMobileContainer>
-              <ModalFormTitleContainer>
-                <ModalFormTitleText>{title}</ModalFormTitleText>
-              </ModalFormTitleContainer>
-            </ModalFormHeader>
-            <ModalFormContent>
-              {typeof children === 'function' ? children(formState) : children}
-              <ModalFormHeaderMobileDeleteButton
-                onPress={onDelete}
-                text="Delete"
-              />
-            </ModalFormContent>
-            <ModalFormFooter>
-              <ModalFormRow>
-                {onDelete && (
-                  <ModalFormFooterDeleteButton
-                    onPress={onDelete}
-                    text="Delete"
-                  />
-                )}
-              </ModalFormRow>
-              <ModalFormRow>
-                <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-                <ModalFormFooterSubmitButton text="Submit" />
-              </ModalFormRow>
-            </ModalFormFooter>
-          </React.Fragment>
-        );
-      }}
-    </StyledForm>
+    <React.Fragment>
+      <ModalFormHeader>
+        <ModalFormCloseButton onPress={onCancel} />
+        <ModalFormHeaderMobileContainer>
+          <ModalFormHeaderCancelButton onPress={onCancel} />
+          <ModalFormHeaderSubmitButton />
+        </ModalFormHeaderMobileContainer>
+        <ModalFormTitleContainer>
+          <ModalFormTitleText>{title}</ModalFormTitleText>
+        </ModalFormTitleContainer>
+      </ModalFormHeader>
+      <ModalFormContent>
+        {typeof children === 'function' ? children(formState) : children}
+        <ModalFormHeaderMobileDeleteButton onPress={onDelete} text="Delete" />
+      </ModalFormContent>
+      <ModalFormFooter>
+        <ModalFormRow>
+          {onDelete && (
+            <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
+          )}
+        </ModalFormRow>
+        <ModalFormRow>
+          <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
+          <ModalFormFooterSubmitButton text="Submit" />
+        </ModalFormRow>
+      </ModalFormFooter>
+    </React.Fragment>
   );
 };
 

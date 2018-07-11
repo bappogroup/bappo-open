@@ -7,6 +7,7 @@ import type {
 } from '../../primitives/Form/FormState/types.js.flow';
 import Modal from '../Modal';
 import ModalFormBody from './FormBody';
+import { StyledForm } from './StyledComponents';
 
 type RequiredProps = {
   onRequestClose: () => void,
@@ -29,35 +30,28 @@ class ModalForm extends React.Component<Props> {
   props: Props;
 
   render() {
-    const {
-      children,
-      initialValues,
-      onOverlayPress,
-      onRequestClose,
-      overlayColor,
-      title,
-      visible,
-      onDelete,
-    } = this.props;
+    const { children, initialValues, title, visible, onDelete } = this.props;
 
     return (
-      <Modal
-        onOverlayPress={onOverlayPress}
-        onRequestClose={onRequestClose}
-        overlayColor={overlayColor}
-        visible={visible}
-      >
-        <ModalFormBody
-          initialValues={initialValues}
-          onCancel={onRequestClose}
-          onClose={onRequestClose}
-          onSubmit={this._onSubmit}
-          onDelete={onDelete && this._onDelete}
-          title={title}
-        >
-          {children}
-        </ModalFormBody>
-      </Modal>
+      <StyledForm initialValues={initialValues} onSubmit={this._onSubmit}>
+        {formState => {
+          return (
+            <Modal
+              onRequestClose={() => this._onCancel(formState)}
+              visible={visible}
+            >
+              <ModalFormBody
+                onCancel={() => this._onCancel(formState)}
+                onDelete={onDelete && this._onDelete}
+                title={title}
+                formState={formState}
+              >
+                {children}
+              </ModalFormBody>
+            </Modal>
+          );
+        }}
+      </StyledForm>
     );
   }
 
@@ -78,6 +72,18 @@ class ModalForm extends React.Component<Props> {
 
     onRequestClose();
 
+    return res;
+  };
+
+  _onCancel = async (formState: any) => {
+    const { onRequestClose } = this.props;
+
+    if (formState.dirty) {
+      // TODO: use proper alert component, quit if user confirms
+      return !alert('not today, punk');
+    }
+
+    const res = await onRequestClose();
     return res;
   };
 }
