@@ -40,18 +40,20 @@ const AlertDialog = ({ actions, message, onDismiss, title }: Props) => {
         <AlertMessage>{message}</AlertMessage>
       </AlertContentArea>
       <AlertActionArea>
-        {neutralAction && (
-          <ActionButton
-            onClick={createActionButtonHandler(neutralAction.onPress)}
-          >
-            <ActionButtonText
-              color={ActionButtonColorMap[neutralAction.style || 'default']}
+        <AlertActionSubArea>
+          {neutralAction && (
+            <ActionButton
+              onClick={createActionButtonHandler(neutralAction.onPress)}
             >
-              {neutralAction.text}
-            </ActionButtonText>
-          </ActionButton>
-        )}
-        <AlertRightActionArea>
+              <ActionButtonText
+                color={ActionButtonColorMap[neutralAction.style || 'default']}
+              >
+                {neutralAction.text}
+              </ActionButtonText>
+            </ActionButton>
+          )}
+        </AlertActionSubArea>
+        <AlertActionSubArea>
           {otherActions.map((action, index) => (
             <ActionButton
               key={index}
@@ -64,7 +66,7 @@ const AlertDialog = ({ actions, message, onDismiss, title }: Props) => {
               </ActionButtonText>
             </ActionButton>
           ))}
-        </AlertRightActionArea>
+        </AlertActionSubArea>
       </AlertActionArea>
     </AlertContainer>
   );
@@ -93,7 +95,7 @@ const AlertActionArea = styled(FlexDiv)`
   padding: 8px 0 8px 24px;
 `;
 
-const AlertRightActionArea = styled(FlexDiv)`
+const AlertActionSubArea = styled(FlexDiv)`
   flex-direction: row;
   align-items: center;
 `;

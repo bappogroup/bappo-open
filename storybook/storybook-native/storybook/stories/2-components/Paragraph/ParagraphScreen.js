@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { styled } from '../../apis/Style';
-import Text from '../../primitives/Text';
+import { styled, Text } from 'bappo-components';
 
 type Props = {
   children?: string,

@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Icon from '../../../components/Icon';
 import FlexDiv from '../../../internals/web/FlexDiv';
+import FlexForm from '../../../internals/web/FlexForm';
 import ActivityIndicator from '../../../primitives/ActivityIndicator';
 import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
@@ -24,11 +25,16 @@ const FormBody = ({
   children,
   onCancel,
   onDelete,
+  onSubmit,
   title,
-  formState,
 }: FormBodyPropTypes) => {
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    onSubmit && onSubmit();
+  };
+
   return (
-    <React.Fragment>
+    <StyledForm onSubmit={handleFormSubmit}>
       <ModalFormHeader>
         <ModalFormCloseButton onPress={onCancel} />
         <ModalFormHeaderMobileContainer>
@@ -40,8 +46,8 @@ const FormBody = ({
         </ModalFormTitleContainer>
       </ModalFormHeader>
       <ModalFormContent>
-        {typeof children === 'function' ? children(formState) : children}
-        <ModalFormHeaderMobileDeleteButton onPress={onDelete} text="Delete" />
+        {children}
+        <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
       </ModalFormContent>
       <ModalFormFooter>
         <ModalFormRow>
@@ -54,11 +60,15 @@ const FormBody = ({
           <ModalFormFooterSubmitButton text="Submit" />
         </ModalFormRow>
       </ModalFormFooter>
-    </React.Fragment>
+    </StyledForm>
   );
 };
 
 export default FormBody;
+
+const StyledForm = styled(FlexForm)`
+  flex: 1;
+`;
 
 const ModalFormTitleText = styled(Text)`
   font-size: 20px;
@@ -110,7 +120,7 @@ const ModalFormHeaderMobileContainer = styled(FlexDiv)`
   }
 `;
 
-const ModalFormHeaderMobileDeleteButton = styled(Button).attrs({
+const ModalFormMobileDeleteButton = styled(Button).attrs({
   type: 'destructive',
 })`
   display: none;

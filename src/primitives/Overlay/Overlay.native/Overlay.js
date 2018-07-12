@@ -14,20 +14,16 @@ class Overlay extends React.Component<Props> {
   static defaultProps = OverlayDefaultProps;
 
   render() {
-    const { children, color, onLayout, onPress, visible } = this.props;
+    const { children, onLayout, visible } = this.props;
 
     return (
       <RN.Modal
         animationType="none"
-        onPress={onPress}
+        onRequestClose={this._onPress}
         transparent
         visible={visible}
       >
-        <OverlayContainer
-          onLayout={onLayout}
-          onPress={this._onPress}
-          color={color}
-        >
+        <OverlayContainer onLayout={onLayout} onPress={this._onPress}>
           {children}
         </OverlayContainer>
       </RN.Modal>
@@ -48,5 +44,5 @@ const OverlayContainer = styled.TouchableOpacity.attrs({
   activeOpacity: 1,
 })`
   flex: 1;
-  background-color: ${props => props.color};
+  background-color: rgba(178, 178, 178, 0.8);
 `;
