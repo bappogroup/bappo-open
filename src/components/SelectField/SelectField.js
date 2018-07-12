@@ -71,8 +71,4 @@ class SelectField extends React.Component<Props, State> {
   }
 }
 
-SelectField.defaultProps = {
-  items: [],
-};
-
 export default SelectField;
