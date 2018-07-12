@@ -28,7 +28,7 @@ class ModalForm extends React.Component<Props> {
   props: Props;
 
   render() {
-    const { children, initialValues, title, visible } = this.props;
+    const { children, initialValues, onDelete, title, visible } = this.props;
 
     return (
       <FormState initialValues={initialValues}>
@@ -42,7 +42,7 @@ class ModalForm extends React.Component<Props> {
             >
               <ModalFormBody
                 onCancel={() => this._onCancel(formState)}
-                onDelete={() => this._onDelete(formState)}
+                onDelete={onDelete && (() => this._onDelete(formState))}
                 onSubmit={() => this._onSubmit(formState)}
                 title={title}
               >

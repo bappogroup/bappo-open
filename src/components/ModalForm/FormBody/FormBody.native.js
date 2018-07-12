@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import FormConfigProvider from '../../../primitives/Form/Form.native/FormConfigContext';
+import { FormConfigProvider } from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
 import Button from '../../Button';
 import {
@@ -34,7 +34,9 @@ const FormBody = ({
         </ModalFormHeader>
         <ModalFormContent>
           {children}
-          <ModalFormDeleteButton onPress={onDelete} text="Delete" />
+          {onDelete && (
+            <ModalFormDeleteButton onPress={onDelete} text="Delete" />
+          )}
         </ModalFormContent>
       </StyledForm>
     </FormConfigProvider>

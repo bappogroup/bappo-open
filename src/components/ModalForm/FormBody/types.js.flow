@@ -5,7 +5,7 @@ import * as React from 'react';
 export type FormBodyPropTypes = {
   children?: React.Node,
   onCancel: () => any,
-  onDelete: () => any,
+  onDelete?: ?() => any,
   onSubmit: () => any,
   title?: string,
 };
