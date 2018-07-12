@@ -9,10 +9,10 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import Example from './example';
 
-const SeparatorScreen = () => (
-  <UIExplorer title="Separator" url="2-components/Separator">
+const VerticalSeparatorScreen = () => (
+  <UIExplorer title="Separator(Vertical)" url="2-components/Separator">
     <Description>
-      <AppText>Separator</AppText>
+      <AppText>Vertical Separator</AppText>
     </Description>
 
     <DocItem
@@ -23,4 +23,7 @@ const SeparatorScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('Separator', SeparatorScreen);
+storiesOf('Components', module).add(
+  'Separator(Vertical)',
+  VerticalSeparatorScreen,
+);
