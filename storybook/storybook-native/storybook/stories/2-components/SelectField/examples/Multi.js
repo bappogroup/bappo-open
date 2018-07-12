@@ -30,7 +30,7 @@ class SelectFieldMultiExample extends React.Component {
   selectItem = selectedItem => {
     const { selectedItems } = this.state;
     const newSelectedItems = [...selectedItems, selectedItem];
-    this.setState({ selectedItem: newSelectedItems });
+    this.setState({ selectedItems: newSelectedItems });
   };
 
   render() {
