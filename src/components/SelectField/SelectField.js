@@ -29,7 +29,7 @@ class SelectField extends React.Component<Props, State> {
     value: '',
   };
 
-  listItem = item => {
+  listItem = (item: any) => {
     const { itemToString, selectItem } = this.props;
     return (
       <StyledTouchableView
