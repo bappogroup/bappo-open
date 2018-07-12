@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-sort-props */
-
 import React from 'react';
 import UIExplorer, {
   AppText,

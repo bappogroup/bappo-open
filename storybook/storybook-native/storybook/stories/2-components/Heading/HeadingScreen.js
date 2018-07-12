@@ -1,22 +1,35 @@
-// @flow
+/* eslint-disable react/jsx-sort-props */
 
-import * as React from 'react';
-import { styled, Text } from 'bappo-components';
+import React from 'react';
+import UIExplorer, {
+  AppText,
+  Description,
+  DocItem,
+  Section,
+  storiesOf,
+} from '../../../ui-explorer';
+import Example from './example';
 
-type Props = {
-  children?: string,
-};
+const HeadingScreen = () => (
+  <UIExplorer title="Heading" url="2-components/Heading">
+    <Description>
+      <AppText>Heading.</AppText>
+    </Description>
 
-const Heading = ({ children }: Props) => {
-  return <StyledText selectable>{children}</StyledText>;
-};
+    <Section title="Props">
+      <DocItem
+        name="children?"
+        typeInfo="string"
+        description="The text content of the Heading."
+      />
 
-Heading.defaultProps = {};
+      <DocItem
+        example={{
+          render: () => <Example />,
+        }}
+      />
+    </Section>
+  </UIExplorer>
+);
 
-export default Heading;
-
-const StyledText = styled(Text)`
-  height: 26px;
-  line-height: 26px;
-  font-size: 18px;
-`;
+storiesOf('Components', module).add('Heading', HeadingScreen);

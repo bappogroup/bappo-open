@@ -37,6 +37,7 @@ const styles = {
     flexBasis: 20,
     flexGrow: 1,
     flexShrink: 0,
+    alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderStyle: 'solid',

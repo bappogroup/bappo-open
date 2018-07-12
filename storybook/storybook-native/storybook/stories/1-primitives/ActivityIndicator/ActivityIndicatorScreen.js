@@ -1,5 +1,10 @@
 import React from 'react';
-import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../../ui-explorer';
+import UIExplorer, {
+  Description,
+  DocItem,
+  Section,
+  storiesOf,
+} from '../../../ui-explorer';
 import PropAnimating from './examples/PropAnimating';
 import PropColor from './examples/PropColor';
 import PropSize from './examples/PropSize';
@@ -38,4 +43,7 @@ const ActivityIndicatorScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Primitives', module).add('ActivityIndicator', ActivityIndicatorScreen);
+storiesOf('Primitives', module).add(
+  'ActivityIndicator',
+  ActivityIndicatorScreen,
+);
