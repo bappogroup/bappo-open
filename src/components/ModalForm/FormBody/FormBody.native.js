@@ -2,13 +2,13 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import FormConfigProvider from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
 import Button from '../../Button';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
-  StyledForm,
   modalFormContentStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
@@ -19,27 +19,33 @@ const FormBody = ({
   children,
   onCancel,
   onDelete,
+  onSubmit,
   title,
-  formState,
 }: FormBodyPropTypes) => {
   return (
-    <React.Fragment>
-      <ModalFormHeader>
-        <ModalFormHeaderCancelButton onPress={onCancel} />
-        <ModalFormHeaderSubmitButton />
-        <ModalFormTitleContainer>
-          <ModalFormTitleText>{title}</ModalFormTitleText>
-        </ModalFormTitleContainer>
-      </ModalFormHeader>
-      <ModalFormContent>
-        {typeof children === 'function' ? children(formState) : children}
-        <ModalFormHeaderDeleteButton onPress={onDelete} text="Delete" />
-      </ModalFormContent>
-    </React.Fragment>
+    <FormConfigProvider value={{ onSubmit }}>
+      <StyledForm>
+        <ModalFormHeader>
+          <ModalFormHeaderCancelButton onPress={onCancel} />
+          <ModalFormHeaderSubmitButton />
+          <ModalFormTitleContainer>
+            <ModalFormTitleText>{title}</ModalFormTitleText>
+          </ModalFormTitleContainer>
+        </ModalFormHeader>
+        <ModalFormContent>
+          {children}
+          <ModalFormDeleteButton onPress={onDelete} text="Delete" />
+        </ModalFormContent>
+      </StyledForm>
+    </FormConfigProvider>
   );
 };
 
 export default FormBody;
+
+const StyledForm = styled.View`
+  flex: 1;
+`;
 
 const ModalFormTitleText = styled(Text)`
   ${modalFormMobileTitleTextStyle};
@@ -53,12 +59,6 @@ const ModalFormContent = styled.View`
   ${modalFormContentStyle};
 `;
 
-const ModalFormHeaderDeleteButton = styled(Button).attrs({
+const ModalFormDeleteButton = styled(Button).attrs({
   type: 'destructive',
-})`
-  display: none;
-
-  @media (max-width: 576px) {
-    display: flex;
-  }
-`;
+})``;
