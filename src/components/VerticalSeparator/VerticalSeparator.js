@@ -19,8 +19,9 @@ VerticalSeparator.defaultProps = {};
 export default VerticalSeparator;
 
 const StyledView = styled(View)`
+  border-width: 0px;
+  border-style: solid;
   border-left-width: 1px;
-  border-left-style: solid;
   border-left-color: rgba(0, 0, 0, 0.12);
   margin-left: 8px;
   margin-right: 8px;
