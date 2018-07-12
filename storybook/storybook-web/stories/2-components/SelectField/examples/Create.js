@@ -1,7 +1,7 @@
 import React from 'react';
 import { SelectField, Background, View, styled } from 'bappo-components';
 
-class SelectFieldTypeExample extends React.Component {
+class SelectFieldCreateExample extends React.Component {
   state = {
     items: [
       { value: 'apple', count: 42, icon: 'ac-unit' },
@@ -38,6 +38,7 @@ class SelectFieldTypeExample extends React.Component {
             itemToString={this.itemToString}
             selectItem={selectedItem => this.setState({ selectedItem })}
             createItem={this.createItem}
+            selectedItem={selectedItem}
           />
         </StyledView>
       </Background>
@@ -49,4 +50,4 @@ const StyledView = styled(View)`
   max-width: 300px;
 `;
 
-export default SelectFieldTypeExample;
+export default SelectFieldCreateExample;
