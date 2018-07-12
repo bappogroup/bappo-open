@@ -2,7 +2,7 @@
 
 ## Develop
 ```sh
-git clone git@github.com:williamfeng91/bappo-components.git
+git clone git@github.com:bappogroup/bappo-components.git
 cd bappo-components
 git submodule init
 git submodule update
