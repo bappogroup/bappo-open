@@ -12,10 +12,6 @@ import type {
   ModalFormSubmitButtonProps,
 } from './types.js.flow';
 
-export const StyledForm = styled(Form)`
-  flex: 1;
-`;
-
 export const ModalFormTitleContainer = styled(View)`
   align-items: center;
   justify-content: center;

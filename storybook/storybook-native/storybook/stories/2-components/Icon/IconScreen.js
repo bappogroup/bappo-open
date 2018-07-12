@@ -12,7 +12,7 @@ import UIExplorer, {
 import AllIcons from './AllIcons';
 
 const IconScreen = () => (
-  <UIExplorer title="Icon" url="1-components/Icon">
+  <UIExplorer title="Icon" url="2-components/Icon">
     <Description>
       <AppText>Icon.</AppText>
     </Description>

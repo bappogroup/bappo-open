@@ -1,4 +1,5 @@
 // APIs
+export { default as Alert } from './apis/Alert';
 export { default as Colors } from './apis/Colors';
 export { default as Platform } from './apis/Platform';
 export * from './apis/Style';
@@ -31,3 +32,6 @@ export { default as Card } from './components/Card';
 export { default as Background } from './components/Background';
 export { default as Select } from './components/Select';
 export { default as TabPicker } from './components/TabPicker';
+export { default as Separator } from './components/Separator';
+export { default as SelectField } from './components/SelectField';
+export { default as VerticalSeparator } from './components/VerticalSeparator';

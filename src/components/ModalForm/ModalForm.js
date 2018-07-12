@@ -1,24 +1,25 @@
 // @flow
 
 import * as React from 'react';
+import Alert from '../../apis/Alert';
 import type {
   FormStateAndHelpersAndActions,
   Values,
 } from '../../primitives/Form/FormState/types.js.flow';
+import { FormState } from '../../primitives/Form';
 import Modal from '../Modal';
 import ModalFormBody from './FormBody';
 
 type RequiredProps = {
-  onRequestClose: () => void,
+  onRequestClose: () => any,
 };
 type OptionalProps = {
   children?:
     | ?React.Node
     | ((formState: FormStateAndHelpersAndActions) => React.Node),
   initialValues?: Values,
-  onOverlayPress?: () => void,
+  onDelete?: ?(values: Values) => mixed,
   onSubmit?: ?(values: Values) => mixed,
-  overlayColor?: string,
   title?: string,
   visible?: ?boolean,
 };
@@ -28,44 +29,80 @@ class ModalForm extends React.Component<Props> {
   props: Props;
 
   render() {
-    const {
-      children,
-      initialValues,
-      onOverlayPress,
-      onRequestClose,
-      overlayColor,
-      title,
-      visible,
-    } = this.props;
+    const { children, initialValues, onDelete, title, visible } = this.props;
 
     return (
-      <Modal
-        onOverlayPress={onOverlayPress}
-        onRequestClose={onRequestClose}
-        overlayColor={overlayColor}
-        visible={visible}
-      >
-        <ModalFormBody
-          initialValues={initialValues}
-          onCancel={onRequestClose}
-          onClose={onRequestClose}
-          onSubmit={this._onSubmit}
-          title={title}
-        >
-          {children}
-        </ModalFormBody>
-      </Modal>
+      <FormState initialValues={initialValues}>
+        {formState => {
+          const formContent =
+            typeof children === 'function' ? children(formState) : children;
+          return (
+            <Modal
+              onRequestClose={() => this._onCancel(formState)}
+              visible={visible}
+            >
+              <ModalFormBody
+                onCancel={() => this._onCancel(formState)}
+                onDelete={onDelete && (() => this._onDelete(formState))}
+                onSubmit={() => this._onSubmit(formState)}
+                title={title}
+              >
+                {formContent}
+              </ModalFormBody>
+            </Modal>
+          );
+        }}
+      </FormState>
     );
   }
 
-  _onSubmit = async (values: Values) => {
-    const { onRequestClose, onSubmit } = this.props;
+  _onCancel = (formState: FormStateAndHelpersAndActions) => {
+    const { onRequestClose } = this.props;
 
-    const res = onSubmit && (await onSubmit(values));
+    if (formState.dirty) {
+      Alert.alert({
+        title: 'You have unsaved changes',
+        actions: [
+          {
+            text: 'Stay',
+            style: 'cancel',
+          },
+          {
+            text: 'Leave',
+            style: 'destructive',
+            onPress: () => onRequestClose(),
+          },
+        ],
+      });
+    } else {
+      onRequestClose();
+    }
+  };
+
+  _onDelete = async ({ values }: FormStateAndHelpersAndActions) => {
+    const { onRequestClose, onDelete } = this.props;
+
+    const res = onDelete && (await onDelete(values));
 
     onRequestClose();
 
     return res;
+  };
+
+  _onSubmit = async ({
+    actions,
+    fieldErrors,
+    values,
+  }: FormStateAndHelpersAndActions) => {
+    const { onRequestClose, onSubmit } = this.props;
+
+    actions.touchAll();
+
+    if (Object.keys(fieldErrors).length === 0) {
+      const res = await actions.submit(() => onSubmit && onSubmit(values));
+      onRequestClose();
+      return res;
+    }
   };
 }
 

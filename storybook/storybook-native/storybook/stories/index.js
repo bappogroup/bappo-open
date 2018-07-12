@@ -14,9 +14,19 @@ require('./1-primitives/TouchableView/TouchableViewScreen');
 require('./1-primitives/View/ViewScreen');
 
 require('./2-components/Avatar/AvatarScreen');
+require('./2-components/Background/BackgroundScreen');
+require('./2-components/Button/ButtonScreen');
+require('./2-components/Card/CardScreen');
 require('./2-components/DatePicker/DatePickerScreen');
+require('./2-components/Heading/HeadingScreen');
 require('./2-components/Icon/IconScreen');
 require('./2-components/Modal/ModalScreen');
 require('./2-components/ModalForm/ModalFormScreen');
+require('./2-components/Paragraph/ParagraphScreen');
 require('./2-components/SelectField/SelectFieldScreen');
+require('./2-components/SubHeading/SubHeadingScreen');
 require('./2-components/TimePicker/TimePickerScreen');
+require('./2-components/Separator/SeparatorScreen');
+require('./2-components/VerticalSeparator/VerticalSeparatorScreen');
+
+require('./3-apis/Alert/AlertScreen');

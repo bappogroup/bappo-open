@@ -6,25 +6,19 @@ const action = msg => () => {
   console.log(msg);
 };
 
-const TouchableViewDisabledExample = () => (
+const ButtonDisabledExample = () => (
   <View>
-    <StyledButton
-      disabled
-      onPress={action('pressed')}
-    >
+    <StyledButton disabled onPress={action('pressed')}>
       <Text>Disabled TouchableView</Text>
     </StyledButton>
 
-    <StyledButton
-      disabled={false}
-      onPress={action('pressed')}
-    >
+    <StyledButton disabled={false} onPress={action('pressed')}>
       <Text>Enabled TouchableView</Text>
     </StyledButton>
   </View>
 );
 
-export default TouchableViewDisabledExample;
+export default ButtonDisabledExample;
 
 const StyledButton = styled(TouchableView)`
   justify-content: center;

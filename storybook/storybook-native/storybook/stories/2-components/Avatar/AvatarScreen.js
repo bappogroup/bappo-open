@@ -12,6 +12,7 @@ import UIExplorer, {
 import PropColor from './examples/PropColor';
 import PropName from './examples/PropName';
 import PropSize from './examples/PropSize';
+import PropBadge from './examples/PropBadge';
 
 const AvatarScreen = () => (
   <UIExplorer title="Avatar" url="2-components/Avatar">
@@ -50,6 +51,15 @@ const AvatarScreen = () => (
         description="Avatar size."
         example={{
           render: () => <PropSize />,
+        }}
+      />
+
+      <DocItem
+        name="badge?"
+        typeInfo="number"
+        description="Notification."
+        example={{
+          render: () => <PropBadge />,
         }}
       />
 

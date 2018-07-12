@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Icon from '../../../components/Icon';
 import FlexDiv from '../../../internals/web/FlexDiv';
+import FlexForm from '../../../internals/web/FlexForm';
 import ActivityIndicator from '../../../primitives/ActivityIndicator';
 import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
@@ -14,7 +15,6 @@ import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
-  StyledForm,
   modalFormContentStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
@@ -23,42 +23,52 @@ import type { FormBodyPropTypes } from './types.js.flow';
 
 const FormBody = ({
   children,
-  initialValues,
   onCancel,
-  onClose,
+  onDelete,
   onSubmit,
   title,
 }: FormBodyPropTypes) => {
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    onSubmit && onSubmit();
+  };
+
   return (
-    <StyledForm initialValues={initialValues} onSubmit={onSubmit}>
-      {formState => {
-        return (
-          <React.Fragment>
-            <ModalFormHeader>
-              <ModalFormCloseButton onPress={onClose} />
-              <ModalFormHeaderMobileContainer>
-                <ModalFormHeaderCancelButton onPress={onCancel} />
-                <ModalFormHeaderSubmitButton />
-              </ModalFormHeaderMobileContainer>
-              <ModalFormTitleContainer>
-                <ModalFormTitleText>{title}</ModalFormTitleText>
-              </ModalFormTitleContainer>
-            </ModalFormHeader>
-            <ModalFormContent>
-              {typeof children === 'function' ? children(formState) : children}
-            </ModalFormContent>
-            <ModalFormFooter>
-              <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-              <ModalFormFooterSubmitButton text="Submit" />
-            </ModalFormFooter>
-          </React.Fragment>
-        );
-      }}
+    <StyledForm onSubmit={handleFormSubmit}>
+      <ModalFormHeader>
+        <ModalFormCloseButton onPress={onCancel} />
+        <ModalFormHeaderMobileContainer>
+          <ModalFormHeaderCancelButton onPress={onCancel} />
+          <ModalFormHeaderSubmitButton />
+        </ModalFormHeaderMobileContainer>
+        <ModalFormTitleContainer>
+          <ModalFormTitleText>{title}</ModalFormTitleText>
+        </ModalFormTitleContainer>
+      </ModalFormHeader>
+      <ModalFormContent>
+        {children}
+        <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
+      </ModalFormContent>
+      <ModalFormFooter>
+        <ModalFormRow>
+          {onDelete && (
+            <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
+          )}
+        </ModalFormRow>
+        <ModalFormRow>
+          <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
+          <ModalFormFooterSubmitButton text="Submit" />
+        </ModalFormRow>
+      </ModalFormFooter>
     </StyledForm>
   );
 };
 
 export default FormBody;
+
+const StyledForm = styled(FlexForm)`
+  flex: 1;
+`;
 
 const ModalFormTitleText = styled(Text)`
   font-size: 20px;
@@ -110,6 +120,16 @@ const ModalFormHeaderMobileContainer = styled(FlexDiv)`
   }
 `;
 
+const ModalFormMobileDeleteButton = styled(Button).attrs({
+  type: 'destructive',
+})`
+  display: none;
+
+  @media (max-width: 576px) {
+    display: flex;
+  }
+`;
+
 const ModalFormContent = styled(FlexDiv)`
   flex: 1;
   background-color: white;
@@ -123,7 +143,7 @@ const ModalFormContent = styled(FlexDiv)`
 const ModalFormFooter = styled(FlexDiv)`
   flex: none;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: #f1f1f0;
   border-top: 1px solid #dddbda;
   height: 64px;
@@ -134,11 +154,20 @@ const ModalFormFooter = styled(FlexDiv)`
   }
 `;
 
+const ModalFormRow = styled(FlexDiv)`
+  display: flex;
+  flex-direction: row;
+`;
+
 const ModalFormFooterCancelButton = styled(Button).attrs({
   type: 'secondary',
 })`
   margin-right: 16px;
 `;
+
+const ModalFormFooterDeleteButton = styled(Button).attrs({
+  type: 'destructive',
+})``;
 
 const StyledSubmitButton = styled(Form.SubmitButton).attrs({
   type: 'primary',

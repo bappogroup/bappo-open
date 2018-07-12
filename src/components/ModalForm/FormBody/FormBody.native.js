@@ -2,12 +2,13 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import { FormConfigProvider } from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
+import Button from '../../Button';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
-  StyledForm,
   modalFormContentStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
@@ -16,34 +17,37 @@ import type { FormBodyPropTypes } from './types.js.flow';
 
 const FormBody = ({
   children,
-  initialValues,
   onCancel,
+  onDelete,
   onSubmit,
   title,
 }: FormBodyPropTypes) => {
   return (
-    <StyledForm initialValues={initialValues} onSubmit={onSubmit}>
-      {formState => {
-        return (
-          <React.Fragment>
-            <ModalFormHeader>
-              <ModalFormHeaderCancelButton onPress={onCancel} />
-              <ModalFormHeaderSubmitButton />
-              <ModalFormTitleContainer>
-                <ModalFormTitleText>{title}</ModalFormTitleText>
-              </ModalFormTitleContainer>
-            </ModalFormHeader>
-            <ModalFormContent>
-              {typeof children === 'function' ? children(formState) : children}
-            </ModalFormContent>
-          </React.Fragment>
-        );
-      }}
-    </StyledForm>
+    <FormConfigProvider value={{ onSubmit }}>
+      <StyledForm>
+        <ModalFormHeader>
+          <ModalFormHeaderCancelButton onPress={onCancel} />
+          <ModalFormHeaderSubmitButton />
+          <ModalFormTitleContainer>
+            <ModalFormTitleText>{title}</ModalFormTitleText>
+          </ModalFormTitleContainer>
+        </ModalFormHeader>
+        <ModalFormContent>
+          {children}
+          {onDelete && (
+            <ModalFormDeleteButton onPress={onDelete} text="Delete" />
+          )}
+        </ModalFormContent>
+      </StyledForm>
+    </FormConfigProvider>
   );
 };
 
 export default FormBody;
+
+const StyledForm = styled.View`
+  flex: 1;
+`;
 
 const ModalFormTitleText = styled(Text)`
   ${modalFormMobileTitleTextStyle};
@@ -56,3 +60,7 @@ const ModalFormHeader = styled.SafeAreaView`
 const ModalFormContent = styled.View`
   ${modalFormContentStyle};
 `;
+
+const ModalFormDeleteButton = styled(Button).attrs({
+  type: 'destructive',
+})``;

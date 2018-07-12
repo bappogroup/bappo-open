@@ -18,7 +18,7 @@ const styles = {
   rightPadding: {
     paddingRight: 10,
   },
-  large: { marginLeft: 20, transform: [{ scale: 1.75 }] },
+  large: { marginLeft: 20, transform: 'scale(1.75)' },
 };
 
 ActivityIndicatorSizeExample.metadata = {

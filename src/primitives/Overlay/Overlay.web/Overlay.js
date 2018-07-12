@@ -3,10 +3,9 @@
 import * as React from 'react';
 import ExecutionEnvironment from 'exenv';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import ViewBase from '../../../internals/web/ViewBase';
 import type { OverlayProps } from '../types.js.flow';
 import OverlayDefaultProps from '../defaultProps';
+import OverlayContainer from './OverlayContainer';
 
 type Props = OverlayProps;
 
@@ -40,14 +39,10 @@ class Overlay extends React.Component<Props> {
       return null;
     }
 
-    const { children, color, onLayout, visible } = this.props;
+    const { children, onLayout, visible } = this.props;
 
     const portalChild = visible ? (
-      <OverlayContainer
-        onClick={this._onClick}
-        onLayout={onLayout}
-        color={color}
-      >
+      <OverlayContainer onClick={this._onClick} onLayout={onLayout}>
         {children}
       </OverlayContainer>
     ) : null;
@@ -67,14 +62,3 @@ class Overlay extends React.Component<Props> {
 }
 
 export default Overlay;
-
-const OverlayContainer = styled(ViewBase).attrs({
-  'aria-modal': 'true',
-})`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: ${props => props.color};
-`;
