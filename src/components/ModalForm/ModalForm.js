@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import Alert from '../../apis/Alert';
 import type {
   FormStateAndHelpersAndActions,
   Values,
@@ -59,12 +60,23 @@ class ModalForm extends React.Component<Props> {
     const { onRequestClose } = this.props;
 
     if (formState.dirty) {
-      // TODO: use proper alert component, quit if user confirms
-      !alert('not today, punk');
-      return;
+      Alert.alert({
+        title: 'You have unsaved changes',
+        actions: [
+          {
+            text: 'Stay',
+            style: 'cancel',
+          },
+          {
+            text: 'Leave',
+            style: 'destructive',
+            onPress: () => onRequestClose(),
+          },
+        ],
+      });
+    } else {
+      onRequestClose();
     }
-
-    onRequestClose();
   };
 
   _onDelete = async ({ values }: FormStateAndHelpersAndActions) => {
