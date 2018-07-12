@@ -1,10 +1,10 @@
 import React from 'react';
-import { SelectField, View } from 'bappo-components';
+import { SelectField, Background, View, styled } from 'bappo-components';
 
 class SelectFieldTypeExample extends React.Component {
   state = {
     items: [
-      { value: 'apple', count: 42 },
+      { value: 'apple', count: 42, icon: 'ac-unit' },
       { value: 'pear', count: 22 },
       { value: 'orange', count: 14 },
       { value: 'grape', count: 31 },
@@ -30,17 +30,23 @@ class SelectFieldTypeExample extends React.Component {
     const { items, selectedItem } = this.state;
 
     return (
-      <View>
-        <p>Selected: {JSON.stringify(selectedItem)}</p>
-        <SelectField
-          items={items}
-          itemToString={this.itemToString}
-          selectItem={selectedItem => this.setState({ selectedItem })}
-          createItem={this.createItem}
-        />
-      </View>
+      <Background>
+        <StyledView>
+          <p>Selected: {JSON.stringify(selectedItem)}</p>
+          <SelectField
+            items={items}
+            itemToString={this.itemToString}
+            selectItem={selectedItem => this.setState({ selectedItem })}
+            createItem={this.createItem}
+          />
+        </StyledView>
+      </Background>
     );
   }
 }
+
+const StyledView = styled(View)`
+  max-width: 300px;
+`;
 
 export default SelectFieldTypeExample;
