@@ -2,7 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = (baseConfig, env, defaultConfig) => {
+  const babelRule = defaultConfig.module.rules[0];
+  babelRule.include.push(
+    path.join(__dirname, '../../storybook-native/storybook/data'),
+    path.join(__dirname, '../../storybook-native/storybook/stories'),
+    path.join(__dirname, '../../storybook-native/storybook/ui-explorer'),
+  );
+
   defaultConfig.resolve.alias = {
+    '@storybook/react-native': path.join(
+      __dirname,
+      '../node_modules/@storybook/react',
+    ),
     'bappo-components': path.join(__dirname, '../../../'),
     react: path.join(__dirname, '../../../node_modules/react'),
     'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),

@@ -1,5 +1,10 @@
 import React from 'react';
-import UIExplorer, { Description, DocItem, Section, storiesOf } from '../../../ui-explorer';
+import UIExplorer, {
+  Description,
+  DocItem,
+  Section,
+  storiesOf,
+} from '../../../ui-explorer';
 import PropAnimating from './examples/PropAnimating';
 import PropColor from './examples/PropColor';
 import PropSize from './examples/PropSize';
@@ -30,12 +35,15 @@ const ActivityIndicatorScreen = () => (
         name="size?"
         typeInfo="enum('small', 'large') = 'small'"
         description="Size of the indicator. Small has a height of 20px, large has a height of 36px."
-        example={{
-          render: () => <PropSize />,
-        }}
+        // example={{
+        //   render: () => <PropSize />,
+        // }}
       />
     </Section>
   </UIExplorer>
 );
 
-storiesOf('Primitives', module).add('ActivityIndicator', ActivityIndicatorScreen);
+storiesOf('Primitives', module).add(
+  'ActivityIndicator',
+  ActivityIndicatorScreen,
+);

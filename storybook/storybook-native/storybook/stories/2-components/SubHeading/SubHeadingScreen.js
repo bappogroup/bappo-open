@@ -1,22 +1,35 @@
-// @flow
+/* eslint-disable react/jsx-sort-props */
 
-import * as React from 'react';
-import { styled, Text } from 'bappo-components';
+import React from 'react';
+import UIExplorer, {
+  AppText,
+  Description,
+  DocItem,
+  Section,
+  storiesOf,
+} from '../../../ui-explorer';
+import Example from './example';
 
-type Props = {
-  children?: string,
-};
+const SubHeadingScreen = () => (
+  <UIExplorer title="SubHeading" url="2-components/SubHeading">
+    <Description>
+      <AppText>SubHeading.</AppText>
+    </Description>
 
-const SubHeading = ({ children }: Props) => {
-  return <StyledText selectable>{children}</StyledText>;
-};
+    <Section title="Props">
+      <DocItem
+        name="children?"
+        typeInfo="string"
+        description="The text content of the SubHeading."
+      />
 
-SubHeading.defaultProps = {};
+      <DocItem
+        example={{
+          render: () => <Example />,
+        }}
+      />
+    </Section>
+  </UIExplorer>
+);
 
-export default SubHeading;
-
-const StyledText = styled(Text)`
-  height: 24px;
-  line-height: 24px;
-  font-size: 16px;
-`;
+storiesOf('Components', module).add('SubHeading', SubHeadingScreen);
