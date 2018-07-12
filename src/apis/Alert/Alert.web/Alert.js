@@ -10,7 +10,7 @@ import { validateOptions } from '../helpers';
 import AlertDialog from './AlertDialog';
 
 class Alert {
-  static alert(options: AlertOptions) {
+  static async alert(options: AlertOptions) {
     if (!ExecutionEnvironment.canUseDOM) {
       return;
     }
@@ -20,15 +20,20 @@ class Alert {
     const el = document.createElement('div');
     document.body && document.body.appendChild(el);
 
-    ReactDOM.render(
-      <StyledOverlayContainer>
-        <AlertDialog
-          {...options}
-          onDismiss={() => document.body && document.body.removeChild(el)}
-        />
-      </StyledOverlayContainer>,
-      el,
-    );
+    return new Promise(resolve => {
+      ReactDOM.render(
+        <StyledOverlayContainer>
+          <AlertDialog
+            {...options}
+            onDismiss={() => {
+              document.body && document.body.removeChild(el);
+              resolve();
+            }}
+          />
+        </StyledOverlayContainer>,
+        el,
+      );
+    });
   }
 }
 

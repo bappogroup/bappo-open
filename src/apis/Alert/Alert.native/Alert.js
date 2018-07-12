@@ -4,12 +4,27 @@ import RN from 'react-native';
 import type { AlertOptions } from '../types.js.flow';
 import { validateOptions } from '../helpers';
 
+const defaultAction = {
+  text: 'OK',
+};
+
 class Alert {
-  static alert(options: AlertOptions) {
+  static async alert(options: AlertOptions) {
     validateOptions(options);
 
-    RN.Alert.alert(options.title, options.message, options.actions, {
-      cancelable: false,
+    let actions = options.actions || [defaultAction];
+
+    return new Promise(resolve => {
+      actions = actions.map(action => ({
+        ...action,
+        onPress: () => {
+          resolve();
+          action.onPress && action.onPress();
+        },
+      }));
+      RN.Alert.alert(options.title, options.message, actions, {
+        cancelable: false,
+      });
     });
   }
 }
