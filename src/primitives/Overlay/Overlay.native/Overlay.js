@@ -37,7 +37,6 @@ class Overlay extends React.Component<Props> {
     }
   };
 }
-('');
 
 export default Overlay;
 

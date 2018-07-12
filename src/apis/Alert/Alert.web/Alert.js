@@ -38,5 +38,4 @@ const StyledOverlayContainer = styled(OverlayContainer)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(178, 178, 178, 0.8);
 `;
