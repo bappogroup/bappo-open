@@ -14,12 +14,12 @@ class Overlay extends React.Component<Props> {
   static defaultProps = OverlayDefaultProps;
 
   render() {
-    const { children, color, onLayout, onPress, visible } = this.props;
+    const { children, color, onLayout, visible } = this.props;
 
     return (
       <RN.Modal
         animationType="none"
-        onPress={onPress}
+        onRequestClose={this._onPress}
         transparent
         visible={visible}
       >
@@ -40,7 +40,7 @@ class Overlay extends React.Component<Props> {
       onPress && onPress();
     }
   };
-}
+}''
 
 export default Overlay;
 
