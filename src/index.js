@@ -32,3 +32,4 @@ export { default as Card } from './components/Card';
 export { default as Background } from './components/Background';
 export { default as Separator } from './components/Separator';
 export { default as SelectField } from './components/SelectField';
+export { default as VerticalSeparator } from './components/VerticalSeparator';

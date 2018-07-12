@@ -26,5 +26,7 @@ require('./2-components/Paragraph/ParagraphScreen');
 require('./2-components/SelectField/SelectFieldScreen');
 require('./2-components/SubHeading/SubHeadingScreen');
 require('./2-components/TimePicker/TimePickerScreen');
+require('./2-components/Separator/SeparatorScreen');
+require('./2-components/VerticalSeparator/VerticalSeparatorScreen');
 
 require('./3-apis/Alert/AlertScreen');
