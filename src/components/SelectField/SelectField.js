@@ -10,6 +10,7 @@ type Props = {
   items: Array<any>,
   itemToString: any => string,
   selectItem: any => any,
+  createItem: string => any,
 };
 
 type State = {
@@ -21,8 +22,40 @@ class SelectField extends React.Component<Props, State> {
     value: '',
   };
 
+  dropdown = () => {
+    const { items, itemToString, selectItem, createItem } = this.props;
+    const { value } = this.state;
+
+    let filteredItems = items.filter(item =>
+      itemToString(item).includes(value),
+    );
+
+    if (filteredItems.length === 0 && createItem)
+      return (
+        <TouchableView
+          onPress={() => {
+            createItem(value);
+            this.setState({ value: '' });
+          }}
+        >
+          Create New {value}
+        </TouchableView>
+      );
+
+    return filteredItems.map(item => (
+      <TouchableView
+        key={`list-item-${itemToString(item)}`}
+        onPress={() => {
+          selectItem(item);
+          this.setState({ value: '' });
+        }}
+      >
+        {itemToString(item)}
+      </TouchableView>
+    ));
+  };
+
   render() {
-    const { items, itemToString, selectItem } = this.props;
     const { value } = this.state;
 
     return (
@@ -32,15 +65,7 @@ class SelectField extends React.Component<Props, State> {
           onValueChange={newValue => this.setState({ value: newValue })}
           value={value}
         />
-        {value &&
-          items.map(item => (
-            <TouchableView
-              key={`list-item-${itemToString(item)}`}
-              onClick={() => selectItem(item)}
-            >
-              {itemToString(item)}
-            </TouchableView>
-          ))}
+        {value && this.dropdown()}
       </View>
     );
   }
