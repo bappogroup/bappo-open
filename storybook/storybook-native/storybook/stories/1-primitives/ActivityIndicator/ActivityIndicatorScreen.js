@@ -35,9 +35,9 @@ const ActivityIndicatorScreen = () => (
         name="size?"
         typeInfo="enum('small', 'large') = 'small'"
         description="Size of the indicator. Small has a height of 20px, large has a height of 36px."
-        example={{
-          render: () => <PropSize />,
-        }}
+        // example={{
+        //   render: () => <PropSize />,
+        // }}
       />
     </Section>
   </UIExplorer>
