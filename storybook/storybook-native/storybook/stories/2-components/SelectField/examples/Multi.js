@@ -1,5 +1,11 @@
 import React from 'react';
-import { SelectField, Background, View, styled } from 'bappo-components';
+import {
+  SelectField,
+  Background,
+  View,
+  styled,
+  Paragraph,
+} from 'bappo-components';
 
 class SelectFieldMultiExample extends React.Component {
   state = {
@@ -10,7 +16,13 @@ class SelectFieldMultiExample extends React.Component {
       { value: 'grape', count: 31 },
       { value: 'banana', count: 19 },
     ],
-    selected: [],
+    selected: [
+      { value: 'apple', count: 42, icon: 'ac-unit' },
+      { value: 'pear', count: 22 },
+      { value: 'orange', count: 14 },
+      { value: 'grape', count: 31 },
+      { value: 'banana', count: 19 },
+    ],
   };
 
   onCreateOption = optionStr => {
@@ -29,12 +41,12 @@ class SelectFieldMultiExample extends React.Component {
     return (
       <Background>
         <StyledView>
-          <p>Selected: {JSON.stringify(this.state.selected)}</p>
+          <Paragraph>Selected: {JSON.stringify(this.state.selected)}</Paragraph>
           <SelectField
             options={this.state.options}
             selected={this.state.selected}
             optionToString={option => option.value}
-            onSelect={selected => this.setState({ selected })}
+            onChange={selected => this.setState({ selected })}
             onCreate={this.createOption}
             multi
           />

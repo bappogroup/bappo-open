@@ -6,7 +6,7 @@ import Text from '../../primitives/Text';
 
 type Props = {
   children?: string,
-  type?: 'default' | 'bold' | 'small' | 'error' | 'success',
+  type?: 'default' | 'bold' | 'small' | 'error' | 'success' | 'white',
 };
 
 const Paragraph = ({ children, type }: Props) => {
@@ -51,6 +51,10 @@ const StyledText = styled(Text)`
         return `
           color: #04844B;
           text-transform: uppercase;
+        `;
+      case 'white':
+        return `
+          color: white;
         `;
       default:
         break;

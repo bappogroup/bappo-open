@@ -1,5 +1,11 @@
 import React from 'react';
-import { SelectField, Background, View, styled } from 'bappo-components';
+import {
+  SelectField,
+  Background,
+  View,
+  styled,
+  Paragraph,
+} from 'bappo-components';
 
 class SelectFieldCreateExample extends React.Component {
   state = {
@@ -28,12 +34,12 @@ class SelectFieldCreateExample extends React.Component {
     return (
       <Background>
         <StyledView>
-          <p>Selected: {JSON.stringify(this.state.selected)}</p>
+          <Paragraph>Selected: {JSON.stringify(this.state.selected)}</Paragraph>
           <SelectField
             options={this.state.options}
             selected={this.state.selected}
             optionToString={option => option.value}
-            onSelect={selected => this.setState({ selected })}
+            onChange={selected => this.setState({ selected })}
             onCreate={this.createOption}
           />
         </StyledView>
