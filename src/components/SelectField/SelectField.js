@@ -18,6 +18,7 @@ type Props = {
   label?: string,
   onBlur?: () => void,
   onFocus?: () => void,
+  selectedItem: any,
 };
 
 type State = {
@@ -79,7 +80,7 @@ class SelectField extends React.Component<Props, State> {
 
   render() {
     const { value } = this.state;
-    const { onBlur, onFocus, label } = this.props;
+    const { onBlur, onFocus, label, itemToString, selectedItem } = this.props;
 
     return (
       <View>
@@ -91,6 +92,7 @@ class SelectField extends React.Component<Props, State> {
               onBlur={onBlur}
               onFocus={onFocus}
               value={value}
+              placeholder={selectedItem && itemToString(selectedItem)}
               onValueChange={newValue => this.setState({ value: newValue })}
             />
           </SelectFieldInputContainer>
