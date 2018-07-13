@@ -3,7 +3,7 @@ import { SelectField, Background, View, styled } from 'bappo-components';
 
 class SelectFieldCreateExample extends React.Component {
   state = {
-    items: [
+    options: [
       { value: 'apple', count: 42, icon: 'ac-unit' },
       { value: 'pear', count: 22 },
       { value: 'orange', count: 14 },
@@ -12,33 +12,29 @@ class SelectFieldCreateExample extends React.Component {
     ],
   };
 
-  itemToString = item => item.value;
+  createOption = optionStr => {
+    let { options } = this.state;
 
-  createItem = itemStr => {
-    let { items } = this.state;
-
-    const newItem = {
-      value: itemStr,
+    const newOption = {
+      value: optionStr,
       count: 0,
     };
 
-    const newItems = [...items, newItem];
-    this.setState({ items: newItems, selectedItem: newItem });
+    const newOptions = [...options, newOption];
+    this.setState({ options: newOptions, selected: newOption });
   };
 
   render() {
-    const { items, selectedItem } = this.state;
-
     return (
       <Background>
         <StyledView>
-          <p>Selected: {JSON.stringify(selectedItem)}</p>
+          <p>Selected: {JSON.stringify(this.state.selected)}</p>
           <SelectField
-            items={items}
-            itemToString={this.itemToString}
-            selectItem={selectedItem => this.setState({ selectedItem })}
-            createItem={this.createItem}
-            selectedItem={selectedItem}
+            options={this.state.options}
+            selected={this.state.selected}
+            optionToString={option => option.value}
+            onSelect={selected => this.setState({ selected })}
+            onCreate={this.createOption}
           />
         </StyledView>
       </Background>

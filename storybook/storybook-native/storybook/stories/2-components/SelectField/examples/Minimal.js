@@ -3,7 +3,7 @@ import { SelectField, Background, View, styled } from 'bappo-components';
 
 class SelectFieldMinimalExample extends React.Component {
   state = {
-    items: [
+    options: [
       { value: 'apple', count: 42 },
       { value: 'pear', count: 22 },
       { value: 'orange', count: 14 },
@@ -12,20 +12,16 @@ class SelectFieldMinimalExample extends React.Component {
     ],
   };
 
-  itemToString = item => item.value;
-
   render() {
-    const { items, selectedItem } = this.state;
-
     return (
       <Background>
         <StyledView>
-          <p>Selected: {JSON.stringify(selectedItem)}</p>
+          <p>Selected: {JSON.stringify(this.state.selected)}</p>
           <SelectField
-            items={items}
-            itemToString={this.itemToString}
-            selectItem={selectedItem => this.setState({ selectedItem })}
-            selectedItem={selectedItem}
+            options={this.state.options}
+            selected={this.state.selected}
+            optionToString={option => option.value}
+            onSelect={selected => this.setState({ selected })}
           />
         </StyledView>
       </Background>

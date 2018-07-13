@@ -3,49 +3,39 @@ import { SelectField, Background, View, styled } from 'bappo-components';
 
 class SelectFieldMultiExample extends React.Component {
   state = {
-    items: [
+    options: [
       { value: 'apple', count: 42, icon: 'ac-unit' },
       { value: 'pear', count: 22 },
       { value: 'orange', count: 14 },
       { value: 'grape', count: 31 },
       { value: 'banana', count: 19 },
     ],
-    selectedItems: [],
+    selected: [],
   };
 
-  itemToString = item => item.value;
+  onCreateOption = optionStr => {
+    let { options } = this.state;
 
-  createItem = itemStr => {
-    let { items } = this.state;
-
-    const newItem = {
-      value: itemStr,
+    const newOption = {
+      value: optionStr,
       count: 0,
     };
 
-    const newItems = [...items, newItem];
-    this.setState({ items: newItems, selectedItem: newItem });
-  };
-
-  selectItem = selectedItem => {
-    const { selectedItems } = this.state;
-    const newSelectedItems = [...selectedItems, selectedItem];
-    this.setState({ selectedItems: newSelectedItems });
+    const newOptions = [...options, newOption];
+    this.setState({ options: newOptions, selectedOption: newOption });
   };
 
   render() {
-    const { items, selectedItems } = this.state;
-
     return (
       <Background>
         <StyledView>
-          <p>Selected: {JSON.stringify(selectedItems)}</p>
+          <p>Selected: {JSON.stringify(this.state.selected)}</p>
           <SelectField
-            items={items}
-            itemToString={this.itemToString}
-            selectItem={this.selectItem}
-            createItem={this.createItem}
-            selectedItems={selectedItems}
+            options={this.state.options}
+            selected={this.state.selected}
+            optionToString={option => option.value}
+            onSelect={selected => this.setState({ selected })}
+            onCreate={this.createOption}
             multi
           />
         </StyledView>
