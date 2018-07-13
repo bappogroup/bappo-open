@@ -8,12 +8,11 @@ import View from '../../primitives/View';
 import Icon from '../Icon';
 import Paragraph from '../Paragraph';
 import { FieldInputContainer } from '../input-fields/StyledComponents';
-import TouchToFocusArea from '../input-fields/TouchToFocusArea';
 
 type Props = {
   options: Array<any>,
   optionToString: any => string,
-  onSelect: any => any,
+  onChange: any => any,
   onCreate?: string => any,
   label?: string,
   onBlur?: () => void,
@@ -36,18 +35,18 @@ class SelectField extends React.Component<Props, State> {
   };
 
   listOption = (option: any) => {
-    const { optionToString, onSelect } = this.props;
+    const { optionToString, onChange, selected, multi } = this.props;
     return (
-      <StyledTouchableView
+      <ListItem
         key={`list-option-${optionToString(option)}`}
         onPress={() => {
-          onSelect(option);
+          onChange(multi ? [...selected, option] : option);
           this.setState({ value: '' });
         }}
       >
         {option.icon && <Icon name={option.icon} />}
         <Paragraph>{optionToString(option)}</Paragraph>
-      </StyledTouchableView>
+      </ListItem>
     );
   };
 
@@ -58,7 +57,7 @@ class SelectField extends React.Component<Props, State> {
     if (!onCreate) return;
 
     return (
-      <StyledTouchableView
+      <ListItem
         onPress={() => {
           onCreate(value);
           this.setState({ value: '' });
@@ -66,9 +65,16 @@ class SelectField extends React.Component<Props, State> {
       >
         <Icon name="add-circle-outline" />
         <Paragraph>Create {value}</Paragraph>
-      </StyledTouchableView>
+      </ListItem>
     );
   };
+
+  noOptions = () => (
+    <ListItemNoTouch>
+      <Icon name="sentiment-very-dissatisfied" />
+      <Paragraph>No options found</Paragraph>
+    </ListItemNoTouch>
+  );
 
   dropdown = () => {
     const { options, onCreate, optionToString, multi } = this.props;
@@ -83,18 +89,29 @@ class SelectField extends React.Component<Props, State> {
       // use pick
     }
 
+    console.log('op', filteredOptions);
+
     return (
       <DropdownWrapper>
         {onCreate && this.createNew()}
-        {filteredOptions.map(option => this.listOption(option))}
+        {filteredOptions.length > 0 &&
+          filteredOptions.map(option => this.listOption(option))}
+        {filteredOptions.length === 0 && !onCreate && this.noOptions()}
       </DropdownWrapper>
     );
   };
 
   multiCards = () => {
-    const { options, optionToString, multi } = this.props;
+    const { selected, optionToString } = this.props;
 
-    // rework onSelect to onSelects
+    console.log('s', selected);
+
+    // rework onChange to onChanges
+    return selected.map(option => (
+      <MultiSelectItem>
+        <Paragraph type="white">{optionToString(option)}</Paragraph>
+      </MultiSelectItem>
+    ));
   };
 
   focus() {
@@ -103,24 +120,35 @@ class SelectField extends React.Component<Props, State> {
 
   render() {
     const { value } = this.state;
-    const { onBlur, onFocus, label, optionToString, selected } = this.props;
+    const {
+      onBlur,
+      onFocus,
+      label,
+      optionToString,
+      selected,
+      multi,
+    } = this.props;
 
     return (
       <View>
-        <StyledTouchToFocusArea onPress={() => this.focus()}>
-          <SelectFieldInputContainer borderRadiusBottom={!value}>
-            {this.multiCards()}
-            <TextInput
-              label={label}
-              ref={this._textInputRef}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              value={value}
-              placeholder={selected && optionToString(selected)}
-              onValueChange={newValue => this.setState({ value: newValue })}
-            />
-          </SelectFieldInputContainer>
-        </StyledTouchToFocusArea>
+        <SelectFieldInputContainer
+          onPress={() => {
+            console.log('hit');
+            this.focus();
+          }}
+          borderRadiusBottom={!value}
+        >
+          {multi && this.multiCards()}
+          <StyledTextInput
+            label={label}
+            ref={this._textInputRef}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            value={value}
+            placeholder={selected && optionToString(selected)}
+            onValueChange={newValue => this.setState({ value: newValue })}
+          />
+        </SelectFieldInputContainer>
         {value && this.dropdown()}
       </View>
     );
@@ -129,21 +157,44 @@ class SelectField extends React.Component<Props, State> {
   _textInputRef = React.createRef();
 }
 
-const StyledTouchToFocusArea = styled(TouchToFocusArea)`
-  margin: 0px;
-`;
-
 const SelectFieldInputContainer = styled(FieldInputContainer)`
   border-radius: 4px 4px
     ${props => (props.borderRadiusBottom ? '4px 4px' : '0px 0px')};
+  min-height: 40px;
+  height: auto;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
-const StyledTouchableView = styled(TouchableView)`
+const StyledTextInput = styled(TextInput)`
+  margin: 0px 6px;
+`;
+
+const ListItem = styled(TouchableView)`
   padding: 8px;
   display: flex;
   flex-direction: row;
   background: white;
   cursor: pointer;
+`;
+
+const ListItemNoTouch = styled(View)`
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  background: white;
+`;
+
+const MultiSelectItem = styled(View)`
+  padding: 4px 8px;
+  background: #0070d2;
+  border-radius: 4px;
+  border: 1px solid #0031ac;
+  margin: 2px;
 `;
 
 const DropdownWrapper = styled(View)`
