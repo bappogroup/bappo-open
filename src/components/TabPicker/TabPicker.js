@@ -7,24 +7,36 @@ import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
 
 type Props = {
-  children?: string,
+  options: Array<any>,
+  selectedOptions: Array<any>,
+  optionToString: any => string,
+  selectItem: any => any,
+  onChange: (Array<any>) => void,
 };
 
-const Picker = ({ options, selected, onChange }: Props) => {
+const Picker = ({
+  options,
+  selectedOptions = [],
+  onChange,
+  optionToString,
+}: Props) => {
   return (
     <StyledView>
       {options.map((option, i) => (
         <TabButton
-          selected={selected[option.value]}
+          selected={selectedOptions.find(op => op === option) ? true : false}
           position={getPosition(i, options.length)}
           onPress={() => {
-            const s = { ...selected };
-            s[option.value] = s[option.value] || false;
-            s[option.value] = !s[option.value];
-            onChange(s);
+            let output;
+            if (selectedOptions.find(item => item === option)) {
+              output = selectedOptions.filter(item => item !== option);
+            } else {
+              output = [...selectedOptions, option];
+            }
+            onChange(output);
           }}
         >
-          <Text key={option.value}>{option.label}</Text>
+          <Text key={option.value}>{optionToString(option)}</Text>
         </TabButton>
       ))}
     </StyledView>
@@ -36,9 +48,8 @@ Picker.defaultProps = {};
 export default Picker;
 
 const StyledView = styled(View)`
-  border-radius: 3px;
-  background: #fff;
-  flex-direction: row;
+  flex-direction: column;
+  max-width: 400px;
 `;
 
 const TabButton = styled(TouchableView)`
@@ -49,13 +60,13 @@ const TabButton = styled(TouchableView)`
   background-color: ${props => (props.selected ? 'orange' : '#f8f8f8')};
   border-top-left-radius: ${props =>
     props.position === 'first' ? '4px' : '0px'};
-  border-bottom-left-radius: ${props =>
-    props.position === 'first' ? '4px' : '0px'};
   border-top-right-radius: ${props =>
+    props.position === 'first' ? '4px' : '0px'};
+  border-bottom-left-radius: ${props =>
     props.position === 'last' ? '4px' : '0px'};
   border-bottom-right-radius: ${props =>
     props.position === 'last' ? '4px' : '0px'};
-  margin-right: 1px;
+  margin-bottom: 1px;
   align-items: center;
   justify-content: center;
 `;

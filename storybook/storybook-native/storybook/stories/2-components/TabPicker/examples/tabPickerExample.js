@@ -13,15 +13,23 @@ const options = [
 
 class TabPickerExample extends React.Component {
   state = {
-    selected: 'mon,tue',
+    selectedOptions: [
+      options[0],
+      options[1],
+      options[2],
+      options[3],
+      options[4],
+    ],
   };
 
   render() {
+    console.log(this.state.selectedOptions);
     return (
       <TabPicker
         options={options}
-        value={this.state.selected}
-        onValueChange={selected => this.setState({ selected })}
+        selectedOptions={this.state.selectedOptions}
+        optionToString={option => `${option.label}`}
+        onChange={selectedOptions => this.setState({ selectedOptions })}
       />
     );
   }
