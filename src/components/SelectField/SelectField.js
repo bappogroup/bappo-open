@@ -51,6 +51,25 @@ class SelectField extends React.Component<Props, State> {
     );
   };
 
+  createNew = () => {
+    const { onCreate } = this.props;
+    const { value } = this.state;
+
+    if (!onCreate) return;
+
+    return (
+      <StyledTouchableView
+        onPress={() => {
+          onCreate(value);
+          this.setState({ value: '' });
+        }}
+      >
+        <Icon name="add-circle-outline" />
+        <Paragraph>Create {value}</Paragraph>
+      </StyledTouchableView>
+    );
+  };
+
   dropdown = () => {
     const { options, onCreate, optionToString, multi } = this.props;
     const { value } = this.state;
@@ -64,21 +83,9 @@ class SelectField extends React.Component<Props, State> {
       // use pick
     }
 
-    const createNew = (
-      <StyledTouchableView
-        onPress={() => {
-          onCreate(value);
-          this.setState({ value: '' });
-        }}
-      >
-        <Icon name="add-circle-outline" />
-        <Paragraph>Create {value}</Paragraph>
-      </StyledTouchableView>
-    );
-
     return (
       <DropdownWrapper>
-        {onCreate && createNew}
+        {onCreate && this.createNew()}
         {filteredOptions.map(option => this.listOption(option))}
       </DropdownWrapper>
     );
