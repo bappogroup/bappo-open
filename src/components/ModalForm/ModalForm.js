@@ -43,6 +43,7 @@ class ModalForm extends React.Component<Props> {
     return (
       <FormState initialValues={initialValues}>
         {formStateAndActions => {
+          // $FlowFixMe: Seems that flow can't type object destructuring properly
           const { actions, ...formState } = formStateAndActions;
           const formContent =
             typeof children === 'function'
