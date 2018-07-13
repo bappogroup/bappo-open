@@ -43,7 +43,6 @@
     "lodash": "^4.17.10",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
-    "react-input-autosize": "^2.2.1",
     "react-native-web": "^0.8.4",
     "react-recomponent": "^0.2.0"
   },
