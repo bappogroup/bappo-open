@@ -24,6 +24,7 @@ const Picker = ({
     <StyledView>
       {options.map((option, i) => (
         <TabButton
+          key={i}
           selected={selectedOptions.find(op => op === option) ? true : false}
           position={getPosition(i, options.length)}
           onPress={() => {
