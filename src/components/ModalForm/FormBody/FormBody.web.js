@@ -20,12 +20,14 @@ import {
   modalFormMobileTitleTextStyle,
 } from '../StyledComponents';
 import type { FormBodyPropTypes } from './types.js.flow';
+import FormBodyDefaultProps from './defaultProps';
 
 const FormBody = ({
   children,
   onCancel,
   onDelete,
   onSubmit,
+  submitButtonText,
   title,
 }: FormBodyPropTypes) => {
   const handleFormSubmit = e => {
@@ -39,7 +41,7 @@ const FormBody = ({
         <ModalFormCloseButton onPress={onCancel} />
         <ModalFormHeaderMobileContainer>
           <ModalFormHeaderCancelButton onPress={onCancel} />
-          <ModalFormHeaderSubmitButton />
+          <ModalFormHeaderSubmitButton text={submitButtonText} />
         </ModalFormHeaderMobileContainer>
         <ModalFormTitleContainer>
           <ModalFormTitleText>{title}</ModalFormTitleText>
@@ -57,12 +59,14 @@ const FormBody = ({
         </ModalFormRow>
         <ModalFormRow>
           <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-          <ModalFormFooterSubmitButton text="Submit" />
+          <ModalFormFooterSubmitButton text={submitButtonText} />
         </ModalFormRow>
       </ModalFormFooter>
     </StyledForm>
   );
 };
+
+FormBody.defaultProps = FormBodyDefaultProps;
 
 export default FormBody;
 

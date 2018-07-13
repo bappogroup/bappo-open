@@ -11,6 +11,7 @@ import DependentField from './examples/DependentField';
 import Minimal from './examples/Minimal';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
 import FieldLevelValidation from './examples/FieldLevelValidation';
+import PropSubmitButtonText from './examples/PropSubmitButtonText';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
@@ -42,6 +43,45 @@ const ModalFormScreen = () => (
         name="onSubmit?"
         typeInfo="(values: mixed) => void"
         description="Function to be called when form is submitted."
+      />
+
+      <DocItem
+        name="submitButtonText?"
+        typeInfo="string | (formState: FormStateAndHelpers) => string"
+        description="Submit button text. Can be a string or a function that returns a string. The function will be called with the form state."
+        example={{
+          code: `
+  import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
+
+  class ModalFormPropSubmitButtonTextExample extends React.Component {
+    state = {
+      modalVisible: false,
+    };
+
+    render() {
+      return (
+        <View>
+          <Button
+            onPress={() => this.setState({ modalVisible: true })}
+            text="Open form"
+          />
+          <ModalForm
+            initialValues={{ name: 'Alice' }}
+            onRequestClose={() => this.setState({ modalVisible: false })}
+            onSubmit={console.log}
+            submitButtonText={({ getFieldValue }) => \`Invite \${getFieldValue('name') || ''}\`}
+            title="Modal Form Prop submitButtonText Example"
+            visible={this.state.modalVisible}
+          >
+            <Form.Field name="name" component={TextField} label="Name" />
+          </ModalForm>
+        </View>
+      );
+    }
+  }
+          `,
+          render: () => <PropSubmitButtonText />,
+        }}
       />
     </Section>
 

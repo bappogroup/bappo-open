@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Alert from '../../apis/Alert';
 import type {
+  FormStateAndHelpers,
   FormStateAndHelpersAndActions,
   Values,
 } from '../../primitives/Form/FormState/types.js.flow';
@@ -16,10 +17,11 @@ type RequiredProps = {
 type OptionalProps = {
   children?:
     | ?React.Node
-    | ((formState: FormStateAndHelpersAndActions) => React.Node),
+    | ((formStateAndActions: FormStateAndHelpersAndActions) => React.Node),
   initialValues?: Values,
   onDelete?: ?(values: Values) => mixed,
   onSubmit?: ?(values: Values) => mixed,
+  submitButtonText?: string | ((formState: FormStateAndHelpers) => string),
   title?: string,
   visible?: ?boolean,
 };
@@ -29,22 +31,39 @@ class ModalForm extends React.Component<Props> {
   props: Props;
 
   render() {
-    const { children, initialValues, onDelete, title, visible } = this.props;
+    const {
+      children,
+      initialValues,
+      onDelete,
+      submitButtonText,
+      title,
+      visible,
+    } = this.props;
 
     return (
       <FormState initialValues={initialValues}>
-        {formState => {
+        {formStateAndActions => {
+          const { actions, ...formState } = formStateAndActions;
           const formContent =
-            typeof children === 'function' ? children(formState) : children;
+            typeof children === 'function'
+              ? children(formStateAndActions)
+              : children;
           return (
             <Modal
-              onRequestClose={() => this._onCancel(formState)}
+              onRequestClose={() => this._onCancel(formStateAndActions)}
               visible={visible}
             >
               <ModalFormBody
-                onCancel={() => this._onCancel(formState)}
-                onDelete={onDelete && (() => this._onDelete(formState))}
-                onSubmit={() => this._onSubmit(formState)}
+                onCancel={() => this._onCancel(formStateAndActions)}
+                onDelete={
+                  onDelete && (() => this._onDelete(formStateAndActions))
+                }
+                onSubmit={() => this._onSubmit(formStateAndActions)}
+                submitButtonText={
+                  typeof submitButtonText === 'function'
+                    ? submitButtonText(formState)
+                    : submitButtonText
+                }
                 title={title}
               >
                 {formContent}
@@ -56,10 +75,10 @@ class ModalForm extends React.Component<Props> {
     );
   }
 
-  _onCancel = (formState: FormStateAndHelpersAndActions) => {
+  _onCancel = ({ dirty }: FormStateAndHelpersAndActions) => {
     const { onRequestClose } = this.props;
 
-    if (formState.dirty) {
+    if (dirty) {
       Alert.alert({
         title: 'You have unsaved changes',
         actions: [

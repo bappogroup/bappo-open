@@ -69,7 +69,7 @@ const SubmitButtonText = styled(Text)`
 `;
 
 export const ModalFormHeaderSubmitButton = ({
-  text = 'Submit',
+  text,
 }: ModalFormSubmitButtonProps) => (
   <StyledSubmitButton>
     {({ submitting }) =>

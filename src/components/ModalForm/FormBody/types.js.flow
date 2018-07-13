@@ -7,5 +7,6 @@ export type FormBodyPropTypes = {
   onCancel: () => any,
   onDelete?: ?() => any,
   onSubmit: () => any,
+  submitButtonText?: string,
   title?: string,
 };
