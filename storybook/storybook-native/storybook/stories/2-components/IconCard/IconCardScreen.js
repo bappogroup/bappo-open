@@ -8,12 +8,12 @@ import UIExplorer, {
   Section,
   storiesOf,
 } from '../../../ui-explorer';
-import Example from './examples/tabPickerExample';
+import Example from './example';
 
-const TabPickerScreen = () => (
-  <UIExplorer title="TabPicker" url="2-components/TabPicker">
+const IconCardScreen = () => (
+  <UIExplorer title="IconCard" url="2-components/IconCard">
     <Description>
-      <AppText>Card.</AppText>
+      <AppText>IconCard.</AppText>
     </Description>
 
     <DocItem
@@ -24,4 +24,4 @@ const TabPickerScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('TabPicker', TabPickerScreen);
+storiesOf('Components', module).add('IconCard', IconCardScreen);

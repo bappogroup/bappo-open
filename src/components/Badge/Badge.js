@@ -6,11 +6,10 @@ import View from '../../primitives/View';
 import Text from '../../primitives/Text';
 
 type Props = {
-  children?: string,
   number?: number,
 };
 
-const Badge = ({ children, number }: Props) => {
+const Badge = ({ number }: Props) => {
   return (
     <StyledView selectable>
       <StyledText>{number}</StyledText>

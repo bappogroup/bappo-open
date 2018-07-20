@@ -9,6 +9,7 @@ const Icon = styled(IconMaterial)`
   height: 24px;
   line-height: 24px;
   width: 24px;
+  color: ${props => props.color};
 `;
 Icon.displayName = 'Icon';
 
