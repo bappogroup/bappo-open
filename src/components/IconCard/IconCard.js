@@ -20,8 +20,10 @@ const IconCard = ({ icon, color, badge, size }: Props) => {
     large: 120,
   };
   return (
+    // $FlowFixMe
     <StyledView color={color} size={sizes[size]}>
       {badge && <Badge number={badge} />}
+      {/* $FlowFixMe */}
       <StyledIcon name={icon} color={color && 'white'} size={sizes[size]} />
     </StyledView>
   );
