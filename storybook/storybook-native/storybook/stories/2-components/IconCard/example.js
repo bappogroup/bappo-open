@@ -10,6 +10,7 @@ const IconCardTypeExample = () => (
       color={Colors.BLUE}
       badge={6}
       size="large"
+      text="Drivers"
     />
   </Background>
 );

@@ -5,6 +5,7 @@ import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
 import Icon from '../Icon';
 import Badge from '../Badge';
+import SubHeading from '../SubHeading';
 
 type Props = {
   icon?: string,
@@ -13,7 +14,7 @@ type Props = {
   size?: string,
 };
 
-const IconCard = ({ icon, color, badge, size }: Props) => {
+const IconCard = ({ icon, color, badge, size, text }: Props) => {
   const sizes = {
     small: 40,
     medium: 80,
@@ -21,11 +22,15 @@ const IconCard = ({ icon, color, badge, size }: Props) => {
   };
   return (
     // $FlowFixMe
-    <StyledView color={color} size={sizes[size]}>
-      {badge && <Badge number={badge} />}
+    <Container size={sizes[size]}>
       {/* $FlowFixMe */}
-      <StyledIcon name={icon} color={color && 'white'} size={sizes[size]} />
-    </StyledView>
+      <StyledView color={color} size={sizes[size]}>
+        {badge && <Badge number={badge} />}
+        {/* $FlowFixMe */}
+        <StyledIcon name={icon} color={color && 'white'} size={sizes[size]} />
+      </StyledView>
+      {text && <StyledSubHeading>{text}</StyledSubHeading>}
+    </Container>
   );
 };
 
@@ -33,16 +38,23 @@ IconCard.defaultProps = {};
 
 export default IconCard;
 
+const Container = styled(View)`
+  align-items: center;
+  width: ${props => `${props.size}px` || '40px'};
+`;
+
+const StyledSubHeading = styled(SubHeading)``;
+
 const StyledView = styled(View)`
-  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16);
   padding: 8px;
   border-radius: 3px;
-  width: ${props => `${props.size}px` || '40px'};
+  width: 100%;
   height: ${props => `${props.size}px`};
   background: ${props => props.color || '#D8D8D8'};
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 8px;
 `;
 
 const StyledIcon = styled(Icon)`
