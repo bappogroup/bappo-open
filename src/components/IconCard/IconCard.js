@@ -12,6 +12,7 @@ type Props = {
   color?: string,
   badge?: number,
   size?: string,
+  text?: string,
 };
 
 const IconCard = ({ icon, color, badge, size, text }: Props) => {
