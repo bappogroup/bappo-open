@@ -11,6 +11,7 @@ const IconCardTypeExample = () => (
       badge={6}
       size="large"
       text="Drivers"
+      onPress={() => console.log('click')}
     />
   </Background>
 );

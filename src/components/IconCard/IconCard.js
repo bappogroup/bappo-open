@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { styled } from '../../apis/Style';
+import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
 import Icon from '../Icon';
 import Badge from '../Badge';
@@ -13,9 +14,10 @@ type Props = {
   badge?: number,
   size?: string,
   text?: string,
+  onPress?: () => void,
 };
 
-const IconCard = ({ icon, color, badge, size, text }: Props) => {
+const IconCard = ({ icon, color, badge, size, text, onPress }: Props) => {
   const sizes = {
     small: 40,
     medium: 80,
@@ -23,7 +25,7 @@ const IconCard = ({ icon, color, badge, size, text }: Props) => {
   };
   return (
     // $FlowFixMe
-    <Container size={sizes[size]}>
+    <Container size={sizes[size]} onPress={onPress}>
       {/* $FlowFixMe */}
       <StyledView color={color} size={sizes[size]}>
         {badge && <Badge number={badge} />}
@@ -39,7 +41,7 @@ IconCard.defaultProps = {};
 
 export default IconCard;
 
-const Container = styled(View)`
+const Container = styled(TouchableView)`
   align-items: center;
   width: ${props => `${props.size}px` || '40px'};
 `;
