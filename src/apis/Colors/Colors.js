@@ -7,16 +7,18 @@ const valuePropertyDescriptor = {
 };
 
 const colors = {
-  BLUE: '#57A6FF',
-  GREEN: '#0CD185',
-  YELLOW: '#FFBA5C',
+  BLUE: '#0070D2',
+  GREEN: '#04844B',
+  YELLOW: '#FFB75D',
   BROWN: '#B8977E',
-  ORANGE: '#FF9052',
-  RED: '#F95F62',
+  ORANGE: '#FF7800',
+  RED: '#C23934',
   PINK: '#F77FB3',
   PURPLE: '#976DD0',
-  BLACK: '#343F4B',
-  GREY: '#969FAA',
+  BLACK: '#191E26',
+  DARKGREY: '#5E6167',
+  GREY: '#BABBBD',
+  LIGHTGREY: '#D8D8D8',
 };
 
 const colorValues = Object.values(colors);
