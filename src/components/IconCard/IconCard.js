@@ -44,6 +44,7 @@ export default IconCard;
 const Container = styled(TouchableView)`
   align-items: center;
   width: ${props => `${props.size}px` || '40px'};
+  margin: ${props => `${props.size / 5}px` || '8px'};
 `;
 
 const StyledSubHeading = styled(SubHeading)``;
