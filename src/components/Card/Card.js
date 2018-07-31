@@ -6,7 +6,7 @@ import View from '../../primitives/View';
 
 type Props = {
   children?: string,
-  style?: object,
+  style?: any,
 };
 
 const Card = ({ children, style }: Props) => {

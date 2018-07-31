@@ -15,7 +15,7 @@ type Props = {
   size?: string,
   text?: string,
   onPress?: () => void,
-  style?: object,
+  style?: any,
 };
 
 const IconCard = ({
