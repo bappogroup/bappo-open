@@ -6,10 +6,15 @@ import View from '../../primitives/View';
 
 type Props = {
   children?: string,
+  style?: object,
 };
 
-const Card = ({ children }: Props) => {
-  return <StyledView selectable>{children}</StyledView>;
+const Card = ({ children, style }: Props) => {
+  return (
+    <StyledView selectable style={style}>
+      {children}
+    </StyledView>
+  );
 };
 
 Card.defaultProps = {};

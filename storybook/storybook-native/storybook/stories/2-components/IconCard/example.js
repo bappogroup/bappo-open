@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconCard, Background, Colors } from 'bappo-components';
+import { IconCard, Background, Colors, styled } from 'bappo-components';
 
 const IconCardTypeExample = () => (
   <Background>

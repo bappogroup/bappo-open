@@ -15,9 +15,18 @@ type Props = {
   size?: string,
   text?: string,
   onPress?: () => void,
+  style?: object,
 };
 
-const IconCard = ({ icon, color, badge, size, text, onPress }: Props) => {
+const IconCard = ({
+  icon,
+  color,
+  badge,
+  size = 'small',
+  text,
+  onPress,
+  style,
+}: Props) => {
   const sizes = {
     small: 40,
     medium: 80,
@@ -25,7 +34,7 @@ const IconCard = ({ icon, color, badge, size, text, onPress }: Props) => {
   };
   return (
     // $FlowFixMe
-    <Container size={sizes[size]} onPress={onPress}>
+    <Container size={sizes[size]} onPress={onPress} style={style}>
       {/* $FlowFixMe */}
       <StyledView color={color} size={sizes[size]}>
         {badge && <Badge number={badge} />}
@@ -44,7 +53,7 @@ export default IconCard;
 const Container = styled(TouchableView)`
   align-items: center;
   width: ${props => `${props.size}px` || '40px'};
-  margin: ${props => `${props.size / 5}px` || '8px'};
+  margin: ${props => `${props.size / 10}px` || '8px'};
 `;
 
 const StyledSubHeading = styled(SubHeading)``;
