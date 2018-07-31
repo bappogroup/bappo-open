@@ -24,7 +24,7 @@ Paragraph.defaultProps = {
 export default Paragraph;
 
 const StyledText = styled(Text)`
-  height: 22px;
+  margin-bottom: 8px;
   line-height: 22px;
 
   ${({ type }) => {
