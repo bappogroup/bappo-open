@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
+import TouchableView from '../../primitives/TouchableView';
 import {
   StyledTouchableView,
   StyledIcon,
@@ -34,6 +35,30 @@ const Button = ({
   text,
   type,
 }: Props) => {
+  const content = () => [
+    loading && (
+      <ActivityIndicator
+        color={selectTextColor(type)}
+        style={{ marginRight: 8 }}
+      />
+    ),
+    icon && (
+      <StyledIcon
+        name={icon}
+        disabled={disabled}
+        type={type}
+        iconOnly={icon && !text}
+      />
+    ),
+    text && (
+      <ButtonLabel disabled={disabled} type={type}>
+        {text}
+      </ButtonLabel>
+    ),
+  ];
+
+  if (icon && !text) return <TouchableView>{content()}</TouchableView>;
+
   return (
     <StyledTouchableView
       disabled={disabled}
@@ -44,18 +69,7 @@ const Button = ({
       text={text}
       type={type}
     >
-      {loading && (
-        <ActivityIndicator
-          color={selectTextColor(type)}
-          style={{ marginRight: 8 }}
-        />
-      )}
-      {icon ? <StyledIcon name={icon} disabled={disabled} type={type} /> : null}
-      {text ? (
-        <ButtonLabel disabled={disabled} type={type}>
-          {text}
-        </ButtonLabel>
-      ) : null}
+      {content()}
     </StyledTouchableView>
   );
 };

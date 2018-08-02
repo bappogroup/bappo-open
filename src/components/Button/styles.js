@@ -18,18 +18,40 @@ export const selectTextColor = type => {
   }
 };
 
+export const selectTextColorIconOnly = type => {
+  switch (type) {
+    case 'primary':
+      return '#FF7800';
+    case 'secondary':
+      return '#0070D2';
+    case 'tertiary':
+      return 'white';
+    case 'destructive':
+      return '#C23934';
+    default:
+      return 'white';
+  }
+};
+
 export const buttonTextStyle = css`
   font-size: 14px;
 
-  ${({ disabled, type }) => {
+  ${({ disabled, type, iconOnly }) => {
     if (disabled) {
       return `
         color: white;
       `;
     }
 
+    if (iconOnly) {
+      return `
+        color: ${selectTextColorIconOnly(type)}
+      `;
+    }
+
     return `
-    color: ${selectTextColor(type)}`;
+      color: ${selectTextColor(type)}
+    `;
   }};
 `;
 
