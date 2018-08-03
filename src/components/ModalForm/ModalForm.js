@@ -82,17 +82,14 @@ class ModalForm extends React.Component<Props> {
     if (dirty) {
       Alert.alert({
         title: 'You have unsaved changes',
-        actions: [
-          {
-            text: 'Stay',
-            style: 'cancel',
-          },
-          {
+        actions: {
+          confirm: {
             text: 'Leave',
-            style: 'destructive',
+            destructive: true,
             onPress: () => onRequestClose(),
           },
-        ],
+          cancelable: true,
+        },
       });
     } else {
       onRequestClose();

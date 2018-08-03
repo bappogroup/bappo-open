@@ -38,12 +38,14 @@ const Button = ({
   const content = () => [
     loading && (
       <ActivityIndicator
+        key="activity-indicator"
         color={selectTextColor(type)}
         style={{ marginRight: 8 }}
       />
     ),
     icon && (
       <StyledIcon
+        key="icon"
         name={icon}
         disabled={disabled}
         type={type}
@@ -51,7 +53,7 @@ const Button = ({
       />
     ),
     text && (
-      <ButtonLabel disabled={disabled} type={type}>
+      <ButtonLabel disabled={disabled} type={type} key="label">
         {text}
       </ButtonLabel>
     ),

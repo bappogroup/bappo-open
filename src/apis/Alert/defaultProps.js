@@ -1,11 +1,11 @@
 // @flow
 
 const AlertDefaultProps = {
-  actions: [
-    {
+  actions: {
+    confirm: {
       text: 'OK',
     },
-  ],
+  },
 };
 
 export default AlertDefaultProps;

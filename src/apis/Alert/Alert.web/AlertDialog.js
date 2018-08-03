@@ -2,10 +2,14 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import FlexButton from '../../../internals/web/FlexButton';
 import FlexDiv from '../../../internals/web/FlexDiv';
+import View from '../../../primitives/View';
 import Text from '../../../primitives/Text';
-import Colors from '../../Colors';
+import Paragraph from '../../../components/Paragraph';
+import Button from '../../../components/Button';
+import ViewBase from '../../../internals/web/ViewBase';
+import type { ViewLayoutEvent } from '../../../events.js.flow';
+import { modalFormContentStyle } from '../../../components/ModalForm/StyledComponents';
 import type { AlertOptions } from '../types.js.flow';
 import AlertDefaultProps from '../defaultProps';
 
@@ -13,114 +17,169 @@ type Props = AlertOptions & {
   onDismiss: () => any,
 };
 
-const ActionButtonColorMap = {
-  default: Colors.BLACK,
-  cancel: Colors.BLACK,
-  destructive: Colors.RED,
-};
+class AlertDialog extends React.Component<Props> {
+  props: Props;
 
-const AlertDialog = ({ actions, message, onDismiss, title }: Props) => {
-  let neutralAction;
-  let otherActions;
-  if (actions.length === 3) {
-    [neutralAction, ...otherActions] = actions;
-  } else {
-    otherActions = actions;
-  }
+  static defaultProps = AlertDefaultProps;
 
-  const createActionButtonHandler = onPress => () => {
+  createActionButtonHandler = (onPress: ?() => void) => () => {
+    const { onDismiss } = this.props;
     onDismiss();
     onPress && onPress();
   };
 
-  return (
-    <AlertContainer>
-      <AlertContentArea>
-        {title && <AlertTitle>{title}</AlertTitle>}
-        <AlertMessage>{message}</AlertMessage>
-      </AlertContentArea>
-      <AlertActionArea>
-        <AlertActionSubArea>
-          {neutralAction && (
-            <ActionButton
-              onClick={createActionButtonHandler(neutralAction.onPress)}
-            >
-              <ActionButtonText
-                color={ActionButtonColorMap[neutralAction.style || 'default']}
-              >
-                {neutralAction.text}
-              </ActionButtonText>
-            </ActionButton>
-          )}
-        </AlertActionSubArea>
-        <AlertActionSubArea>
-          {otherActions.map((action, index) => (
-            <ActionButton
-              key={index}
-              onClick={createActionButtonHandler(action.onPress)}
-            >
-              <ActionButtonText
-                color={ActionButtonColorMap[action.style || 'default']}
-              >
-                {action.text}
-              </ActionButtonText>
-            </ActionButton>
-          ))}
-        </AlertActionSubArea>
-      </AlertActionArea>
-    </AlertContainer>
-  );
-};
+  confirmButton = () => {
+    const { actions } = this.props;
+    return (
+      <Button
+        text={(actions.confirm && actions.confirm.text) || 'Ok'}
+        onPress={this.createActionButtonHandler(
+          actions.confirm && actions.confirm.onPress,
+        )}
+        type={
+          actions.confirm && actions.confirm.destructive
+            ? 'destructive'
+            : 'primary'
+        }
+      />
+    );
+  };
 
-AlertDialog.defaultProps = AlertDefaultProps;
+  cancelButton = () => {
+    const { actions } = this.props;
+    return (
+      actions.confirm &&
+      actions.cancel && (
+        <Button
+          type="secondary"
+          onPress={this.createActionButtonHandler(
+            actions.cancel && actions.cancel.onPress,
+          )}
+          text={(actions.cancel && actions.cancel.text) || 'Cancel'}
+          style={{ marginRight: 8 }}
+        />
+      )
+    );
+  };
+
+  neutralButton = () => {
+    const { actions } = this.props;
+    return (
+      actions.confirm &&
+      actions.cancel &&
+      actions.neutral && (
+        <Button
+          type="tertiary"
+          onPress={this.createActionButtonHandler(
+            actions.neutral && actions.neutral.onPress,
+          )}
+          text={(actions.neutral && actions.neutral.text) || 'Ask Me Later'}
+        />
+      )
+    );
+  };
+
+  render() {
+    const { message, title } = this.props;
+    return (
+      <AlertContentContainer>
+        <StyledView>
+          <AlertFormHeader>
+            <AlertFormTitleText>{title}</AlertFormTitleText>
+          </AlertFormHeader>
+          <AlertFormContent>
+            <Paragraph>{message}</Paragraph>
+          </AlertFormContent>
+          <AlertFormFooter>
+            <AlertFormRow>{this.neutralButton()}</AlertFormRow>
+            <AlertFormRow>
+              {this.cancelButton()}
+              {this.confirmButton()}
+            </AlertFormRow>
+          </AlertFormFooter>
+        </StyledView>
+      </AlertContentContainer>
+    );
+  }
+}
 
 export default AlertDialog;
 
-const AlertContainer = styled(FlexDiv)`
+export const AlertContentContainer = styled(ViewBase).attrs({
+  tabIndex: -1,
+})`
   background-color: white;
-  min-width: 300px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: auto;
+  max-height: 576px;
+  min-height: 150px;
+  outline: none;
+
+  @media (max-width: 576px) {
+    width: calc(100% - 40px);
+  }
+
+  @media (min-width: 577px) {
+    width: 400px;
+  }
 `;
 
-const AlertContentArea = styled(FlexDiv)`
-  flex: none;
-  padding-top: 24px;
+const StyledView = styled(View)`
+  flex: 1;
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  min-height: 0;
+  min-width: 0;
 `;
 
-const AlertActionArea = styled(FlexDiv)`
+const AlertFormTitleText = styled(Text)`
+  font-size: 20px;
+  color: #2b2826;
+  line-height: 20px;
+`;
+
+const AlertFormHeader = styled(FlexDiv)`
   flex: none;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 52px;
-  padding: 8px 0 8px 24px;
-`;
-
-const AlertActionSubArea = styled(FlexDiv)`
-  flex-direction: row;
-  align-items: center;
-`;
-
-const AlertTitle = styled(Text)`
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  padding: 0 24px 20px 24px;
-`;
-
-const AlertMessage = styled(Text)`
-  font-size: 16px;
-  padding: 0 24px 24px 24px;
-`;
-
-const ActionButton = styled(FlexButton)`
+  background-color: white;
+  border-bottom: 1px solid #dddbda;
+  height: 55px;
   align-items: center;
   justify-content: center;
-  height: 36px;
-  margin-right: 8px;
-  min-width: 64px;
 `;
 
-const ActionButtonText = styled(Text)`
-  font-size: 16px;
-  color: ${props => props.color};
+const AlertFormContent = styled(FlexDiv)`
+  flex: 1;
+  background-color: white;
+  padding: 24px;
+
+  @media (max-width: 576px) {
+    ${modalFormContentStyle};
+  }
+`;
+
+const AlertFormFooter = styled(FlexDiv)`
+  flex: none;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f1f1f0;
+  border-top: 1px solid #dddbda;
+  height: 64px;
+  padding: 16px;
+
+  @media (max-width: 576px) {
+    height: 48px;
+    padding: 8px;
+  }
+`;
+
+const AlertFormRow = styled(FlexDiv)`
+  display: flex;
+  flex-direction: row;
 `;

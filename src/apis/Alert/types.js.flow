@@ -1,13 +1,21 @@
 // @flow
 
-export type AlertAction = {
-  text: string,
-  onPress?: ?() => void,
-  style?: 'default' | 'cancel' | 'destructive',
-};
-
 export type AlertOptions = {
-  actions: AlertAction[],
+  actions: {
+    confirm?: {
+      text: string,
+      onPress?: ?() => void,
+      destructive?: boolean,
+    },
+    neutral?: {
+      text?: string,
+      onPress?: ?() => void,
+    },
+    cancel?: {
+      text?: string,
+      onPress?: ?() => void,
+    },
+  },
   message?: string,
   title?: string,
 };

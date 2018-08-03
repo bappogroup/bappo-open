@@ -78,7 +78,7 @@ class Modal extends React.Component<Props, State> {
 
 export default Modal;
 
-const ModalContentContainer = styled(ViewBase).attrs({
+export const ModalContentContainer = styled(ViewBase).attrs({
   tabIndex: -1,
 })`
   background-color: white;

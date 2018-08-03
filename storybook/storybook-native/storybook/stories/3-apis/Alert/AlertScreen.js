@@ -40,24 +40,22 @@ const AlertScreen = () => (
 Alert.alert({
   title: 'Alert Title',
   message: 'My Alert Msg',
-  actions: [
-    {
+  actions: {
+    neutral: {
       text: 'Ask me later',
       onPress: () => console.log('Ask me later Pressed'),
     },
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
+    cancel: {
+      text: 'Abort!',
     },
-    {
+    confirm: {
       text: 'Destroy',
       onPress: () => console.log('Destroyed'),
-      style: 'destructive',
+      destructive: true,
     },
-  ],
+  },
 })
-          `
+          `,
         }}
       />
     </Section>
