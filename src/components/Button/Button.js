@@ -57,7 +57,20 @@ const Button = ({
     ),
   ];
 
-  if (icon && !text) return <TouchableView>{content()}</TouchableView>;
+  if (icon && !text)
+    return (
+      <TouchableView
+        disabled={disabled}
+        onPress={onPress}
+        className={className}
+        icon={icon}
+        style={style}
+        text={text}
+        type={type}
+      >
+        {content()}
+      </TouchableView>
+    );
 
   return (
     <StyledTouchableView
