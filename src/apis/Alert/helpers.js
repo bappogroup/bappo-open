@@ -7,6 +7,6 @@ export const validateOptions = (options: any) => {
   invariant(!!options, 'Alert: options is required');
   invariant(
     !options.actions || isPlainObject(options.actions),
-    'Alert: options.actions must be an array with up to 3 elements',
+    'Alert: options.actions must be an object with confirm, cancel and neutral buttons.',
   );
 };
