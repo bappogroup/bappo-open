@@ -49,7 +49,9 @@ const FormBody = ({
       </ModalFormHeader>
       <ModalFormContent>
         {children}
-        <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
+        {onDelete && (
+          <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
+        )}
       </ModalFormContent>
       <ModalFormFooter>
         <ModalFormRow>
