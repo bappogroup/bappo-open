@@ -19,6 +19,10 @@ type OptionalProps = {
   loading?: boolean,
   onPress?: () => void,
   style?: any,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
   text?: string,
   // Will be removed
   className?: string,
@@ -32,6 +36,7 @@ const Button = ({
   loading,
   onPress,
   style,
+  testID,
   text,
   type,
 }: Props) => {
@@ -67,6 +72,7 @@ const Button = ({
         className={className}
         icon={icon}
         style={style}
+        testID={testID}
         text={text}
         type={type}
       >
@@ -81,6 +87,7 @@ const Button = ({
       className={className}
       icon={icon}
       style={style}
+      testID={testID}
       text={text}
       type={type}
     >
