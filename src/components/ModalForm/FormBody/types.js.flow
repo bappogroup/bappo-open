@@ -8,5 +8,6 @@ export type FormBodyPropTypes = {
   onDelete?: ?() => any,
   onSubmit: () => any,
   submitButtonText?: string,
+  testID?: string,
   title?: string,
 };

@@ -22,11 +22,12 @@ const FormBody = ({
   onDelete,
   onSubmit,
   submitButtonText,
+  testID,
   title,
 }: FormBodyPropTypes) => {
   return (
     <FormConfigProvider value={{ onSubmit }}>
-      <StyledForm>
+      <StyledForm testID={testID}>
         <ModalFormHeader>
           <ModalFormHeaderCancelButton onPress={onCancel} />
           <ModalFormHeaderSubmitButton text={submitButtonText} />

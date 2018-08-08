@@ -28,6 +28,7 @@ const FormBody = ({
   onDelete,
   onSubmit,
   submitButtonText,
+  testID,
   title,
 }: FormBodyPropTypes) => {
   const handleFormSubmit = e => {
@@ -36,7 +37,7 @@ const FormBody = ({
   };
 
   return (
-    <StyledForm onSubmit={handleFormSubmit}>
+    <StyledForm data-testid={testID} onSubmit={handleFormSubmit}>
       <ModalFormHeader>
         <ModalFormCloseButton onPress={onCancel} />
         <ModalFormHeaderMobileContainer>

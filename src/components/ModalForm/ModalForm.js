@@ -22,6 +22,7 @@ type OptionalProps = {
   onDelete?: ?(values: Values) => mixed,
   onSubmit?: ?(values: Values) => mixed,
   submitButtonText?: string | ((formState: FormStateAndHelpers) => string),
+  testID?: string,
   title?: string,
   visible?: ?boolean,
 };
@@ -36,6 +37,7 @@ class ModalForm extends React.Component<Props> {
       initialValues,
       onDelete,
       submitButtonText,
+      testID,
       title,
       visible,
     } = this.props;
@@ -65,6 +67,7 @@ class ModalForm extends React.Component<Props> {
                     ? submitButtonText(formState)
                     : submitButtonText
                 }
+                testID={testID}
                 title={title}
               >
                 {formContent}
