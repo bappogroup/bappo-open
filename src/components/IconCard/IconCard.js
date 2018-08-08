@@ -13,6 +13,10 @@ type Props = {
   color?: string,
   badge?: number,
   size?: string,
+  /**
+   * Used to locate this view in end-to-end tests.
+   */
+  testID?: string,
   text?: string,
   onPress?: () => void,
   style?: any,
@@ -23,6 +27,7 @@ const IconCard = ({
   color,
   badge,
   size = 'small',
+  testID,
   text,
   onPress,
   style,
@@ -34,7 +39,12 @@ const IconCard = ({
   };
   return (
     // $FlowFixMe
-    <Container size={sizes[size]} onPress={onPress} style={style}>
+    <Container
+      size={sizes[size]}
+      onPress={onPress}
+      style={style}
+      testID={testID}
+    >
       {/* $FlowFixMe */}
       <StyledView color={color} size={sizes[size]}>
         {badge && <Badge number={badge} />}
