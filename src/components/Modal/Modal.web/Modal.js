@@ -9,11 +9,11 @@ import type { ModalProps } from '../types.js.flow';
 
 type Props = ModalProps;
 type State = {
-  modalContentLayout: {
+  modalContentLayout: null | {
     height: number,
     width: number,
   },
-  overlayLayout: {
+  overlayLayout: null | {
     height: number,
     width: number,
   },
@@ -23,14 +23,8 @@ class Modal extends React.Component<Props, State> {
   props: Props;
 
   state = {
-    modalContentLayout: {
-      height: 0,
-      width: 0,
-    },
-    overlayLayout: {
-      height: 0,
-      width: 0,
-    },
+    modalContentLayout: null,
+    overlayLayout: null,
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -102,7 +96,13 @@ export const ModalContentContainer = styled(ViewBase).attrs({
     max-height: 768px;
     min-height: 384px;
     width: 576px;
-    top: ${({ layout, windowDimensions }) =>
-      (windowDimensions.height - layout.height) / 2}px;
+    ${({ layout, windowDimensions }) =>
+      layout && windowDimensions
+        ? `
+      top: ${(windowDimensions.height - layout.height) / 2}px;
+    `
+        : `
+      visibility: hidden;
+    `};
   }
 `;
