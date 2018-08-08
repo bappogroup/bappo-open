@@ -13,6 +13,7 @@ export type InputFieldProps = {
   onBlur?: () => void,
   onFocus?: () => void,
   onValueChange?: (value: any) => void,
+  testID?: string,
   value?: any,
 };
 

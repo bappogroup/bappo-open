@@ -12,13 +12,14 @@ type RequiredProps = {
 };
 type OptionalProps = {
   props?: ?{},
+  testID?: string,
   validate?: FieldValidator | FieldValidator[],
 };
 type Props = RequiredProps & OptionalProps;
 
 // $FlowFixMe: forwardRef is not supported yet
 export default React.forwardRef((fieldProps: Props, ref) => {
-  const { component, label, name, props, validate } = fieldProps;
+  const { component, label, name, props, testID, validate } = fieldProps;
 
   if (!name) {
     throw new Error(`Field name is required`);
@@ -37,6 +38,7 @@ export default React.forwardRef((fieldProps: Props, ref) => {
           onBlur: () => actions.blur(name),
           onFocus: () => actions.focus(name),
           onValueChange: value => actions.changeValue(name, value),
+          testID,
           value,
           ...(props || {}),
           ref,

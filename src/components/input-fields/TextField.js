@@ -33,11 +33,12 @@ class TextField extends React.Component<Props> implements InputField {
       onBlur,
       onFocus,
       onValueChange,
+      testID,
       value,
       ...rest
     } = this.props;
     return (
-      <FieldContainer>
+      <FieldContainer testID={testID}>
         <TouchToFocusArea onPress={() => this.focus()}>
           {label && (
             <FieldLabelContainer>
