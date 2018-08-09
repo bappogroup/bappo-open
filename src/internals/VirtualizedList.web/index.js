@@ -15,14 +15,14 @@ import invariant from 'fbjs/lib/invariant';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
-import Batchinator from 'react-native-web/dist/vendor/react-native/Batchinator';
-import FillRateHelper from 'react-native-web/dist/vendor/react-native/FillRateHelper';
+import Batchinator from 'react-native-web/dist/cjs/vendor/react-native/Batchinator';
+import FillRateHelper from 'react-native-web/dist/cjs/vendor/react-native/FillRateHelper';
 import ViewabilityHelper, {
   type ViewabilityConfig,
   type ViewToken,
   type ViewabilityConfigCallbackPair,
-} from 'react-native-web/dist/vendor/react-native/ViewabilityHelper';
-import { computeWindowedRenderLimits } from 'react-native-web/dist/vendor/react-native/VirtualizeUtils';
+} from 'react-native-web/dist/cjs/vendor/react-native/ViewabilityHelper';
+import { computeWindowedRenderLimits } from 'react-native-web/dist/cjs/vendor/react-native/VirtualizeUtils';
 import styled from 'styled-components';
 import ScrollView from '../../primitives/ScrollView';
 import View from '../../primitives/View';

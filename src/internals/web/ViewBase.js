@@ -4,7 +4,7 @@ import * as React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
-import ResponderEventPlugin from 'react-native-web/dist/modules/ResponderEventPlugin';
+import ResponderEventPlugin from 'react-native-web/dist/cjs/modules/ResponderEventPlugin';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../events.js.flow';
 import { flex } from './styles';
