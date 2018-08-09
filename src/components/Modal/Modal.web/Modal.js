@@ -14,10 +14,6 @@ type State = {
     height: number,
     width: number,
   },
-  overlayLayout: null | {
-    height: number,
-    width: number,
-  },
 };
 
 class Modal extends React.Component<Props, State> {
@@ -25,7 +21,6 @@ class Modal extends React.Component<Props, State> {
 
   state = {
     modalContentLayout: null,
-    overlayLayout: null,
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -38,16 +33,11 @@ class Modal extends React.Component<Props, State> {
     const { children, onRequestClose, visible } = this.props;
 
     return (
-      <Overlay
-        onLayout={this._onOverlayLayout}
-        onPress={onRequestClose}
-        visible={visible}
-      >
+      <Overlay onPress={onRequestClose} visible={visible}>
         <ModalContentContainer
           innerRef={this._modalContentContainerRef}
           layout={this.state.modalContentLayout}
           onLayout={this._onModalContentLayout}
-          windowDimensions={this.state.overlayLayout}
         >
           {children}
         </ModalContentContainer>
@@ -64,10 +54,6 @@ class Modal extends React.Component<Props, State> {
 
   _onModalContentLayout = (event: ViewLayoutEvent) => {
     this.setState({ modalContentLayout: event.nativeEvent.layout });
-  };
-
-  _onOverlayLayout = (event: ViewLayoutEvent) => {
-    this.setState({ overlayLayout: event.nativeEvent.layout });
   };
 }
 
@@ -97,10 +83,10 @@ export const ModalContentContainer = styled(ViewBase).attrs({
     max-height: 768px;
     min-height: 384px;
     width: 576px;
-    ${({ layout, windowDimensions }) =>
-      layout && windowDimensions
+    ${({ layout }) =>
+      layout
         ? `
-      top: ${(windowDimensions.height - layout.height) / 2}px;
+      top: calc(50vh - ${layout.height / 2}px);
     `
         : `
       visibility: hidden;
