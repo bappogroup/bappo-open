@@ -137,7 +137,6 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
     action: { type: ActionTypes, payload?: mixed, meta?: mixed },
     state: State,
   ) {
-    console.log(action);
     switch (action.type) {
       case 'BLUR': {
         const {
@@ -262,7 +261,6 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
       ...stateAndHelpers,
       actions: this._getActions(stateAndHelpers),
     };
-    console.log(stateAndHelpersAndActions);
 
     return (
       <FormStateProvider value={stateAndHelpersAndActions}>

@@ -22,6 +22,8 @@ type Props = {
   accessibilityLabel?: string,
   children?: React.Node,
   className?: string,
+  component: string,
+  nativeRef?: React.Ref<any>,
   onLayout?: (event: ViewLayoutEvent) => void,
   onResponderGrant?: (event: SyntheticEvent<>) => void,
   onResponderMove?: (event: SyntheticEvent<>) => void,
@@ -35,6 +37,10 @@ type Props = {
 
 class ViewBase extends React.Component<Props> {
   props: Props;
+
+  static defaultProps = {
+    component: 'div',
+  };
 
   componentDidMount() {
     this._isMounted = true;
@@ -56,15 +62,24 @@ class ViewBase extends React.Component<Props> {
   }
 
   render() {
-    const { accessibilityLabel, children, testID, ...rest } = this.props;
+    const {
+      accessibilityLabel,
+      children,
+      component,
+      nativeRef,
+      onLayout,
+      testID,
+      ...rest
+    } = this.props;
 
     const props = {
       ...rest,
       'aria-label': accessibilityLabel,
       'data-testid': testID,
+      ref: nativeRef,
     };
 
-    return <Div {...props}>{children}</Div>;
+    return React.createElement(component, props, children);
   }
 
   _isMounted: ?boolean;
@@ -100,13 +115,8 @@ class ViewBase extends React.Component<Props> {
   };
 }
 
-// $FlowFixMe: forwardRef not supported yet
-export default React.forwardRef((props, ref) => {
-  return <ViewBase {...props} innerRef={ref} />;
-});
-
 // Manually pass on responder event handlers since styled-components filters them out
-const Div = styled.div.attrs({
+const StyledViewBase = styled(ViewBase).attrs({
   onResponderGrant: props => props.onResponderGrant,
   onResponderMove: props => props.onResponderMove,
   onResponderRelease: props => props.onResponderRelease,
@@ -116,3 +126,8 @@ const Div = styled.div.attrs({
 })`
   ${flex};
 `;
+
+// $FlowFixMe: forwardRef not supported yet
+export default React.forwardRef((props, ref) => {
+  return <StyledViewBase {...props} nativeRef={ref} />;
+});

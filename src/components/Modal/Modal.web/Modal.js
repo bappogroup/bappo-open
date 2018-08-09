@@ -3,6 +3,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
+import { breakpoint } from '../../../internals/web/breakpoint';
 import ViewBase from '../../../internals/web/ViewBase';
 import Overlay from '../../../primitives/Overlay';
 import type { ModalProps } from '../types.js.flow';
@@ -86,12 +87,12 @@ export const ModalContentContainer = styled(ViewBase).attrs({
     outline: none;
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     top: 0;
     bottom: 0;
   }
 
-  @media (min-width: 577px) {
+  @media (min-width: ${breakpoint.min}px) {
     margin: auto;
     max-height: 768px;
     min-height: 384px;

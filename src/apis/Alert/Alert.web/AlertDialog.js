@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
 import View from '../../../primitives/View';
 import Text from '../../../primitives/Text';
@@ -116,11 +117,11 @@ export const AlertContentContainer = styled(ViewBase).attrs({
   min-height: 150px;
   outline: none;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     width: calc(100% - 40px);
   }
 
-  @media (min-width: 577px) {
+  @media (min-width: ${breakpoint.min}px) {
     width: 400px;
   }
 `;
@@ -159,7 +160,7 @@ const AlertFormContent = styled(FlexDiv)`
   background-color: white;
   padding: 24px;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     ${modalFormContentStyle};
   }
 `;
@@ -173,7 +174,7 @@ const AlertFormFooter = styled(FlexDiv)`
   height: 64px;
   padding: 16px;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     height: 48px;
     padding: 8px;
   }

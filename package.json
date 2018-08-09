@@ -44,7 +44,8 @@
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
     "react-native-web": "^0.8.4",
-    "react-recomponent": "^0.2.0"
+    "react-recomponent": "^0.2.0",
+    "react-responsive": "^5.0.0"
   },
   "homepage": "https://github.com/bappogroup/bappo-components#readme",
   "devDependencies": {

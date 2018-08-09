@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
 import Icon from '../../../components/Icon';
+import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
 import FlexForm from '../../../internals/web/FlexForm';
 import ActivityIndicator from '../../../primitives/ActivityIndicator';
@@ -39,11 +41,15 @@ const FormBody = ({
   return (
     <StyledForm data-testid={testID} onSubmit={handleFormSubmit}>
       <ModalFormHeader>
-        <ModalFormCloseButton onPress={onCancel} />
-        <ModalFormHeaderMobileContainer>
-          <ModalFormHeaderCancelButton onPress={onCancel} />
-          <ModalFormHeaderSubmitButton text={submitButtonText} />
-        </ModalFormHeaderMobileContainer>
+        <MediaQuery minWidth={breakpoint.min}>
+          <ModalFormCloseButton onPress={onCancel} />
+        </MediaQuery>
+        <MediaQuery maxWidth={breakpoint.max}>
+          <ModalFormHeaderMobileContainer>
+            <ModalFormHeaderCancelButton onPress={onCancel} />
+            <ModalFormHeaderSubmitButton text={submitButtonText} />
+          </ModalFormHeaderMobileContainer>
+        </MediaQuery>
         <ModalFormTitleContainer>
           <ModalFormTitleText>{title}</ModalFormTitleText>
         </ModalFormTitleContainer>
@@ -51,20 +57,24 @@ const FormBody = ({
       <ModalFormContent>
         {children}
         {onDelete && (
-          <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
+          <MediaQuery maxWidth={breakpoint.max}>
+            <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
+          </MediaQuery>
         )}
       </ModalFormContent>
-      <ModalFormFooter>
-        <ModalFormRow>
-          {onDelete && (
-            <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
-          )}
-        </ModalFormRow>
-        <ModalFormRow>
-          <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-          <ModalFormFooterSubmitButton text={submitButtonText} />
-        </ModalFormRow>
-      </ModalFormFooter>
+      <MediaQuery minWidth={breakpoint.min}>
+        <ModalFormFooter>
+          <ModalFormRow>
+            {onDelete && (
+              <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
+            )}
+          </ModalFormRow>
+          <ModalFormRow>
+            <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
+            <ModalFormFooterSubmitButton text={submitButtonText} />
+          </ModalFormRow>
+        </ModalFormFooter>
+      </MediaQuery>
     </StyledForm>
   );
 };
@@ -82,7 +92,7 @@ const ModalFormTitleText = styled(Text)`
   color: #2b2826;
   line-height: 20px;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     ${modalFormMobileTitleTextStyle};
   }
 `;
@@ -95,7 +105,7 @@ const ModalFormHeader = styled(FlexDiv)`
   border-bottom: 1px solid #dddbda;
   height: 55px;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     ${modalFormMobileHeaderStyle};
   }
 `;
@@ -105,10 +115,6 @@ const ModalFormCloseButtonContainer = styled(TouchableView)`
   justify-content: center;
   margin-left: auto;
   padding: 20px;
-
-  @media (max-width: 576px) {
-    display: none;
-  }
 `;
 const ModalFormCloseButton = props => (
   <ModalFormCloseButtonContainer {...props}>
@@ -117,32 +123,22 @@ const ModalFormCloseButton = props => (
 );
 
 const ModalFormHeaderMobileContainer = styled(FlexDiv)`
-  display: none;
-
-  @media (max-width: 576px) {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const ModalFormMobileDeleteButton = styled(Button).attrs({
   type: 'destructive',
-})`
-  display: none;
-
-  @media (max-width: 576px) {
-    display: flex;
-  }
-`;
+})``;
 
 const ModalFormContent = styled(FlexDiv)`
   flex: 1;
   background-color: white;
   padding: 48px;
 
-  @media (max-width: 576px) {
+  @media (max-width: ${breakpoint.max}px) {
     ${modalFormContentStyle};
   }
 `;
@@ -155,10 +151,6 @@ const ModalFormFooter = styled(FlexDiv)`
   border-top: 1px solid #dddbda;
   height: 64px;
   padding: 16px;
-
-  @media (max-width: 576px) {
-    display: none;
-  }
 `;
 
 const ModalFormRow = styled(FlexDiv)`
