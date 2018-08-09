@@ -5,7 +5,7 @@
 import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
 import ReactDOM from 'react-dom';
-import UIManager from 'react-native-web/dist/exports/UIManager';
+import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
 import styled from 'styled-components';
 import ViewBase from '../../internals/web/ViewBase';
 

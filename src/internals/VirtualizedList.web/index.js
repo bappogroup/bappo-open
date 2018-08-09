@@ -14,7 +14,7 @@ import * as React from 'react';
 import invariant from 'fbjs/lib/invariant';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import UIManager from 'react-native-web/dist/exports/UIManager';
+import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
 import Batchinator from 'react-native-web/dist/vendor/react-native/Batchinator';
 import FillRateHelper from 'react-native-web/dist/vendor/react-native/FillRateHelper';
 import ViewabilityHelper, {
