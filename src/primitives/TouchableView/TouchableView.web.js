@@ -628,13 +628,13 @@ const Container = styled(ViewBase).attrs({
       ? `
     color: inherit;
     cursor: not-allowed;
-    *:hover {
+    * {
       cursor: not-allowed;
     }
   `
       : `
     cursor: pointer;
-    *:hover {
+    * {
       cursor: pointer;
     }
   `};
