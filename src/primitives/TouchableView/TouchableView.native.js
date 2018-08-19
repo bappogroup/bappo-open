@@ -44,6 +44,7 @@ class TouchableView extends React.Component<Props> {
   render() {
     const {
       accessibilityLabel,
+      activeOpacity,
       children,
       delayLongPress,
       disabled,
@@ -57,6 +58,7 @@ class TouchableView extends React.Component<Props> {
 
     const props = {
       accessibilityLabel,
+      activeOpacity,
       delayLongPress,
       disabled,
       onLongPress,
