@@ -17,9 +17,15 @@ const FlexButton = styled.button`
       ? `
         color: inherit;
         cursor: not-allowed;
+        * {
+          cursor: not-allowed;
+        }
       `
       : `
         cursor: pointer;
+        * {
+          cursor: pointer;
+        }
       `};
 `;
 
