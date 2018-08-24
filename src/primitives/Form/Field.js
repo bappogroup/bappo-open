@@ -35,6 +35,9 @@ export default React.forwardRef((fieldProps: Props, ref) => {
         return React.createElement(component, {
           error: touched ? error : '',
           label,
+          testID,
+          value,
+          ...props,
           onBlur: () => {
             typeof props.onBlur === 'function' && props.onBlur();
             actions.blur(name);
@@ -48,9 +51,6 @@ export default React.forwardRef((fieldProps: Props, ref) => {
               props.onValueChange(value);
             actions.changeValue(name, value);
           },
-          testID,
-          value,
-          ...props,
           ref,
         });
       }}
