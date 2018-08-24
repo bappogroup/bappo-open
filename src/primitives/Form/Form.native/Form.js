@@ -15,7 +15,7 @@ class Form extends React.Component<Props> {
   static SubmitButton = SubmitButton;
 
   render() {
-    const { children, initialValues, style } = this.props;
+    const { children, initialValues, style, testID } = this.props;
 
     return (
       <FormState initialValues={initialValues}>
@@ -24,7 +24,9 @@ class Form extends React.Component<Props> {
             typeof children === 'function' ? children(formState) : children;
           return (
             <FormConfigProvider value={this.props}>
-              <View style={style}>{formBody}</View>
+              <View style={style} testID={testID}>
+                {formBody}
+              </View>
             </FormConfigProvider>
           );
         }}

@@ -17,7 +17,14 @@ class Form extends React.Component<Props> {
   static SubmitButton = SubmitButton;
 
   render() {
-    const { children, className, initialValues, onSubmit, style } = this.props;
+    const {
+      children,
+      className,
+      initialValues,
+      onSubmit,
+      style,
+      testID,
+    } = this.props;
 
     return (
       <FormState initialValues={initialValues}>
@@ -35,6 +42,7 @@ class Form extends React.Component<Props> {
           return (
             <FlexForm
               className={className}
+              data-testid={testID}
               onSubmit={handleFormSubmit}
               style={style}
             >
