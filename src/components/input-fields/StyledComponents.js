@@ -1,7 +1,6 @@
 // @flow
 
 import { styled } from '../../apis/Style';
-import Text from '../../primitives/Text';
 import View from '../../primitives/View';
 
 export const FieldContainer = styled(View)`
@@ -10,14 +9,6 @@ export const FieldContainer = styled(View)`
 
 export const FieldLabelContainer = styled(View)`
   align-items: flex-start;
-`;
-
-export const FieldLabel = styled(Text).attrs({
-  selectable: true,
-})`
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
 `;
 
 export const FieldInputContainer = styled(View)`

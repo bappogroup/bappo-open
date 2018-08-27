@@ -2,18 +2,19 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import FlexDiv from '../../../internals/web/FlexDiv';
+import ViewBase from '../../../internals/web/ViewBase';
 
 type Props = {
   onPress?: any,
+  testID?: string,
 };
 
-const FieldContainer = ({ onPress, ...rest }: Props) => {
-  return <StyledDiv {...rest} onClick={onPress} />;
+const TouchToFocusArea = ({ onPress, ...rest }: Props) => {
+  return <StyledView {...rest} onClick={onPress} />;
 };
 
-export default FieldContainer;
+export default TouchToFocusArea;
 
-const StyledDiv = styled(FlexDiv)`
+const StyledView = styled(ViewBase)`
   margin: 2px 0;
 `;

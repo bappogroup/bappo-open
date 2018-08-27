@@ -5,11 +5,11 @@ import type { TextInputProps } from '../../primitives/TextInput/types.js.flow';
 import TextInput from '../../primitives/TextInput';
 import Paragraph from '../Paragraph';
 import type { InputField, InputFieldProps } from './types.js.flow';
+import FieldLabel from './FieldLabel';
 import TouchToFocusArea from './TouchToFocusArea';
 import {
   FieldContainer,
   FieldInputContainer,
-  FieldLabel,
   FieldLabelContainer,
 } from './StyledComponents';
 
@@ -39,10 +39,15 @@ class TextField extends React.Component<Props> implements InputField {
     } = this.props;
     return (
       <FieldContainer testID={testID}>
-        <TouchToFocusArea onPress={() => this.focus()}>
+        <TouchToFocusArea
+          onPress={() => this.focus()}
+          testID={testID && `${testID}-control`}
+        >
           {label && (
             <FieldLabelContainer>
-              <FieldLabel>{label}</FieldLabel>
+              <FieldLabel testID={testID && `${testID}-label`}>
+                {label}
+              </FieldLabel>
             </FieldLabelContainer>
           )}
           <FieldInputContainer>

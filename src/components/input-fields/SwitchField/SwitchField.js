@@ -7,8 +7,9 @@ import Switch from '../../../primitives/Switch';
 import View from '../../../primitives/View';
 import Paragraph from '../../Paragraph';
 import type { InputField, InputFieldProps } from '../types.js.flow';
+import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
-import { FieldContainer, FieldLabel } from '../StyledComponents';
+import { FieldContainer } from '../StyledComponents';
 
 type Props = InputFieldProps & SwitchProps;
 
