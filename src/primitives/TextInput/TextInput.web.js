@@ -10,7 +10,9 @@ type Props = TextInputProps & {
   className?: string,
 };
 
-class TextInput extends React.Component<Props> {
+type State = {};
+
+class TextInput extends React.Component<Props, State> {
   static defaultProps = {
     autoFocus: false,
     multiline: false,
@@ -23,25 +25,21 @@ class TextInput extends React.Component<Props> {
 
   props: Props;
 
-  blur = () => {
+  blur() {
     this._input && this._input.blur();
-  };
+  }
 
-  clear = () => {
+  clear() {
     if (this._input) {
       this._input.value = '';
     }
-  };
-
-  focus = () => {
-    this._input && this._input.focus();
-  };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.constructor._checkProps(this.props);
   }
+
+  focus() {
+    this._input && this._input.focus();
+  }
+
+  state = {};
 
   static getDerivedStateFromProps(nextProps: Props) {
     TextInput._checkProps(nextProps);
