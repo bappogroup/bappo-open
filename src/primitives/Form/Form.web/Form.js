@@ -4,7 +4,7 @@ import * as React from 'react';
 import FlexForm from '../../../internals/web/FlexForm';
 import type { FormProps } from '../types.js.flow';
 import Field from '../Field';
-import { FormState } from '../FormState';
+import { FormState, SubmissionError } from '../FormState';
 import SubmitButton from '../SubmitButton';
 
 type Props = FormProps & {
@@ -14,6 +14,7 @@ type Props = FormProps & {
 
 class Form extends React.Component<Props> {
   static Field = Field;
+  static SubmissionError = SubmissionError;
   static SubmitButton = SubmitButton;
 
   render() {
