@@ -35,7 +35,7 @@ export default React.forwardRef((fieldProps: Props, ref) => {
         return React.createElement(component, {
           error: touched ? error : '',
           label,
-          testID,
+          testID: testID || `${name}-field`,
           value,
           ...props,
           onBlur: () => {
