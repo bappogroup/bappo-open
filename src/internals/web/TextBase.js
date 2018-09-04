@@ -73,7 +73,7 @@ class TextBase extends React.Component<Props> {
       className,
       isParentAText,
       isSelectable: !!selectable,
-      isSingleLine: numberOfLines === 1,
+      numberOfLines,
       style,
     };
 
@@ -172,8 +172,8 @@ const textStyle = css`
     cursor: inherit;
   `}
 
-  ${({ isSingleLine }) =>
-    isSingleLine &&
+  ${({ numberOfLines }) =>
+    numberOfLines === 1 &&
     `
     max-width: 100%;
     overflow: hidden;
