@@ -94,6 +94,7 @@ class TextBase extends React.Component<Props> {
         this._renderChild(element, { key: String(index) }),
       ),
       props,
+      false,
     );
   }
 
@@ -120,15 +121,20 @@ class TextBase extends React.Component<Props> {
     return child;
   };
 
-  _renderContainer = (children: React.Node, props: Object) => {
-    return React.createElement(this.props.component, props, children);
+  _renderContainer = (
+    children: React.Node,
+    props: Object,
+    isChild: boolean,
+  ) => {
+    const component = isChild ? ChildText : this.props.component;
+    return React.createElement(component, props, children);
   };
 
   _renderText = (text: string | number, props: Object, isChild: boolean) => {
     const { selectable } = this.props;
 
     if (selectable) {
-      return this._renderContainer(text, props);
+      return this._renderContainer(text, props, isChild);
     }
     // user-select CSS property doesn't prevent the text from being copied to clipboard.
     // To avoid getting to clipboard, the text from data-text-as-pseudo-element attribute
