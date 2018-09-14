@@ -2,18 +2,15 @@
 
 import * as React from 'react';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
-import TouchableView from '../../primitives/TouchableView';
+import { getTextColor } from './helpers';
 import {
-  StyledTouchableView,
-  StyledIcon,
   ButtonLabel,
-  selectTextColor,
+  SpinnerContainer,
+  StyledIcon,
+  StyledTouchableView,
 } from './styles';
 
-type RequiredProps = {
-  type: 'primary' | 'secondary' | 'tertiary' | 'destructive',
-};
-type OptionalProps = {
+type Props = {
   disabled?: boolean,
   icon?: string,
   loading?: boolean,
@@ -24,10 +21,10 @@ type OptionalProps = {
    */
   testID?: string,
   text?: string,
+  type: 'primary' | 'secondary' | 'tertiary' | 'destructive',
   // Will be removed
   className?: string,
 };
-type Props = RequiredProps & OptionalProps;
 
 const Button = ({
   className,
@@ -40,58 +37,30 @@ const Button = ({
   text,
   type,
 }: Props) => {
-  const content = () => [
-    loading && (
-      <ActivityIndicator
-        key="activity-indicator"
-        color={selectTextColor(type)}
-        style={{ marginRight: 8 }}
-      />
-    ),
-    icon && (
-      <StyledIcon
-        key="icon"
-        name={icon}
-        disabled={disabled}
-        type={type}
-        iconOnly={icon && !text}
-      />
-    ),
-    text && (
-      <ButtonLabel disabled={disabled} type={type} key="label">
-        {text}
-      </ButtonLabel>
-    ),
-  ];
-
-  if (icon && !text)
-    return (
-      <TouchableView
-        disabled={disabled}
-        onPress={onPress}
-        className={className}
-        icon={icon}
-        style={style}
-        testID={testID}
-        text={text}
-        type={type}
-      >
-        {content()}
-      </TouchableView>
-    );
+  const props = {
+    className,
+    disabled: disabled || loading,
+    onPress,
+    icon,
+    style,
+    testID,
+    text,
+    type,
+  };
+  const styleProps = {
+    disabled,
+    type,
+  };
 
   return (
-    <StyledTouchableView
-      disabled={disabled}
-      onPress={onPress}
-      className={className}
-      icon={icon}
-      style={style}
-      testID={testID}
-      text={text}
-      type={type}
-    >
-      {content()}
+    <StyledTouchableView {...props}>
+      {icon && <StyledIcon {...styleProps} name={icon} />}
+      {text && <ButtonLabel {...styleProps}>{text}</ButtonLabel>}
+      {loading && (
+        <SpinnerContainer {...styleProps}>
+          <ActivityIndicator color={getTextColor(styleProps)} />
+        </SpinnerContainer>
+      )}
     </StyledTouchableView>
   );
 };

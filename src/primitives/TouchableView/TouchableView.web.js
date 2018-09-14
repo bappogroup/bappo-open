@@ -616,7 +616,6 @@ const Container = styled(ViewBase).attrs({
   role: 'button',
   tabIndex: ({ disabled }) => (disabled ? undefined : 0),
 })`
-  outline: none;
   background-color: transparent;
   border-color: transparent;
   border-width: 0;
