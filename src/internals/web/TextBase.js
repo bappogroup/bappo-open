@@ -163,6 +163,7 @@ const textStyle = css`
   ${({ isParentAText }) =>
     isParentAText &&
     `
+    color: inherit;
     font-family: inherit;
     font-size: inherit;
     white-space: inherit;
