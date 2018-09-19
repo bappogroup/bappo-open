@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import FlatList from '../../../primitives/FlatList';
 import Menu from './Menu';
@@ -177,7 +178,7 @@ class Select extends React.Component<Props, State> {
     }
   }
 
-  componentWillUpdate(nextProps: Props, nextState: State) {
+  UNSAFE_componentWillUpdate(nextProps: Props, nextState: State) {
     if (nextState.isOpen !== this.state.isOpen) {
       this._toggleTouchOutsideEvent(nextState.isOpen);
     }
