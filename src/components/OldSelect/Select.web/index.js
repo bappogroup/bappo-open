@@ -546,10 +546,12 @@ class Select extends React.Component<Props, State> {
   _onControlClick = (event: SyntheticEvent<>) => {
     // if the event was triggered by a click and not the primary
     // button, or if the component is read-only, ignore it.
+    // $FlowFixMe
     if (this.props.readOnly || (event.type === 'click' && event.button !== 0)) {
       return;
     }
 
+    // $FlowFixMe
     if (event.target.tagName === 'INPUT') {
       return;
     }
@@ -661,6 +663,7 @@ class Select extends React.Component<Props, State> {
   };
 
   _onControlMouseDown = (event: SyntheticMouseEvent<>) => {
+    // $FlowFixMe
     if (event.target.tagName !== 'INPUT') {
       event.stopPropagation();
       event.preventDefault();
