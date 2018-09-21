@@ -7,6 +7,7 @@ import Text from '../../../primitives/Text';
 import View from '../../../primitives/View';
 import type { Option, renderOptionType } from '../types.js.flow';
 import OptionContainer from './OptionContainer';
+import Icon from '../../Icon';
 
 type Props = {
   focusedOption: ?Option,
@@ -75,7 +76,7 @@ class Menu extends React.Component<Props> {
       <Label numberOfLines={2} isDisabled={option.disabled}>
         {option[this.props.labelKey]}
       </Label>
-      <SelectedIcon show={isSelected}>✓</SelectedIcon>
+      <SelectedIcon name="check" show={isSelected} />
     </Row>
   );
 
@@ -133,6 +134,6 @@ const Row = styled(View)`
   padding: 0 5px;
 `;
 
-const SelectedIcon = styled(Text)`
+const SelectedIcon = styled(Icon)`
   opacity: ${props => (props.show ? '1' : '0')};
 `;

@@ -19,6 +19,8 @@ import {
   MultiValueWrapper,
   NoResults,
   Placeholder,
+  SearchIcon,
+  StyledValue,
 } from './StyledComponents';
 import type { Option, renderOptionType, Value } from '../types.js.flow';
 
@@ -259,8 +261,11 @@ class Select extends React.Component<Props, State> {
           onTouchMove={this._onTouchMove}
         >
           <MultiValueWrapper {...selectState}>
-            {this._renderSelectedValue(selectedOptions)}
-            {this._renderInput()}
+            {this.state.isFocused && <SearchIcon name="search" />}
+            <StyledValue>
+              {this._renderSelectedValue(selectedOptions)}
+              {this._renderInput()}
+            </StyledValue>
           </MultiValueWrapper>
           {this._renderLoading()}
           {this._renderClear()}
@@ -950,12 +955,13 @@ class Select extends React.Component<Props, State> {
       );
     }
 
+    const value = this.state.isFocused ? this.state.inputValue : '';
     return (
       <Input
         {...inputProps}
         aria-haspopup={isOpen}
         onChange={this._onInputChange}
-        value={this.state.inputValue}
+        value={value}
       />
     );
   };

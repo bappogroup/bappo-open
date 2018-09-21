@@ -2,6 +2,7 @@
 
 import styled, { css, keyframes } from 'styled-components';
 import TextInputAutoSize from './TextInputAutoSize';
+import Icon from '../../Icon';
 
 const spin = keyframes`
 to {
@@ -116,7 +117,7 @@ export const FakeInput = styled.div`
 
 export const Input = styled(TextInputAutoSize)`
   input {
-    height: 100%;
+    min-height: 30px;
     width: 100%;
     background: none transparent;
     border: 0 none;
@@ -168,12 +169,8 @@ export const MenuInner = styled.div`
 `;
 
 export const MenuOuter = styled.div`
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
   background-color: #fff;
   border: 1px solid #ccc;
-  border-top-color: #e6e6e6;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   margin-top: -1px;
   max-height: 200px;
@@ -184,8 +181,15 @@ export const MenuOuter = styled.div`
   -webkit-overflow-scrolling: touch;
 `;
 
+export const MultiValueWrapperOuter = styled.div`
+  height: 100%;
+`;
+
 export const MultiValueWrapper = styled.div`
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   ${props =>
     props.isMulti &&
     `
@@ -215,4 +219,15 @@ export const Placeholder = styled.div`
   white-space: nowrap;
   display: flex;
   align-items: center;
+`;
+
+export const SearchIcon = styled(Icon)`
+  flex: none;
+  color: #ccc;
+  margin-right: 1px;
+`;
+
+export const StyledValue = styled.div`
+  position: relative;
+  flex: 1;
 `;

@@ -1,6 +1,14 @@
 import React from 'react';
 import { OldSelect } from 'bappo-components';
 
+const options = [
+  { label: 'Bob Mc Donald', value: '1' },
+  { label: 'Andrew Smith', value: '2' },
+  { label: 'Sandra Jones', value: '3' },
+  { label: 'Peter Soloman', value: '4' },
+  { label: 'Joe Peters', value: '5' },
+];
+
 class Example extends React.Component {
   state = {
     value: '1',
@@ -9,7 +17,7 @@ class Example extends React.Component {
   render() {
     return (
       <OldSelect
-        options={[{ label: 'one', value: '1' }, { label: 'two', value: '2' }]}
+        options={options}
         value={this.state.value}
         onValueChange={value => this.setState({ value })}
       />
