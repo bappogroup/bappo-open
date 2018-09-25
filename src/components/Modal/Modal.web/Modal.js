@@ -39,7 +39,7 @@ class Modal extends React.Component<Props, State> {
           layout={this.state.modalContentLayout}
           onLayout={this._onModalContentLayout}
         >
-          {children}
+          {this.state.modalContentLayout ? children : null}
         </ModalContentContainer>
       </Overlay>
     );
