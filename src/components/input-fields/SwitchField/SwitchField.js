@@ -1,15 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { styled } from '../../../apis/Style';
 import type { SwitchProps } from '../../../primitives/Switch/types.js.flow';
 import Switch from '../../../primitives/Switch';
-import View from '../../../primitives/View';
-import Paragraph from '../../Paragraph';
 import type { InputField, InputFieldProps } from '../types.js.flow';
-import FieldLabel from '../FieldLabel';
-import TouchToFocusArea from '../TouchToFocusArea';
-import { FieldContainer } from '../StyledComponents';
+import { SwitchFieldWrapper } from '../wrappers';
 
 type Props = InputFieldProps & SwitchProps;
 
@@ -26,7 +21,7 @@ class SwitchField extends React.Component<Props> implements InputField {
 
   render() {
     const {
-      error,
+      fieldState,
       label,
       onBlur,
       onFocus,
@@ -36,24 +31,25 @@ class SwitchField extends React.Component<Props> implements InputField {
       ...rest
     } = this.props;
     return (
-      <FieldContainer testID={testID}>
-        <SwitchTouchToFocusArea
-          onPress={() => onValueChange && onValueChange(!value)}
-        >
-          {label && <FieldLabel>{label}</FieldLabel>}
-          <SwitchContainer>
-            <Switch
-              {...rest}
-              ref={this._switchRef}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              onValueChange={onValueChange}
-              value={value}
-            />
-          </SwitchContainer>
-        </SwitchTouchToFocusArea>
-        <Paragraph type="error">{error}</Paragraph>
-      </FieldContainer>
+      <SwitchFieldWrapper
+        fieldState={fieldState}
+        focusInput={() => this.focus()}
+        label={label}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onValueChange={onValueChange}
+        testID={testID}
+        value={value}
+      >
+        <Switch
+          {...rest}
+          ref={this._switchRef}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onValueChange={onValueChange}
+          value={value}
+        />
+      </SwitchFieldWrapper>
     );
   }
 
@@ -61,13 +57,3 @@ class SwitchField extends React.Component<Props> implements InputField {
 }
 
 export default SwitchField;
-
-const SwitchTouchToFocusArea = styled(TouchToFocusArea)`
-  flex-direction: row;
-  align-items: center;
-  align-self: flex-start;
-`;
-
-const SwitchContainer = styled(View)`
-  margin-left: 2px;
-`;

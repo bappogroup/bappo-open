@@ -30,10 +30,28 @@ export default React.forwardRef((fieldProps: Props, ref) => {
 
   return (
     <FieldState name={name} validate={validate}>
-      {({ error, touched, value, formState }) => {
+      {({
+        active,
+        dirty,
+        error,
+        pristine,
+        touched,
+        value,
+        visited,
+        formState,
+      }) => {
         const { actions } = formState;
+        const fieldState = {
+          active,
+          dirty,
+          error,
+          pristine,
+          touched,
+          value,
+          visited,
+        };
         return React.createElement(component, {
-          error: touched ? error : '',
+          fieldState,
           label,
           testID: testID || `${name}-field`,
           value,

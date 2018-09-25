@@ -71,3 +71,13 @@ export type ActionTypes =
   | 'START_SUBMIT'
   | 'TOUCH_ALL'
   | 'VALIDATE';
+
+export type FieldState = {
+  active: boolean,
+  dirty: boolean,
+  error: mixed,
+  pristine: boolean,
+  touched: boolean,
+  value: mixed,
+  visited: boolean,
+};

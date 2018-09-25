@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import type { FieldState } from '../../primitives/Form/FormState/types.js.flow';
 
 export interface InputField {
   blur(): void;
@@ -8,7 +9,7 @@ export interface InputField {
 }
 
 export type InputFieldProps = {
-  error?: string,
+  fieldState: FieldState,
   label?: string,
   onBlur?: () => void,
   onFocus?: () => void,

@@ -3,15 +3,8 @@
 import * as React from 'react';
 import type { TextInputProps } from '../../primitives/TextInput/types.js.flow';
 import TextInput from '../../primitives/TextInput';
-import Paragraph from '../Paragraph';
 import type { InputField, InputFieldProps } from './types.js.flow';
-import FieldLabel from './FieldLabel';
-import TouchToFocusArea from './TouchToFocusArea';
-import {
-  FieldContainer,
-  FieldInputContainer,
-  FieldLabelContainer,
-} from './StyledComponents';
+import { InputFieldWrapper } from './wrappers';
 
 type Props = InputFieldProps & TextInputProps;
 
@@ -28,7 +21,7 @@ class TextField extends React.Component<Props> implements InputField {
 
   render() {
     const {
-      error,
+      fieldState,
       label,
       onBlur,
       onFocus,
@@ -38,31 +31,25 @@ class TextField extends React.Component<Props> implements InputField {
       ...rest
     } = this.props;
     return (
-      <FieldContainer testID={testID}>
-        <TouchToFocusArea
-          onPress={() => this.focus()}
-          testID={testID && `${testID}-control`}
-        >
-          {label && (
-            <FieldLabelContainer>
-              <FieldLabel testID={testID && `${testID}-label`}>
-                {label}
-              </FieldLabel>
-            </FieldLabelContainer>
-          )}
-          <FieldInputContainer>
-            <TextInput
-              {...rest}
-              ref={this._textInputRef}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              onValueChange={onValueChange}
-              value={value || ''}
-            />
-          </FieldInputContainer>
-        </TouchToFocusArea>
-        <Paragraph type="error">{error}</Paragraph>
-      </FieldContainer>
+      <InputFieldWrapper
+        fieldState={fieldState}
+        focusInput={() => this.focus()}
+        label={label}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onValueChange={onValueChange}
+        testID={testID}
+        value={value}
+      >
+        <TextInput
+          {...rest}
+          ref={this._textInputRef}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onValueChange={onValueChange}
+          value={value || ''}
+        />
+      </InputFieldWrapper>
     );
   }
 

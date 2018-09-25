@@ -1,0 +1,9 @@
+// @flow
+
+import * as React from 'react';
+import type { InputFieldProps } from '../types.js.flow';
+
+export type InputWrapperProps = InputFieldProps & {
+  children?: React.Node,
+  focusInput?: ?() => void,
+};

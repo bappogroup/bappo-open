@@ -2,21 +2,13 @@
 
 import * as React from 'react';
 import type {
+  FieldState,
   FieldValidator,
   FormStateAndHelpersAndActions,
 } from './types.js.flow';
 import { unwrapChildren } from './utils';
 import withFormState from './withFormState';
 
-type FieldState = {
-  active: boolean,
-  dirty: boolean,
-  error: mixed,
-  pristine: boolean,
-  touched: boolean,
-  value: mixed,
-  visited: boolean,
-};
 type RequiredProps = {
   children: (fieldState: FieldState) => React.Node,
   name: string,
