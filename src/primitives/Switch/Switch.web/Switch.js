@@ -84,6 +84,8 @@ class Switch extends React.Component<Props> {
 export default Switch;
 
 const SwitchContainer = styled(ViewBase).attrs({
+  'aria-checked': ({ value }) => (value ? 'true' : 'false'),
+  role: 'checkbox',
   tabIndex: 0,
 })`
   flex: none;
