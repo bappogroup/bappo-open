@@ -13,7 +13,7 @@ import Example from './example';
 const CardScreen = () => (
   <UIExplorer title="Card" url="2-components/Card">
     <Description>
-      <AppText>Card.</AppText>
+      <AppText>A view with box shadows.</AppText>
     </Description>
 
     <DocItem
