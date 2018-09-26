@@ -3,10 +3,6 @@
 import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
 
-export const FieldContainer = styled(View)`
-  padding: 8px 0;
-`;
-
 export const FieldLabelContainer = styled(View)`
   align-items: flex-start;
 `;

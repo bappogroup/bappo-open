@@ -4,9 +4,9 @@ import * as React from 'react';
 import { styled } from '../../../apis/Style';
 import View from '../../../primitives/View';
 import Paragraph from '../../Paragraph';
+import FieldContainer from '../FieldContainer';
 import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
-import { FieldContainer } from '../StyledComponents';
 import type { InputWrapperProps } from './types.js.flow';
 
 const SwitchFieldWrapper = (props: InputWrapperProps) => {

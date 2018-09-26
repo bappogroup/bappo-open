@@ -2,13 +2,10 @@
 
 import * as React from 'react';
 import Paragraph from '../../Paragraph';
+import FieldContainer from '../FieldContainer';
 import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
-import {
-  FieldContainer,
-  FieldInputContainer,
-  FieldLabelContainer,
-} from '../StyledComponents';
+import { FieldInputContainer, FieldLabelContainer } from '../StyledComponents';
 import type { InputWrapperProps } from './types.js.flow';
 
 const InputFieldWrapper = (props: InputWrapperProps) => {
