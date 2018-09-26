@@ -5,14 +5,27 @@ import Paragraph from '../../Paragraph';
 import FieldContainer from '../FieldContainer';
 import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
-import { FieldInputContainer, FieldLabelContainer } from '../StyledComponents';
+import {
+  FieldInputContainer,
+  FieldLabelAsterisk,
+  FieldLabelContainer,
+} from '../StyledComponents';
 import type { InputWrapperProps } from './types.js.flow';
 
 const InputFieldWrapper = (props: InputWrapperProps) => {
-  const { children, fieldState, focusInput, label, testID } = props;
+  const {
+    children,
+    className,
+    fieldState,
+    focusInput,
+    label,
+    required,
+    style,
+    testID,
+  } = props;
 
   return (
-    <FieldContainer testID={testID}>
+    <FieldContainer className={className} style={style} testID={testID}>
       <TouchToFocusArea
         onPress={focusInput}
         testID={testID && `${testID}-control`}
@@ -22,6 +35,7 @@ const InputFieldWrapper = (props: InputWrapperProps) => {
             <FieldLabel testID={testID && `${testID}-label`}>
               {label}
             </FieldLabel>
+            {required && <FieldLabelAsterisk />}
           </FieldLabelContainer>
         )}
         <FieldInputContainer>{children}</FieldInputContainer>
