@@ -10,10 +10,19 @@ import TouchToFocusArea from '../TouchToFocusArea';
 import type { InputWrapperProps } from './types.js.flow';
 
 const SwitchFieldWrapper = (props: InputWrapperProps) => {
-  const { children, fieldState, label, onValueChange, testID, value } = props;
+  const {
+    children,
+    className,
+    fieldState,
+    label,
+    onValueChange,
+    style,
+    testID,
+    value,
+  } = props;
 
   return (
-    <FieldContainer testID={testID}>
+    <FieldContainer className={className} style={style} testID={testID}>
       <SwitchTouchToFocusArea
         onPress={() => onValueChange && onValueChange(!value)}
         testID={testID && `${testID}-control`}

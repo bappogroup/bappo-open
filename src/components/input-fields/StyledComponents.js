@@ -26,6 +26,6 @@ export const FieldInputContainer = styled(View)`
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
-  height: 40px;
-  padding: 10px 16px;
+  min-height: 40px;
+  padding: 0px 16px;
 `;
