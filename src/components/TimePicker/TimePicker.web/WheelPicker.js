@@ -136,7 +136,9 @@ class WheelPicker extends React.Component<Props, State> {
 
 export default WheelPicker;
 
-const Container = styled.div``;
+const Container = styled.div.attrs({
+  'data-component': 'wheel-picker',
+})``;
 
 const Cell = styled.div`
   align-items: center;

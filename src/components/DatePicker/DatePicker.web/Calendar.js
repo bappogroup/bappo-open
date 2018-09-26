@@ -301,7 +301,9 @@ const Arrow = styled.span`
   position: relative;
 `;
 
-const CalendarContainer = styled.div``;
+const CalendarContainer = styled.div.attrs({
+  'data-component': 'calendar',
+})``;
 
 const Cell = styled.div`
   align-items: center;
