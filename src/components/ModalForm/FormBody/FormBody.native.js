@@ -62,7 +62,7 @@ const ModalFormHeader = styled.SafeAreaView`
   ${modalFormMobileHeaderStyle};
 `;
 
-const ModalFormContent = styled.View`
+const ModalFormContent = styled.ScrollView`
   ${modalFormContentStyle};
 `;
 
