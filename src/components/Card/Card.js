@@ -9,9 +9,9 @@ type Props = {
   style?: any,
 };
 
-const Card = ({ children, style }: Props) => {
+const Card = ({ children, ...rest }: Props) => {
   return (
-    <StyledView selectable style={style}>
+    <StyledView selectable {...rest}>
       {children}
     </StyledView>
   );
