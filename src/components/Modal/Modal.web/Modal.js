@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import isEqual from 'lodash/isEqual';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { breakpoint } from '../../../internals/web/breakpoint';
@@ -14,10 +15,6 @@ type State = {
     height: number,
     width: number,
   },
-  overlayLayout: null | {
-    height: number,
-    width: number,
-  },
 };
 
 class Modal extends React.Component<Props, State> {
@@ -25,7 +22,6 @@ class Modal extends React.Component<Props, State> {
 
   state = {
     modalContentLayout: null,
-    overlayLayout: null,
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -38,21 +34,15 @@ class Modal extends React.Component<Props, State> {
     const { children, onRequestClose, visible } = this.props;
 
     return (
-      <Overlay
-        onLayout={this._onOverlayLayout}
-        onPress={onRequestClose}
-        visible={visible}
-      >
-        {this.state.overlayLayout && (
-          <ModalContentContainer
-            innerRef={this._modalContentContainerRef}
-            layout={this.state.modalContentLayout}
-            onLayout={this._onModalContentLayout}
-            windowDimensions={this.state.overlayLayout}
-          >
-            {children}
-          </ModalContentContainer>
-        )}
+      <Overlay onPress={onRequestClose} visible={visible}>
+        <ModalContentContainer
+          innerRef={this._modalContentContainerRef}
+          layout={this.state.modalContentLayout}
+          onKeyDown={this._onModalContentKeyDown}
+          onLayout={this._onModalContentLayout}
+        >
+          {children}
+        </ModalContentContainer>
       </Overlay>
     );
   }
@@ -60,16 +50,27 @@ class Modal extends React.Component<Props, State> {
   _modalContentContainerRef = React.createRef();
 
   _focusContent() {
-    this._modalContentContainerRef.current &&
-      this._modalContentContainerRef.current.focus();
+    const domEl = this._modalContentContainerRef.current;
+    if (
+      domEl &&
+      document.activeElement !== domEl &&
+      !domEl.contains(document.activeElement)
+    ) {
+      // only focus if modal container or its children does not have focus
+      domEl.focus();
+    }
   }
+
+  _onModalContentKeyDown = (event: SyntheticKeyboardEvent<>) => {
+    if (event.keyCode === 27) {
+      // escape
+      event.stopPropagation();
+      this.props.onRequestClose();
+    }
+  };
 
   _onModalContentLayout = (event: ViewLayoutEvent) => {
     this.setState({ modalContentLayout: event.nativeEvent.layout });
-  };
-
-  _onOverlayLayout = (event: ViewLayoutEvent) => {
-    this.setState({ overlayLayout: event.nativeEvent.layout });
   };
 }
 
@@ -96,21 +97,20 @@ export const ModalContentContainer = styled(ViewBase).attrs({
 
   @media (min-width: ${breakpoint.min}px) {
     margin: auto;
+    max-height: 768px;
     min-height: 384px;
     width: 576px;
-    ${({ layout, windowDimensions }) =>
-      layout && windowDimensions
-        ? layout.height < windowDimensions.height
-          ? `
-            top: calc(50vh - ${layout.height / 2}px);
-            max-height: 768px;
-            `
-          : `
-            top: 0;
-            max-height: 100%;
-            `
+    ${({ layout }) =>
+      layout
+        ? `
+          top: calc(50vh - ${layout.height / 2}px);
+        `
         : `
-          visibility: hidden;
+          opacity: 0;
         `};
+  }
+
+  @media (min-width: ${breakpoint.min}px) and (max-height: 768px) {
+    max-height: 100%;
   }
 `;
