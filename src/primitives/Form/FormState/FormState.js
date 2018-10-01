@@ -327,9 +327,8 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
               type: 'SET_SUBMIT_FAILED',
               payload: err.errors,
             });
-          } else {
-            throw err;
           }
+          throw err;
         }
       },
       touchAll: () => {
