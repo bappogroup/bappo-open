@@ -23,28 +23,32 @@ export const ModalFormTitleContainer = styled(View)`
 `;
 
 export const modalFormMobileTitleTextStyle = css`
-  font-size: 18px;
+  font-size: 16px;
   color: #2b2826;
-  line-height: 18px;
+  line-height: 16px;
+  text-align: center;
 `;
 
-export const modalFormMobileHeaderStyle = css`
+export const modalFormMobileHeaderContainerStyle = css`
   flex: none;
-  flex-direction: row;
-  justify-content: space-between;
   background-color: white;
   border-width: 0;
   border-top-width: 1px;
   border-bottom-width: 1px;
   border-style: solid;
   border-color: #dddbda;
+`;
+
+export const modalFormMobileHeaderStyle = css`
+  flex-direction: row;
+  justify-content: space-between;
   height: 45px;
 `;
 
 const buttonStyle = css`
   align-items: center;
   justify-content: center;
-  padding: 0 16px;
+  margin: 0 16px;
 `;
 
 const CancelButton = styled(TouchableView)`

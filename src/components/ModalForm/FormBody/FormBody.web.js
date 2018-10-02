@@ -18,6 +18,7 @@ import {
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
   modalFormContentStyle,
+  modalFormMobileHeaderContainerStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
 } from '../StyledComponents';
@@ -87,7 +88,9 @@ const StyledForm = styled(FlexForm)`
   flex: 1;
 `;
 
-const ModalFormTitleText = styled(Text)`
+const ModalFormTitleText = styled(Text).attrs({
+  numberOfLines: 2,
+})`
   font-size: 20px;
   color: #2b2826;
   line-height: 20px;
@@ -107,6 +110,7 @@ const ModalFormHeader = styled(FlexDiv)`
 
   @media (max-width: ${breakpoint.max}px) {
     ${modalFormMobileHeaderStyle};
+    ${modalFormMobileHeaderContainerStyle};
   }
 `;
 

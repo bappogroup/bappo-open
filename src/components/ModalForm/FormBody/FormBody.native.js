@@ -10,6 +10,7 @@ import {
   ModalFormHeaderSubmitButton,
   ModalFormTitleContainer,
   modalFormContentStyle,
+  modalFormMobileHeaderContainerStyle,
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
 } from '../StyledComponents';
@@ -54,13 +55,25 @@ const StyledForm = styled.View`
   flex: 1;
 `;
 
-const ModalFormTitleText = styled(Text)`
+const ModalFormTitleText = styled(Text).attrs({
+  numberOfLines: 2,
+})`
   ${modalFormMobileTitleTextStyle};
 `;
 
-const ModalFormHeader = styled.SafeAreaView`
+const ModalFormHeaderContainer = styled.SafeAreaView`
+  ${modalFormMobileHeaderContainerStyle};
+`;
+const ModalFormHeaderInnerContainer = styled.View`
   ${modalFormMobileHeaderStyle};
 `;
+const ModalFormHeader = ({ children }) => {
+  return (
+    <ModalFormHeaderContainer>
+      <ModalFormHeaderInnerContainer>{children}</ModalFormHeaderInnerContainer>
+    </ModalFormHeaderContainer>
+  );
+};
 
 const ModalFormContent = styled.ScrollView`
   ${modalFormContentStyle};
