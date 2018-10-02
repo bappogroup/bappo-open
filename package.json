@@ -1,6 +1,6 @@
 {
   "name": "bappo-components",
-  "version": "0.1.0-alpha.41",
+  "version": "0.1.0-alpha.42",
   "description": "Cross-platform React components for building Bappo apps",
   "main": "lib/index.js",
   "module": "es/index.js",
