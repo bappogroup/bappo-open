@@ -121,9 +121,12 @@ class ModalForm extends React.Component<Props> {
     actions.touchAll();
 
     if (Object.keys(fieldErrors).length === 0) {
-      const res = await actions.submit(() => onSubmit && onSubmit(values));
-      onRequestClose();
-      return res;
+      await actions.submit(async () => {
+        if (onSubmit) {
+          await onSubmit(values);
+        }
+        onRequestClose();
+      });
     }
   };
 }

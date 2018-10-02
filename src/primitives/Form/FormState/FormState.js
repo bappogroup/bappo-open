@@ -309,26 +309,24 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
           payload: validators,
         });
       },
-      // $FlowFixMe
       submit: async doSubmit => {
         try {
           this.send({
             type: 'START_SUBMIT',
           });
-          // $FlowFixMe
-          const res = await doSubmit();
+          await doSubmit();
           this.send({
             type: 'SET_SUBMIT_SUCCEEDED',
           });
-          return res;
         } catch (err) {
           if (err instanceof SubmissionError) {
             this.send({
               type: 'SET_SUBMIT_FAILED',
               payload: err.errors,
             });
+          } else {
+            throw err;
           }
-          throw err;
         }
       },
       touchAll: () => {

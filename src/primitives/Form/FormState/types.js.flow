@@ -53,7 +53,7 @@ export type FormActionSenders = {
     fieldName: string,
     validators: FieldValidator | FieldValidator[],
   ) => void,
-  submit: <T>(doSubmit: () => Promise<T> | T) => Promise<T>,
+  submit: (doSubmit: () => any) => Promise<void>,
   touchAll: () => void,
 };
 
