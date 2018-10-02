@@ -2,8 +2,16 @@
   "name": "bappo-components",
   "version": "0.1.0-alpha.42",
   "description": "Cross-platform React components for building Bappo apps",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "keywords": [
+    "bappo"
+  ],
+  "homepage": "https://github.com/bappogroup/bappo-components#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bappogroup/bappo-components.git"
+  },
+  "license": "MIT",
+  "author": "Bappo",
   "files": [
     ".flowconfig",
     "es",
@@ -13,28 +21,15 @@
     "lib",
     "src"
   ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
-    "prepush": "yarn flow",
+    "build": "npm run build:cjs && npm run build:es && rimraf storybook/storybook-native/node_modules/bappo-components/lib/ && cp -r lib storybook/storybook-native/node_modules/bappo-components/lib",
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel src/ -d es/",
-    "build": "npm run build:cjs && npm run build:es && rimraf storybook/storybook-native/node_modules/bappo-components/lib/ && cp -r lib storybook/storybook-native/node_modules/bappo-components/lib",
     "flow": "flow",
     "lint": "eslint src/",
-    "prepublish": "yarn run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bappogroup/bappo-components.git"
-  },
-  "keywords": [
-    "bappo"
-  ],
-  "author": "Bappo",
-  "license": "MIT",
-  "rnpm": {
-    "assets": [
-      "fonts"
-    ]
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "es6-error": "^4.1.1",
@@ -47,7 +42,6 @@
     "react-recomponent": "^0.2.0",
     "react-responsive": "^5.0.0"
   },
-  "homepage": "https://github.com/bappogroup/bappo-components#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
@@ -65,8 +59,9 @@
     "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-react": "7.11.1",
     "flow-bin": "^0.74.0",
-    "husky": "^0.14.3",
-    "prettier": "^1.13.5",
+    "husky": "^1.1.0",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
     "react": "16.4.2",
     "react-dom": "16.4.2",
     "rimraf": "^2.6.2",
@@ -75,6 +70,23 @@
   "peerDependencies": {
     "react": "16.4.2",
     "styled-components": "3.x.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "flow && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ]
+  },
+  "rnpm": {
+    "assets": [
+      "fonts"
+    ]
   },
   "sideEffects": [
     "./src/internals/web/addNonSelectableTextStyle.js",
