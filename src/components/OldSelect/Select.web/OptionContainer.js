@@ -22,8 +22,6 @@ const blockEvent = (event: SyntheticEvent<>) => {
 };
 
 class OptionContainer extends React.Component<Props> {
-  props: Props;
-
   render() {
     const {
       children,

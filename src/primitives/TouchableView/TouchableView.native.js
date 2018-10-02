@@ -31,8 +31,6 @@ type Props = {
 };
 
 class TouchableView extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = {
     activeOpacity: 0.2,
     delayLongPress: 500,

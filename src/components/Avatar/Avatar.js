@@ -16,8 +16,6 @@ type Props = AvatarProps & {
 };
 
 class Avatar extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = AvatarDefaultProps;
 
   render() {

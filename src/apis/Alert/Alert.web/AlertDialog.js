@@ -9,7 +9,6 @@ import Text from '../../../primitives/Text';
 import Paragraph from '../../../components/Paragraph';
 import Button from '../../../components/Button';
 import ViewBase from '../../../internals/web/ViewBase';
-import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { modalFormContentStyle } from '../../../components/ModalForm/StyledComponents';
 import type { AlertOptions } from '../types.js.flow';
 import AlertDefaultProps from '../defaultProps';
@@ -19,8 +18,6 @@ type Props = AlertOptions & {
 };
 
 class AlertDialog extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = AlertDefaultProps;
 
   createActionButtonHandler = (onPress: ?() => void) => () => {

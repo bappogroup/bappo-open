@@ -18,8 +18,6 @@ type State = {
 };
 
 class Modal extends React.Component<Props, State> {
-  props: Props;
-
   state = {
     modalContentLayout: null,
   };

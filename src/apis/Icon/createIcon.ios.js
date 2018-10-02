@@ -19,8 +19,6 @@ const createIcon = (
   glyphMap: GlyphMap,
 ) => {
   class Icon extends React.Component<Props> {
-    props: Props;
-
     setNativeProps = (nativeProps: any) => {
       this._text && this._text.setNativeProps(nativeProps);
     };

@@ -79,8 +79,6 @@ class DatePicker extends React.Component<Props> {
 
   static displayName = 'DatePicker';
 
-  props: Props;
-
   blur() {
     this._picker && this._picker.blur();
   }

@@ -36,8 +36,6 @@ type Props = {
 };
 
 class ViewBase extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = {
     component: 'div',
   };

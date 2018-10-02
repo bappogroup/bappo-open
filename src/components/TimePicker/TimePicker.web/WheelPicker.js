@@ -22,8 +22,6 @@ type State = {
 const CELL_HEIGHT = 25;
 
 class WheelPicker extends React.Component<Props, State> {
-  props: Props;
-
   constructor(props: Props) {
     super(props);
 

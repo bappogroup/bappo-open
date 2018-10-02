@@ -31,8 +31,6 @@ type Props = {
 class View extends React.Component<Props> {
   static displayName = 'View';
 
-  props: Props;
-
   // To be able to use View inside TouchableHighlight/TouchableOpacity
   setNativeProps = (...args: Array<any>) => {
     this._nativeView && this._nativeView.setNativeProps(...args);

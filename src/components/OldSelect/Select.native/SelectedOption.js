@@ -10,8 +10,6 @@ type Props = {
 };
 
 class SelectedOption extends React.Component<Props> {
-  props: Props;
-
   render() {
     const { option, ...props } = this.props;
     return <Container {...props}>{this._renderLabel()}</Container>;

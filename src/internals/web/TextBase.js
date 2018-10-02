@@ -43,8 +43,6 @@ class TextBase extends React.Component<Props> {
     component: 'div',
   };
 
-  props: Props;
-
   getChildContext() {
     return {
       isParentAText: true,

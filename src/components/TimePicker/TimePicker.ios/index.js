@@ -88,8 +88,6 @@ class TimePicker extends React.Component<Props, State> {
 
   static displayName = 'TimePicker';
 
-  props: Props;
-
   blur() {
     this._picker && this._picker.blur();
   }

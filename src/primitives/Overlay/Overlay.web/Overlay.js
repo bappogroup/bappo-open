@@ -10,8 +10,6 @@ import OverlayContainer from './OverlayContainer';
 type Props = OverlayProps;
 
 class Overlay extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = OverlayDefaultProps;
 
   constructor(props: Props) {

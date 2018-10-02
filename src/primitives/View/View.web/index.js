@@ -33,8 +33,6 @@ type Props = {
 class View extends React.Component<Props> {
   static displayName = 'View';
 
-  props: Props;
-
   render() {
     const {
       accessibilityLabel,

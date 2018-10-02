@@ -35,8 +35,6 @@ type Props = {
 const ROW_HEIGHT = 35;
 
 class Menu extends React.Component<Props> {
-  props: Props;
-
   render() {
     const {
       getItemLayout,

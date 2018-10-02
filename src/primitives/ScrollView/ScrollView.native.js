@@ -54,8 +54,6 @@ class ScrollView extends React.Component<Props> {
 
   static displayName = 'ScrollView';
 
-  props: Props;
-
   scrollTo = (options: { x?: number, y?: number }) => {
     this._scrollableNode && this._scrollableNode.scrollTo(options);
   };

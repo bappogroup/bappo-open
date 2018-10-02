@@ -29,8 +29,6 @@ type OptionalProps = {
 type Props = RequiredProps & OptionalProps;
 
 class ModalForm extends React.Component<Props> {
-  props: Props;
-
   render() {
     const {
       children,

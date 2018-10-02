@@ -17,8 +17,6 @@ type State = {
 const { width: initialWindowWidth } = Dimensions.get('window');
 
 class Modal extends React.Component<Props, State> {
-  props: Props;
-
   state = {
     modalContentLayout: {
       height: 0,

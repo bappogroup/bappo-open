@@ -12,8 +12,6 @@ type Props = SwitchProps & {
 };
 
 class Switch extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = SwitchDefaultProps;
 
   render() {

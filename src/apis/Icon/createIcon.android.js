@@ -22,8 +22,6 @@ const createIcon = (
   const fontReference = fontFileName.replace(/\.(otf|ttf)$/, '');
 
   class Icon extends React.Component<Props> {
-    props: Props;
-
     setNativeProps = (nativeProps: any) => {
       this._text && this._text.setNativeProps(nativeProps);
     };

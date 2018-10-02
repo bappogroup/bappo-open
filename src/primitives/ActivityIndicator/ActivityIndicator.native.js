@@ -21,8 +21,6 @@ type Props = {
 };
 
 class ActivityIndicator extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = {
     animating: true,
     color: '#999',

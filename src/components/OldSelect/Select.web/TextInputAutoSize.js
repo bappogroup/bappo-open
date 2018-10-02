@@ -17,8 +17,6 @@ type State = {
 };
 
 class TextInputAutoSize extends React.Component<Props, State> {
-  props: Props;
-
   static defaultProps = {
     minWidth: 1,
   };

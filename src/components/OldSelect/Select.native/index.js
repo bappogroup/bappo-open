@@ -159,8 +159,6 @@ class Select extends React.Component<Props, State> {
     return null;
   };
 
-  props: Props;
-
   blur = () => {
     const { onBlur } = this.props;
     this._setPopupVisible(false);

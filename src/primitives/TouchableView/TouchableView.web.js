@@ -220,8 +220,6 @@ type State = {
 };
 
 class TouchableView extends React.Component<Props, State> {
-  props: Props;
-
   static defaultProps = {
     activeOpacity: 0.2,
     delayLongPress: LONG_PRESS_THRESHOLD,

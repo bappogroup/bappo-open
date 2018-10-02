@@ -29,8 +29,6 @@ type Props = {
 class Text extends React.Component<Props> {
   static displayName = 'Text';
 
-  props: Props;
-
   // To be able to use Text inside TouchableHighlight/TouchableOpacity
   setNativeProps = (...args: Array<any>) => {
     this._nativeText && this._nativeText.setNativeProps(...args);

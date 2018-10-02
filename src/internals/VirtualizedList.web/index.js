@@ -247,8 +247,6 @@ type State = { first: number, last: number };
  *
  */
 class VirtualizedList extends React.PureComponent<Props, State> {
-  props: Props;
-
   // scrollToEnd may be janky without getItemLayout prop
   scrollToEnd(params?: ?{ animated?: ?boolean }) {
     const animated = params ? params.animated : true;

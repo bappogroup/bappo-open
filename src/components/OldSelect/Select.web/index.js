@@ -157,8 +157,6 @@ class Select extends React.Component<Props, State> {
 
   static displayName = 'Select';
 
-  props: Props;
-
   blur = () => {
     this._input && this._input.blur();
   };

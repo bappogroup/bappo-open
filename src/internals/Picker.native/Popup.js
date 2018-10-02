@@ -29,8 +29,6 @@ type State = {
 };
 
 class Popup extends React.Component<Props, State> {
-  props: Props;
-
   static defaultProps = {
     height: 259,
     show: false,

@@ -9,8 +9,6 @@ import OverlayDefaultProps from '../defaultProps';
 type Props = OverlayProps;
 
 class Overlay extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = OverlayDefaultProps;
 
   render() {

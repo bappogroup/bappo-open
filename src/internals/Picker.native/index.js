@@ -44,8 +44,6 @@ class PickerNative extends React.Component<Props, State> {
     readOnly: false,
   };
 
-  props: Props;
-
   blur = () => {
     const { onBlur } = this.props;
 

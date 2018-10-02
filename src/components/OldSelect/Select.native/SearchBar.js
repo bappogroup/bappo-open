@@ -36,8 +36,6 @@ function normalizeSearchText(rawText) {
 }
 
 class SearchBar extends React.Component<Props> {
-  props: Props;
-
   static defaultProps = {
     disabled: false,
     isLoading: false,

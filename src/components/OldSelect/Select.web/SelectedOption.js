@@ -14,8 +14,6 @@ type Props = {
 };
 
 class SelectedOption extends React.Component<Props> {
-  props: Props;
-
   render() {
     const { labelKey, onRemove, option, ...props } = this.props;
     return (

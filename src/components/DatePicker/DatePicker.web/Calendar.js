@@ -59,8 +59,6 @@ const getGroupedYears = (year: number) => {
 };
 
 class Calendar extends React.Component<Props, State> {
-  props: Props;
-
   constructor(props: Props) {
     super(props);
 

@@ -31,8 +31,6 @@ type Props = {
 class Text extends React.Component<Props> {
   static displayName = 'Text';
 
-  props: Props;
-
   render() {
     const {
       accessibilityLabel,

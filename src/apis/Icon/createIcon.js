@@ -20,8 +20,6 @@ const createIcon = (
   glyphMap: GlyphMap,
 ) => {
   class Icon extends React.Component<Props> {
-    props: Props;
-
     render() {
       const { className, name, style } = this.props;
 

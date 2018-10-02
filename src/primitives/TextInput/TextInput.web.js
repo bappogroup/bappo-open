@@ -23,8 +23,6 @@ class TextInput extends React.Component<Props, State> {
 
   static displayName = 'TextInput';
 
-  props: Props;
-
   blur() {
     this._input && this._input.blur();
   }

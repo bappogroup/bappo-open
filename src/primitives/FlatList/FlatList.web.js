@@ -276,8 +276,6 @@ export type DefaultProps = typeof defaultProps;
 class FlatList<ItemT> extends React.PureComponent<Props<ItemT>, void> {
   static defaultProps: DefaultProps = defaultProps;
 
-  props: Props<ItemT>;
-
   /**
    * Scrolls to the end of the content. May be janky without `getItemLayout` prop.
    */

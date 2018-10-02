@@ -43,8 +43,6 @@ class PickerWeb extends React.Component<Props, State> {
 
   static displayName = 'PickerWeb';
 
-  props: Props;
-
   blur() {
     this._input && this._input.blur();
   }

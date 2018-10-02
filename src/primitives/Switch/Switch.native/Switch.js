@@ -12,8 +12,6 @@ type State = {
 };
 
 class Switch extends React.Component<Props, State> {
-  props: Props;
-
   static defaultProps = SwitchDefaultProps;
 
   state = {
