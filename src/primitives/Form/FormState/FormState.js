@@ -194,7 +194,9 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
           meta: { fieldName },
           payload,
         } = action;
-        const newState = set(['fieldValidators', fieldName], payload, state);
+        let newState = set(['fieldValidators', fieldName], payload, state);
+        // validate
+        newState = getStateAfterValidation(newState);
         return Update(newState);
       }
       case 'SET_SUBMIT_SUCCEEDED': {
