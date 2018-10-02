@@ -7,11 +7,11 @@ import Icon from '../../../components/Icon';
 import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
 import FlexForm from '../../../internals/web/FlexForm';
-import ActivityIndicator from '../../../primitives/ActivityIndicator';
 import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
 import TouchableView from '../../../primitives/TouchableView';
 import Button from '../../Button';
+import ButtonSpinner from '../../Button/ButtonSpinner';
 import { buttonContainerStyle, buttonTextStyle } from '../../Button/styles';
 import {
   ModalFormHeaderCancelButton,
@@ -170,24 +170,28 @@ const ModalFormFooterDeleteButton = styled(Button).attrs({
   type: 'destructive',
 })``;
 
-const StyledSubmitButton = styled(Form.SubmitButton).attrs({
+const submitButtonStyleProps = {
   type: 'primary',
-})`
+};
+const StyledSubmitButton = styled(Form.SubmitButton).attrs(
+  submitButtonStyleProps,
+)`
   ${buttonContainerStyle};
 `;
-const SubmitButtonText = styled(Text).attrs({
-  type: 'primary',
-})`
+const SubmitButtonText = styled(Text).attrs(submitButtonStyleProps)`
   ${buttonTextStyle};
 `;
-const ModalFormFooterSubmitButton = ({ text }) => (
-  <StyledSubmitButton text={text}>
-    {({ submitting }) =>
-      submitting ? (
-        <ActivityIndicator />
-      ) : (
-        <SubmitButtonText>{text}</SubmitButtonText>
-      )
-    }
-  </StyledSubmitButton>
-);
+const ModalFormFooterSubmitButton = ({ text }) => {
+  return (
+    <StyledSubmitButton text={text}>
+      {({ submitting }) => {
+        return (
+          <React.Fragment>
+            <SubmitButtonText>{text}</SubmitButtonText>
+            {submitting && <ButtonSpinner {...submitButtonStyleProps} />}
+          </React.Fragment>
+        );
+      }}
+    </StyledSubmitButton>
+  );
+};

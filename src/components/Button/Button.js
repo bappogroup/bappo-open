@@ -1,14 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import ActivityIndicator from '../../primitives/ActivityIndicator';
-import { getTextColor } from './helpers';
-import {
-  ButtonLabel,
-  SpinnerContainer,
-  StyledIcon,
-  StyledTouchableView,
-} from './styles';
+import { ButtonLabel, StyledIcon, StyledTouchableView } from './styles';
+import ButtonSpinner from './ButtonSpinner';
 
 type Props = {
   disabled?: boolean,
@@ -56,11 +50,7 @@ const Button = ({
     <StyledTouchableView {...props}>
       {icon && <StyledIcon {...styleProps} name={icon} />}
       {text && <ButtonLabel {...styleProps}>{text}</ButtonLabel>}
-      {loading && (
-        <SpinnerContainer {...styleProps}>
-          <ActivityIndicator color={getTextColor(styleProps)} />
-        </SpinnerContainer>
-      )}
+      {loading && <ButtonSpinner {...styleProps} />}
     </StyledTouchableView>
   );
 };
