@@ -3,18 +3,14 @@
 import * as React from 'react';
 import uniqueId from 'lodash/uniqueId';
 import ReactDOM from 'react-dom';
+import { injectEventPluginsByName } from 'react-dom/unstable-native-dependencies';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
 import ResponderEventPlugin from 'react-native-web/dist/cjs/modules/ResponderEventPlugin';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../events.js.flow';
 import { flex } from './styles';
 
-const {
-  EventPluginHub,
-  // $FlowFixMe
-} = ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-
-EventPluginHub.injection.injectEventPluginsByName({
+injectEventPluginsByName({
   ResponderEventPlugin,
 });
 

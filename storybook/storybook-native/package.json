@@ -5,7 +5,7 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
-		"storybook": "storybook start -p 7007"
+		"storybook": "storybook start -p 7007 --skip-packager | react-native start --projectRoot storybook"
 	},
 	"rnpm": {
 		"assets": [
@@ -14,10 +14,10 @@
 	},
 	"dependencies": {
 		"axios": "^0.16.2",
-		"bappo-components": "0.0.28",
+		"bappo-components": "0.1.0-alpha.45",
 		"create-react-class": "^15.6.2",
-		"react": "16.4.0",
-		"react-native": "0.55.4",
+		"react": "16.5.1",
+		"react-native": "0.57.1",
 		"styled-components": "^3.0.0",
 		"validator": "^10.4.0"
 	},
