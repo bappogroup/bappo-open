@@ -8,7 +8,8 @@ import type {
   Values,
 } from '../../primitives/Form/FormState/types.js.flow';
 import { FormState } from '../../primitives/Form';
-import Modal from '../Modal';
+// Note that this is not the Modal we export. It has a slide animation on native.
+import Modal from './Modal';
 import ModalFormBody from './FormBody';
 
 type RequiredProps = {
