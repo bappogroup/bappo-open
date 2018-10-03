@@ -38,6 +38,7 @@ class Modal extends React.Component<Props, State> {
           layout={this.state.modalContentLayout}
           onKeyDown={this._onModalContentKeyDown}
           onLayout={this._onModalContentLayout}
+          onMouseDown={this._onModalContentMouseDown}
         >
           {children}
         </ModalContentContainer>
@@ -69,6 +70,10 @@ class Modal extends React.Component<Props, State> {
 
   _onModalContentLayout = (event: ViewLayoutEvent) => {
     this.setState({ modalContentLayout: event.nativeEvent.layout });
+  };
+
+  _onModalContentMouseDown = (event: SyntheticMouseEvent<>) => {
+    event.preventDefault();
   };
 }
 
