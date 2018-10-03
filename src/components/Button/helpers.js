@@ -8,11 +8,11 @@ export const getBackgroundColor = ({ disabled, type }) => {
     case 'primary':
       return Colors.ORANGE;
     case 'secondary':
-      return 'white';
+      return 'transparent';
     case 'tertiary':
       return 'transparent';
     case 'destructive':
-      return 'white';
+      return 'transparent';
     default:
       return Colors.ORANGE;
   }

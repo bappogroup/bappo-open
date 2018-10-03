@@ -1,41 +1,57 @@
-// @flow
-
 import RN from 'react-native';
+
 import type { AlertOptions } from '../types.js.flow';
 import { validateOptions } from '../helpers';
 
 const defaultAction = {
   text: 'OK',
+  response: 'confirm',
 };
 
 class Alert {
   static async alert(options: AlertOptions) {
     validateOptions(options);
 
-    let actions = [defaultAction];
+    let actions = [];
 
     const { confirm, cancel, neutral } = options.actions;
 
+    if (!confirm && !cancel && !neutral) {
+      actions = [defaultAction];
+    }
+
+    if (neutral) {
+      actions.push({
+        ...neutral,
+        response: 'neutral',
+      });
+    }
+
+    if (cancel) {
+      actions.push({
+        ...cancel,
+        response: 'cancel',
+      });
+    }
+
     if (confirm) {
-      actions = [confirm];
-    }
-
-    if (confirm && cancel) {
-      actions = [cancel, confirm];
-    }
-
-    if (confirm && cancel && neutral) {
-      actions = [neutral, cancel, confirm];
+      actions.push({
+        ...confirm,
+        response: 'confirm',
+      });
     }
 
     return new Promise(resolve => {
-      actions = actions.map(action => ({
-        ...action,
-        onPress: () => {
-          resolve();
-          action.onPress && action.onPress();
-        },
-      }));
+      actions = actions.map(a => {
+        const { response, ...action } = a;
+
+        action.onPress = () => {
+          resolve(response);
+          a.onPress && a.onPress();
+        };
+        return action;
+      });
+
       RN.Alert.alert(options.title, options.message, actions, {
         cancelable: false,
       });
