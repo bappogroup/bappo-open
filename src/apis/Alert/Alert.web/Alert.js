@@ -25,9 +25,9 @@ class Alert {
         <StyledOverlayContainer>
           <AlertDialog
             {...options}
-            onDismiss={() => {
+            onDismiss={result => {
               document.body && document.body.removeChild(el);
-              resolve();
+              resolve(result);
             }}
           />
         </StyledOverlayContainer>,

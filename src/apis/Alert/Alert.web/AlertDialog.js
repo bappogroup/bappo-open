@@ -1,5 +1,3 @@
-// @flow
-
 import * as React from 'react';
 import styled from 'styled-components';
 import { breakpoint } from '../../../internals/web/breakpoint';
@@ -20,20 +18,21 @@ type Props = AlertOptions & {
 class AlertDialog extends React.Component<Props> {
   static defaultProps = AlertDefaultProps;
 
-  createActionButtonHandler = (onPress: ?() => void) => () => {
+  createActionButtonHandler = (onPress: ?() => void) => value => {
     const { onDismiss } = this.props;
-    onDismiss();
+    onDismiss(value);
     onPress && onPress();
   };
 
   confirmButton = () => {
     const { actions } = this.props;
+    const onPress = this.createActionButtonHandler(
+      actions.confirm && actions.confirm.onPress,
+    );
     return (
       <Button
         text={(actions.confirm && actions.confirm.text) || 'Ok'}
-        onPress={this.createActionButtonHandler(
-          actions.confirm && actions.confirm.onPress,
-        )}
+        onPress={() => onPress('confirm')}
         type={
           actions.confirm && actions.confirm.destructive
             ? 'destructive'
@@ -45,14 +44,15 @@ class AlertDialog extends React.Component<Props> {
 
   cancelButton = () => {
     const { actions } = this.props;
+    const onPress = this.createActionButtonHandler(
+      actions.cancel && actions.cancel.onPress,
+    );
     return (
       actions.confirm &&
       actions.cancel && (
         <Button
           type="secondary"
-          onPress={this.createActionButtonHandler(
-            actions.cancel && actions.cancel.onPress,
-          )}
+          onPress={() => onPress('cancel')}
           text={(actions.cancel && actions.cancel.text) || 'Cancel'}
           style={{ marginRight: 8 }}
         />
@@ -62,15 +62,16 @@ class AlertDialog extends React.Component<Props> {
 
   neutralButton = () => {
     const { actions } = this.props;
+    const onPress = this.createActionButtonHandler(
+      actions.neutral && actions.neutral.onPress,
+    );
     return (
       actions.confirm &&
       actions.cancel &&
       actions.neutral && (
         <Button
           type="tertiary"
-          onPress={this.createActionButtonHandler(
-            actions.neutral && actions.neutral.onPress,
-          )}
+          onPress={() => onPress('neutral')}
           text={(actions.neutral && actions.neutral.text) || 'Ask Me Later'}
         />
       )
@@ -166,8 +167,8 @@ const AlertFormFooter = styled(FlexDiv)`
   flex: none;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #f1f1f0;
-  border-top: 1px solid #dddbda;
+  background-color: #fbfbfb;
+  border-top: 1px solid #eee;
   height: 64px;
   padding: 16px;
 
