@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'bappo-components';
+import { ScrollView } from 'bappo-components';
 import { StatusBar } from 'react-native';
 
 export default renderStory => {

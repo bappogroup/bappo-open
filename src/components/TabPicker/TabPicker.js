@@ -23,7 +23,6 @@ const Picker = ({
   optionToString,
   multi = false,
 }: Props) => {
-  const _selected = multi ? selected : [selected];
   return (
     <StyledView>
       {options.map((option, i) => {

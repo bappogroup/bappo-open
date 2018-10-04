@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import isEqual from 'lodash/isEqual';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { breakpoint } from '../../../internals/web/breakpoint';
