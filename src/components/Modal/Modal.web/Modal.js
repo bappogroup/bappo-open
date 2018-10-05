@@ -72,7 +72,13 @@ class Modal extends React.Component<Props, State> {
   };
 
   _onModalContentMouseDown = (event: SyntheticMouseEvent<>) => {
-    event.preventDefault();
+    const { target } = event;
+    if (
+      !(target instanceof HTMLInputElement) &&
+      !(target instanceof HTMLTextAreaElement)
+    ) {
+      event.preventDefault();
+    }
   };
 }
 
