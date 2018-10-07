@@ -72,11 +72,9 @@ class Modal extends React.Component<Props, State> {
   };
 
   _onModalContentMouseDown = (event: SyntheticMouseEvent<>) => {
-    const { target } = event;
-    if (
-      !(target instanceof HTMLInputElement) &&
-      !(target instanceof HTMLTextAreaElement)
-    ) {
+    if (event.target === this._modalContentContainerRef.current) {
+      // the content container gets focus when dragging its scrollbar because it
+      // has a tabindex attribute
       event.preventDefault();
     }
   };
