@@ -6,10 +6,16 @@ import Text from '../../primitives/Text';
 
 type Props = {
   children?: string,
+  style?: any,
+  className?: string,
 };
 
-const Heading = ({ children }: Props) => {
-  return <StyledText selectable>{children}</StyledText>;
+const Heading = ({ children, style, className }: Props) => {
+  return (
+    <StyledText selectable style={style} className={className}>
+      {children}
+    </StyledText>
+  );
 };
 
 Heading.defaultProps = {
