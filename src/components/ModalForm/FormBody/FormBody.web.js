@@ -140,12 +140,12 @@ const ModalFormMobileDeleteButton = styled(Button).attrs({
 const ModalFormContent = styled(FlexDiv)`
   flex: 1;
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 48px;
 
   @media (max-width: ${breakpoint.max}px) {
     ${modalFormContentStyle};
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 `;
 

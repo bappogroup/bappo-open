@@ -37,9 +37,6 @@ class Modal extends React.Component<Props, State> {
           layout={this.state.modalContentLayout}
           onKeyDown={this._onModalContentKeyDown}
           onLayout={this._onModalContentLayout}
-          onMouseDown={this._onModalContentMouseDown}
-          onMouseMove={this._onModalContentMouseMove}
-          onMouseUp={this._onModalContentMouseUp}
         >
           {children}
         </ModalContentContainer>
@@ -48,12 +45,6 @@ class Modal extends React.Component<Props, State> {
   }
 
   _modalContentContainerRef = React.createRef();
-  _prevActiveElement: ?HTMLElement;
-  _prevMousePosition: ?{
-    clientX: number,
-    clientY: number,
-  };
-  _shouldRestoreFocus = false;
 
   _focusContent() {
     const domEl = this._modalContentContainerRef.current;
@@ -78,53 +69,12 @@ class Modal extends React.Component<Props, State> {
   _onModalContentLayout = (event: ViewLayoutEvent) => {
     this.setState({ modalContentLayout: event.nativeEvent.layout });
   };
-
-  _onModalContentMouseDown = (event: SyntheticMouseEvent<>) => {
-    // The content container gets focus when dragging its scrollbar because it
-    // has a tabindex attribute. So we save the previous active element and
-    // restore focus after dragging.
-    if (
-      document.activeElement &&
-      document.activeElement !== this._modalContentContainerRef.current
-    ) {
-      this._prevActiveElement = document.activeElement;
-      this._prevMousePosition = {
-        clientX: event.clientX,
-        clientY: event.clientY,
-      };
-    }
-  };
-
-  _onModalContentMouseMove = (event: SyntheticMouseEvent<>) => {
-    // Only restore focus if dragged for a distance so that we can still click
-    // on the container to blur an input.
-    if (!this._prevMousePosition) return;
-    const {
-      clientX: prevClientX,
-      clientY: prevClientY,
-    } = this._prevMousePosition;
-    if (
-      Math.abs(event.clientX - prevClientX) >= 5 ||
-      Math.abs(event.clientY - prevClientY) >= 5
-    ) {
-      this._shouldRestoreFocus = true;
-    }
-  };
-
-  _onModalContentMouseUp = () => {
-    if (this._shouldRestoreFocus && this._prevActiveElement) {
-      this._prevActiveElement.focus();
-    }
-    this._prevActiveElement = undefined;
-    this._prevMousePosition = undefined;
-    this._shouldRestoreFocus = false;
-  };
 }
 
 export default Modal;
 
 export const ModalContentContainer = styled(ViewBase).attrs({
-  tabIndex: -1,
+  // tabIndex: -1,
 })`
   background-color: white;
   position: absolute;
