@@ -14,7 +14,7 @@ class Alert {
 
     let actions = [];
 
-    const { confirm, cancel, neutral } = options.actions;
+    const { confirm, cancel, neutral } = options.actions || {};
 
     if (!confirm && !cancel && !neutral) {
       actions = [defaultAction];

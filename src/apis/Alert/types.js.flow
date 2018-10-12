@@ -1,7 +1,7 @@
 // @flow
 
 export type AlertOptions = {
-  actions: {
+  actions?: {
     confirm?: {
       text: string,
       onPress?: ?() => void,
