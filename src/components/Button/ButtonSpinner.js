@@ -2,22 +2,22 @@
 
 import * as React from 'react';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
-import { getTextColor } from './helpers';
+import { getFocusedTextColor } from './helpers';
 import { SpinnerContainer } from './styles';
 
 type Props = {
-  disabled?: boolean,
+  hasDisabledStyle?: boolean,
   type?: 'primary' | 'secondary' | 'tertiary' | 'destructive',
 };
 
-const ButtonSpinner = ({ disabled, type }: Props) => {
+const ButtonSpinner = ({ hasDisabledStyle, type }: Props) => {
   const styleProps = {
-    disabled,
+    hasDisabledStyle,
     type,
   };
   return (
     <SpinnerContainer {...styleProps}>
-      <ActivityIndicator color={getTextColor(styleProps)} />
+      <ActivityIndicator color={getFocusedTextColor(styleProps)} />
     </SpinnerContainer>
   );
 };

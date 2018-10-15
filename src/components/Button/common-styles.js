@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components';
-import Colors from '../../apis/Colors';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
 import Icon from '../Icon';
-import { getBackgroundColor, getTextColor } from './helpers';
+import { getBackgroundColor, getBorderColor, getTextColor } from './helpers';
 
 export const buttonContainerStyle = css`
   flex-direction: row;
@@ -12,38 +11,16 @@ export const buttonContainerStyle = css`
   border-radius: 4px;
   height: 32px;
   background-color: ${props => getBackgroundColor(props)};
+  border-color: ${props => getBorderColor(props)};
+  border-style: solid;
+  border-width: 1px;
   padding-left: ${({ icon, text }) => (icon && text ? 8 : text ? 16 : 0)}px;
   padding-right: ${({ text }) => (text ? 16 : 0)}px;
-
-  ${({ disabled, type }) => {
-    switch (type) {
-      case 'secondary':
-        return `
-          border-color: #DDDBDA;
-          border-style: solid;
-          border-width: 1px;
-        `;
-      case 'tertiary':
-        return `
-          border-color: transparent;
-          border-style: solid;
-          border-width: 1px;
-        `;
-      case 'destructive':
-        return `
-          border-color: ${Colors.RED};
-          border-style: solid;
-          border-width: 1px;
-        `;
-      default:
-        break;
-    }
-  }};
 `;
 
 export const buttonTextStyle = css`
   font-size: 14px;
-  color: ${props => getTextColor(props)};
+  color: ${props => (props.loading ? 'transparent' : getTextColor(props))};
 `;
 
 export const ButtonLabel = styled(Text)`
@@ -59,7 +36,6 @@ export const SpinnerContainer = styled(View)`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  background-color: ${props => getBackgroundColor(props)};
 `;
 
 export const StyledIcon = styled(Icon)`
