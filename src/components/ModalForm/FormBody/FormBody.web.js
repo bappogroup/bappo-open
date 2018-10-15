@@ -25,62 +25,109 @@ import {
 import type { FormBodyPropTypes } from './types.js.flow';
 import FormBodyDefaultProps from './defaultProps';
 
-const FormBody = ({
-  children,
-  onCancel,
-  onDelete,
-  onSubmit,
-  submitButtonText,
-  testID,
-  title,
-}: FormBodyPropTypes) => {
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    onSubmit && onSubmit();
-  };
-
-  return (
-    <StyledForm data-testid={testID} onSubmit={handleFormSubmit}>
-      <ModalFormHeader>
-        <MediaQuery minWidth={breakpoint.min}>
-          <ModalFormCloseButton onPress={onCancel} />
-        </MediaQuery>
-        <MediaQuery maxWidth={breakpoint.max}>
-          <ModalFormHeaderMobileContainer>
-            <ModalFormHeaderCancelButton onPress={onCancel} />
-            <ModalFormHeaderSubmitButton text={submitButtonText} />
-          </ModalFormHeaderMobileContainer>
-        </MediaQuery>
-        <ModalFormTitleContainer>
-          <ModalFormTitleText>{title}</ModalFormTitleText>
-        </ModalFormTitleContainer>
-      </ModalFormHeader>
-      <ModalFormContent>
-        {children}
-        {onDelete && (
-          <MediaQuery maxWidth={breakpoint.max}>
-            <ModalFormMobileDeleteButton onPress={onDelete} text="Delete" />
-          </MediaQuery>
-        )}
-      </ModalFormContent>
-      <MediaQuery minWidth={breakpoint.min}>
-        <ModalFormFooter>
-          <ModalFormRow>
-            {onDelete && (
-              <ModalFormFooterDeleteButton onPress={onDelete} text="Delete" />
-            )}
-          </ModalFormRow>
-          <ModalFormRow>
-            <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-            <ModalFormFooterSubmitButton text={submitButtonText} />
-          </ModalFormRow>
-        </ModalFormFooter>
-      </MediaQuery>
-    </StyledForm>
-  );
+type State = {
+  deleting: boolean,
 };
 
-FormBody.defaultProps = FormBodyDefaultProps;
+class FormBody extends React.Component<FormBodyPropTypes, State> {
+  static defaultProps = FormBodyDefaultProps;
+
+  state = {
+    deleting: false,
+  };
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  render() {
+    const {
+      children,
+      onCancel,
+      onDelete,
+      submitButtonText,
+      testID,
+      title,
+    } = this.props;
+
+    return (
+      <StyledForm data-testid={testID} onSubmit={this._onFormSubmit}>
+        <ModalFormHeader>
+          <MediaQuery minWidth={breakpoint.min}>
+            <ModalFormCloseButton onPress={onCancel} />
+          </MediaQuery>
+          <MediaQuery maxWidth={breakpoint.max}>
+            <ModalFormHeaderMobileContainer>
+              <ModalFormHeaderCancelButton onPress={onCancel} />
+              <ModalFormHeaderSubmitButton text={submitButtonText} />
+            </ModalFormHeaderMobileContainer>
+          </MediaQuery>
+          <ModalFormTitleContainer>
+            <ModalFormTitleText>{title}</ModalFormTitleText>
+          </ModalFormTitleContainer>
+        </ModalFormHeader>
+        <ModalFormContent>
+          {children}
+          {onDelete && (
+            <MediaQuery maxWidth={breakpoint.max}>
+              <ModalFormMobileDeleteButton
+                loading={this.state.deleting}
+                onPress={this._onDelete}
+                text="Delete"
+              />
+            </MediaQuery>
+          )}
+        </ModalFormContent>
+        <MediaQuery minWidth={breakpoint.min}>
+          <ModalFormFooter>
+            <ModalFormRow>
+              {onDelete && (
+                <ModalFormFooterDeleteButton
+                  loading={this.state.deleting}
+                  onPress={this._onDelete}
+                  text="Delete"
+                />
+              )}
+            </ModalFormRow>
+            <ModalFormRow>
+              <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
+              <ModalFormFooterSubmitButton text={submitButtonText} />
+            </ModalFormRow>
+          </ModalFormFooter>
+        </MediaQuery>
+      </StyledForm>
+    );
+  }
+
+  _isMounted = false;
+
+  _onDelete = async () => {
+    const { onDelete } = this.props;
+    if (onDelete) {
+      this.setState({
+        deleting: true,
+      });
+      try {
+        await onDelete();
+      } finally {
+        if (this._isMounted) {
+          this.setState({
+            deleting: false,
+          });
+        }
+      }
+    }
+  };
+
+  _onFormSubmit = (event: SyntheticEvent<>) => {
+    event.preventDefault();
+    this.props.onSubmit && this.props.onSubmit();
+  };
+}
 
 export default FormBody;
 
