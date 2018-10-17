@@ -11,11 +11,11 @@ class SelectField extends React.Component<Props> implements InputField {
   static displayName = 'SelectField';
 
   blur() {
-    this._textInputRef.current && this._textInputRef.current.blur();
+    this._inputRef.current && this._inputRef.current.blur();
   }
 
   focus() {
-    this._textInputRef.current && this._textInputRef.current.focus();
+    this._inputRef.current && this._inputRef.current.focus();
   }
 
   render() {
@@ -38,6 +38,7 @@ class SelectField extends React.Component<Props> implements InputField {
       >
         <OldSelect
           {...rest}
+          ref={this._inputRef}
           options={options}
           value={value}
           onValueChange={onValueChange}
@@ -46,7 +47,7 @@ class SelectField extends React.Component<Props> implements InputField {
     );
   }
 
-  _textInputRef = React.createRef();
+  _inputRef = React.createRef();
 }
 
 export default SelectField;
