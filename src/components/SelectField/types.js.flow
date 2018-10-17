@@ -1,0 +1,36 @@
+// @flow
+
+import type { FieldState } from '../../primitives/Form/FormState/types.js.flow';
+
+type Option = { value: string, label: string };
+
+export interface InputField {
+  blur(): void;
+  focus(): void;
+}
+
+export type InputFieldProps = {
+  fieldState: FieldState,
+  label?: string,
+  onBlur?: () => void,
+  onFocus?: () => void,
+  onValueChange?: (value: any) => void,
+  testID?: string,
+  value?: any,
+};
+
+export type SelectProps = {
+  options: Array<Option>,
+  onValueChange: () => void,
+  value?: string,
+  label?: string,
+  multi?: boolean,
+  readOnly?: boolean,
+  searchable?: boolean,
+  noResultsText?: string,
+  placeholder?: string,
+  isLoading?: boolean,
+  accessibilityLabel?: string,
+  testID?: string,
+  style?: any,
+}
