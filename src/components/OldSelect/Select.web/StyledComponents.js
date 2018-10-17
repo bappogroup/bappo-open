@@ -185,11 +185,14 @@ export const MultiValueWrapperOuter = styled.div`
   height: 100%;
 `;
 
-export const MultiValueWrapper = styled.div`
+export const ValueWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
+
+export const MultiValueWrapper = styled(ValueWrapper)`
   flex-wrap: wrap;
   padding: 6px 0;
 `;

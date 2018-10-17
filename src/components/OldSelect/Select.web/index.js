@@ -17,6 +17,7 @@ import {
   LoadingZone,
   MenuInner,
   MenuOuter,
+  ValueWrapper,
   MultiValueWrapper,
   NoResults,
   Placeholder,
@@ -223,7 +224,7 @@ class Select extends React.Component<Props, State> {
   }
 
   render() {
-    const { accessibilityLabel, className, style, testID } = this.props;
+    const { accessibilityLabel, className, style, testID, multi } = this.props;
 
     const selectState = this._getSelectState();
     const { isOpen, selectedOptions, visibleOptions } = selectState;
@@ -257,11 +258,10 @@ class Select extends React.Component<Props, State> {
           onTouchStart={this._onTouchStart}
           onTouchMove={this._onTouchMove}
         >
-          <MultiValueWrapper {...selectState}>
-            {this._renderSelectedValue(selectedOptions)}
-            {this.state.isFocused && <Icon name="search" />}
-            {this._renderInput()}
-          </MultiValueWrapper>
+          {multi
+            ? this._renderMultiSelectedValues(selectedOptions)
+            : this._renderSingleSelectedValues(selectedOptions)}
+
           {this._renderLoading()}
           {this._renderClear()}
           {this._renderDropdownIcon()}
@@ -1070,6 +1070,26 @@ class Select extends React.Component<Props, State> {
       );
     }
     return null;
+  };
+
+  _renderSingleSelectedValues = (selectedOptions: Array<Option>) => {
+    return (
+      <ValueWrapper>
+        {this.state.isFocused && <Icon name="search" />}
+        {this._renderSelectedValue(selectedOptions)}
+        {this._renderInput()}
+      </ValueWrapper>
+    );
+  };
+
+  _renderMultiSelectedValues = (selectedOptions: Array<Option>) => {
+    return (
+      <MultiValueWrapper>
+        {this._renderSelectedValue(selectedOptions)}
+        {this.state.isFocused && <Icon name="search" />}
+        {this._renderInput()}
+      </MultiValueWrapper>
+    );
   };
 }
 
