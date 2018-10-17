@@ -6,8 +6,7 @@ import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
-import styled from 'styled-components';
-import ViewBase from '../../internals/web/ViewBase';
+import TouchableViewBase from '../../internals/web/TouchableViewBase';
 
 type Props = {
   /**
@@ -259,7 +258,7 @@ class TouchableView extends React.Component<Props, State> {
     };
 
     return (
-      <Container
+      <TouchableViewBase
         {...styleProps}
         accessibilityLabel={accessibilityLabel}
         onKeyDown={this._onKeyDownUp}
@@ -270,10 +269,12 @@ class TouchableView extends React.Component<Props, State> {
         onResponderTerminate={this._onResponderTerminate}
         onResponderTerminationRequest={this._onResponderTerminationRequest}
         onStartShouldSetResponder={this._onStartShouldSetResponder}
+        role="button"
+        tabIndex={disabled ? undefined : 0}
         testID={testID}
       >
         {children}
-      </Container>
+      </TouchableViewBase>
     );
   }
 
@@ -609,30 +610,3 @@ class TouchableView extends React.Component<Props, State> {
 }
 
 export default TouchableView;
-
-const Container = styled(ViewBase).attrs({
-  role: 'button',
-  tabIndex: ({ disabled }) => (disabled ? undefined : 0),
-})`
-  background-color: transparent;
-  border-color: transparent;
-  border-width: 0;
-  padding: 0;
-  text-align: left;
-
-  ${({ disabled }) =>
-    disabled
-      ? `
-    color: inherit;
-    cursor: not-allowed;
-    * {
-      cursor: not-allowed;
-    }
-  `
-      : `
-    cursor: pointer;
-    * {
-      cursor: pointer;
-    }
-  `};
-`;

@@ -66,6 +66,7 @@ class ModalForm extends React.Component<Props> {
                     ? submitButtonText(formState)
                     : submitButtonText
                 }
+                submitting={formState.submitting}
                 testID={testID}
                 title={title}
               >

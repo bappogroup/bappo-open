@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import FlexButton from '../../../internals/web/FlexButton';
+import TouchableViewBase from '../../../internals/web/TouchableViewBase';
 import { FormStateConsumer } from '../FormState';
 import type { SubmitButtonProps } from './types.js.flow';
 
@@ -15,9 +15,14 @@ const SubmitButton = ({ children, className, style }: Props) => {
     <FormStateConsumer>
       {formState => {
         return (
-          <FlexButton className={className} style={style} type="submit">
+          <TouchableViewBase
+            className={className}
+            component="button"
+            style={style}
+            type="submit"
+          >
             {typeof children === 'function' ? children(formState) : children}
-          </FlexButton>
+          </TouchableViewBase>
         );
       }}
     </FormStateConsumer>

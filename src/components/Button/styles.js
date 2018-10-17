@@ -1,5 +1,4 @@
-import { styled, css } from '../../apis/Style';
-import TouchableView from '../../primitives/TouchableView';
+import { css } from '../../apis/Style';
 import {
   buttonContainerStyle,
   buttonTextStyle,
@@ -39,12 +38,6 @@ const webButtonContainerStyle = css`
       }
     }
   `};
-`;
-
-export const StyledTouchableView = styled(TouchableView).attrs({
-  activeOpacity: 1,
-})`
-  ${webButtonContainerStyle};
 `;
 
 export {

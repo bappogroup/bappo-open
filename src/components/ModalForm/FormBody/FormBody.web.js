@@ -11,8 +11,7 @@ import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
 import TouchableView from '../../../primitives/TouchableView';
 import Button from '../../Button';
-import ButtonSpinner from '../../Button/ButtonSpinner';
-import { buttonContainerStyle, buttonTextStyle } from '../../Button/styles';
+import createButton from '../../Button/createButton';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
@@ -50,6 +49,7 @@ class FormBody extends React.Component<FormBodyPropTypes, State> {
       onCancel,
       onDelete,
       submitButtonText,
+      submitting,
       testID,
       title,
     } = this.props;
@@ -95,7 +95,10 @@ class FormBody extends React.Component<FormBodyPropTypes, State> {
             </ModalFormRow>
             <ModalFormRow>
               <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
-              <ModalFormFooterSubmitButton text={submitButtonText} />
+              <ModalFormFooterSubmitButton
+                loading={submitting}
+                text={submitButtonText}
+              />
             </ModalFormRow>
           </ModalFormFooter>
         </MediaQuery>
@@ -221,28 +224,4 @@ const ModalFormFooterDeleteButton = styled(Button).attrs({
   type: 'destructive',
 })``;
 
-const submitButtonStyleProps = {
-  type: 'primary',
-};
-const StyledSubmitButton = styled(Form.SubmitButton).attrs(
-  submitButtonStyleProps,
-)`
-  ${buttonContainerStyle};
-`;
-const SubmitButtonText = styled(Text).attrs(submitButtonStyleProps)`
-  ${buttonTextStyle};
-`;
-const ModalFormFooterSubmitButton = ({ text }) => {
-  return (
-    <StyledSubmitButton text={text}>
-      {({ submitting }) => {
-        return (
-          <React.Fragment>
-            <SubmitButtonText>{text}</SubmitButtonText>
-            {submitting && <ButtonSpinner {...submitButtonStyleProps} />}
-          </React.Fragment>
-        );
-      }}
-    </StyledSubmitButton>
-  );
-};
+const ModalFormFooterSubmitButton = createButton(Form.SubmitButton);
