@@ -4,9 +4,9 @@ import { SelectField, View } from 'bappo-components';
 const options = [
   { label: 'Bob', value: '1' },
   { label: 'Andrew', value: '2' },
-  { label: 'Sandra', value: '3' },
-  { label: 'Peter', value: '4' },
-  { label: 'Joe', value: '5' },
+  { label: 'Sandra Jones', value: '3' },
+  { label: 'Peter Soloman', value: '4' },
+  { label: 'Joe Peters', value: '5' },
 ];
 
 class SelectFieldMinimalExample extends React.Component {

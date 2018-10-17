@@ -486,6 +486,7 @@ class Select extends React.Component<Props, State> {
           key={`value-${option[valueKey]}`}
           labelKey={labelKey}
           option={option}
+          style={{ marginRight: 8 }}
         />
       ));
     }
