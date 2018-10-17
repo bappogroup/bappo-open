@@ -2,7 +2,6 @@
 
 import styled, { css, keyframes } from 'styled-components';
 import TextInputAutoSize from './TextInputAutoSize';
-import Icon from '../../Icon';
 
 const spin = keyframes`
 to {
@@ -190,11 +189,7 @@ export const MultiValueWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  ${props =>
-    props.isMulti &&
-    `
-    display: inline-block;
-  `};
+  flex-wrap: wrap;
 `;
 
 export const NoResults = styled.div`
@@ -219,15 +214,4 @@ export const Placeholder = styled.div`
   white-space: nowrap;
   display: flex;
   align-items: center;
-`;
-
-export const SearchIcon = styled(Icon)`
-  flex: none;
-  color: #ccc;
-  margin-right: 1px;
-`;
-
-export const StyledValue = styled.div`
-  position: relative;
-  flex: 1;
 `;

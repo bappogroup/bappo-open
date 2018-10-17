@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import FlatList from '../../../primitives/FlatList';
+import Icon from '../../../components/Icon';
 import Menu from './Menu';
 import SelectedOption from './SelectedOption';
 import {
@@ -19,8 +20,6 @@ import {
   MultiValueWrapper,
   NoResults,
   Placeholder,
-  SearchIcon,
-  StyledValue,
 } from './StyledComponents';
 import type { Option, renderOptionType, Value } from '../types.js.flow';
 
@@ -259,11 +258,9 @@ class Select extends React.Component<Props, State> {
           onTouchMove={this._onTouchMove}
         >
           <MultiValueWrapper {...selectState}>
-            {this.state.isFocused && <SearchIcon name="search" />}
-            <StyledValue>
-              {this._renderSelectedValue(selectedOptions)}
-              {this._renderInput()}
-            </StyledValue>
+            {this._renderSelectedValue(selectedOptions)}
+            {this.state.isFocused && <Icon name="search" />}
+            {this._renderInput()}
           </MultiValueWrapper>
           {this._renderLoading()}
           {this._renderClear()}

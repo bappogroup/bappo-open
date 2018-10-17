@@ -1,42 +1,31 @@
 import React from 'react';
-import {
-  SelectField,
-  Background,
-  View,
-  styled,
-  Paragraph,
-} from 'bappo-components';
+import { SelectField, View } from 'bappo-components';
+
+const options = [
+  { label: 'Bob Mc Donald', value: '1' },
+  { label: 'Andrew Smith', value: '2' },
+  { label: 'Sandra Jones', value: '3' },
+  { label: 'Peter Soloman', value: '4' },
+  { label: 'Joe Peters', value: '5' },
+];
 
 class SelectFieldMinimalExample extends React.Component {
   state = {
-    options: [
-      { value: 'apple', count: 42 },
-      { value: 'pear', count: 22 },
-      { value: 'orange', count: 14 },
-      { value: 'grape', count: 31 },
-      { value: 'banana', count: 19 },
-    ],
+    selectedValue: null,
   };
 
   render() {
     return (
-      <Background>
-        <StyledView>
-          <Paragraph>Selected: {JSON.stringify(this.state.selected)}</Paragraph>
-          <SelectField
-            options={this.state.options}
-            selected={this.state.selected}
-            optionToString={option => option.value}
-            onChange={selected => this.setState({ selected })}
-          />
-        </StyledView>
-      </Background>
+      <View style={{ width: 300 }}>
+        <SelectField
+          label="Participant"
+          options={options}
+          value={this.state.selectedValue}
+          onValueChange={selectedValue => this.setState({ selectedValue })}
+        />
+      </View>
     );
   }
 }
-
-const StyledView = styled(View)`
-  max-width: 300px;
-`;
 
 export default SelectFieldMinimalExample;

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import type { Option } from '../types.js.flow';
+import Text from '../../../primitives/Text';
 
 type Props = {
   hasValue?: ?boolean,
@@ -150,13 +151,8 @@ const Icon = styled.span`
   }
 `;
 
-const Label = styled.span`
-  ${({ hasValue, isSingle }) =>
-    hasValue &&
-    isSingle &&
-    `
-    color: #333;
-  `} ${({ isMulti }) =>
+const Label = styled(Text)`
+  ${({ isMulti }) =>
     isMulti &&
     `
     display: inline-block;
