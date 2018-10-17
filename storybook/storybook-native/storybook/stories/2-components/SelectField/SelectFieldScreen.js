@@ -8,6 +8,7 @@ import UIExplorer, {
   Section,
   storiesOf,
 } from '../../../ui-explorer';
+import { View } from 'bappo-components';
 import Minimal from './examples/Minimal';
 import Multi from './examples/Multi';
 
@@ -121,15 +122,14 @@ class SelectFieldMinimalExample extends React.Component {
         }}
       />
 
+      <View style={{ display: 'flex', flexDirection: 'column' }}>
+        <AppText>Multiple select</AppText>
+        <AppText>
+          selectedValues is an array of strings (option values).
+        </AppText>
+      </View>
+
       <DocItem
-        description={
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <AppText>Multiple select</AppText>
-            <AppText>
-              selectedValues is an array of strings (option values).
-            </AppText>
-          </div>
-        }
         example={{
           code: `
 const options = [
