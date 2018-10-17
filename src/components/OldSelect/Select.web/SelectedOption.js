@@ -121,7 +121,6 @@ const Container = styled.div`
     bottom: 0;
     color: #aaa;
     left: 0;
-    position: absolute;
     right: 0;
     top: 0;
     max-width: 100%;

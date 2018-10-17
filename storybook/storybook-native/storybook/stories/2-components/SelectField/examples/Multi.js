@@ -19,6 +19,7 @@ class SelectFieldMinimalExample extends React.Component {
       <View style={{ width: 300 }}>
         <SelectField
           label="All Participants"
+          placeholder="Type to search"
           options={options}
           value={this.state.selectedValues}
           onValueChange={selectedValues => this.setState({ selectedValues })}

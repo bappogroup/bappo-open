@@ -2,6 +2,7 @@
 
 import styled, { css, keyframes } from 'styled-components';
 import TextInputAutoSize from './TextInputAutoSize';
+import Text from '../../../primitives/Text';
 
 const spin = keyframes`
 to {
@@ -116,7 +117,7 @@ export const FakeInput = styled.div`
 
 export const Input = styled(TextInputAutoSize)`
   input {
-    min-height: 30px;
+    min-height: 26px;
     width: 100%;
     background: none transparent;
     border: 0 none;
@@ -190,16 +191,17 @@ export const MultiValueWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  padding: 6px 0;
 `;
 
-export const NoResults = styled.div`
+export const NoResults = styled(Text)`
   color: #999;
   cursor: default;
   display: block;
   padding: 8px 10px;
 `;
 
-export const Placeholder = styled.div`
+export const Placeholder = styled(Text)`
   bottom: 0;
   color: #aaa;
   height: 100%;

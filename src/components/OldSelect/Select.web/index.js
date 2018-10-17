@@ -1046,14 +1046,15 @@ class Select extends React.Component<Props, State> {
 
   _renderSelectedValue = (selectedOptions: Array<Option>) => {
     const { labelKey, multi, placeholder, valueKey } = this.props;
+    const selectState = this._getSelectState();
 
-    if (selectedOptions.length === 0) {
+    if (selectedOptions.length === 0 && !selectState.isOpen) {
       return !this.state.inputValue && <Placeholder>{placeholder}</Placeholder>;
     }
     if (multi) {
       return selectedOptions.map(option => (
         <SelectedOption
-          {...this._getSelectState()}
+          {...selectState}
           key={`value-${option[valueKey]}`}
           labelKey={labelKey}
           onRemove={this._removeValue}
@@ -1062,12 +1063,10 @@ class Select extends React.Component<Props, State> {
       ));
     } else if (!this.state.inputValue) {
       const option = selectedOptions[0];
+      if (!option) return null;
+
       return (
-        <SelectedOption
-          {...this._getSelectState()}
-          labelKey={labelKey}
-          option={option}
-        />
+        <SelectedOption {...selectState} labelKey={labelKey} option={option} />
       );
     }
     return null;

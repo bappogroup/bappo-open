@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import Text from '../../../primitives/Text';
 
 type Props = {
   className?: ?string,
@@ -155,13 +156,16 @@ class TextInputAutoSize extends React.Component<Props, State> {
           innerRef={this.inputRef}
           style={{
             width: this.state.inputWidth,
+            color: '#191e26',
+            fontFamily: 'Quicksand, sans-serif',
+            fontSize: 14,
           }}
           value={value}
         />
         <Sizer innerRef={this.sizerRef}>{sizerValue}</Sizer>
         {this.props.placeholder ? (
           <Sizer innerRef={this.placeHolderSizerRef}>
-            {this.props.placeholder}
+            <Text>{this.props.placeholder}</Text>
           </Sizer>
         ) : null}
       </Container>
