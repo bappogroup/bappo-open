@@ -48,7 +48,7 @@ class Modal extends React.Component<Props, State> {
 
 export default Modal;
 
-const ModalContentContainer = styled.View`
+const ModalContentContainer = styled.SafeAreaView`
   background-color: white;
   position: absolute;
   left: 0;
