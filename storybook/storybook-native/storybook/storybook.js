@@ -12,7 +12,7 @@ configure(() => {
 // to set manually use, e.g. host: 'localhost' option
 const StorybookUI = getStorybookUI({ port: 7007, onDeviceUI: true });
 const StorybookUIWrapper = () => (
-  <View style={{ paddingTop: 15, flex: 1 }}>
+  <View style={{ paddingTop: 25, flex: 1 }}>
     <StorybookUI />
   </View>
 );

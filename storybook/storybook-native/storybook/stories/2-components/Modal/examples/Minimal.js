@@ -18,6 +18,7 @@ class ModalMinimalExample extends React.Component {
           onRequestClose={() => this.setState({ visible: false })}
           visible={this.state.visible}
         >
+          <View style={{ height: 20, backgroundColor: 'green' }} />
           <Button
             type="primary"
             onPress={() => this.setState({ visible: false })}
