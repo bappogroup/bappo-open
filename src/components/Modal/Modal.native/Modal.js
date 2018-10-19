@@ -1,73 +1,43 @@
 // @flow
 
 import * as React from 'react';
-import { Dimensions } from 'react-native';
 import styled from 'styled-components';
 import Overlay from '../../../primitives/Overlay';
 import type { ModalProps } from '../types.js.flow';
 
 type Props = ModalProps;
-type State = {
-  modalContentLayout: {
-    height: number,
-    width: number,
-  },
-};
 
-const { width: initialWindowWidth } = Dimensions.get('window');
-
-class Modal extends React.Component<Props, State> {
-  state = {
-    modalContentLayout: {
-      height: 0,
-      width: 0,
-    },
-  };
-
+class Modal extends React.Component<Props> {
   render() {
     const { children, onRequestClose, visible } = this.props;
 
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
-        <ModalContentContainer
-          layout={this.state.modalContentLayout}
-          onLayout={this._onModalContentLayout}
-          windowDimensions={Dimensions.get('window')}
-        >
-          {children}
-        </ModalContentContainer>
+        <ModalOuterContainer>
+          <ModalSafeArea>
+            <ModalContentContainer>{children}</ModalContentContainer>
+          </ModalSafeArea>
+        </ModalOuterContainer>
       </Overlay>
     );
   }
-
-  _onModalContentLayout = (event: SyntheticEvent<>) => {
-    // $FlowFixMe
-    this.setState({ modalContentLayout: event.nativeEvent.layout });
-  };
 }
 
 export default Modal;
 
-const ModalContentContainer = styled.SafeAreaView`
+const ModalOuterContainer = styled.SafeAreaView`
+  flex: 1;
+`;
+
+const ModalSafeArea = styled.View`
+  flex: 1;
+`;
+
+const ModalContentContainer = styled.View`
   background-color: white;
   position: absolute;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-
-  ${({ layout, windowDimensions }) =>
-    initialWindowWidth < 576 || windowDimensions.width < 576
-      ? // small screen
-        `
-    top: 0;
-    bottom: 0;
-  `
-      : // large screen
-        `
-    top: ${(windowDimensions.height - layout.height) / 2}px;
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 768px;
-    min-height: 384px;
-    width: 576px;
-  `};
 `;
