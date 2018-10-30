@@ -51,6 +51,12 @@ class ModalFormFieldLevelValidationExample extends React.Component {
             component={SwitchField}
             label="Remember Me"
           />
+          <Form.Field
+            name="switch2"
+            component={SwitchField}
+            label="Readonly Switch"
+            props={{ disabled: true }}
+          />
         </ModalForm>
       </View>
     );

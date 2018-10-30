@@ -42,9 +42,10 @@ const SwitchFieldWrapper = (props: InputWrapperProps) => {
 export default SwitchFieldWrapper;
 
 const SwitchTouchToFocusArea = styled(TouchToFocusArea)`
+  align-self: stretch;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  align-self: flex-start;
 `;
 
 const SwitchContainer = styled(View)`
