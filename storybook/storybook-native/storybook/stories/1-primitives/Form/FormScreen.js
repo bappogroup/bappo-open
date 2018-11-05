@@ -120,7 +120,7 @@ class Minimal extends React.Component {
       />
 
       <DocItem
-        description="Get Field Values"
+        description="Get Field Values & All Field Types"
         example={{
           code: `
 
@@ -128,10 +128,11 @@ import React from 'react';
 import {
   View,
   Form,
-  TextField,
   Text,
+  TextField,
   SelectField,
   SwitchField,
+  DatePickerField,
 } from 'bappo-components';
 
 class GetFieldValues extends React.Component {
@@ -177,23 +178,26 @@ class GetFieldValues extends React.Component {
                   }}
                 />
                 <Form.Field
-                  name="dummy1"
-                  label="Dummy 1"
+                  name="switch"
+                  label="Switch"
                   component={SwitchField}
                 />
                 <Form.Field
-                  name="dummy2"
-                  label="Dummy 2"
-                  component={SwitchField}
-                />
-                <Form.Field
-                  name="dummy3"
-                  label="Dummy 3"
+                  name="textMultiline"
+                  label="Text Multiline"
                   component={TextField}
+                  props={{
+                    multiline: true,
+                  }}
                 />
                 <Form.Field
-                  name="dummy4"
-                  label="Dummy 4"
+                  name="date"
+                  label="Date"
+                  component={DatePickerField}
+                />
+                <Form.Field
+                  name="textDummy"
+                  label="Text Dummy"
                   component={TextField}
                 />
                 <Text>You have chosen the user type: {userType}</Text>

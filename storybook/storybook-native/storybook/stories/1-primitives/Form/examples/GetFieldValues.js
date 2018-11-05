@@ -2,8 +2,8 @@ import React from 'react';
 import {
   View,
   Form,
-  TextField,
   Text,
+  TextField,
   SelectField,
   SwitchField,
   DatePickerField,
@@ -52,23 +52,26 @@ class GetFieldValues extends React.Component {
                   }}
                 />
                 <Form.Field
-                  name="dummy1"
-                  label="Dummy 1"
+                  name="switch"
+                  label="Switch"
                   component={SwitchField}
                 />
                 <Form.Field
-                  name="dummy2"
-                  label="Dummy 2"
-                  component={SwitchField}
+                  name="textMultiline"
+                  label="Text Multiline"
+                  component={TextField}
+                  props={{
+                    multiline: true,
+                  }}
                 />
                 <Form.Field
-                  name="datePicker"
+                  name="date"
                   label="Date"
                   component={DatePickerField}
                 />
                 <Form.Field
-                  name="dummy4"
-                  label="Dummy 4"
+                  name="textDummy"
+                  label="Text Dummy"
                   component={TextField}
                 />
                 <Text>You have chosen the user type: {userType}</Text>

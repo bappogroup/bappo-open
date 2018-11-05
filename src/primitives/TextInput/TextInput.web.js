@@ -178,4 +178,5 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   ${inputStyles};
+  padding: 8px 0;
 `;
