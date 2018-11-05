@@ -89,5 +89,6 @@ export const ModalFormHeaderSubmitButton = ({
 export const modalFormContentStyle = css`
   flex: 1;
   background-color: #f7f7f7;
-  padding: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 `;

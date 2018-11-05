@@ -2,6 +2,7 @@
 <PROJECT_ROOT>/es
 <PROJECT_ROOT>/lib
 <PROJECT_ROOT>/storybook/.*
+<PROJECT_ROOT>/node_modules/react-native-keyboard-aware-scroll-view
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js

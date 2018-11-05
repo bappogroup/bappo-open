@@ -47,6 +47,16 @@ class ModalFormFieldLevelValidationExample extends React.Component {
             props={{ type: 'password' }}
           />
           <Form.Field
+            name="dummy1"
+            component={TextField}
+            label="No validation required field 1"
+          />
+          <Form.Field
+            name="dummy2"
+            component={TextField}
+            label="No validation required field 2"
+          />
+          <Form.Field
             name="rememberMe"
             component={SwitchField}
             label="Remember Me"
@@ -56,6 +66,11 @@ class ModalFormFieldLevelValidationExample extends React.Component {
             component={SwitchField}
             label="Readonly Switch"
             props={{ disabled: true }}
+          />
+          <Form.Field
+            name="dummy3"
+            component={TextField}
+            label="No validation required field 3"
           />
         </ModalForm>
       </View>

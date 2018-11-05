@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import { View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { FormConfigProvider } from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
 import Button from '../../Button';
@@ -51,7 +53,7 @@ export default FormBody;
 
 FormBody.defaultProps = FormBodyDefaultProps;
 
-const StyledForm = styled.View`
+const StyledForm = styled(View)`
   flex: 1;
 `;
 
@@ -75,7 +77,7 @@ const ModalFormHeader = ({ children }) => {
   );
 };
 
-const ModalFormContent = styled.ScrollView`
+const ModalFormContent = styled(KeyboardAwareScrollView)`
   ${modalFormContentStyle};
 `;
 

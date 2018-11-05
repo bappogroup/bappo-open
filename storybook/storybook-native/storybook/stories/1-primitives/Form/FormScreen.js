@@ -7,6 +7,8 @@ import UIExplorer, {
   Section,
   storiesOf,
 } from '../../../ui-explorer';
+import Minimal from './examples/Minimal';
+import GetFieldValues from './examples/GetFieldValues';
 
 const FormScreen = () => (
   <UIExplorer title="Form" url="1-primitives/Form">
@@ -77,6 +79,138 @@ const FormScreen = () => (
         name="children?"
         typeInfo="?React.Node | ((formState: FormStateAndHelpersAndActions) => React.Node)"
         description="Button children."
+      />
+    </Section>
+
+    <Section title="Examples">
+      <DocItem
+        description="Minimal"
+        example={{
+          code: `
+
+import React from 'react';
+import { View, Form, TextField, Text } from 'bappo-components';
+
+class Minimal extends React.Component {
+  render() {
+    return (
+      <View>
+        <Form onSubmit={values => console.log(values)}>
+          <Form.Field
+            name="email"
+            label="Email"
+            component={TextField}
+            props={{
+              autoFocus: true,
+              placeholder: 'Your email address',
+              type: 'email',
+            }}
+          />
+          <Form.SubmitButton>
+            <Text>Submit</Text>
+          </Form.SubmitButton>
+        </Form>
+      </View>
+    );
+  }
+}
+          `,
+          render: () => <Minimal />,
+        }}
+      />
+
+      <DocItem
+        description="Get Field Values"
+        example={{
+          code: `
+
+import React from 'react';
+import {
+  View,
+  Form,
+  TextField,
+  Text,
+  SelectField,
+  SwitchField,
+} from 'bappo-components';
+
+class GetFieldValues extends React.Component {
+  render() {
+    return (
+      <View>
+        <Form
+          initialValues={{
+            email: 'stanley.luo@bappo.com',
+          }}
+          onSubmit={values => console.log(values)}
+          testID="get-field-values-form"
+        >
+          {({ getFieldValue }) => {
+            const userType = getFieldValue('userType');
+            return (
+              <React.Fragment>
+                <Form.Field
+                  name="email"
+                  label="Email"
+                  component={TextField}
+                  props={{
+                    autoFocus: true,
+                    placeholder: 'Your email address',
+                    type: 'email',
+                  }}
+                />
+                <Form.Field
+                  name="userType"
+                  label="User Type"
+                  component={SelectField}
+                  props={{
+                    options: [
+                      {
+                        value: 'free',
+                        label: 'Free',
+                      },
+                      {
+                        value: 'premium',
+                        label: 'Premium',
+                      },
+                    ],
+                  }}
+                />
+                <Form.Field
+                  name="dummy1"
+                  label="Dummy 1"
+                  component={SwitchField}
+                />
+                <Form.Field
+                  name="dummy2"
+                  label="Dummy 2"
+                  component={SwitchField}
+                />
+                <Form.Field
+                  name="dummy3"
+                  label="Dummy 3"
+                  component={TextField}
+                />
+                <Form.Field
+                  name="dummy4"
+                  label="Dummy 4"
+                  component={TextField}
+                />
+                <Text>You have chosen the user type: {userType}</Text>
+                <Form.SubmitButton>
+                  <Text>Submit</Text>
+                </Form.SubmitButton>
+              </React.Fragment>
+            );
+          }}
+        </Form>
+      </View>
+    );
+  }
+}
+          `,
+          render: () => <GetFieldValues />,
+        }}
       />
     </Section>
   </UIExplorer>

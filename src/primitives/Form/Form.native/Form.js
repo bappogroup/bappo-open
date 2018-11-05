@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import type { FormProps } from '../types.js.flow';
 import Field from '../Field';
 import { FormState, SubmissionError } from '../FormState';
@@ -25,9 +25,9 @@ class Form extends React.Component<Props> {
             typeof children === 'function' ? children(formState) : children;
           return (
             <FormConfigProvider value={this.props}>
-              <View style={style} testID={testID}>
+              <KeyboardAwareScrollView style={style} testID={testID}>
                 {formBody}
-              </View>
+              </KeyboardAwareScrollView>
             </FormConfigProvider>
           );
         }}

@@ -49,10 +49,21 @@ const getStateAndHelpers = (state: State): FormStateAndHelpers => {
 
   const pristine = deepEqual(initialValues, values);
   const getFieldError = fieldName => get(fieldName, fieldErrors);
-  const getFieldValue = fieldName => get(fieldName, values);
+  const getFieldValue = fieldName => {
+    if (typeof values === 'object') {
+      return get(fieldName, values);
+    }
+    return undefined;
+  };
   const fieldActive = fieldName => !!get([fieldName, 'active'], fieldStates);
-  const fieldPristine = fieldName =>
-    deepEqual(get(fieldName, initialValues), getFieldValue(fieldName));
+  const fieldPristine = fieldName => {
+    const initialValue =
+      typeof initialValues === 'object'
+        ? get(fieldName, initialValues)
+        : undefined;
+    return deepEqual(initialValue, getFieldValue(fieldName));
+  };
+
   const fieldTouched = fieldName =>
     !!allTouched || !!get([fieldName, 'touched'], fieldStates);
   const fieldVisited = fieldName => !!get([fieldName, 'visited'], fieldStates);
