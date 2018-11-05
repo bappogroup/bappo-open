@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import type { InputField, InputFieldProps, SelectProps } from './types.js.flow';
-import { InputFieldWrapper } from '../input-fields/wrappers';
-import OldSelect from '../OldSelect';
+import { InputFieldWrapper } from '../wrappers';
+import OldSelect from '../../OldSelect';
 
 type Props = InputFieldProps & SelectProps;
 

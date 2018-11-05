@@ -6,6 +6,7 @@ import {
   Text,
   SelectField,
   SwitchField,
+  DatePickerField,
 } from 'bappo-components';
 
 class GetFieldValues extends React.Component {
@@ -61,9 +62,9 @@ class GetFieldValues extends React.Component {
                   component={SwitchField}
                 />
                 <Form.Field
-                  name="dummy3"
-                  label="Dummy 3"
-                  component={TextField}
+                  name="datePicker"
+                  label="Date"
+                  component={DatePickerField}
                 />
                 <Form.Field
                   name="dummy4"
