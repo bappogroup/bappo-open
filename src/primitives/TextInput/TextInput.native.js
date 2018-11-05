@@ -141,5 +141,5 @@ const StyledTextInput = styled.TextInput`
   font-size: 14px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   margin: 0;
-  padding: 0;
+  padding: ${({ multiline }) => (multiline ? '8px 0px' : '0')};
 `;
