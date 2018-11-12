@@ -21,6 +21,7 @@ export const buttonDefaultStyle = css`
   border-width: 0;
   padding: 0;
   text-align: left;
+  outline: none;
 
   ${({ disabled }) =>
     disabled
