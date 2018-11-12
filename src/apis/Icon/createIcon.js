@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components';
 import Text from '../../primitives/Text';
+import IconText from './IconText';
 
 type GlyphMap = {
   [string]: number,
@@ -35,9 +35,9 @@ const createIcon = (
       };
 
       return (
-        <StyledText {...styleProps} innerRef={this._captureTextRef}>
+        <IconText {...styleProps} innerRef={this._captureTextRef}>
           {glyph}
-        </StyledText>
+        </IconText>
       );
     }
 
@@ -52,8 +52,3 @@ const createIcon = (
 };
 
 export default createIcon;
-
-const StyledText = styled(Text)`
-  font-family: ${props => props.fontFamily};
-  text-align: center;
-`;
