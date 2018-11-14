@@ -9,4 +9,6 @@ export type OverlayProps = {
   onLayout?: (event: ViewLayoutEvent) => void,
   onPress?: () => void,
   visible?: ?boolean,
+  showCloseButton?: ?boolean,
+  onClose?: () => void,
 };

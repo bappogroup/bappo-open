@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import type { OverlayProps } from '../types.js.flow';
 import OverlayDefaultProps from '../defaultProps';
 import OverlayContainer from './OverlayContainer';
+import CloseButton from './CloseButton';
 
 type Props = OverlayProps;
 
@@ -37,11 +38,18 @@ class Overlay extends React.Component<Props> {
       return null;
     }
 
-    const { children, onLayout, visible } = this.props;
+    const {
+      children,
+      onLayout,
+      visible,
+      showCloseButton = false,
+      onClose,
+    } = this.props;
 
     const portalChild = visible ? (
       <OverlayContainer onClick={this._onClick} onLayout={onLayout}>
         {children}
+        {showCloseButton && <CloseButton onPress={onClose} />}
       </OverlayContainer>
     ) : null;
 
