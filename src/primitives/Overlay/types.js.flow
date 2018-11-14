@@ -11,4 +11,5 @@ export type OverlayProps = {
   visible?: ?boolean,
   showCloseButton?: ?boolean,
   onClose?: () => void,
+  closeButtonStyle?: any,
 };

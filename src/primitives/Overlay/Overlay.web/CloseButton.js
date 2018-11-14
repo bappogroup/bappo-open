@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import TouchableView from '../../TouchableView';
 import Icon from '../../../components/Icon';
 
-const CloseButton = ({ onPress }) => (
+const CloseButton = ({ onPress, closeButtonStyle }) => (
   <Container onPress={onPress}>
-    <CloseIcon name="close" />
+    <CloseIcon name="close" style={closeButtonStyle} />
   </Container>
 );
 

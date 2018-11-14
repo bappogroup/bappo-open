@@ -12,6 +12,7 @@ class WithCloseButton extends React.Component {
         <Overlay
           visible={this.state.show}
           showCloseButton={true}
+          closeButtonStyle={{ color: 'black' }}
           onClose={() => this.setState({ show: false })}
         >
           <ChildrenContainer>

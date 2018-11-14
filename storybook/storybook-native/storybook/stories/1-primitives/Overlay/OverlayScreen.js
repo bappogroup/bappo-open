@@ -36,6 +36,12 @@ const OverlayScreen = () => (
       />
 
       <DocItem
+        name="closeButtonStyle?(web only)"
+        typeInfo="style"
+        description="Styles applied on close button."
+      />
+
+      <DocItem
         name="onClose?(web only)"
         typeInfo="?() => void"
         description="Callback function passed to close button that closes the Overlay."
@@ -61,6 +67,7 @@ class WithCloseButton extends React.Component {
         <Overlay
           visible={this.state.show}
           showCloseButton={true}
+          closeButtonStyle={{ color: 'black' }}
           onClose={() => this.setState({ show: false })}
         >
           <ChildrenContainer>
