@@ -82,7 +82,10 @@ class TimePicker extends React.Component<Props> {
   static displayName = 'TimePicker';
 
   blur() {
-    this._picker && this._picker.blur();
+    const picker = this._picker;
+    picker && setTimeout(() => picker.blur(), 10);
+    // the timeout is to counter some focus event that occurs after setting the value
+    // not an elegant fix, will need to fix this properly, Hernus
   }
 
   focus() {
