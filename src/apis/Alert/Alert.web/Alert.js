@@ -6,17 +6,19 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import OverlayContainer from '../../../primitives/Overlay/Overlay.web/OverlayContainer';
 import type { AlertOptions } from '../types.js.flow';
-import { validateOptions } from '../helpers';
+import { validateOptions, convertOptions } from '../helpers';
 import AlertDialog from './AlertDialog';
+import { createHash } from 'crypto';
 
 class Alert {
-  static async alert(options: AlertOptions) {
+  static async alert(_options: AlertOptions) {
     if (!ExecutionEnvironment.canUseDOM) {
       return;
     }
 
+    const options = convertOptions(_options);
     validateOptions(options);
-
+    console.log(options);
     const el = document.createElement('div');
     document.body && document.body.appendChild(el);
 
@@ -24,7 +26,7 @@ class Alert {
       ReactDOM.render(
         <StyledOverlayContainer>
           <AlertDialog
-            {...options}
+            {...options || defaultOptions}
             onDismiss={result => {
               document.body && document.body.removeChild(el);
               resolve(result);
@@ -44,3 +46,9 @@ const StyledOverlayContainer = styled(OverlayContainer)`
   align-items: center;
   justify-content: center;
 `;
+
+const defaultOptions = {
+  confirm: {
+    text: 'OK',
+  },
+};

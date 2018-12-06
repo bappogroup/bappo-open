@@ -83,9 +83,11 @@ class AlertDialog extends React.Component<Props> {
     return (
       <AlertContentContainer>
         <StyledView>
-          <AlertFormHeader>
-            <AlertFormTitleText>{title}</AlertFormTitleText>
-          </AlertFormHeader>
+          {title && (
+            <AlertFormHeader>
+              <AlertFormTitleText>{title}</AlertFormTitleText>
+            </AlertFormHeader>
+          )}
           <AlertFormContent>
             <Paragraph>{message}</Paragraph>
           </AlertFormContent>
@@ -112,7 +114,7 @@ export const AlertContentContainer = styled(ViewBase).attrs({
   overflow: hidden;
   margin: auto;
   max-height: 576px;
-  min-height: 150px;
+  min-height: 140px;
   outline: none;
 
   @media (max-width: ${breakpoint.max}px) {

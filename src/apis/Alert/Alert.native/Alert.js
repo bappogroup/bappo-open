@@ -1,7 +1,7 @@
 import RN from 'react-native';
 
 import type { AlertOptions } from '../types.js.flow';
-import { validateOptions } from '../helpers';
+import { validateOptions, convertOptions } from '../helpers';
 
 const defaultAction = {
   text: 'OK',
@@ -9,7 +9,8 @@ const defaultAction = {
 };
 
 class Alert {
-  static async alert(options: AlertOptions) {
+  static async alert(_options: AlertOptions) {
+    const options = convertOptions(_options);
     validateOptions(options);
 
     let actions = [];

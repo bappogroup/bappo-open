@@ -27,34 +27,50 @@ const AlertScreen = () => (
         typeInfo={`(options: {
   title?: string,
   message?: string,
-  actions?: Array<{
-    text: string,
-    onPress?: () => void,
-    style?: 'default' | 'cancel' | 'destructive'
-  }>
+  actions?: {
+    confirm: {
+      text: string,
+      onPress?: () => void,
+      destructive?: boolean,
+    },
+    cancel: {
+      text: string,
+      onPress?: () => void,
+      destructive?: boolean,
+    },
+    neutral: {
+      text: string,
+      onPress?: () => void,
+      destructive?: boolean,
+    }
+  }
 }) => void`}
         description="Alert options. "
         example={{
           render: () => <Minimal />,
           code: `
-Alert.alert({
-  title: 'Alert Title',
-  message: 'My Alert Msg',
-  actions: {
-    neutral: {
-      text: 'Ask me later',
-      onPress: () => console.log('Ask me later Pressed'),
-    },
-    cancel: {
-      text: 'Abort!',
-    },
-    confirm: {
-      text: 'Destroy',
-      onPress: () => console.log('Destroyed'),
-      destructive: true,
-    },
-  },
-})
+            await Alert.alert('My simple alert message');
+
+              --- OR ---
+
+            result = await Alert.alert({
+              title: 'Alert Title',
+              message: 'My Alert Msg',
+              actions: {
+                neutral: {
+                  text: 'Ask me later',
+                },
+                cancel: {
+                  text: 'Abort!',
+                },
+                confirm: {
+                  text: 'Destroy',
+                  destructive: true,
+                },
+              },
+            });
+            console.log(result);
+
           `,
         }}
       />
