@@ -16,6 +16,7 @@ export type InputFieldProps = {
   onValueChange?: (value: any) => void,
   testID?: string,
   value?: any,
+  reserveErrorSpace?: boolean,
 };
 
 export type InputFieldComponent = React.Component<InputFieldProps, any> &

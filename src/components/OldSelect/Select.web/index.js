@@ -555,17 +555,6 @@ class Select extends React.Component<Props, State> {
     event.stopPropagation();
     event.preventDefault();
 
-    // for the non-searchable select, toggle the menu
-    if (!this.props.searchable) {
-      // TODO: This code means that if a select is searchable, onClick the options menu will not
-      // appear, only on subsequent click will it open.
-      this.focus();
-      this.setState(prevState => ({
-        isOpen: !prevState.isOpen,
-      }));
-      return;
-    }
-
     if (this.state.isFocused) {
       // On iOS, we can get into a state where we think the input is focused but it isn't really,
       // since iOS ignores programmatic calls to input.focus() that weren't triggered by a click
@@ -1075,7 +1064,8 @@ class Select extends React.Component<Props, State> {
   _renderSingleSelectedValues = (selectedOptions: Array<Option>) => {
     return (
       <ValueWrapper>
-        {this.state.isFocused && <Icon name="search" />}
+        {this.state.isFocused &&
+          this.props.searchable && <Icon name="search" />}
         {this._renderSelectedValue(selectedOptions)}
         {this._renderInput()}
       </ValueWrapper>
@@ -1086,7 +1076,8 @@ class Select extends React.Component<Props, State> {
     return (
       <MultiValueWrapper>
         {this._renderSelectedValue(selectedOptions)}
-        {this.state.isFocused && <Icon name="search" />}
+        {this.state.isFocused &&
+          this.props.searchable && <Icon name="search" />}
         {this._renderInput()}
       </MultiValueWrapper>
     );

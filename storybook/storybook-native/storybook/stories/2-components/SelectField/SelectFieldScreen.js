@@ -10,6 +10,7 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import { View } from 'bappo-components';
 import Minimal from './examples/Minimal';
+import Clean from './examples/Clean';
 import Multi from './examples/Multi';
 
 const SelectFieldScreen = () => (
@@ -119,6 +120,43 @@ class SelectFieldMinimalExample extends React.Component {
 }
           `,
           render: () => <Minimal />,
+        }}
+      />
+
+      <DocItem
+        description="Clean version"
+        example={{
+          code: `
+const options = [
+  { label: 'Bob Mc Donald', value: '1' },
+  { label: 'Andrew Smith', value: '2' },
+  { label: 'Sandra Jones', value: '3' },
+  { label: 'Peter Soloman', value: '4' },
+  { label: 'Joe Peters', value: '5' },
+];
+
+class SelectFieldMinimalExample extends React.Component {
+  state = {
+    selectedValue: null,
+  };
+
+  render() {
+    return (
+      <View style={{ width: 300 }}>
+        <SelectField
+          searchable={false}
+          clearable={false}
+          reserveErrorSpace={false}
+          options={options}
+          value={this.state.selectedValue}
+          onValueChange={selectedValue => this.setState({ selectedValue })}
+        />
+      </View>
+    );
+  }
+}
+          `,
+          render: () => <Clean />,
         }}
       />
 
