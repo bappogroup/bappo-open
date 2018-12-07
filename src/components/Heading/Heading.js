@@ -10,7 +10,7 @@ type Props = {
   className?: string,
 };
 
-// TODO: long text wrapping problem
+// TO-DO: long text wrapping problem
 
 const Heading = ({ children, style, className }: Props) => {
   return (
