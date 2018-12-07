@@ -6,15 +6,18 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
 const TimePickerScreen = () => (
   <UIExplorer title="TimePicker" url="2-components/TimePicker">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TimePicker"
+      text="Source Code"
+    />
     <Description>
-      <AppText>
-        TimePicker is an input that lets you pick a time.
-      </AppText>
+      <AppText>TimePicker is an input that lets you pick a time.</AppText>
     </Description>
 
     <Section title="Props">
@@ -29,7 +32,8 @@ const TimePickerScreen = () => (
         typeInfo="boolean = false"
         description={
           <AppText>
-            If <Code>true</Code>, focuses the input on <Code>componentDidMount</Code>.
+            If <Code>true</Code>, focuses the input on{' '}
+            <Code>componentDidMount</Code>.
           </AppText>
         }
       />
@@ -39,7 +43,8 @@ const TimePickerScreen = () => (
         typeInfo="boolean = true"
         description={
           <AppText>
-            If <Code>true</Code>, the input value can be cleared by pressing a button.
+            If <Code>true</Code>, the input value can be cleared by pressing a
+            button.
           </AppText>
         }
       />
@@ -47,11 +52,7 @@ const TimePickerScreen = () => (
       <DocItem
         name="displayFormat?"
         typeInfo="string = 'HH:mm:ss'"
-        description={
-          <AppText>
-            Date format of the displayed value.
-          </AppText>
-        }
+        description={<AppText>Date format of the displayed value.</AppText>}
       />
 
       <DocItem
@@ -94,17 +95,9 @@ const TimePickerScreen = () => (
         description="Function to render the dropdown icon."
       />
 
-      <DocItem
-        name="style?"
-        typeInfo="style"
-        description="Same as View"
-      />
+      <DocItem name="style?" typeInfo="style" description="Same as View" />
 
-      <DocItem
-        name="testID?"
-        typeInfo="string"
-        description="Same as View"
-      />
+      <DocItem name="testID?" typeInfo="string" description="Same as View" />
 
       <DocItem
         name="value?"
@@ -115,11 +108,7 @@ const TimePickerScreen = () => (
       <DocItem
         name="valueFormat?"
         typeInfo="string = 'HH:mm:ss'"
-        description={
-          <AppText>
-            Date format of the input value.
-          </AppText>
-        }
+        description={<AppText>Date format of the input value.</AppText>}
       />
     </Section>
 

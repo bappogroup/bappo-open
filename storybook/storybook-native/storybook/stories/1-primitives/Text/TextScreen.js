@@ -6,21 +6,27 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import PropChildren from './examples/PropChildren';
 import PropNumberOfLines from './examples/PropNumberOfLines';
 
 const TextScreen = () => (
   <UIExplorer title="Text" url="1-primitives/Text">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Text"
+      text="Source Code"
+    />
     <Description>
       <AppText>
-        Text is component for displaying text. It supports style and inherits typographic styles
-        from ancestor elements.
+        Text is component for displaying text. It supports style and inherits
+        typographic styles from ancestor elements.
       </AppText>
       <AppText>
-        Text is unique relative to layout: child elements use text layout ("inline") rather than
-        flexbox layout. This means that elements inside of a Text are not rectangles, as they wrap
-        when reaching the edge of their container.
+        Text is unique relative to layout: child elements use text layout
+        ("inline") rather than flexbox layout. This means that elements inside
+        of a Text are not rectangles, as they wrap when reaching the edge of
+        their container.
       </AppText>
     </Description>
 
@@ -30,10 +36,9 @@ const TextScreen = () => (
         typeInfo="string"
         description={
           <AppText>
-            Overrides the text that's read by the screen reader when the user interacts with the
-            element.
-            On web: it is stored as attribute "aria-label".
-            On native: it uses the accessibilityLabel prop.
+            Overrides the text that's read by the screen reader when the user
+            interacts with the element. On web: it is stored as attribute
+            "aria-label". On native: it uses the accessibilityLabel prop.
           </AppText>
         }
       />
@@ -43,8 +48,9 @@ const TextScreen = () => (
         typeInfo="React.Node"
         description={
           <AppText>
-            Child content. Nested text components will inherit the styles of their parents (only
-            backgroundColor is inherited from non-<Code>Text</Code> parents).
+            Child content. Nested text components will inherit the styles of
+            their parents (only backgroundColor is inherited from non-
+            <Code>Text</Code> parents).
           </AppText>
         }
         example={{
@@ -67,20 +73,15 @@ const TextScreen = () => (
         description="When false, the text is not selectable. The default value is false."
       />
 
-      <DocItem
-        name="style?"
-        typeInfo="style"
-        description="Styles"
-      />
+      <DocItem name="style?" typeInfo="style" description="Styles" />
 
       <DocItem
         name="testID?"
         typeInfo="string"
         description={
           <AppText>
-            Used to locate this view in end-to-end tests.
-            On web: it is stored as data attribute "data-testid".
-            On native: it uses the testID prop.
+            Used to locate this view in end-to-end tests. On web: it is stored
+            as data attribute "data-testid". On native: it uses the testID prop.
           </AppText>
         }
       />

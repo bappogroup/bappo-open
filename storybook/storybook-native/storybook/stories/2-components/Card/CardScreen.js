@@ -7,11 +7,17 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
 
 const CardScreen = () => (
   <UIExplorer title="Card" url="2-components/Card">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Card"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>A view with box shadows.</AppText>
     </Description>

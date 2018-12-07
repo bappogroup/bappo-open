@@ -7,11 +7,16 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
 
 const SubHeadingScreen = () => (
   <UIExplorer title="SubHeading" url="2-components/SubHeading">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/SubHeading"
+      text="Source Code"
+    />
     <Description>
       <AppText>SubHeading.</AppText>
     </Description>

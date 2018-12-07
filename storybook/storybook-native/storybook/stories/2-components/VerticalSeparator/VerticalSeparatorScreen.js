@@ -6,11 +6,16 @@ import UIExplorer, {
   Description,
   DocItem,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
 
 const VerticalSeparatorScreen = () => (
   <UIExplorer title="Separator(Vertical)" url="2-components/Separator">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/VerticalSeparator"
+      text="Source Code"
+    />
     <Description>
       <AppText>A vertical separator line.</AppText>
     </Description>

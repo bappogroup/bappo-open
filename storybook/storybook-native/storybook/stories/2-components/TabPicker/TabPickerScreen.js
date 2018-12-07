@@ -8,12 +8,17 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Example from './examples/tabPickerExample';
 import Example2 from './examples/tabPickerExample2';
 
 const TabPickerScreen = () => (
   <UIExplorer title="TabPicker" url="2-components/TabPicker">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TabPicker"
+      text="Source Code"
+    />
     <Description>
       <AppText>TabPicker</AppText>
     </Description>

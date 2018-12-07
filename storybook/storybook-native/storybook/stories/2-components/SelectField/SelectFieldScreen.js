@@ -7,6 +7,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import { View } from 'bappo-components';
 import Minimal from './examples/Minimal';
@@ -15,10 +16,15 @@ import Multi from './examples/Multi';
 
 const SelectFieldScreen = () => (
   <UIExplorer title="SelectField" url="2-components/SelectField">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SelectField"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>
-        SelectField is basic select wrapped with Bappo's stylings. It can be
-        either standalone or in a form.
+        SelectField is the basic Select component wrapped with Bappo's stylings.
+        It can be either standalone or in a form.
       </AppText>
       <AppText>
         It accepts props for basic select and props for InputFieldWrapper.

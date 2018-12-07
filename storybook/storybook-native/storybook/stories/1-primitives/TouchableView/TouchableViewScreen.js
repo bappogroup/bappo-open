@@ -8,12 +8,18 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import FeedbackEvents from './examples/FeedbackEvents';
 import PropDisabled from './examples/PropDisabled';
 
 const TouchableViewScreen = () => (
   <UIExplorer title="TouchableView" url="1-primitives/TouchableView">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TouchableView"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>A view that responds to touches.</AppText>
     </Description>

@@ -7,13 +7,19 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
 
 const BackgroundScreen = () => (
   <UIExplorer title="Background" url="2-components/Background">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Background"
+      text="Source Code"
+    />
+
     <Description>
-      <AppText>Background.</AppText>
+      <AppText>Background</AppText>
     </Description>
 
     <DocItem
