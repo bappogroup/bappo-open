@@ -12,17 +12,6 @@ export const Control = styled.View`
   align-items: center;
 `;
 
-export const IconText = styled.Text`
-  font-size: 24px;
-  transform: translateY(-14px);
-`;
-
-export const IconTextContainer = styled.View`
-  height: 17px;
-  overflow: hidden;
-  margin-left: 10px;
-`;
-
 export const ListContainer = styled.View`
   flex: 1;
 `;
