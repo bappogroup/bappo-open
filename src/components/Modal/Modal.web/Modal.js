@@ -95,7 +95,7 @@ export const ModalContentContainer = styled(ViewBase).attrs({
   @media (min-width: ${breakpoint.min}px) {
     margin: auto;
     max-height: 768px;
-    min-height: 384px;
+    min-height: 200px;
     width: 576px;
     ${({ layout }) =>
       layout
