@@ -9,6 +9,10 @@ type Props = {
   type?: 'default' | 'bold' | 'small' | 'error' | 'success' | 'white',
 };
 
+/**
+ * Fixed height text component, no matter there's content or not
+ * Reserve 1 line of space by default, and increase height if needed
+ */
 const Paragraph = ({ children, type }: Props) => {
   return (
     <StyledText selectable type={type}>
@@ -37,14 +41,14 @@ const StyledText = styled(Text)`
         return `
           font-size: 12px;
           color: #2B2826;
-          height: 15px;
+          min-height: 15px;
           line-height: 15px;
         `;
       case 'error':
         return `
           font-size: 12px;
           color: #C23934;
-          height: 20px;
+          min-height: 20px;
           line-height: 20px;
         `;
       case 'success':

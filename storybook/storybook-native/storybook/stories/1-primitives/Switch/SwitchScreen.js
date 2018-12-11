@@ -6,11 +6,17 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
 const SwitchScreen = () => (
   <UIExplorer title="Switch" url="1-primitives/Switch">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Switch"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>Renders a boolean input.</AppText>
       <AppText>

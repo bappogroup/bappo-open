@@ -6,6 +6,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import HeaderFooter from './examples/HeaderFooter';
 import Minimal from './examples/Minimal';
@@ -19,6 +20,11 @@ import PropListEmptyComponent from './examples/PropListEmptyComponent';
 
 const FlatListScreen = () => (
   <UIExplorer title="FlatList" url="1-primitives/FlatList">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/FlatList"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>
         A performant interface for rendering simple, flat lists.
@@ -31,8 +37,9 @@ const FlatListScreen = () => (
         typeInfo="$ReadOnlyArray<ItemT>"
         description={
           <AppText>
-            For simplicity, data is just a plain array. If you want to use something else, like an
-            immutable list, use the underlying <Code>VirtualizedList</Code> directly.
+            For simplicity, data is just a plain array. If you want to use
+            something else, like an immutable list, use the underlying{' '}
+            <Code>VirtualizedList</Code> directly.
           </AppText>
         }
       />
@@ -58,10 +65,11 @@ const FlatListScreen = () => (
         typeInfo="any"
         description={
           <AppText>
-            A marker property for telling the list to re-render (since it implements{' '}
-            <Code>PureComponent</Code>). If any of your <Code>renderItem</Code>, Header, Footer,
-            etc. functions depend on anything outside of the <Code>data</Code> prop, stick it here
-            and treat it immutably.
+            A marker property for telling the list to re-render (since it
+            implements <Code>PureComponent</Code>
+            ). If any of your <Code>renderItem</Code>, Header, Footer, etc.
+            functions depend on anything outside of the <Code>data</Code> prop,
+            stick it here and treat it immutably.
           </AppText>
         }
       />
@@ -83,9 +91,10 @@ const FlatListScreen = () => (
         typeInfo="?(data: Array<ItemT>, index: number) => {length: number, offset: number, index: number}"
         description={
           <AppText>
-            An optional optimizations that let us skip measurement of dynamic content if you know
-            the height of items a priori. <Code>getItemLayout</Code> is the most efficient, and is
-            easy to use if you have fixed height items.
+            An optional optimizations that let us skip measurement of dynamic
+            content if you know the height of items a priori.{' '}
+            <Code>getItemLayout</Code> is the most efficient, and is easy to use
+            if you have fixed height items.
           </AppText>
         }
         example={{
@@ -133,9 +142,10 @@ const data = Array.from({ length: 500 })
         typeInfo="number"
         description={
           <AppText>
-            How many items to render in the initial batch. This should be enough to fill the screen
-            but not much more. Note these items will never be unmounted as part of the windowed
-            rendering in order to improve perceived performance of scroll-to-top actions.
+            How many items to render in the initial batch. This should be enough
+            to fill the screen but not much more. Note these items will never be
+            unmounted as part of the windowed rendering in order to improve
+            perceived performance of scroll-to-top actions.
           </AppText>
         }
       />
@@ -146,10 +156,11 @@ const data = Array.from({ length: 500 })
         description={
           <AppText>
             Instead of starting at the top with the first item, start at{' '}
-            <Code>initialScrollIndex</Code>. This disables the "scroll to top" optimization that
-            keeps the first <Code>initialNumToRender</Code> items always rendered and immediately
-            renders the items starting at this initial index. Requires <Code>getItemLayout</Code> to
-            be implemented.
+            <Code>initialScrollIndex</Code>. This disables the "scroll to top"
+            optimization that keeps the first <Code>initialNumToRender</Code>{' '}
+            items always rendered and immediately renders the items starting at
+            this initial index. Requires <Code>getItemLayout</Code> to be
+            implemented.
           </AppText>
         }
         example={{
@@ -180,7 +191,8 @@ const data = Array.from({ length: 500 })
         typeInfo="?boolean"
         description={
           <AppText>
-            Reverses the direction of scroll. Requires <Code>getItemLayout</Code> to be implemented.
+            Reverses the direction of scroll. Requires{' '}
+            <Code>getItemLayout</Code> to be implemented.
           </AppText>
         }
         example={{
@@ -193,8 +205,9 @@ const data = Array.from({ length: 500 })
         typeInfo="?React.ComponentType<any>"
         description={
           <AppText>
-            Rendered in between each item, but not at the top or bottom. By default,{' '}
-            <Code>highlighted</Code> and <Code>leadingItem</Code> props are provided.
+            Rendered in between each item, but not at the top or bottom. By
+            default, <Code>highlighted</Code> and <Code>leadingItem</Code> props
+            are provided.
           </AppText>
         }
         example={{
@@ -207,9 +220,10 @@ const data = Array.from({ length: 500 })
         typeInfo="(item: ItemT, index: number) => string"
         description={
           <AppText>
-            Used to extract a unique key for a given item at the specified index. Key is used for
-            caching and as the react key to track item re-ordering. The default extractor
-            checks <Code>item.key</Code>, then falls back to using the index, like React does.
+            Used to extract a unique key for a given item at the specified
+            index. Key is used for caching and as the react key to track item
+            re-ordering. The default extractor checks <Code>item.key</Code>,
+            then falls back to using the index, like React does.
           </AppText>
         }
       />
@@ -219,8 +233,8 @@ const data = Array.from({ length: 500 })
         typeInfo="?(React.ComponentType<any> | React.Element<any>)"
         description={
           <AppText>
-            Rendered when the list is empty. Can be a React Component Class, a render function, or
-            a rendered element.
+            Rendered when the list is empty. Can be a React Component Class, a
+            render function, or a rendered element.
           </AppText>
         }
         example={{
@@ -233,8 +247,8 @@ const data = Array.from({ length: 500 })
         typeInfo="?(React.ComponentType<any> | React.Element<any>)"
         description={
           <AppText>
-            Rendered at the bottom of all the items. Can be a React Component Class, a render
-            function, or a rendered element.
+            Rendered at the bottom of all the items. Can be a React Component
+            Class, a render function, or a rendered element.
           </AppText>
         }
       />
@@ -244,8 +258,8 @@ const data = Array.from({ length: 500 })
         typeInfo="?(React.ComponentType<any> | React.Element<any>)"
         description={
           <AppText>
-            Rendered at the top of all the items. Can be a React Component Class, a render
-            function, or a rendered element.
+            Rendered at the top of all the items. Can be a React Component
+            Class, a render function, or a rendered element.
           </AppText>
         }
       />
@@ -255,9 +269,10 @@ const data = Array.from({ length: 500 })
         typeInfo="number = 10"
         description={
           <AppText>
-            The maximum number of items to render in each incremental render batch. The more
-            rendered at once, the better the fill rate, but responsiveness may suffer because
-            rendering content may interfere with responding to button taps or other interactions.
+            The maximum number of items to render in each incremental render
+            batch. The more rendered at once, the better the fill rate, but
+            responsiveness may suffer because rendering content may interfere
+            with responding to button taps or other interactions.
           </AppText>
         }
       />
@@ -273,8 +288,8 @@ const data = Array.from({ length: 500 })
         typeInfo="?(info: {distanceFromEnd: number}) => void"
         description={
           <AppText>
-            Called once when the scroll position gets within <Code>onEndReachedThreshold</Code> of
-            the rendered content.
+            Called once when the scroll position gets within{' '}
+            <Code>onEndReachedThreshold</Code> of the rendered content.
           </AppText>
         }
       />
@@ -284,10 +299,14 @@ const data = Array.from({ length: 500 })
         typeInfo="number"
         description={
           <AppText>
-            How far from the end (in units of visible length of the list) the bottom edge of the
-            list must be from the end of the content to trigger the <Code>onEndReached</Code>
-            callback. Thus a value of 0.5 will trigger <Code>onEndReached</Code> when the end of the
-            content is within half the visible length of the list.
+            How far from the end (in units of visible length of the list) the
+            bottom edge of the list must be from the end of the content to
+            trigger the <Code>onEndReached</Code>
+            callback. Thus a value of 0.5 will trigger <Code>
+              onEndReached
+            </Code>{' '}
+            when the end of the content is within half the visible length of the
+            list.
           </AppText>
         }
       />
@@ -327,9 +346,9 @@ const data = Array.from({ length: 500 })
         typeInfo="number = 50"
         description={
           <AppText>
-            Amount of time in ms between low-pri item render batches, e.g. for rendering items quite
-            a ways off screen. Similar fill rate/responsiveness tradeoff as{' '}
-            <Code>maxToRenderPerBatch</Code>.
+            Amount of time in ms between low-pri item render batches, e.g. for
+            rendering items quite a ways off screen. Similar fill
+            rate/responsiveness tradeoff as <Code>maxToRenderPerBatch</Code>.
           </AppText>
         }
       />
@@ -339,12 +358,14 @@ const data = Array.from({ length: 500 })
         typeInfo="number = 21"
         description={
           <AppText>
-            Determines the maximum number of items rendered outside of the visible area, in units of
-            visible lengths. So if your list fills the screen, then <Code>{'windowSize={21}'}</Code>
-            will render the visible screen area plus up to 10 screens above and 10 below the
-            viewport. Reducing this number will reduce memory consumption and may improve
-            performance, but will increase the chance that fast scrolling may reveal momentary blank
-            areas of unrendered content.
+            Determines the maximum number of items rendered outside of the
+            visible area, in units of visible lengths. So if your list fills the
+            screen, then <Code>{'windowSize={21}'}</Code>
+            will render the visible screen area plus up to 10 screens above and
+            10 below the viewport. Reducing this number will reduce memory
+            consumption and may improve performance, but will increase the
+            chance that fast scrolling may reveal momentary blank areas of
+            unrendered content.
           </AppText>
         }
       />

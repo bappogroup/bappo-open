@@ -4,6 +4,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import PropAnimating from './examples/PropAnimating';
 import PropColor from './examples/PropColor';
@@ -11,6 +12,10 @@ import PropSize from './examples/PropSize';
 
 const ActivityIndicatorScreen = () => (
   <UIExplorer title="ActivityIndicator" url="1-primitives/ActivityIndicator">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/ActivityIndicator"
+      text="Source Code"
+    />
     <Description>Displays a customizable activity indicator</Description>
     <Section title="Props">
       <DocItem

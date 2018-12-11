@@ -25,7 +25,7 @@ require('./2-components/Modal/ModalScreen');
 require('./2-components/ModalForm/ModalFormScreen');
 require('./2-components/Paragraph/ParagraphScreen');
 require('./2-components/SelectField/SelectFieldScreen');
-require('./2-components/OldSelect/OldSelectScreen');
+require('./2-components/Select/SelectScreen');
 require('./2-components/SubHeading/SubHeadingScreen');
 require('./2-components/TabPicker/TabPickerScreen');
 require('./2-components/TimePicker/TimePickerScreen');

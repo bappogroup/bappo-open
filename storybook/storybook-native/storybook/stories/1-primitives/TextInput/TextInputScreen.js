@@ -6,7 +6,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
-  Link,
+  WebLink,
 } from '../../../ui-explorer';
 import PropMultiline from './examples/PropMultiline';
 import PropPlaceholder from './examples/PropPlaceholder';
@@ -20,16 +20,10 @@ import TouchableWrapper from './examples/TouchableWrapper';
 
 const TextInputScreen = () => (
   <UIExplorer title="TextInput" url="1-primitives/TextInput">
-    <Description>
-      <AppText>
-        <a
-          href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/TextInput/examples"
-          target="_blank"
-        >
-          Source Code
-        </a>
-      </AppText>
-    </Description>
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TextInput"
+      text="Source Code"
+    />
 
     <Description>
       <AppText>

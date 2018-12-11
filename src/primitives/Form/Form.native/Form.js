@@ -25,7 +25,11 @@ class Form extends React.Component<Props> {
             typeof children === 'function' ? children(formState) : children;
           return (
             <FormConfigProvider value={this.props}>
-              <KeyboardAwareScrollView style={style} testID={testID}>
+              <KeyboardAwareScrollView
+                style={style}
+                testID={testID}
+                keyboardShouldPersistTaps={'handled'}
+              >
                 {formBody}
               </KeyboardAwareScrollView>
             </FormConfigProvider>

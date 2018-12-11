@@ -5,11 +5,16 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
 const AlertScreen = () => (
   <UIExplorer title="Alert" url="3-apis/Alert">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/apis/Alert"
+      text="Source Code"
+    />
     <Description>
       <AppText>
         Launches an alert dialog with the specified title and message.

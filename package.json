@@ -1,6 +1,6 @@
 {
   "name": "bappo-components",
-  "version": "0.1.0-alpha.70",
+  "version": "0.1.0-alpha.73",
   "description": "Cross-platform React components for building Bappo apps",
   "keywords": [
     "bappo"
@@ -61,7 +61,8 @@
     "eslint-plugin-react": "7.11.1",
     "flow-bin": "^0.82.0",
     "flow-typed": "^2.5.1",
-    "husky": "^1.1.0",
+    "git-branch-is": "^2.1.0",
+    "husky": "^1.2.0",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
     "react": "16.5.1",
@@ -76,7 +77,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "flow && lint-staged"
+      "pre-commit": "git-branch-is master && npm run flow && npm run lint"
     }
   },
   "lint-staged": {

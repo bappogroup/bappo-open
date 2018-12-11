@@ -5,12 +5,18 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 import PropOnOverlayPress from './examples/PropOnOverlayPress';
 
 const ModalScreen = () => (
   <UIExplorer title="Modal" url="2-components/Modal">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Modal"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>
         The Modal component is a simple way to present content above an

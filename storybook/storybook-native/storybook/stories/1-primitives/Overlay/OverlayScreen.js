@@ -4,11 +4,17 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import WithCloseButton from './examples/WithCloseButton';
 
 const OverlayScreen = () => (
   <UIExplorer title="Overlay" url="1-primitives/Overlay">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Overlay"
+      text="Source Code"
+    />
+
     <Description>Show a full screen overlay on top of the page</Description>
     <Section title="Props">
       <DocItem

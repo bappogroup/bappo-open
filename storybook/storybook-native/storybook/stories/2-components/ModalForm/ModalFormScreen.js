@@ -6,6 +6,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import DependentField from './examples/DependentField';
 import Minimal from './examples/Minimal';
@@ -15,6 +16,11 @@ import PropSubmitButtonText from './examples/PropSubmitButtonText';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/ModalForm"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>Form in a modal.</AppText>
     </Description>
