@@ -7,6 +7,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import PropType from './examples/PropType';
 
@@ -15,6 +16,11 @@ const ParagraphScreen = () => (
     <Description>
       <AppText>Paragraph.</AppText>
     </Description>
+
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Paragraph/examples"
+      text="Examples Code"
+    />
 
     <Section title="Props">
       <DocItem

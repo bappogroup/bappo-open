@@ -10,6 +10,8 @@ type Props = {
   className?: string,
 };
 
+// TODO: long text wrapping problem
+
 const Heading = ({ children, style, className }: Props) => {
   return (
     <StyledText selectable style={style} className={className}>

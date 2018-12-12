@@ -4,11 +4,17 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import WithCloseButton from './examples/WithCloseButton';
 
 const OverlayScreen = () => (
   <UIExplorer title="Overlay" url="1-primitives/Overlay">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Overlay"
+      text="Source Code"
+    />
+
     <Description>Show a full screen overlay on top of the page</Description>
     <Section title="Props">
       <DocItem
@@ -49,40 +55,13 @@ const OverlayScreen = () => (
     </Section>
 
     <Section title="Example">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Overlay/examples"
+        text="Examples Code"
+      />
       <DocItem
         description="Simple overlay with close button"
         example={{
-          code: `
-import React from 'react';
-import { styled, View, Text, Button, Overlay } from 'bappo-components';
-
-class WithCloseButton extends React.Component {
-  state = {
-    show: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Overlay
-          visible={this.state.show}
-          showCloseButton={true}
-          closeButtonStyle={{ color: 'black' }}
-          onClose={() => this.setState({ show: false })}
-        >
-          <ChildrenContainer>
-            <Text>I'm fullscreen content</Text>
-          </ChildrenContainer>
-        </Overlay>
-        <Button
-          text="Show Overlay"
-          onPress={() => this.setState({ show: true })}
-        />
-      </View>
-    );
-  }
-}
-`,
           render: () => <WithCloseButton />,
         }}
       />

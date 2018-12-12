@@ -29,9 +29,21 @@ class AlertMinimalExample extends React.Component {
     });
   };
 
+  onPress2 = async () => {
+    await Alert.alert('Simple alert message');
+  };
+
   render() {
     return (
       <View>
+        <Button
+          type="primary"
+          text="Show Minimal Alert"
+          onPress={() => this.onPress2()}
+        />
+
+        <View style={{ margin: 5 }} />
+
         <Button
           type="primary"
           text="Show Alert"

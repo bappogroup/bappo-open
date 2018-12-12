@@ -215,7 +215,7 @@ const ModalFormRow = styled(FlexDiv)`
 `;
 
 const ModalFormFooterCancelButton = styled(Button).attrs({
-  type: 'secondary',
+  type: 'tertiary',
 })`
   margin-right: 16px;
 `;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View } from 'bappo-components';
-import { styles as helperStyles } from '../helpers';
+import { Text, TextField, View } from 'bappo-components';
 
 export default class TextEventsExample extends React.Component {
   state = {
@@ -10,8 +9,8 @@ export default class TextEventsExample extends React.Component {
     prev3Text: '<No Event>',
   };
 
-  updateText = (text) => {
-    this.setState((state) => {
+  updateText = text => {
+    this.setState(state => {
       return {
         curText: text,
         prevText: state.curText,
@@ -24,12 +23,13 @@ export default class TextEventsExample extends React.Component {
   render() {
     return (
       <View>
-        <TextInput
+        <TextField
           onBlur={() => this.updateText('onBlur')}
           onFocus={() => this.updateText('onFocus')}
-          onValueChange={value => this.updateText(`onValueChange text: ${value}`)}
+          onValueChange={value =>
+            this.updateText(`onValueChange text: ${value}`)
+          }
           placeholder="Enter text to see events"
-          style={{ ...helperStyles.textinput, maxWidth: 200 }}
         />
         <Text style={styles.eventLabel}>
           {this.state.curText}

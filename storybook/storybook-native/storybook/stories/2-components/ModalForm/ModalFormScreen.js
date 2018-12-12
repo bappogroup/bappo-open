@@ -6,6 +6,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import DependentField from './examples/DependentField';
 import Minimal from './examples/Minimal';
@@ -15,6 +16,11 @@ import PropSubmitButtonText from './examples/PropSubmitButtonText';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/ModalForm"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>Form in a modal.</AppText>
     </Description>
@@ -50,282 +56,37 @@ const ModalFormScreen = () => (
         typeInfo="string | (formState: FormStateAndHelpers) => string"
         description="Submit button text. Can be a string or a function that returns a string. The function will be called with the form state."
         example={{
-          code: `
-  import { Button, Form, ModalForm, TextField, View } from 'bappo-components';
-
-  class ModalFormPropSubmitButtonTextExample extends React.Component {
-    state = {
-      modalVisible: false,
-    };
-
-    render() {
-      return (
-        <View>
-          <Button
-            onPress={() => this.setState({ modalVisible: true })}
-            text="Open form"
-          />
-          <ModalForm
-            initialValues={{ name: 'Alice' }}
-            onRequestClose={() => this.setState({ modalVisible: false })}
-            onSubmit={console.log}
-            submitButtonText={({ getFieldValue }) => \`Invite \${getFieldValue('name') || ''}\`}
-            title="Modal Form Prop submitButtonText Example"
-            visible={this.state.modalVisible}
-          >
-            <Form.Field name="name" component={TextField} label="Name" />
-          </ModalForm>
-        </View>
-      );
-    }
-  }
-          `,
           render: () => <PropSubmitButtonText />,
         }}
       />
     </Section>
 
-    <Section title="More examples">
+    <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/ModalForm/examples"
+        text="Examples Code"
+      />
       <DocItem
         description="Minimal"
         example={{
-          code: `
-import {
-  Alert,
-  Button,
-  Form,
-  ModalForm,
-  TextField,
-  View,
-} from 'bappo-components';
-
-class ModalFormMinimalExample extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.setState({ modalVisible: true })}
-          text="Open form"
-        />
-        <ModalForm
-          onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
-          title="Modal Form Minimal Example"
-          visible={this.state.modalVisible}
-        >
-          <Form.Field
-            name="firstName"
-            component={TextField}
-            label="First Name"
-          />
-          <Form.Field
-            name="lastName"
-            component={TextField}
-            label="Last Name"
-          />
-        </ModalForm>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <Minimal />,
         }}
       />
       <DocItem
         description="Field-level validation"
         example={{
-          code: `
-import {
-  Alert,
-  Button,
-  Form,
-  ModalForm,
-  SwitchField,
-  TextField,
-  View,
-} from 'bappo-components';
-import { isEmail } from 'validator';
-
-class ModalFormFieldLevelValidationExample extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.setState({ modalVisible: true })}
-          text="Open form"
-        />
-        <ModalForm
-          onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
-          title="Modal Form Field Level Validation Example"
-          visible={this.state.modalVisible}
-        >
-          <Form.Field
-            name="email"
-            component={TextField}
-            label="Email"
-            validate={value =>
-              value && isEmail(value) ? undefined : 'Invalid email'
-            }
-            props={{ type: 'email' }}
-          />
-          <Form.Field
-            name="password"
-            component={TextField}
-            label="Password"
-            validate={value => (value ? undefined : 'Password is required')}
-            props={{ type: 'password' }}
-          />
-          <Form.Field
-            name="rememberMe"
-            component={SwitchField}
-            label="Remember Me"
-          />
-        </ModalForm>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <FieldLevelValidation />,
         }}
       />
       <DocItem
         description="Dependent Field"
         example={{
-          code: `
-import {
-  Alert,
-  Button,
-  Form,
-  ModalForm,
-  SelectField,
-  View,
-} from 'bappo-components';
-
-class ModalFormDependentFieldExample extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.setState({ modalVisible: true })}
-          text="Open form"
-        />
-        <ModalForm
-          onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
-          title="Modal Form Dependent Field Example"
-          visible={this.state.modalVisible}
-        >
-          {({ getFieldValue }) => {
-            const country = getFieldValue('country');
-            return (
-              <React.Fragment>
-                <Form.Field
-                  name="country"
-                  component={SelectField}
-                  label="Country"
-                  props={{ options: countryOptions }}
-                />
-                <Form.Field
-                  name="state"
-                  component={SelectField}
-                  label="State"
-                  props={{
-                    options: country ? stateOptionsByCountry[country] : [],
-                  }}
-                />
-              </React.Fragment>
-            );
-          }}
-        </ModalForm>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <DependentField />,
         }}
       />
       <DocItem
         description="Show/Hide field based on form state"
         example={{
-          code: `
-import {
-  Alert,
-  Button,
-  Form,
-  ModalForm,
-  SelectField,
-  TextField,
-  View,
-} from 'bappo-components';
-
-class ModalFormShowHideFieldBasedOnFormStateExample extends React.Component {
-  state = {
-    modalVisible: false,
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          onPress={() => this.setState({ modalVisible: true })}
-          text="Open form"
-        />
-        <ModalForm
-          onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values => Alert.alert({ message: JSON.stringify(values, null, 2) })}
-          title="Modal Form Show/Hide Field Based on Form State Example"
-          visible={this.state.modalVisible}
-        >
-          {({ getFieldValue }) => {
-            const deliveryMethod = getFieldValue('deliveryMethod');
-            return (
-              <React.Fragment>
-                <Form.Field
-                  name="deliveryMethod"
-                  component={SelectField}
-                  label="Delivery Method"
-                  props={{ options: deliveryMethodOptions }}
-                />
-                {deliveryMethod === 'deliver' && (
-                  <Form.Field
-                    name="address"
-                    component={TextField}
-                    label="Address"
-                  />
-                )}
-                {deliveryMethod === 'pick_up' && (
-                  <Form.Field
-                    name="pickupPoint"
-                    component={SelectField}
-                    label="Pick-up point"
-                    props={{ options: pickupPointOptions }}
-                  />
-                )}
-              </React.Fragment>
-            );
-          }}
-        </ModalForm>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <ShowHideFieldBasedOnFormState />,
         }}
       />

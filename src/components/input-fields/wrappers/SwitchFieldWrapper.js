@@ -13,12 +13,13 @@ const SwitchFieldWrapper = (props: InputWrapperProps) => {
   const {
     children,
     className,
-    fieldState,
+    fieldState = {},
     label,
     onValueChange,
     style,
     testID,
     value,
+    reserveErrorSpace = true,
   } = props;
 
   return (
@@ -32,9 +33,11 @@ const SwitchFieldWrapper = (props: InputWrapperProps) => {
         )}
         <SwitchContainer>{children}</SwitchContainer>
       </SwitchTouchToFocusArea>
-      <Paragraph type="error">
-        {fieldState.touched ? fieldState.error : ''}
-      </Paragraph>
+      {reserveErrorSpace && (
+        <Paragraph type="error">
+          {fieldState.touched ? fieldState.error : ''}
+        </Paragraph>
+      )}
     </FieldContainer>
   );
 };

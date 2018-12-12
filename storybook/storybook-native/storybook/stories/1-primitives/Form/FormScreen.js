@@ -6,14 +6,20 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 import GetFieldValues from './examples/GetFieldValues';
 
 const FormScreen = () => (
   <UIExplorer title="Form" url="1-primitives/Form">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Form"
+      text="Source Code"
+    />
+
     <Description>
-      <AppText>Form.</AppText>
+      <AppText>Form</AppText>
     </Description>
 
     <Section title="Props">
@@ -83,38 +89,13 @@ const FormScreen = () => (
     </Section>
 
     <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Form/examples"
+        text="Examples Code"
+      />
       <DocItem
         description="Minimal"
         example={{
-          code: `
-
-import React from 'react';
-import { View, Form, TextField, Text } from 'bappo-components';
-
-class Minimal extends React.Component {
-  render() {
-    return (
-      <View>
-        <Form onSubmit={values => console.log(values)}>
-          <Form.Field
-            name="email"
-            label="Email"
-            component={TextField}
-            props={{
-              autoFocus: true,
-              placeholder: 'Your email address',
-              type: 'email',
-            }}
-          />
-          <Form.SubmitButton>
-            <Text>Submit</Text>
-          </Form.SubmitButton>
-        </Form>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <Minimal />,
         }}
       />
@@ -122,97 +103,6 @@ class Minimal extends React.Component {
       <DocItem
         description="Get Field Values & All Field Types"
         example={{
-          code: `
-
-import React from 'react';
-import {
-  View,
-  Form,
-  Text,
-  TextField,
-  SelectField,
-  SwitchField,
-  DatePickerField,
-} from 'bappo-components';
-
-class GetFieldValues extends React.Component {
-  render() {
-    return (
-      <View>
-        <Form
-          initialValues={{
-            email: 'stanley.luo@bappo.com',
-          }}
-          onSubmit={values => console.log(values)}
-          testID="get-field-values-form"
-        >
-          {({ getFieldValue }) => {
-            const userType = getFieldValue('userType');
-            return (
-              <React.Fragment>
-                <Form.Field
-                  name="email"
-                  label="Email"
-                  component={TextField}
-                  props={{
-                    autoFocus: true,
-                    placeholder: 'Your email address',
-                    type: 'email',
-                  }}
-                />
-                <Form.Field
-                  name="userType"
-                  label="User Type"
-                  component={SelectField}
-                  props={{
-                    options: [
-                      {
-                        value: 'free',
-                        label: 'Free',
-                      },
-                      {
-                        value: 'premium',
-                        label: 'Premium',
-                      },
-                    ],
-                  }}
-                />
-                <Form.Field
-                  name="switch"
-                  label="Switch"
-                  component={SwitchField}
-                />
-                <Form.Field
-                  name="textMultiline"
-                  label="Text Multiline"
-                  component={TextField}
-                  props={{
-                    multiline: true,
-                  }}
-                />
-                <Form.Field
-                  name="date"
-                  label="Date"
-                  component={DatePickerField}
-                />
-                <Form.Field
-                  name="textDummy"
-                  label="Text Dummy"
-                  component={TextField}
-                />
-                <Text>You have chosen the user type: {userType}</Text>
-                <Form.SubmitButton>
-                  <Text>Submit</Text>
-                </Form.SubmitButton>
-              </React.Fragment>
-            );
-          }}
-        </Form>
-      </View>
-    );
-  }
-}
-          `,
           render: () => <GetFieldValues />,
         }}
       />

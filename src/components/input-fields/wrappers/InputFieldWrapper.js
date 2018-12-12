@@ -16,12 +16,13 @@ const InputFieldWrapper = (props: InputWrapperProps) => {
   const {
     children,
     className,
-    fieldState,
+    fieldState = {},
     focusInput,
     label,
     required,
     style,
     testID,
+    reserveErrorSpace = true,
   } = props;
 
   return (
@@ -40,9 +41,11 @@ const InputFieldWrapper = (props: InputWrapperProps) => {
         )}
         <FieldInputContainer>{children}</FieldInputContainer>
       </TouchToFocusArea>
-      <Paragraph type="error">
-        {fieldState.touched ? fieldState.error : ''}
-      </Paragraph>
+      {reserveErrorSpace && (
+        <Paragraph type="error">
+          {fieldState.touched ? fieldState.error : ''}
+        </Paragraph>
+      )}
     </FieldContainer>
   );
 };

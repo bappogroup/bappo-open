@@ -26,6 +26,7 @@ class SelectField extends React.Component<Props> implements InputField {
       onValueChange,
       testID,
       value,
+      reserveErrorSpace,
       ...rest
     } = this.props;
 
@@ -35,6 +36,7 @@ class SelectField extends React.Component<Props> implements InputField {
         focusInput={() => this.focus()}
         label={label}
         testID={testID}
+        reserveErrorSpace={reserveErrorSpace}
       >
         <OldSelect
           {...rest}

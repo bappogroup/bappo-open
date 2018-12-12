@@ -8,6 +8,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import PropColor from './examples/PropColor';
 import PropName from './examples/PropName';
@@ -16,8 +17,17 @@ import PropBadge from './examples/PropBadge';
 
 const AvatarScreen = () => (
   <UIExplorer title="Avatar" url="2-components/Avatar">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Avatar"
+      text="Source Code"
+    />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Avatar/examples"
+      text="Examples Code"
+    />
+
     <Description>
-      <AppText>Avatar.</AppText>
+      <AppText>Avatar</AppText>
     </Description>
 
     <Section title="Props">

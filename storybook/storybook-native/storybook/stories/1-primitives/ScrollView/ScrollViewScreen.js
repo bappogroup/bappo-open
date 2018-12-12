@@ -8,6 +8,7 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import PropHorizontal from './examples/PropHorizontal';
 import ScrollToExample from './examples/ScrollTo';
@@ -15,12 +16,21 @@ import ScrollToEndExample from './examples/ScrollToEnd';
 
 const ScrollViewScreen = () => (
   <UIExplorer title="ScrollView" url="1-primitives/ScrollView">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/ScrollView"
+      text="Source Code"
+    />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/ScrollView/examples"
+      text="Examples Code"
+    />
+
     <Description>
       <AppText>
-        A scrollable view.{' '}
-        <Code>ScrollView</Code>'s must have a bounded height: either set the height of the
-        view directly (discouraged) or make sure all parent views have bounded height (e.g.,
-        transfer <Code>{'{ flex: 1 }'}</Code> down the view stack).
+        A scrollable view. <Code>ScrollView</Code>
+        's must have a bounded height: either set the height of the view
+        directly (discouraged) or make sure all parent views have bounded height
+        (e.g., transfer <Code>{'{ flex: 1 }'}</Code> down the view stack).
       </AppText>
     </Description>
 
@@ -36,8 +46,9 @@ const ScrollViewScreen = () => (
         typeInfo="boolean"
         description={
           <AppText>
-            When true, the scroll view's children are arranged horizontally in a row instead of
-            vertically in a column. The default value is <Code>false</Code>.
+            When true, the scroll view's children are arranged horizontally in a
+            row instead of vertically in a column. The default value is{' '}
+            <Code>false</Code>.
           </AppText>
         }
         example={{
@@ -51,10 +62,11 @@ const ScrollViewScreen = () => (
         description={
           <AppText>
             Called when scrollable content view of the ScrollView changes.
-            Handler function is passed the content width and content height as parameters:
+            Handler function is passed the content width and content height as
+            parameters:
             <Code>(contentWidth, contentHeight)</Code>
-            It's implemented using onLayout handler attached to the content container which this
-            ScrollView renders.
+            It's implemented using onLayout handler attached to the content
+            container which this ScrollView renders.
           </AppText>
         }
       />
@@ -70,8 +82,9 @@ const ScrollViewScreen = () => (
         typeInfo="?(event: ScrollEvent) => void"
         description={
           <AppText>
-            Fires at most once per frame during scrolling. The frequency of the events can be
-            contolled using the <Code>scrollEventThrottle</Code> prop.
+            Fires at most once per frame during scrolling. The frequency of the
+            events can be contolled using the <Code>scrollEventThrottle</Code>{' '}
+            prop.
           </AppText>
         }
       />
@@ -81,25 +94,18 @@ const ScrollViewScreen = () => (
         typeInfo="number = 16"
         description={
           <AppText>
-            This controls how often the scroll event will be fired while scrolling (as a time
-            interval in ms). A lower number yields better accuracy for code that is tracking the
-            scroll position, but can lead to scroll performance problems. The default value is{' '}
-            <Code>16</Code>, which means the scroll event will be sent once per frame.
+            This controls how often the scroll event will be fired while
+            scrolling (as a time interval in ms). A lower number yields better
+            accuracy for code that is tracking the scroll position, but can lead
+            to scroll performance problems. The default value is <Code>16</Code>
+            , which means the scroll event will be sent once per frame.
           </AppText>
         }
       />
 
-      <DocItem
-        name="style?"
-        typeInfo="style"
-        description="Same as View"
-      />
+      <DocItem name="style?" typeInfo="style" description="Same as View" />
 
-      <DocItem
-        name="testID?"
-        typeInfo="string"
-        description="Same as View"
-      />
+      <DocItem name="testID?" typeInfo="string" description="Same as View" />
     </Section>
 
     <Section title="Instance methods">

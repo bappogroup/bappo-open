@@ -45,8 +45,9 @@ class TextInput extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    const __this = this;
     if (this.props.autoFocus) {
-      this.focus();
+      setTimeout(() => __this.focus());
     }
   }
 

@@ -1,16 +1,17 @@
 import React from 'react';
-import { DatePicker } from 'bappo-components';
+import { DatePickerField } from 'bappo-components';
 
 class Minimal extends React.Component {
   state = {
-    value: '2017-11-11',
+    value: '1992-11-11',
   };
 
   render() {
     return (
-      <DatePicker
+      <DatePickerField
         onValueChange={value => this.setState({ value })}
         value={this.state.value}
+        label="Birthday"
       />
     );
   }

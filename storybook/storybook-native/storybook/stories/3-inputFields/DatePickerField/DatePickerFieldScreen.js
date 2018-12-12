@@ -6,15 +6,19 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
-const DatePickerScreen = () => (
-  <UIExplorer title="DatePicker" url="2-components/DatePicker">
+const DatePickerFieldScreen = () => (
+  <UIExplorer title="DatePickerField" url="3-inputFields/DatePickerField">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/DatePickerField"
+      text="Source Code"
+    />
+
     <Description>
-      <AppText>
-        DatePicker is an input that lets you pick a date.
-      </AppText>
+      <AppText>DatePicker is an input that lets you pick a date.</AppText>
     </Description>
 
     <Section title="Props">
@@ -29,7 +33,8 @@ const DatePickerScreen = () => (
         typeInfo="boolean = false"
         description={
           <AppText>
-            If <Code>true</Code>, focuses the input on <Code>componentDidMount</Code>.
+            If <Code>true</Code>, focuses the input on{' '}
+            <Code>componentDidMount</Code>.
           </AppText>
         }
       />
@@ -39,7 +44,8 @@ const DatePickerScreen = () => (
         typeInfo="boolean = true"
         description={
           <AppText>
-            If <Code>true</Code>, the input value can be cleared by pressing a button.
+            If <Code>true</Code>, the input value can be cleared by pressing a
+            button.
           </AppText>
         }
       />
@@ -47,11 +53,7 @@ const DatePickerScreen = () => (
       <DocItem
         name="displayFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
-        description={
-          <AppText>
-            Date format of the displayed value.
-          </AppText>
-        }
+        description={<AppText>Date format of the displayed value.</AppText>}
       />
 
       <DocItem
@@ -94,17 +96,9 @@ const DatePickerScreen = () => (
         description="Function to render the dropdown icon."
       />
 
-      <DocItem
-        name="style?"
-        typeInfo="style"
-        description="Same as View"
-      />
+      <DocItem name="style?" typeInfo="style" description="Same as View" />
 
-      <DocItem
-        name="testID?"
-        typeInfo="string"
-        description="Same as View"
-      />
+      <DocItem name="testID?" typeInfo="string" description="Same as View" />
 
       <DocItem
         name="value?"
@@ -115,15 +109,16 @@ const DatePickerScreen = () => (
       <DocItem
         name="valueFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
-        description={
-          <AppText>
-            Date format of the input value.
-          </AppText>
-        }
+        description={<AppText>Date format of the input value.</AppText>}
       />
     </Section>
 
-    <Section title="More examples">
+    <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/DatePickerField/examples"
+        text="Examples Code"
+      />
+
       <DocItem
         description="Minimal"
         example={{
@@ -134,4 +129,4 @@ const DatePickerScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('DatePicker', DatePickerScreen);
+storiesOf('Input Fields', module).add('DatePickerField', DatePickerFieldScreen);

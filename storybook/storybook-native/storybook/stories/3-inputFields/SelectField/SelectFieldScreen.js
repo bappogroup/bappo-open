@@ -7,17 +7,24 @@ import UIExplorer, {
   DocItem,
   Section,
   storiesOf,
+  WebLink,
 } from '../../../ui-explorer';
 import { View } from 'bappo-components';
 import Minimal from './examples/Minimal';
+import Clean from './examples/Clean';
 import Multi from './examples/Multi';
 
 const SelectFieldScreen = () => (
-  <UIExplorer title="SelectField" url="2-components/SelectField">
+  <UIExplorer title="SelectField" url="3-inputFields/SelectField">
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SelectField"
+      text="Source Code"
+    />
+
     <Description>
       <AppText>
-        SelectField is basic select wrapped with Bappo's stylings. It can be
-        either standalone or in a form.
+        SelectField is the basic Select component wrapped with Bappo's stylings.
+        It can be either standalone or in a form.
       </AppText>
       <AppText>
         It accepts props for basic select and props for InputFieldWrapper.
@@ -87,38 +94,21 @@ const SelectFieldScreen = () => (
     </Section>
 
     <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/SelectField/examples"
+        text="Examples Code"
+      />
       <DocItem
         description="Minimal"
         example={{
-          code: `
-const options = [
-  { label: 'Bob Mc Donald', value: '1' },
-  { label: 'Andrew Smith', value: '2' },
-  { label: 'Sandra Jones', value: '3' },
-  { label: 'Peter Soloman', value: '4' },
-  { label: 'Joe Peters', value: '5' },
-];
-
-class SelectFieldMinimalExample extends React.Component {
-  state = {
-    selectedValue: null,
-  };
-
-  render() {
-    return (
-      <View style={{ width: 300 }}>
-        <SelectField
-          label="Participant"
-          options={options}
-          value={this.state.selectedValue}
-          onValueChange={selectedValue => this.setState({ selectedValue })}
-        />
-      </View>
-    );
-  }
-}
-          `,
           render: () => <Minimal />,
+        }}
+      />
+
+      <DocItem
+        description="Clean version"
+        example={{
+          render: () => <Clean />,
         }}
       />
 
@@ -131,36 +121,6 @@ class SelectFieldMinimalExample extends React.Component {
 
       <DocItem
         example={{
-          code: `
-const options = [
-  { label: 'Bob', value: '1' },
-  { label: 'Andrew', value: '2' },
-  { label: 'Sandra', value: '3' },
-  { label: 'Peter', value: '4' },
-  { label: 'Joe', value: '5' },
-];
-
-class SelectFieldMinimalExample extends React.Component {
-  state = {
-    selectedValues: null,
-  };
-
-  render() {
-    return (
-      <View style={{ width: 300 }}>
-        <SelectField
-          label="All Participants"
-          options={options}
-          value={this.state.selectedValue}
-          onValueChange={selectedValues => this.setState({ selectedValues })}
-          placeholder="Add multiple participants"
-          multi
-        />
-      </View>
-    );
-  }
-}
-          `,
           render: () => <Multi />,
         }}
       />
@@ -168,4 +128,4 @@ class SelectFieldMinimalExample extends React.Component {
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('SelectField', SelectFieldScreen);
+storiesOf('Input Fields', module).add('SelectField', SelectFieldScreen);

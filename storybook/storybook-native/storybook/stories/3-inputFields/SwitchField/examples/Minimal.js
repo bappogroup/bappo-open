@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import { Switch, View } from 'bappo-components';
+import { SwitchField, View } from 'bappo-components';
 
 class SwitchMinimalExample extends React.Component {
   state = {
@@ -13,7 +13,11 @@ class SwitchMinimalExample extends React.Component {
   render() {
     return (
       <View>
-        <Switch onValueChange={this.toggle} value={this.state.value} />
+        <SwitchField
+          label="Enabled"
+          onValueChange={this.toggle}
+          value={this.state.value}
+        />
       </View>
     );
   }
