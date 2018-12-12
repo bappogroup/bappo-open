@@ -13,7 +13,7 @@ const SwitchFieldWrapper = (props: InputWrapperProps) => {
   const {
     children,
     className,
-    fieldState,
+    fieldState = {},
     label,
     onValueChange,
     style,

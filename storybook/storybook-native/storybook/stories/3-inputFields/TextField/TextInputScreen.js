@@ -12,16 +12,14 @@ import PropMultiline from './examples/PropMultiline';
 import PropPlaceholder from './examples/PropPlaceholder';
 import PropReadOnly from './examples/PropReadOnly';
 import PropType from './examples/PropType';
-import TextInputRewrite, {
-  TextInputRewriteInvalidCharacters,
-} from './examples/Rewrite';
+import TextInputRewrite from './examples/Rewrite';
 import TextInputEvents from './examples/TextInputEvents';
 import TouchableWrapper from './examples/TouchableWrapper';
 
-const TextInputScreen = () => (
-  <UIExplorer title="TextInput" url="1-primitives/TextInput">
+const TextFieldScreen = () => (
+  <UIExplorer title="TextField" url="3-inputFields/TextField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TextInput"
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TextField"
       text="Source Code"
     />
 
@@ -113,7 +111,7 @@ const TextInputScreen = () => (
         typeInfo="string"
         description={
           <AppText>
-            The string that will be rendered in an empty <Code>TextInput</Code>{' '}
+            The string that will be rendered in an empty <Code>TextField</Code>{' '}
             before text has been entered.
           </AppText>
         }
@@ -181,7 +179,7 @@ const TextInputScreen = () => (
         typeInfo="string"
         description={
           <AppText>
-            The value to show for the text input. <Code>TextInput</Code> is a
+            The value to show for the text input. <Code>TextField</Code> is a
             controlled component, which means the native <Code>value</Code> will
             be forced to match this prop if provided. Read about how{' '}
             <AppText
@@ -219,28 +217,21 @@ const TextInputScreen = () => (
 
     <Section title="More examples">
       <DocItem
-        description="TextInput events"
+        description="TextField events"
         example={{
           render: () => <TextInputEvents />,
         }}
       />
 
       <DocItem
-        description="Rewrite (<sp> to '_' with maxLength)"
+        description="Rewrite spaces to '_' with a maxLength restrict"
         example={{
           render: () => <TextInputRewrite />,
         }}
       />
 
       <DocItem
-        description="Rewrite (no spaces allowed)"
-        example={{
-          render: () => <TextInputRewriteInvalidCharacters />,
-        }}
-      />
-
-      <DocItem
-        description="Wrapped in a Button"
+        description="Wrapped in a Button (Gray area is the button and clicking will focus the input)"
         example={{
           render: () => <TouchableWrapper />,
         }}
@@ -249,4 +240,4 @@ const TextInputScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Primitives', module).add('TextInput', TextInputScreen);
+storiesOf('Input Fields', module).add('TextField', TextFieldScreen);

@@ -10,10 +10,10 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
-const DatePickerScreen = () => (
-  <UIExplorer title="DatePicker" url="2-components/DatePicker">
+const DatePickerFieldScreen = () => (
+  <UIExplorer title="DatePickerField" url="3-inputFields/DatePickerField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/DatePicker"
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/DatePickerField"
       text="Source Code"
     />
 
@@ -124,4 +124,4 @@ const DatePickerScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('DatePicker', DatePickerScreen);
+storiesOf('Input Fields', module).add('DatePickerField', DatePickerFieldScreen);

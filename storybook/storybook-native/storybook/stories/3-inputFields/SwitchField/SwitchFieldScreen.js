@@ -10,8 +10,8 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
-const SwitchScreen = () => (
-  <UIExplorer title="Switch" url="1-primitives/Switch">
+const SwitchFieldScreen = () => (
+  <UIExplorer title="SwitchField" url="3-inputFields/SwitchField">
     <WebLink
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Switch"
       text="Source Code"
@@ -88,13 +88,11 @@ const SwitchScreen = () => (
 
     <Section title="More examples">
       <DocItem
-        description="Minimal"
+        description={`Minimal
+Note this field takes space of the whole line if label is provided.
+If you want custom layout, use <Text /> and <SwitchField /> without label together.
+`}
         example={{
-          code: `
-<Switch
-  onValueChange={value => this.setState({ value })}
-  value={this.state.value}
-/>`,
           render: () => <Minimal />,
         }}
       />
@@ -102,4 +100,4 @@ const SwitchScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Primitives', module).add('Switch', SwitchScreen);
+storiesOf('Input Fields', module).add('SwitchField', SwitchFieldScreen);

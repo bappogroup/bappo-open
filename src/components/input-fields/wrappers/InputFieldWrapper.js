@@ -16,7 +16,7 @@ const InputFieldWrapper = (props: InputWrapperProps) => {
   const {
     children,
     className,
-    fieldState,
+    fieldState = {},
     focusInput,
     label,
     required,

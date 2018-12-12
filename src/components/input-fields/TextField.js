@@ -21,7 +21,7 @@ class TextField extends React.Component<Props> implements InputField {
 
   render() {
     const {
-      fieldState,
+      fieldState = {},
       label,
       onBlur,
       onFocus,

@@ -15,7 +15,7 @@ import Clean from './examples/Clean';
 import Multi from './examples/Multi';
 
 const SelectFieldScreen = () => (
-  <UIExplorer title="SelectField" url="2-components/SelectField">
+  <UIExplorer title="SelectField" url="3-inputFields/SelectField">
     <WebLink
       href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SelectField"
       text="Source Code"
@@ -212,4 +212,4 @@ class SelectFieldMinimalExample extends React.Component {
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('SelectField', SelectFieldScreen);
+storiesOf('Input Fields', module).add('SelectField', SelectFieldScreen);

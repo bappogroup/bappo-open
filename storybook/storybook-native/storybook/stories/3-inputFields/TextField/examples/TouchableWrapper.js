@@ -1,16 +1,19 @@
 import React from 'react';
-import { TextInput, TouchableView, View } from 'bappo-components';
-import { styles as helperStyles } from '../helpers';
+import { TextField, TouchableView, View } from 'bappo-components';
 
 export default class TouchableWrapper extends React.Component {
+  state = {
+    value: '',
+  };
+
   render() {
     return (
-      <TouchableView onPress={this._handlePress}>
+      <TouchableView onPress={this._handlePress} style={styles.button}>
         <View style={styles.container}>
-          <TextInput
-            multiline={false}
+          <TextField
             ref={this._setRef}
-            style={helperStyles.textinput}
+            value={this.state.value}
+            onValueChange={value => this.setState({ value })}
           />
         </View>
       </TouchableView>
@@ -29,6 +32,9 @@ export default class TouchableWrapper extends React.Component {
 }
 
 const styles = {
+  button: {
+    backgroundColor: 'lightgray',
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
