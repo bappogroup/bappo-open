@@ -113,7 +113,12 @@ const DatePickerFieldScreen = () => (
       />
     </Section>
 
-    <Section title="More examples">
+    <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/DatePickerField/examples"
+        text="Examples Code"
+      />
+
       <DocItem
         description="Minimal"
         example={{

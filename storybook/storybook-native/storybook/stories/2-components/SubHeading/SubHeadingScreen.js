@@ -17,6 +17,10 @@ const SubHeadingScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/SubHeading"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/SubHeading/example.js"
+      text="Examples Code"
+    />
     <Description>
       <AppText>SubHeading.</AppText>
     </Description>

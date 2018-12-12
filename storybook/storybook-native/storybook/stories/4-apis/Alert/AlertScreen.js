@@ -26,7 +26,7 @@ const AlertScreen = () => (
       </AppText>
     </Description>
 
-    <Section title="Static Methods">
+    <Section title="Props">
       <DocItem
         name="alert"
         typeInfo={`(options: {
@@ -51,32 +51,17 @@ const AlertScreen = () => (
   }
 }) => void`}
         description="Alert options. "
+      />
+    </Section>
+
+    <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/4-apis/Alert/examples"
+        text="Examples Code"
+      />
+      <DocItem
         example={{
           render: () => <Minimal />,
-          code: `
-            await Alert.alert('My simple alert message');
-
-              --- OR ---
-
-            result = await Alert.alert({
-              title: 'Alert Title',
-              message: 'My Alert Msg',
-              actions: {
-                neutral: {
-                  text: 'Ask me later',
-                },
-                cancel: {
-                  text: 'Abort!',
-                },
-                confirm: {
-                  text: 'Destroy',
-                  destructive: true,
-                },
-              },
-            });
-            console.log(result);
-
-          `,
         }}
       />
     </Section>

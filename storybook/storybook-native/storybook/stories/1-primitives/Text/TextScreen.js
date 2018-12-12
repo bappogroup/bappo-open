@@ -17,6 +17,10 @@ const TextScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Text"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Text/examples"
+      text="Examples Code"
+    />
     <Description>
       <AppText>
         Text is component for displaying text. It supports style and inherits

@@ -21,6 +21,10 @@ const IconCardScreen = () => (
       <AppText>IconCard.</AppText>
     </Description>
 
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/IconCard/example.js"
+      text="Examples Code"
+    />
     <DocItem
       example={{
         render: () => <Example />,

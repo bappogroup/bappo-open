@@ -24,6 +24,10 @@ const FlatListScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/FlatList"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/FlatList/examples"
+      text="Examples Code"
+    />
 
     <Description>
       <AppText>
@@ -98,32 +102,6 @@ const FlatListScreen = () => (
           </AppText>
         }
         example={{
-          code: `
-const data = Array.from({ length: 500 })
-  .map((num, index) => ({
-    key: index,
-  }));
-<FlatList
-  data={data}
-  getItemLayout={(_data, index) => ({
-    length: 30,
-    offset: 30 * index,
-    index,
-  })}
-  renderItem={({ item }) => (
-    <Text
-      style={{
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: 'black',
-        height: 30,
-      }}
-    >
-      {item.key}
-    </Text>
-  )}
-/>
-          `,
           render: () => <PropGetItemLayout />,
         }}
       />
@@ -164,24 +142,6 @@ const data = Array.from({ length: 500 })
           </AppText>
         }
         example={{
-          code: `
-const data = Array.from({ length: 500 })
-  .map((num, index) => ({
-    key: index,
-  }));
-<FlatList
-  data={data}
-  getItemLayout={(_data, index) => ({
-    length: 30,
-    offset: 30 * index,
-    index,
-  })}
-  initialScrollIndex={50}
-  renderItem={({ item }) => (
-    <Text>{item.key}</Text>
-  )}
-/>
-          `,
           render: () => <PropInitialScrollIndex />,
         }}
       />
@@ -375,18 +335,6 @@ const data = Array.from({ length: 500 })
       <DocItem
         description="Minimal"
         example={{
-          code: `
-const data = Array.from({ length: 50 })
-  .map((num, index) => ({
-    key: index,
-  }));
-<FlatList
-  data={data}
-  renderItem={({ item }) => (
-    <Text>{item.key}</Text>
-  )}
-/>
-          `,
           render: () => <Minimal />,
         }}
       />
@@ -401,14 +349,6 @@ const data = Array.from({ length: 50 })
       <DocItem
         description="onEndReached and onEndReachedThreshold"
         example={{
-          code: `
-<FlatList
-  data={data}
-  onEndReached={() => Alert.alert({ title: 'onEndReached fired!' })}
-  onEndReachedThreshold={0.5}
-  renderItem={({ item }) => <Text style={styles.row}>{item.key}</Text>}
-/>
-          `,
           render: () => <OnEndReached />,
         }}
       />

@@ -21,6 +21,10 @@ const ButtonScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Button"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Button/examples"
+      text="Examples Code"
+    />
 
     <Description>
       <AppText>Button.</AppText>

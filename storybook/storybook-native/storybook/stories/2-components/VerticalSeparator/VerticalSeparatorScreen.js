@@ -16,6 +16,10 @@ const VerticalSeparatorScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/VerticalSeparator"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/VerticalSeparator/example.js"
+      text="Examples Code"
+    />
     <Description>
       <AppText>A vertical separator line.</AppText>
     </Description>

@@ -21,6 +21,10 @@ const AvatarScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Avatar"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Avatar/examples"
+      text="Examples Code"
+    />
 
     <Description>
       <AppText>Avatar</AppText>

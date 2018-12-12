@@ -16,6 +16,10 @@ const ActivityIndicatorScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/ActivityIndicator"
       text="Source Code"
     />
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/ActivityIndicator/examples"
+      text="Examples Code"
+    />
     <Description>Displays a customizable activity indicator</Description>
     <Section title="Props">
       <DocItem

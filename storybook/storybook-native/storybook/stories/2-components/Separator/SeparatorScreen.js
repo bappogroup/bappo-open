@@ -16,7 +16,10 @@ const SeparatorScreen = () => (
       href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Separator"
       text="Source Code"
     />
-
+    <WebLink
+      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/Separator/example.js"
+      text="Examples Code"
+    />
     <Description>
       <AppText>A horizontal separator line.</AppText>
     </Description>

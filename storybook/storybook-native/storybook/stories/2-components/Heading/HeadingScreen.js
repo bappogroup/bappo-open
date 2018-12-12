@@ -30,6 +30,7 @@ const HeadingScreen = () => (
 
       <DocItem
         example={{
+          code: `<Heading>Example content with no type given.</Heading>`,
           render: () => <Example />,
         }}
       />

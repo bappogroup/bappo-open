@@ -13,7 +13,7 @@ import Minimal from './examples/Minimal';
 const SwitchFieldScreen = () => (
   <UIExplorer title="SwitchField" url="3-inputFields/SwitchField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Switch"
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SwitchField"
       text="Source Code"
     />
 
@@ -86,7 +86,11 @@ const SwitchFieldScreen = () => (
       />
     </Section>
 
-    <Section title="More examples">
+    <Section title="Examples">
+      <WebLink
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/SwitchField/examples"
+        text="Examples Code"
+      />
       <DocItem
         description={`Minimal
 Note this field takes space of the whole line if label is provided.
