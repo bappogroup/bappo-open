@@ -982,7 +982,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     const length = this._selectLength(layout);
     let offset = this._selectOffset(layout);
     if (this.props.inverted) {
-      offset = length - offset;
+      offset = this._totalCellLength - offset;
     }
     const next = {
       offset,
