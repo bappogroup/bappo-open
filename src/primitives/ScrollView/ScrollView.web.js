@@ -179,8 +179,12 @@ const ScrollContainer = styled(ViewBase)`
 
 const ContentContainer = styled(ViewBase)`
   ${({ horizontal }) =>
-    horizontal &&
-    `
+    horizontal
+      ? `
     flex-direction: row;
+    min-width: 100%;
+  `
+      : `
+    min-height: 100%;
   `};
 `;
