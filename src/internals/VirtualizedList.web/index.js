@@ -898,7 +898,31 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  getSnapshotBeforeUpdate(prevProps: Props, prevState: State) {
+    // keep inverted list scroll position when data size changes
+    if (
+      this.props.inverted &&
+      (this.props.data.length > prevProps.data.length ||
+        this.state.last - this.state.first > prevState.last - prevState.first)
+    ) {
+      const scrollableNode = this._scrollRef._scrollableNode;
+      // only scroll to bottom if current scroll position is at bottom
+      return (
+        scrollableNode.scrollHeight ===
+        scrollableNode.scrollTop + scrollableNode.offsetHeight
+      );
+    }
+    return null;
+  }
+
+  componentDidUpdate(
+    prevProps: Props,
+    prevState: State,
+    shouldScrollToBottom: boolean | null,
+  ) {
+    if (shouldScrollToBottom) {
+      this._scrollRef._scrollableNode.scrollTop = this._scrollRef._scrollableNode.scrollHeight;
+    }
     const { data, extraData } = this.props;
     if (data !== prevProps.data || extraData !== prevProps.extraData) {
       this._hasDataChangedSinceEndReached = true;
