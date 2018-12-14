@@ -250,10 +250,8 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   // scrollToEnd may be janky without getItemLayout prop
   scrollToEnd(params?: ?{ animated?: ?boolean }) {
     const animated = params ? params.animated : true;
-    const index = this.props.inverted
-      ? 0
-      : this.props.getItemCount(this.props.data) - 1;
-    const frame = this._getFrameMetricsApprox(index);
+    const veryLast = this.props.getItemCount(this.props.data) - 1;
+    const frame = this._getFrameMetricsApprox(veryLast);
     let offset = Math.max(
       0,
       frame.offset +
@@ -261,6 +259,9 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         this._footerLength -
         this._scrollMetrics.visibleLength,
     );
+    if (this.props.inverted) {
+      offset = this._totalCellLength - offset;
+    }
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
@@ -304,16 +305,17 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       });
       return;
     }
-    const frame = this._getFrameMetricsApprox(
-      this.props.inverted ? getItemCount(data) - index - 1 : index,
-    );
-    const offset =
+    const frame = this._getFrameMetricsApprox(index);
+    let offset =
       Math.max(
         0,
         frame.offset -
           (viewPosition || 0) *
             (this._scrollMetrics.visibleLength - frame.length),
       ) - (viewOffset || 0);
+    if (this.props.inverted) {
+      offset = this._totalCellLength - offset;
+    }
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
@@ -354,7 +356,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
    * should do an animation while scrolling.
    */
   scrollToOffset(params: { animated?: ?boolean, offset: number }) {
-    const { animated, offset } = params;
+    const { animated } = params;
+    const offset = this.props.inverted
+      ? this._totalCellLength - params.offset
+      : params.offset;
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
