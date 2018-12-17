@@ -1010,9 +1010,6 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     const layout = e.nativeEvent.layout;
     const length = this._selectLength(layout);
     let offset = this._selectOffset(layout);
-    if (this.props.inverted) {
-      offset = this._totalCellLength - offset;
-    }
     const next = {
       offset,
       length,
@@ -1261,7 +1258,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     let contentLength = this._selectLength(e.nativeEvent.contentSize);
     let offset = this._selectOffset(e.nativeEvent.contentOffset);
     if (this.props.inverted) {
-      offset = contentLength - offset;
+      offset = contentLength - visibleLength - offset;
     }
     let dOffset = offset - this._scrollMetrics.offset;
 
@@ -1524,6 +1521,12 @@ class VirtualizedList extends React.PureComponent<Props, State> {
           );
         }
       }
+    }
+    if (frame && this.props.inverted) {
+      return {
+        ...frame,
+        offset: this._totalCellLength - frame.offset,
+      };
     }
     /* $FlowFixMe(>=0.63.0 site=react_native_fb) This comment suppresses an
      * error found when Flow v0.63 was deployed. To see the error delete this
