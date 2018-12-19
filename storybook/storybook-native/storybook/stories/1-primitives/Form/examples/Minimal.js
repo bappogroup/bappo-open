@@ -5,7 +5,7 @@ class Minimal extends React.Component {
   render() {
     return (
       <View>
-        <Form onSubmit={values => console.log(values)}>
+        <Form onSubmit={values => console.log(values)} testID="minimal-form">
           <Form.Field
             name="email"
             label="Email"
@@ -16,7 +16,7 @@ class Minimal extends React.Component {
               type: 'email',
             }}
           />
-          <Form.SubmitButton>
+          <Form.SubmitButton testID="submit-button">
             <Text>Submit</Text>
           </Form.SubmitButton>
         </Form>

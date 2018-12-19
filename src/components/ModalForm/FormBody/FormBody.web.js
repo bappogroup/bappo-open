@@ -94,10 +94,15 @@ class FormBody extends React.Component<FormBodyPropTypes, State> {
               )}
             </ModalFormRow>
             <ModalFormRow>
-              <ModalFormFooterCancelButton onPress={onCancel} text="Cancel" />
+              <ModalFormFooterCancelButton
+                onPress={onCancel}
+                text="Cancel"
+                testID="modalForm-footer-cancel-button"
+              />
               <ModalFormFooterSubmitButton
                 loading={submitting}
                 text={submitButtonText}
+                testID="modalForm-footer-submit-button"
               />
             </ModalFormRow>
           </ModalFormFooter>

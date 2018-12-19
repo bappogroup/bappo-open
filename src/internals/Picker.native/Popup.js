@@ -21,6 +21,7 @@ type Props = {
    * Determines whether the popup is shown.
    */
   show?: ?boolean,
+  testID?: string,
 };
 
 type State = {
@@ -58,7 +59,7 @@ class Popup extends React.Component<Props, State> {
           style={styles.modalBackdrop}
           underlayColor="#00000075"
         >
-          <TouchableHighlight underlayColor="#fff">
+          <TouchableHighlight underlayColor="#fff" testID={this.props.testID}>
             <Animated.View
               style={[styles.container, { height: this.state.animatedHeight }]}
             >
