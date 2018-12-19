@@ -27,6 +27,7 @@ class ModalFormMinimalExample extends React.Component {
           }
           title="Modal Form Minimal Example"
           visible={this.state.modalVisible}
+          testID="modalForm-minimal"
         >
           <Form.Field
             name="firstName"

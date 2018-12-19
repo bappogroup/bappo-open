@@ -437,6 +437,7 @@ class Select extends React.Component<Props, State> {
         height={popupHeight}
         onRequestClose={this._onCancel}
         show={this.state.isOpen}
+        testID="select-popup-container"
       >
         <PopupTouchableContainer
           activeOpacity={1}

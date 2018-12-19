@@ -8,7 +8,7 @@ import type { SubmitButtonProps } from './types.js.flow';
 
 type Props = SubmitButtonProps;
 
-const SubmitButton = ({ children, style }: Props) => {
+const SubmitButton = ({ children, style, testID }: Props) => {
   return (
     <FormStateConsumer>
       {formState => {
@@ -23,7 +23,11 @@ const SubmitButton = ({ children, style }: Props) => {
                 }
               };
               return (
-                <TouchableOpacity onPress={handleSubmit} style={style}>
+                <TouchableOpacity
+                  onPress={handleSubmit}
+                  style={style}
+                  testID={testID}
+                >
                   {typeof children === 'function'
                     ? children(formState)
                     : children}

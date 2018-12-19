@@ -59,7 +59,7 @@ export const ModalFormHeaderCancelButton = ({
   onPress,
   text = 'Cancel',
 }: ModalFormCancelButtonProps) => (
-  <CancelButton onPress={onPress}>
+  <CancelButton onPress={onPress} testID="modalForm-cancel-button">
     <Text>{text}</Text>
   </CancelButton>
 );
@@ -75,7 +75,7 @@ const SubmitButtonText = styled(Text)`
 export const ModalFormHeaderSubmitButton = ({
   text,
 }: ModalFormSubmitButtonProps) => (
-  <StyledSubmitButton>
+  <StyledSubmitButton testID="modalForm-submit-button">
     {({ submitting }) =>
       submitting ? (
         <ActivityIndicator />
