@@ -46,7 +46,11 @@ class SearchBar extends React.Component<Props> {
 
     return (
       <TouchableOpacity activeOpacity={1} onPress={this._onContainerPress}>
-        <Container pointerEvents="none" style={style}>
+        <Container
+          pointerEvents="none"
+          style={style}
+          testID="select-searchbar-container"
+        >
           <InnerContainer>
             <IconContainer>
               <IconText>🔍</IconText>
@@ -64,6 +68,7 @@ class SearchBar extends React.Component<Props> {
                 returnKeyType="search"
                 showUnderline={false}
                 value={searchText}
+                testID="select-searchbar-textinput"
               />
             )}
             {this._renderSpinner()}
