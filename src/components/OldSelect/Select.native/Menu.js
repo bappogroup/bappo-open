@@ -62,14 +62,17 @@ class Menu extends React.Component<Props> {
   }: {
     option: Option,
     isSelected: boolean,
-  }) => (
-    <Row>
-      <Label numberOfLines={2} isDisabled={option.disabled}>
-        {option[this.props.labelKey]}
-      </Label>
-      <SelectedIcon show={isSelected}>✓</SelectedIcon>
-    </Row>
-  );
+  }) => {
+    const optionLabel = option[this.props.labelKey];
+    return (
+      <Row testID={`select-option-${optionLabel}`}>
+        <Label numberOfLines={2} isDisabled={option.disabled}>
+          {optionLabel}
+        </Label>
+        <SelectedIcon show={isSelected}>✓</SelectedIcon>
+      </Row>
+    );
+  };
 
   _keyExtractor = (option: Option) => option[this.props.valueKey];
 
