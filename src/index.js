@@ -30,6 +30,7 @@ export { default as Paragraph } from './components/Paragraph';
 export { default as Heading } from './components/Heading';
 export { default as SubHeading } from './components/SubHeading';
 export { default as Card } from './components/Card';
+export { default as Dropdown } from './components/Dropdown';
 export { default as Background } from './components/Background';
 export { default as Separator } from './components/Separator';
 export { default as OldSelect } from './components/OldSelect';

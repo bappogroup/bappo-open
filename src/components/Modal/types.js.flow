@@ -7,4 +7,5 @@ export type ModalProps = {
   children?: ?React.Node,
   onOverlayPress?: () => void,
   visible?: ?boolean,
+  placement?: any,
 };

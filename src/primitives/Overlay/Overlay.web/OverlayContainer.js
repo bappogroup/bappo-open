@@ -9,7 +9,7 @@ const OverlayContainer = styled(ViewBase).attrs({
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(178, 178, 178, 0.8);
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 export default OverlayContainer;

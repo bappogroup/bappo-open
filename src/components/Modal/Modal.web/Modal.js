@@ -28,8 +28,7 @@ class Modal extends React.Component<Props, State> {
   }
 
   render() {
-    const { children, onRequestClose, visible } = this.props;
-
+    const { children, onRequestClose, visible, placement } = this.props;
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
         <ModalContentContainer
@@ -37,6 +36,7 @@ class Modal extends React.Component<Props, State> {
           layout={this.state.modalContentLayout}
           onKeyDown={this._onModalContentKeyDown}
           onLayout={this._onModalContentLayout}
+          placement={placement}
         >
           {children}
         </ModalContentContainer>
@@ -78,8 +78,6 @@ export const ModalContentContainer = styled(ViewBase).attrs({
 })`
   background-color: white;
   position: absolute;
-  left: 0;
-  right: 0;
   border-radius: 4px;
   overflow: hidden;
 
@@ -88,26 +86,58 @@ export const ModalContentContainer = styled(ViewBase).attrs({
   }
 
   @media (max-width: ${breakpoint.max}px) {
+    left: 0;
+    right: 0;
     top: 0;
     bottom: 0;
+    border-radius: 0px;
   }
 
   @media (min-width: ${breakpoint.min}px) {
+    ${props => desktopStyle(props)};
+  }
+
+  @media (min-width: ${breakpoint.min}px) and (max-height: 768px) {
+    max-height: 100%;
+  }s
+`;
+
+const desktopStyle = ({ layout, placement }) => {
+  if (placement && placement.type === 'dropdown' && placement.left) {
+    return `
+      border-radius: 2px;
+      left: ${placement.left}px;
+      top: ${placement.top}px;
+      height: ${placement.height}px;
+      width: ${placement.width}px;        
+    `;
+  }
+
+  if (placement && placement.type === 'dropdown' && placement.right) {
+    return `
+      border-radius: 2px;
+      right: ${placement.right}px;
+      top: ${placement.top}px;
+      height: ${placement.height}px;
+      width: ${placement.width}px;        
+    `;
+  }
+
+  return `
+    left: 0;
+    right: 0;
     margin: auto;
     max-height: 768px;
     min-height: 200px;
     width: 576px;
-    ${({ layout }) =>
+    ${
       layout
         ? `
           top: calc(50vh - ${layout.height / 2}px);
         `
         : `
           opacity: 0;
-        `};
-  }
-
-  @media (min-width: ${breakpoint.min}px) and (max-height: 768px) {
-    max-height: 100%;
-  }
-`;
+        `
+    };
+    `;
+};
