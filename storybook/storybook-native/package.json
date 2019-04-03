@@ -1,37 +1,38 @@
 {
-	"name": "example",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest",
-		"storybook": "storybook start -p 7007 --skip-packager | react-native start --projectRoot storybook"
-	},
-	"rnpm": {
-		"assets": [
-			"./assets/fonts/"
-		]
-	},
-	"dependencies": {
-		"axios": "^0.16.2",
-		"bappo-components": "0.1.0-alpha.45",
-		"create-react-class": "^15.6.2",
-		"react": "16.5.1",
-		"react-native": "0.57.1",
-		"styled-components": "^3.0.0",
-		"validator": "^10.4.0"
-	},
-	"devDependencies": {
-		"@storybook/addon-actions": "^3.2.12",
-		"@storybook/addon-links": "^3.2.12",
-		"@storybook/addon-options": "^3.2.12",
-		"@storybook/react-native": "^3.2.12",
-		"babel-jest": "21.2.0",
-		"babel-preset-react-native": "4.0.0",
-		"jest": "21.2.1",
-		"react-test-renderer": "16.0.0-alpha.12"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "storybook": "storybook start -p 7007 --skip-packager | react-native start --projectRoot storybook"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.3",
+    "axios": "^0.16.2",
+    "bappo-components": "0.1.0-alpha.84",
+    "create-react-class": "^15.6.2",
+    "react": "16.5.1",
+    "react-native": "^0.59.3",
+    "styled-components": "^3.0.0",
+    "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.12",
+    "@storybook/addon-links": "^3.2.12",
+    "@storybook/addon-options": "^3.2.12",
+    "@storybook/react-native": "^3.2.12",
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.1",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }

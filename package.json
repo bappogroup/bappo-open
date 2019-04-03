@@ -32,13 +32,14 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.3",
     "es6-error": "^4.1.1",
     "exenv": "^1.2.2",
     "fbjs": "^0.8.16",
     "lodash": "^4.17.10",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
-    "react-native-keyboard-aware-scroll-view": "^0.7.4",
+    "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-web": "^0.9.1",
     "react-recomponent": "^0.2.0",
     "react-responsive": "^5.0.0"
