@@ -91,6 +91,12 @@ const SelectFieldScreen = () => (
         typeInfo="boolean"
         description="Show a spinner to indicate async actions in progress."
       />
+
+      <DocItem
+        name="clearable?"
+        typeInfo="boolean"
+        description="Whether to show a cross button to clear field value. Defaults to true."
+      />
     </Section>
 
     <Section title="Examples">
