@@ -8,7 +8,6 @@ const actions = [
     onPress: () => console.log('you pressed Home'),
   },
   {
-    icon: 'watch',
     label: 'Timer',
     onPress: () => console.log('you pressed Timer'),
   },

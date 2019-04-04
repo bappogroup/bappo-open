@@ -57,7 +57,7 @@ class Dropdown extends React.Component<Props, State> {
         action.onPress();
       }}
     >
-      <Icon name={action.icon} />
+      {action.icon && <Icon name={action.icon} />}
       <Label>{action.label}</Label>
     </ActionRow>
   );

@@ -38,3 +38,5 @@ es/
 
 # Miscellaneous user files
 .DS_Store
+
+storybook/storybook-web/dist
