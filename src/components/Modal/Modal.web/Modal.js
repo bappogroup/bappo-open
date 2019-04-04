@@ -103,7 +103,11 @@ export const ModalContentContainer = styled(ViewBase).attrs({
 `;
 
 const desktopStyle = ({ layout, placement }) => {
-  if (placement && placement.type === 'dropdown' && placement.left) {
+  if (
+    placement &&
+    placement.type === 'dropdown' &&
+    placement.align === 'left'
+  ) {
     return `
       border-radius: 2px;
       left: ${placement.left}px;
@@ -113,7 +117,11 @@ const desktopStyle = ({ layout, placement }) => {
     `;
   }
 
-  if (placement && placement.type === 'dropdown' && placement.right) {
+  if (
+    placement &&
+    placement.type === 'dropdown' &&
+    placement.align === 'right'
+  ) {
     return `
       border-radius: 2px;
       right: ${placement.right}px;
