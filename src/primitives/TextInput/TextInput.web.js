@@ -88,7 +88,10 @@ class TextInput extends React.Component<Props, State> {
       className,
       multiline,
       style,
+      rows: undefined,
     };
+
+    if (multiline) styleProps.rows = 5;
 
     return <InputComponent {...props} {...styleProps} />;
   }
@@ -167,7 +170,7 @@ const inputStyles = css`
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;
-  height: ${({ multiline }) => (multiline ? '36' : '18')}px;
+  height: ${({ multiline }) => (multiline ? 'auto' : '18px')};
   padding: 0;
   outline: none;
   resize: none;
@@ -179,5 +182,5 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   ${inputStyles};
-  padding: 8px 0;
+  padding: 8px 0px;
 `;
