@@ -21,6 +21,7 @@ require('./2-components/Heading/HeadingScreen');
 require('./2-components/Icon/IconScreen');
 require('./2-components/Modal/ModalScreen');
 require('./2-components/ModalForm/ModalFormScreen');
+require('./2-components/ModalWizard/ModalWizardScreen');
 require('./2-components/Paragraph/ParagraphScreen');
 require('./2-components/SubHeading/SubHeadingScreen');
 require('./2-components/TabPicker/TabPickerScreen');

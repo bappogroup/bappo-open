@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import styled from 'styled-components';
 import TouchableViewBase from '../../../internals/web/TouchableViewBase';
 import { FormStateConsumer } from '../FormState';
 import type { SubmitButtonProps } from './types.js.flow';

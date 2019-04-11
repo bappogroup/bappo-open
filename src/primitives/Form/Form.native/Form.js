@@ -27,6 +27,7 @@ class Form extends React.Component<Props> {
             <FormConfigProvider value={this.props}>
               <KeyboardAwareScrollView
                 style={style}
+                contentContainerStyle={{ flex: 1 }}
                 testID={testID}
                 keyboardShouldPersistTaps={'handled'}
               >

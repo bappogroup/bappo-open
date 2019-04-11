@@ -4,6 +4,7 @@ export type ButtonContainerProps = {
   disabled?: boolean,
   onPress?: () => void,
   style?: any,
+  textStyle?: any,
   /**
    * Used to locate this view in end-to-end tests.
    */

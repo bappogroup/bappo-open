@@ -26,6 +26,7 @@ const createButton = (
     loading,
     onPress,
     style,
+    textStyle,
     testID,
     text,
     type,
@@ -54,7 +55,11 @@ const createButton = (
         testID={testID}
       >
         {icon && <StyledIcon {...styleProps} name={icon} />}
-        {text && <ButtonLabel {...styleProps}>{text}</ButtonLabel>}
+        {text && (
+          <ButtonLabel {...styleProps} style={textStyle}>
+            {text}
+          </ButtonLabel>
+        )}
         {loading && <ButtonSpinner {...styleProps} />}
       </StyledContainer>
     );
