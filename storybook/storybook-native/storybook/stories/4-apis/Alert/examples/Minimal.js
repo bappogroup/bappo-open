@@ -23,7 +23,11 @@ class AlertMinimalExample extends React.Component {
         },
       },
     });
-    console.log(result);
+
+    if (result === 'confirm') {
+      // Do something...
+    }
+
     this.setState({
       result,
     });

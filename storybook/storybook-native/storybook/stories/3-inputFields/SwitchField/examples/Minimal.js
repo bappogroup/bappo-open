@@ -17,6 +17,7 @@ class SwitchMinimalExample extends React.Component {
           label="Enabled"
           onValueChange={this.toggle}
           value={this.state.value}
+          reserveErrorSpace={false}
         />
       </View>
     );

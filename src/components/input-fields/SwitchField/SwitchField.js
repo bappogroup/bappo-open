@@ -28,6 +28,7 @@ class SwitchField extends React.Component<Props> implements InputField {
       onValueChange,
       testID,
       value,
+      reserveErrorSpace,
       ...rest
     } = this.props;
     return (
@@ -39,6 +40,7 @@ class SwitchField extends React.Component<Props> implements InputField {
         onFocus={onFocus}
         onValueChange={onValueChange}
         testID={testID}
+        reserveErrorSpace={reserveErrorSpace}
         value={value}
       >
         <Switch
