@@ -8,7 +8,6 @@ import OverlayContainer from '../../../primitives/Overlay/Overlay.web/OverlayCon
 import type { AlertOptions } from '../types.js.flow';
 import { validateOptions, convertOptions } from '../helpers';
 import AlertDialog from './AlertDialog';
-import { createHash } from 'crypto';
 
 class Alert {
   static async alert(_options: AlertOptions) {
@@ -18,7 +17,6 @@ class Alert {
 
     const options = convertOptions(_options);
     validateOptions(options);
-    console.log(options);
     const el = document.createElement('div');
     document.body && document.body.appendChild(el);
 
