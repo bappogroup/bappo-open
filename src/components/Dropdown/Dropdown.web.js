@@ -19,6 +19,7 @@ type RequiredProps = {
 type OptionalProps = {
   align: string,
   width: number,
+  children: any,
 };
 
 type Props = RequiredProps & OptionalProps;
@@ -37,7 +38,7 @@ class Dropdown extends React.Component<Props, State> {
   };
 
   render() {
-    const { actions, icon = 'more-vert', align } = this.props;
+    const { actions, icon = 'more-vert', align, children } = this.props;
     const dims = this.el.getBoundingClientRect();
     const width = this.props.width || 300;
 
@@ -89,7 +90,7 @@ class Dropdown extends React.Component<Props, State> {
             this.el = el;
           }}
         >
-          <Icon name={icon} />
+          {children || <Icon name={icon} />}
         </div>
         <Modal
           onRequestClose={this._close}

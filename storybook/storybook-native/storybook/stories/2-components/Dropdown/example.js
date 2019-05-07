@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, styled, Background, View, Text } from 'bappo-components';
+import { Dropdown, View, Text } from 'bappo-components';
 
 const actions = [
   {
@@ -41,7 +41,11 @@ const actionsWide = [
 const DropdownExample = () => (
   <View style={outerStyle}>
     <Dropdown actions={actions} />
-    <Dropdown actions={actionsNoIcons} icon="accessibility" />
+    <Dropdown actions={actionsNoIcons}>
+      <View>
+        <Text>Custom children</Text>
+      </View>
+    </Dropdown>
     <Dropdown actions={actions} icon="cloud" />
     <Dropdown actions={actions} icon="menu" align="left" />
     <Dropdown actions={actionsWide} icon="computer" width={600} />
