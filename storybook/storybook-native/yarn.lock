@@ -8948,7 +8948,7 @@ style-loader@^0.20.3:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
 
-styled-components@^3.0.0:
+styled-components@^3.2.6:
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.4.10.tgz#9a654c50ea2b516c36ade57ddcfa296bf85c96e1"
   integrity sha512-TA8ip8LoILgmSAFd3r326pKtXytUUGu5YWuqZcOQVwVVwB6XqUMn4MHW2IuYJ/HAD81jLrdQed8YWfLSG1LX4Q==
