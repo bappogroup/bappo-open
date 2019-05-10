@@ -1,18 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import type {
-  InputField,
-  InputFieldProps,
-  DatePickerProps,
-} from './types.js.flow';
-import { InputFieldWrapper } from '../wrappers';
+import type { DatePickerProps } from '../../DatePicker/types.js.flow';
 import DatePicker from '../../DatePicker';
+import type { InputField, InputFieldProps } from '../types.js.flow';
+import { InputFieldWrapper } from '../wrappers';
 
 type Props = InputFieldProps & DatePickerProps;
 
-class DatePickerField extends React.Component<Props> implements InputField {
-  static displayName = 'DatePickerField';
+class DateField extends React.Component<Props> implements InputField {
+  static displayName = 'DateField';
 
   blur() {
     this._inputRef.current && this._inputRef.current.blur();
@@ -52,4 +49,4 @@ class DatePickerField extends React.Component<Props> implements InputField {
   _inputRef = React.createRef();
 }
 
-export default DatePickerField;
+export default DateField;

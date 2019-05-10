@@ -6,7 +6,8 @@ import {
   TextField,
   SelectField,
   SwitchField,
-  DatePickerField,
+  DateField,
+  TimeField,
 } from 'bappo-components';
 
 class GetFieldValues extends React.Component {
@@ -64,11 +65,8 @@ class GetFieldValues extends React.Component {
                     multiline: true,
                   }}
                 />
-                <Form.Field
-                  name="date"
-                  label="Date"
-                  component={DatePickerField}
-                />
+                <Form.Field name="date" label="Date" component={DateField} />
+                <Form.Field name="time" label="Time" component={TimeField} />
                 <Form.Field
                   name="textDummy"
                   label="Text Dummy"

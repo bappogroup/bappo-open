@@ -10,15 +10,15 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
 
-const DatePickerFieldScreen = () => (
-  <UIExplorer title="DatePickerField" url="3-inputFields/DatePickerField">
+const TimeFieldScreen = () => (
+  <UIExplorer title="TimeField" url="3-inputFields/TimeField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/DatePickerField"
+      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/TimeField"
       text="Source Code"
     />
 
     <Description>
-      <AppText>DatePicker is an input that lets you pick a date.</AppText>
+      <AppText>TimeField is an input field that lets you pick a time.</AppText>
     </Description>
 
     <Section title="Props">
@@ -53,7 +53,7 @@ const DatePickerFieldScreen = () => (
       <DocItem
         name="displayFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
-        description={<AppText>Date format of the displayed value.</AppText>}
+        description={<AppText>Time format of the displayed value.</AppText>}
       />
 
       <DocItem
@@ -103,19 +103,19 @@ const DatePickerFieldScreen = () => (
       <DocItem
         name="value?"
         typeInfo="Value"
-        description="The value of the date input."
+        description="The value of the time input."
       />
 
       <DocItem
         name="valueFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
-        description={<AppText>Date format of the input value.</AppText>}
+        description={<AppText>Time format of the input value.</AppText>}
       />
     </Section>
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/DatePickerField/examples"
+        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/TimeField/examples"
         text="Examples Code"
       />
 
@@ -129,4 +129,4 @@ const DatePickerFieldScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Input Fields', module).add('DatePickerField', DatePickerFieldScreen);
+storiesOf('Input Fields', module).add('TimeField', TimeFieldScreen);

@@ -29,9 +29,10 @@ require('./2-components/TimePicker/TimePickerScreen');
 require('./2-components/Separator/SeparatorScreen');
 require('./2-components/VerticalSeparator/VerticalSeparatorScreen');
 
+require('./3-inputFields/DateField/DateFieldScreen');
 require('./3-inputFields/SelectField/SelectFieldScreen');
-require('./3-inputFields/DatePickerField/DatePickerFieldScreen');
-require('./3-inputFields/TextField/TextFieldScreen');
 require('./3-inputFields/SwitchField/SwitchFieldScreen');
+require('./3-inputFields/TextField/TextFieldScreen');
+require('./3-inputFields/TimeField/TimeFieldScreen');
 
 require('./4-apis/Alert/AlertScreen');

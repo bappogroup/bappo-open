@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePickerField } from 'bappo-components';
+import { DateField } from 'bappo-components';
 
 class Minimal extends React.Component {
   state = {
@@ -8,7 +8,7 @@ class Minimal extends React.Component {
 
   render() {
     return (
-      <DatePickerField
+      <DateField
         onValueChange={value => this.setState({ value })}
         value={this.state.value}
         label="Birthday"
