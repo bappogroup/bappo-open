@@ -2228,18 +2228,19 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@0.1.0-alpha.84:
-  version "0.1.0-alpha.84"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.84.tgz#5d40896fb4c6719d7d7646f8fe8ac92d238532a7"
-  integrity sha512-KPPLPTQBMsX3tdgehyOIPnItpUaTs/NCxMpSHmVrrhrz0+IY+UOB7VB3km6/J6Prn3v5rKpoY08inBMWdWAQnA==
+bappo-components@0.1.0-alpha.93:
+  version "0.1.0-alpha.93"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.93.tgz#373c5cacd740afef705ca2de13128b8660a1eec9"
+  integrity sha512-Q5zTz3FoTtZovACAoSvRs3ZHBkURkLynEyN0Yuc5cJSwkHitzwrAzwCCuh2iVO+JoCp7JjVWVsKbMwFrh40aHg==
   dependencies:
+    "@babel/runtime" "^7.4.3"
     es6-error "^4.1.1"
     exenv "^1.2.2"
     fbjs "^0.8.16"
     lodash "^4.17.10"
     moment "^2.19.1"
     prop-types "^15.6.0"
-    react-native-keyboard-aware-scroll-view "^0.7.4"
+    react-native-keyboard-aware-scroll-view "^0.8.0"
     react-native-web "^0.9.1"
     react-recomponent "^0.2.0"
     react-responsive "^5.0.0"
@@ -7830,10 +7831,10 @@ react-native-iphone-x-helper@^1.0.2, react-native-iphone-x-helper@^1.0.3:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
   integrity sha512-xIeTo4s77wwKgBZLVRIZC9tM9/PkXS46Ul76NXmvmixEb3ZwqGdQesR3zRiLMOoIdfOURB6N9bba9po7+x9Bag==
 
-react-native-keyboard-aware-scroll-view@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.7.4.tgz#80fb4b56f3c5cb399da0c6832ec52729856ac08a"
-  integrity sha512-5AJ11sGcleiX43IJ32T0kPtIxcd1JWw0R+YPwkgyZWro7uuGBlq09CFW5jS9JTNoGq7crFzFfTcoTIY6B41rNQ==
+react-native-keyboard-aware-scroll-view@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.8.0.tgz#00bcaa38c91323913bb7a733059ad2bc4875f88c"
+  integrity sha512-gPfhgHQI/z7Cc5aeNOEmK0b250QkAeU6V+4oH8EC7mmFneEKn6MAIDjpoiwqt6bV+lFJPABXfx9MtrRmtCeJ/Q==
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
