@@ -14,7 +14,6 @@ import PropReadOnly from './examples/PropReadOnly';
 import PropType from './examples/PropType';
 import TextInputRewrite from './examples/Rewrite';
 import TextInputEvents from './examples/TextInputEvents';
-import TouchableWrapper from './examples/TouchableWrapper';
 
 const TextFieldScreen = () => (
   <UIExplorer title="TextField" url="3-inputFields/TextField">
@@ -138,23 +137,6 @@ const TextFieldScreen = () => (
       />
 
       <DocItem
-        name="style?"
-        typeInfo="style"
-        description={`<StyleList
-            stylePropTypes={[
-              {
-                name: '...Text#style'
-              },
-              {
-                label: 'web',
-                name: 'resize',
-                typeInfo: 'string'
-              }
-            ]}
-          />`}
-      />
-
-      <DocItem
         name="testID?"
         typeInfo="string"
         description={
@@ -207,12 +189,6 @@ const TextFieldScreen = () => (
       />
 
       <DocItem
-        name="clear"
-        typeInfo="() => void"
-        description="Clear the text from the input."
-      />
-
-      <DocItem
         name="focus"
         typeInfo="() => void"
         description="Focus the input."
@@ -231,13 +207,6 @@ const TextFieldScreen = () => (
         description="Rewrite spaces to '_' with a maxLength restrict"
         example={{
           render: () => <TextInputRewrite />,
-        }}
-      />
-
-      <DocItem
-        description="Wrapped in a Button (Gray area is the button and clicking will focus the input)"
-        example={{
-          render: () => <TouchableWrapper />,
         }}
       />
     </Section>
