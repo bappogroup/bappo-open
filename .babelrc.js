@@ -1,13 +1,30 @@
 const plugins = [
-  require.resolve('@babel/plugin-proposal-object-rest-spread'),
-  require.resolve('@babel/plugin-proposal-class-properties'),
+  [require.resolve('@babel/plugin-transform-flow-strip-types'), false],
+  require.resolve('@babel/plugin-transform-destructuring'),
+  [
+    require.resolve('@babel/plugin-proposal-class-properties'),
+    {
+      loose: true,
+    },
+  ],
   require.resolve('babel-plugin-styled-components'),
 ];
 
 module.exports = {
   presets: [
-    require.resolve('@babel/preset-react'),
-    require.resolve('@babel/preset-flow'),
+    [
+      require.resolve('@babel/preset-react'),
+      {
+        useBuiltIns: true,
+      },
+    ],
+    require.resolve('@babel/preset-typescript'),
+  ],
+  overrides: [
+    {
+      exclude: /\.ts$/,
+      plugins: [require.resolve('@babel/plugin-transform-flow-strip-types')],
+    },
   ],
   env: {
     cjs: {
