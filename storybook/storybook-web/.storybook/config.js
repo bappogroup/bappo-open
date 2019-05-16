@@ -1,7 +1,5 @@
-import 'babel-polyfill';
-import { setOptions } from '@storybook/addon-options';
+import { addParameters, configure, addDecorator } from '@storybook/react';
 import centered from './decorator-centered';
-import { configure, addDecorator } from '@storybook/react';
 
 const context = require.context(
   '../../storybook-native/storybook/stories/',
@@ -11,14 +9,15 @@ const context = require.context(
 
 addDecorator(centered);
 
-setOptions({
-  name: 'Bappo Components',
-  url: 'https://bappogroup.github.io/bappo-components',
-  goFullScreen: false,
-  showLeftPanel: true,
-  showDownPanel: false,
-  showSearchBox: false,
-  downPanelInRight: false,
+addParameters({
+  options: {
+    theme: {
+      brandTitle: 'Bappo Components',
+      brandUrl: 'https://bappogroup.github.io/bappo-components',
+    },
+    isFullScreen: false,
+    showPanel: false,
+  },
 });
 
 function loadStories() {
