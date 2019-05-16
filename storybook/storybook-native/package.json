@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "axios": "^0.16.2",
-    "bappo-components": "0.1.0-alpha.93",
+    "bappo-components": "0.1.0-alpha.94",
     "create-react-class": "^15.6.2",
     "react": "16.8.3",
     "react-native": "0.59.0",
@@ -32,6 +32,9 @@
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3"
+  },
+  "resolutions": {
+    "@storybook/react-native/**/react": "16.8.3"
   },
   "jest": {
     "preset": "react-native"

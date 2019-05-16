@@ -47,6 +47,12 @@ module.exports = ({ config }) => {
       __dirname,
       '../node_modules/@storybook/react',
     ),
+    react: path.join(__dirname, '../node_modules/react'),
+    'react-dom': path.join(__dirname, '../node_modules/react-dom'),
+    'react-dom/unstable-native-dependencies': path.join(
+      __dirname,
+      '../node_modules/react-dom/unstable-native-dependencies',
+    ),
     // only use the following for development
     // 'bappo-components': path.join(__dirname, '../../../'),
     // react: path.join(__dirname, '../../../node_modules/react'),
