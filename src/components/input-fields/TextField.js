@@ -28,6 +28,7 @@ class TextField extends React.Component<Props> implements InputField {
       onValueChange,
       testID,
       value,
+      reserveErrorSpace,
       ...rest
     } = this.props;
     return (
@@ -40,6 +41,7 @@ class TextField extends React.Component<Props> implements InputField {
         onValueChange={onValueChange}
         testID={testID}
         value={value}
+        reserveErrorSpace={reserveErrorSpace}
       >
         <TextInput
           {...rest}
