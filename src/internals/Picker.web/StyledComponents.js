@@ -1,6 +1,7 @@
 // @flow
 
 import styled from 'styled-components';
+// $FlowFixMe typescript
 import ViewBase from '../web/ViewBase';
 
 export const Arrow = styled.span`

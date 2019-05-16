@@ -1,6 +1,7 @@
 // @flow
 
 import debounce from 'lodash/debounce';
+// $FlowFixMe typescript
 import ViewBase from './ViewBase';
 
 const registry: Map<string, ViewBase> = new Map();

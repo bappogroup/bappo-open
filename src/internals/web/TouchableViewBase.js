@@ -3,6 +3,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { buttonDefaultStyle } from './styles';
+// $FlowFixMe typescript
 import ViewBase from './ViewBase';
 
 const StyledViewBase = styled(ViewBase)`

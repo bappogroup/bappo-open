@@ -6,6 +6,7 @@ addDecorator(centered);
 require('./1-primitives/ActivityIndicator/ActivityIndicatorScreen');
 require('./1-primitives/FlatList/FlatListScreen');
 require('./1-primitives/Form/FormScreen');
+require('./1-primitives/Image/ImageScreen');
 require('./1-primitives/ScrollView/ScrollViewScreen');
 require('./1-primitives/Switch/SwitchScreen');
 require('./1-primitives/Text/TextScreen');

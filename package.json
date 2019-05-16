@@ -25,9 +25,9 @@
   "module": "es/index.js",
   "scripts": {
     "build": "npm run build:cjs && npm run build:es && rimraf storybook/storybook-native/node_modules/bappo-components/lib/ && cp -r lib storybook/storybook-native/node_modules/bappo-components/lib",
-    "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts' src/ -d lib/",
-    "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts' src/ -d es/",
-    "build:es:watch": "rimraf es/ && BABEL_ENV=es babel --watch --extensions '.js,.ts' src/ -d es/",
+    "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts,.tsx' src/ -d lib/",
+    "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts,.tsx' src/ -d es/",
+    "build:es:watch": "rimraf es/ && BABEL_ENV=es babel --watch --extensions '.js,.ts,.tsx' src/ -d es/",
     "lint": "kcd-scripts lint",
     "test": "npm run test:web && npm run test:native",
     "test:web": "kcd-scripts test --config jest.web.config.js",
@@ -61,9 +61,13 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "babel-eslint": "^9.0.0",
+    "@types/lodash": "^4.14.129",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.5.1",
-    "eslint-config-react-app": "^3.0.3",
+    "eslint-config-react-app": "^4.0.1",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.1",
@@ -97,8 +101,8 @@
     ]
   },
   "sideEffects": [
-    "./src/internals/web/addNonSelectableTextStyle.js",
-    "./src/internals/web/detectResize.js",
-    "./src/internals/web/ViewBase.js"
+    "./es/internals/web/addNonSelectableTextStyle.js",
+    "./es/internals/web/detectResize.js",
+    "./es/internals/web/ViewBase.js"
   ]
 }

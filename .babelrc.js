@@ -22,7 +22,7 @@ module.exports = {
   ],
   overrides: [
     {
-      exclude: /\.ts$/,
+      exclude: /\.tsx?$/,
       plugins: [require.resolve('@babel/plugin-transform-flow-strip-types')],
     },
   ],

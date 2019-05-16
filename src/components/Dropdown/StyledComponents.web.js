@@ -1,6 +1,5 @@
 // @flow
 
-import React from 'react';
 import { styled } from '../../apis/Style';
 import TouchableView from '../../primitives/TouchableView';
 import Text from '../../primitives/Text';

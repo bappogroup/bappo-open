@@ -1,9 +1,13 @@
 // @flow
 
 import { css } from 'styled-components';
+import Colors from '../../apis/Colors';
 
 export const flex = css`
   align-items: stretch;
+  border-color: ${Colors.BLACK};
+  border-style: solid;
+  border-width: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

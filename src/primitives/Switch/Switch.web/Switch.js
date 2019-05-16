@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+// $FlowFixMe typescript
 import ViewBase from '../../../internals/web/ViewBase';
 import type { SwitchProps } from '../types.js.flow';
 import SwitchDefaultProps from '../defaultProps';

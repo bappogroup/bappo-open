@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { breakpoint } from '../../../internals/web/breakpoint';
+// $FlowFixMe typescript
 import ViewBase from '../../../internals/web/ViewBase';
 import Overlay from '../../../primitives/Overlay';
 import type { ModalProps } from '../types.js.flow';

@@ -1,6 +1,7 @@
 // @flow
 
 import styled from 'styled-components';
+// $FlowFixMe typescript
 import ViewBase from '../../../internals/web/ViewBase';
 
 const FieldContainer = styled(ViewBase).attrs({

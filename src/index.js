@@ -8,6 +8,7 @@ export * from './apis/Style';
 export { default as ActivityIndicator } from './primitives/ActivityIndicator';
 export { default as FlatList } from './primitives/FlatList';
 export { Form } from './primitives/Form';
+export { default as Image } from './primitives/Image';
 export { default as Overlay } from './primitives/Overlay';
 export { default as ScrollView } from './primitives/ScrollView';
 export { default as Switch } from './primitives/Switch';

@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+// $FlowFixMe typescript
 import ViewBase from '../../../internals/web/ViewBase';
 import { styled } from '../../../apis/Style';
 import type { Option } from '../types.js.flow';

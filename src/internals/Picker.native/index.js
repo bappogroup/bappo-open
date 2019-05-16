@@ -15,6 +15,10 @@ import {
   ValueContainer,
 } from './StyledComponents';
 
+type State = {
+  isOpen: boolean,
+};
+
 type Props = {
   accessibilityLabel?: string,
   autoFocus: ?boolean,
@@ -30,10 +34,6 @@ type Props = {
   renderValue?: ?(state: State) => ?React.Element<any>,
   style?: any,
   testID?: string,
-};
-
-type State = {
-  isOpen: boolean,
 };
 
 class PickerNative extends React.Component<Props, State> {

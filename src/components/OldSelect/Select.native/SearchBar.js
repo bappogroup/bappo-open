@@ -53,6 +53,7 @@ class SearchBar extends React.Component<Props> {
         >
           <InnerContainer>
             <IconContainer>
+              {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
               <IconText>🔍</IconText>
             </IconContainer>
             {disabled ? (

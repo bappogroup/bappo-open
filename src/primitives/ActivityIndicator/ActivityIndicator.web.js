@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+// $FlowFixMe typescript
 import ViewBase from '../../internals/web/ViewBase';
 
 type Props = {

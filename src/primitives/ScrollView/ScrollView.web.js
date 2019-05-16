@@ -4,6 +4,7 @@ import * as React from 'react';
 import throttle from 'lodash/throttle';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
+// $FlowFixMe typescript
 import ViewBase from '../../internals/web/ViewBase';
 import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 
