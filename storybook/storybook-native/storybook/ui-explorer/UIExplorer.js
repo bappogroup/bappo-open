@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
-import { styled, View } from 'bappo-components';
+import { styled, ScrollView, View } from 'bappo-components';
 import AppText from './AppText';
 import insertBetween from './insertBetween';
 
@@ -11,7 +11,12 @@ export const Description = ({ children }) => {
   ));
   return (
     <DescriptionContainer>
-      {insertBetween(() => <Divider key={Math.random()} />, wrappedChildren)}
+      {insertBetween(
+        () => (
+          <Divider key={Math.random()} />
+        ),
+        wrappedChildren,
+      )}
     </DescriptionContainer>
   );
 };
@@ -24,7 +29,7 @@ const UIExplorer = ({ children, description, title }) => (
   </Root>
 );
 
-const Root = styled(View)`
+const Root = styled(ScrollView)`
   padding: 16px;
   flex: 1;
 `;

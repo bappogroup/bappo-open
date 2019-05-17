@@ -1,12 +1,11 @@
 import React from 'react';
-import { ScrollView } from 'bappo-components';
-import { StatusBar } from 'react-native';
+import { StatusBar, View } from 'react-native';
 
 export default renderStory => {
   return (
-    <ScrollView>
+    <View style={{ flex: 1 }}>
       <StatusBar hidden={false} />
       {renderStory()}
-    </ScrollView>
+    </View>
   );
 };
