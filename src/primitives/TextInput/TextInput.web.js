@@ -54,6 +54,7 @@ class TextInput extends React.Component<Props, State> {
   render() {
     const {
       accessibilityLabel,
+      autoComplete = 'off',
       className,
       defaultValue,
       placeholder,
@@ -82,6 +83,7 @@ class TextInput extends React.Component<Props, State> {
       value,
       'aria-label': accessibilityLabel,
       'data-testid': testID,
+      autoComplete,
     };
 
     const styleProps = {
