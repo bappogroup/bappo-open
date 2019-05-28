@@ -8,9 +8,8 @@ const actions = [
     onPress: () => console.log('you pressed Home'),
   },
   {
-    icon: 'timer',
     label: 'Timer',
-    onPress: () => console.log('you pressed Timer'),
+    onPress: () => alert('You pressed Timer'),
   },
 ];
 
@@ -21,7 +20,7 @@ const actionsNoIcons = [
   },
   {
     label: 'Action2 - No Icon',
-    onPress: () => console.log('you pressed Timer'),
+    onPress: () => console.log('You pressed Timer'),
   },
 ];
 
@@ -32,9 +31,8 @@ const actionsWide = [
     onPress: () => console.log('you pressed Home'),
   },
   {
-    icon: 'timer',
     label: 'Option2, this is 600px wide',
-    onPress: () => console.log('you pressed Timer'),
+    onPress: () => console.log('You pressed Timer'),
   },
 ];
 

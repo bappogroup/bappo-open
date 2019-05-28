@@ -9,6 +9,7 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import PropPointerEvents from './examples/PropPointerEvents';
+import StyledView from './examples/StyledView';
 
 const ViewScreen = () => (
   <UIExplorer title="View" url="1-primitives/View">
@@ -77,6 +78,15 @@ const ViewScreen = () => (
             as data attribute "data-testid". On native: it uses the testID prop.
           </AppText>
         }
+      />
+    </Section>
+
+    <Section titl="More examples">
+      <DocItem
+        description="Styled"
+        example={{
+          render: () => <StyledView />,
+        }}
       />
     </Section>
   </UIExplorer>

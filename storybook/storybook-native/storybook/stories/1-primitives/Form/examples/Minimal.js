@@ -5,7 +5,10 @@ class Minimal extends React.Component {
   render() {
     return (
       <View>
-        <Form onSubmit={values => console.log(values)} testID="minimal-form">
+        <Form
+          onSubmit={({ email = '' }) => alert(`Email is: ${email}`)}
+          testID="minimal-form"
+        >
           <Form.Field
             name="email"
             label="Email"

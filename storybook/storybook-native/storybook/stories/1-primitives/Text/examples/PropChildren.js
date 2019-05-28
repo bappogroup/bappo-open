@@ -24,10 +24,12 @@ const TextChildrenExample = () => (
         (Normal text,
         <Text style={{ fontWeight: 'bold' }}>
           (and bold
-          <Text style={{ fontSize: 11, color: '#527fe4' }}>(and tiny inherited bold blue)</Text>
+          <Text style={{ fontSize: 11, color: '#527fe4' }}>
+            (and tiny inherited bold blue)
+          </Text>
           )
         </Text>
-        )
+        ) and emojis 😄😄😄
       </Text>
       <Text style={{ opacity: 0.7 }}>
         (opacity
@@ -36,7 +38,9 @@ const TextChildrenExample = () => (
           <Text style={{ opacity: 0.7 }}>
             {'\n'}
             (and accumulated
-            <Text style={{ backgroundColor: '#ffaaaa' }}>(and also applies to the background)</Text>
+            <Text style={{ backgroundColor: '#ffaaaa' }}>
+              (and also applies to the background)
+            </Text>
             )
           </Text>
           )
@@ -46,6 +50,7 @@ const TextChildrenExample = () => (
       <Text style={{ fontSize: 12 }}>
         <Entity>Entity Name</Entity>
       </Text>
+      <Text selectable>I'm selectable</Text>
     </View>
   </View>
 );

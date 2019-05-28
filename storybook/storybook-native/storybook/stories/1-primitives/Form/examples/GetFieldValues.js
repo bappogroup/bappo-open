@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  styled,
   View,
   Form,
   Text,
@@ -73,9 +74,9 @@ class GetFieldValues extends React.Component {
                   component={TextField}
                 />
                 <Text>You have chosen the user type: {userType}</Text>
-                <Form.SubmitButton>
-                  <Text>Submit</Text>
-                </Form.SubmitButton>
+                <StyledButton>
+                  <Text style={{ color: 'white' }}>Submit</Text>
+                </StyledButton>
               </React.Fragment>
             );
           }}
@@ -86,3 +87,9 @@ class GetFieldValues extends React.Component {
 }
 
 export default GetFieldValues;
+
+const StyledButton = styled(Form.SubmitButton)`
+  background-color: orange;
+  border-radius: 4px;
+  width: 100px;
+`;

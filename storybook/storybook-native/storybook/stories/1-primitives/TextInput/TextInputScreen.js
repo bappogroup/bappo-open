@@ -11,6 +11,7 @@ import UIExplorer, {
 import PropMultiline from './examples/PropMultiline';
 import PropPlaceholder from './examples/PropPlaceholder';
 import PropReadOnly from './examples/PropReadOnly';
+import PropAutoFocus from './examples/PropAutoFocus';
 import PropType from './examples/PropType';
 import TextInputRewrite, {
   TextInputRewriteInvalidCharacters,
@@ -56,6 +57,9 @@ const TextInputScreen = () => (
             document with <Code>autofocus</Code> is focused.
           </AppText>
         }
+        example={{
+          render: () => <PropAutoFocus />,
+        }}
       />
       <DocItem
         name="defaultValue?"
