@@ -13,7 +13,7 @@ git checkout gh-pages
 rm -rf ../../storybook-web
 mv dist ../../storybook-web
 git add -A
-git commit -m \"Storybook deploy\"
+git commit -m "Storybook deploy"
 git push origin gh-pages
 
 # Back to master
