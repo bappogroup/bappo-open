@@ -54,6 +54,12 @@ const SwitchFieldScreen = () => (
       />
 
       <DocItem
+        name="label?"
+        typeInfo="text"
+        description={<AppText>Text label before the switch box</AppText>}
+      />
+
+      <DocItem
         name="onValueChange?"
         typeInfo="(value: boolean) => void"
         description={
