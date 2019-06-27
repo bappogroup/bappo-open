@@ -152,7 +152,7 @@ const desktopStyle = ({ layout, placement }) => {
     ${
       layout
         ? `
-          top: calc(50vh - ${layout.height / 2}px);
+          top: calc(50vh - ${Math.ceil(layout.height / 2)}px);
         `
         : `
           opacity: 0;
