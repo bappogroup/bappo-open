@@ -78,18 +78,28 @@ class ModalWizard extends React.Component {
           }
         }}
       >
-        <BodyContainer>{FormElement.props.children}</BodyContainer>
-        <Footer>
-          {this.renderCommonFooterButtons()}
-          {isLastStep ? (
-            <FormSubmitButton
-              text={submitButtonText || 'Submit'}
-              type="primary"
-            />
-          ) : (
-            <FormSubmitButton text="Next" type="tertiary" />
-          )}
-        </Footer>
+        {formState => {
+          return (
+            <React.Fragment>
+              <BodyContainer>
+                {typeof FormElement.props.children === 'function'
+                  ? FormElement.props.children(formState)
+                  : FormElement.props.children}
+              </BodyContainer>
+              <Footer>
+                {this.renderCommonFooterButtons()}
+                {isLastStep ? (
+                  <FormSubmitButton
+                    text={submitButtonText || 'Submit'}
+                    type="primary"
+                  />
+                ) : (
+                  <FormSubmitButton text="Next" type="tertiary" />
+                )}
+              </Footer>
+            </React.Fragment>
+          );
+        }}
       </FormElement.type>
     );
   };

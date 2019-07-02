@@ -17,23 +17,40 @@ class ModalWizardExample extends React.Component {
 
   renderFirstScreen = () => (
     <Form onSubmit={formValues => this.setState({ formValues })}>
-      <Form.Field
-        name="name"
-        label="Name"
-        component={TextField}
-        validate={value => (value ? undefined : 'Required')}
-      />
-      <Form.Field
-        name="gender"
-        label="Gender"
-        component={SelectField}
-        props={{
-          options: [
-            { label: 'Male', value: 'male' },
-            { label: 'Female', value: 'female' },
-          ],
-        }}
-      />
+      {({ getFieldValue }) => {
+        const requireAge = getFieldValue('requireAge');
+        return (
+          <React.Fragment>
+            <Form.Field
+              name="name"
+              label="Name"
+              component={TextField}
+              validate={value => (value ? undefined : 'Required')}
+            />
+            <Form.Field
+              name="requireAge"
+              label="Require Age"
+              component={SelectField}
+              props={{
+                options: [
+                  { value: 'yes', label: 'Yes' },
+                  { value: 'no', label: 'No' },
+                ],
+              }}
+            />
+            {requireAge === 'yes' && (
+              <Form.Field
+                name="age"
+                label="Age"
+                component={TextField}
+                props={{
+                  type: 'number',
+                }}
+              />
+            )}
+          </React.Fragment>
+        );
+      }}
     </Form>
   );
 
@@ -44,7 +61,7 @@ class ModalWizardExample extends React.Component {
         <Text>Summary</Text>
         <Text>Selected values are:</Text>
         <Text>Name: {formValues.name}</Text>
-        <Text>Gender: {formValues.gender}</Text>
+        <Text>Age: {formValues.age}</Text>
       </View>
     );
   };
@@ -72,7 +89,10 @@ class ModalWizardExample extends React.Component {
               },
             ]}
             onFinish={() =>
-              console.log('Submit the wizard', this.state.formValues)
+              console.log(
+                'Submitting the wizard, values are: ',
+                this.state.formValues,
+              )
             }
           />
         )}
