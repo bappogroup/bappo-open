@@ -8,7 +8,6 @@ const ActivityIndicatorSizeExample = () => (
     {sizes.map((size, i) => (
       <ActivityIndicator key={i} size={size} style={styles.rightPadding} />
     ))}
-    <ActivityIndicator size="large" style={styles.large} />
   </View>
 );
 
@@ -20,7 +19,6 @@ const styles = {
   rightPadding: {
     paddingRight: 10,
   },
-  large: { marginLeft: 20, transform: 'scale(1.75)' },
 };
 
 ActivityIndicatorSizeExample.metadata = {
