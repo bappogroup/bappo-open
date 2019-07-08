@@ -105,9 +105,5 @@
       "fonts"
     ]
   },
-  "sideEffects": [
-    "./es/internals/web/addNonSelectableTextStyle.js",
-    "./es/internals/web/detectResize.js",
-    "./es/internals/web/ViewBase.js"
-  ]
+  "sideEffects": false
 }
