@@ -19,7 +19,7 @@ type Props = {
    * - 'box-none': The View is never the target of touch events but it's subviews can be.
    * - 'box-only': The view can be the target of touch events but it's subviews cannot be.
    */
-  pointerEvents: 'auto' | 'none' | 'box-none' | 'box-only',
+  pointerEvents?: 'auto' | 'none' | 'box-none' | 'box-only',
   // TODO
   style?: any,
   /**

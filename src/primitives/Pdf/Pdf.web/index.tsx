@@ -1,32 +1,30 @@
 import React from 'react';
 import FlexIframe from '../../../internals/web/FlexIframe';
-import { PdfProps } from '../types';
-import { validateSource, useUri } from '../helpers';
+import { initializePdfFonts } from '../helpers/pdfmake';
+import { useUri } from '../helpers/useUri';
+import { validateSource } from '../helpers/validateSource';
+import { Props } from './types';
+import Loading from './Loading';
 
-interface Props extends PdfProps {
-  className: string;
-}
+// start loading fonts as soon as this module gets imported
+initializePdfFonts();
 
-export default function Pdf({
-  accessibilityLabel,
-  className,
-  source,
-  style,
-  testID,
-}: Props) {
+export default function Pdf(props: Props) {
+  const { accessibilityLabel, className, source, style, testID } = props;
+
   validateSource(source);
 
   const uri = useUri(source);
   if (!uri) {
-    return null;
+    return <Loading {...props} />;
   }
 
-  const props = {
+  const iframeProps = {
     'aria-label': accessibilityLabel,
     'data-testid': testID,
     className,
     src: uri,
     style,
   };
-  return <FlexIframe {...props} />;
+  return <FlexIframe {...iframeProps} />;
 }
