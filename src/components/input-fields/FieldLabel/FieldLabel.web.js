@@ -1,10 +1,10 @@
 // @flow
 
 import styled from 'styled-components';
-import TextBase from '../../../internals/web/TextBase';
+import { createText } from '../../../internals/web/TextBase';
 
-const FieldLabel = styled(TextBase).attrs({
-  component: 'label',
+const LabelText = createText('label');
+const FieldLabel = styled(LabelText).attrs({
   selectable: true,
 })`
   font-size: 12px;

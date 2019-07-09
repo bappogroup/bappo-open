@@ -1,5 +1,3 @@
-// @flow
-
 const valuePropertyDescriptor = {
   configurable: false,
   writable: false,
@@ -23,7 +21,9 @@ const colors = {
 
 const colorValues = Object.values(colors);
 
-const Colors = {};
+const Colors: {
+  [name: string]: string;
+} = {};
 
 Object.defineProperties(Colors, {
   BLUE: {
