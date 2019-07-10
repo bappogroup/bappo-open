@@ -1,5 +1,3 @@
-// @flow
-
 import createIcon from './createIcon';
 
 class Icon {
