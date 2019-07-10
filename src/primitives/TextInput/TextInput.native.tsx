@@ -1,13 +1,10 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 import RN from 'react-native';
 import styled from 'styled-components';
-import type { TextInputProps } from './types.js.flow';
+import FontContext from '../Font/FontContext';
+import { TextInputProps } from './types';
 
-type Props = TextInputProps;
-
-class TextInput extends React.Component<Props> {
+class TextInput extends React.Component<TextInputProps> {
   static defaultProps = {
     autoFocus: false,
     multiline: false,
@@ -18,15 +15,15 @@ class TextInput extends React.Component<Props> {
 
   static displayName = 'TextInput';
 
-  blur = () => {
+  public blur = () => {
     this._input && this._input.blur();
   };
 
-  clear = () => {
+  public clear = () => {
     this._input && this._input.clear();
   };
 
-  focus = () => {
+  public focus = () => {
     this._input && this._input.focus();
   };
 
@@ -46,7 +43,7 @@ class TextInput extends React.Component<Props> {
       value,
     } = this.props;
 
-    const props: Object = {
+    const props = {
       accessibilityLabel,
       autoFocus,
       defaultValue,
@@ -94,21 +91,32 @@ class TextInput extends React.Component<Props> {
         break;
     }
 
-    return <StyledTextInput {...props} />;
+    return (
+      <FontContext.Consumer>
+        {({ fontFamily, fontSize }) => {
+          return (
+            <StyledTextInput
+              {...props}
+              fontFamily={fontFamily}
+              fontSize={fontSize}
+            />
+          );
+        }}
+      </FontContext.Consumer>
+    );
   }
 
-  _input: ?React.ElementRef<typeof RN.TextInput>;
+  private _input: RN.TextInput | null = null;
 
-  _captureInputRef = (ref: ?React.ElementRef<typeof RN.TextInput>) => {
+  private _captureInputRef = (ref: RN.TextInput | null) => {
     this._input = ref;
   };
 
-  _createBlurEventHandler = () => {
+  private _createBlurEventHandler = () => {
     const { onBlur } = this.props;
 
     if (onBlur) {
-      return (event: Object) => {
-        // eslint-disable-next-line no-param-reassign
+      return (event: any) => {
         event.nativeEvent = {
           text: event.nativeEvent.text,
         };
@@ -118,12 +126,11 @@ class TextInput extends React.Component<Props> {
     return onBlur;
   };
 
-  _createFocusEventHandler = () => {
+  private _createFocusEventHandler = () => {
     const { onFocus } = this.props;
 
     if (onFocus) {
-      return (event: Object) => {
-        // eslint-disable-next-line no-param-reassign
+      return (event: any) => {
         event.nativeEvent = {
           text: event.nativeEvent.text,
         };
@@ -136,9 +143,12 @@ class TextInput extends React.Component<Props> {
 
 export default TextInput;
 
-const StyledTextInput = styled.TextInput`
-  font-family: 'Quicksand';
-  font-size: 14px;
+const StyledTextInput = styled(RN.TextInput)<{
+  fontFamily: string;
+  fontSize: number;
+}>`
+  font-family: ${props => props.fontFamily};
+  font-size: ${props => props.fontSize}px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   margin: 0;
   padding: ${({ multiline }) => (multiline ? '8px 0px' : '0')};

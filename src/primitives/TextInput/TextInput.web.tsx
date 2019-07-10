@@ -1,18 +1,17 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
+// @ts-ignore
 import invariant from 'fbjs/lib/invariant';
-import styled, { css } from 'styled-components';
-import type { TextInputProps } from './types.js.flow';
+import styled from 'styled-components';
+import InputBase from '../../internals/web/InputBase';
+import TextAreaBase from '../../internals/web/TextAreaBase';
+import { TextInputProps } from './types';
 
 type Props = TextInputProps & {
   // Will be removed
-  className?: string,
+  className?: string;
 };
 
-type State = {};
-
-class TextInput extends React.Component<Props, State> {
+class TextInput extends React.Component<Props> {
   static defaultProps = {
     autoFocus: false,
     multiline: false,
@@ -23,21 +22,19 @@ class TextInput extends React.Component<Props, State> {
 
   static displayName = 'TextInput';
 
-  blur() {
+  public blur() {
     this._input && this._input.blur();
   }
 
-  clear() {
+  public clear() {
     if (this._input) {
       this._input.value = '';
     }
   }
 
-  focus() {
+  public focus() {
     this._input && this._input.focus();
   }
-
-  state = {};
 
   static getDerivedStateFromProps(nextProps: Props) {
     TextInput._checkProps(nextProps);
@@ -45,16 +42,14 @@ class TextInput extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const __this = this;
     if (this.props.autoFocus) {
-      setTimeout(() => __this.focus());
+      setTimeout(() => this.focus());
     }
   }
 
   render() {
     const {
       accessibilityLabel,
-      autoComplete = 'off',
       className,
       defaultValue,
       placeholder,
@@ -70,6 +65,8 @@ class TextInput extends React.Component<Props, State> {
     const InputComponent = multiline ? TextArea : Input;
 
     const props = {
+      accessibilityLabel,
+      autoComplete: 'off',
       defaultValue,
       dir: 'auto',
       innerRef: this._captureInputRef,
@@ -79,26 +76,23 @@ class TextInput extends React.Component<Props, State> {
       onFocus: this._createFocusEventHandler(),
       placeholder,
       readOnly,
+      testID,
       type,
       value,
-      'aria-label': accessibilityLabel,
-      'data-testid': testID,
-      autoComplete,
     };
 
     const styleProps = {
       className,
       multiline,
       style,
-      rows: undefined,
     };
-
-    if (multiline) styleProps.rows = 5;
 
     return <InputComponent {...props} {...styleProps} />;
   }
 
-  static _checkProps(props: Props) {
+  private _input: HTMLInputElement | HTMLTextAreaElement | null = null;
+
+  private static _checkProps(props: Props) {
     const { multiline, type } = props;
 
     invariant(
@@ -107,18 +101,18 @@ class TextInput extends React.Component<Props, State> {
     );
   }
 
-  _input: ?(HTMLInputElement | HTMLTextAreaElement);
-
-  _captureInputRef = (ref: ?(HTMLInputElement | HTMLTextAreaElement)) => {
+  private _captureInputRef = (
+    ref: HTMLInputElement | HTMLTextAreaElement | null,
+  ) => {
     this._input = ref;
   };
 
-  _createBlurEventHandler = () => {
+  private _createBlurEventHandler = () => {
     const { onBlur } = this.props;
 
     if (onBlur) {
       return (
-        event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+        event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
         onBlur({
           nativeEvent: {
@@ -130,25 +124,23 @@ class TextInput extends React.Component<Props, State> {
     return onBlur;
   };
 
-  _createChangeEventHandler = () => {
+  private _createChangeEventHandler = () => {
     const { onValueChange } = this.props;
 
     if (onValueChange) {
-      return (
-        event: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>,
-      ) => {
+      return (event: any) => {
         onValueChange(event.currentTarget.value);
       };
     }
     return onValueChange;
   };
 
-  _createFocusEventHandler = () => {
+  private _createFocusEventHandler = () => {
     const { onFocus } = this.props;
 
     if (onFocus) {
       return (
-        event: SyntheticFocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+        event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
         onFocus({
           nativeEvent: {
@@ -163,26 +155,11 @@ class TextInput extends React.Component<Props, State> {
 
 export default TextInput;
 
-const inputStyles = css`
-  appearance: none;
-  background-color: transparent;
-  border-color: black;
-  border-radius: 0;
-  border-width: 0;
-  box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
-  height: ${({ multiline }) => (multiline ? 'auto' : '18px')};
-  padding: 0;
-  outline: none;
-  resize: none;
-`;
+const Input = styled(InputBase)``;
 
-const Input = styled.input`
-  ${inputStyles};
-`;
-
-const TextArea = styled.textarea`
-  ${inputStyles};
+const TextArea = styled(TextAreaBase).attrs({
+  rows: 5,
+})`
+  height: 18px;
   padding: 8px 0px;
 `;

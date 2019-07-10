@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+import InputBase from '../../../internals/web/InputBase';
 import Text from '../../../primitives/Text';
 
 type Props = {
@@ -154,13 +155,8 @@ class TextInputAutoSize extends React.Component<Props, State> {
         <Input
           {...inputProps}
           innerRef={this.inputRef}
-          style={{
-            width: this.state.inputWidth,
-            color: '#191e26',
-            fontFamily: 'Quicksand, sans-serif',
-            fontSize: 14,
-          }}
           value={value}
+          width={this.state.inputWidth}
         />
         <Sizer innerRef={this.sizerRef}>{sizerValue}</Sizer>
         {this.props.placeholder ? (
@@ -179,8 +175,9 @@ const Container = styled.div`
   display: inline-block;
 `;
 
-const Input = styled.input`
+const Input = styled(InputBase)`
   box-sizing: content-box;
+  width: ${props => props.width}px;
 `;
 
 const Sizer = styled.div`
