@@ -119,17 +119,8 @@ export const Input = styled(TextInputAutoSize)`
   input {
     min-height: 26px;
     width: 100%;
-    background: none transparent;
-    border: 0 none;
-    box-shadow: none;
     cursor: ${({ isFocused }) => (isFocused ? 'text' : 'default')};
-    display: inline-block;
-    font-family: inherit;
     font-size: inherit;
-    margin: 0;
-    outline: none;
-    padding: 0;
-    appearance: none;
     ${({ hasValue, isPseudoFocused }) =>
       hasValue &&
       isPseudoFocused &&

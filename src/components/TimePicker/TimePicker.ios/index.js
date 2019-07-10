@@ -9,7 +9,7 @@ import {
   DEFAULT_TIME_DISPLAY_FORMAT,
   DEFAULT_TIME_VALUE_FORMAT,
 } from '../constants';
-import { PlaceholderText, ValueText } from './StyledComponents';
+import { PlaceholderText, ValueText } from '../StyledComponents';
 
 type Props = TimePickerProps;
 

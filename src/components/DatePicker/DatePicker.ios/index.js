@@ -9,7 +9,7 @@ import {
   DEFAULT_DATE_DISPLAY_FORMAT,
   DEFAULT_DATE_VALUE_FORMAT,
 } from '../constants';
-import { PlaceholderText, ValueText } from './StyledComponents';
+import { PlaceholderText, ValueText } from '../StyledComponents';
 
 type Props = DatePickerProps;
 

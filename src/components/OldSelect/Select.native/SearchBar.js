@@ -1,15 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
+import FontContext from '../../../primitives/Font/FontContext';
+import Text from '../../../primitives/Text';
 
 type Props = {
   /**
    * If true, the search bar is disabled.
    */
   disabled: ?boolean,
-  inputRef?: ?(?React.ElementRef<typeof Text>) => void,
+  inputRef?: ?(?React.ElementRef<typeof TextInput>) => void,
   isLoading: ?boolean,
   /**
    * Callback that is called when the search text changes.
@@ -59,18 +61,25 @@ class SearchBar extends React.Component<Props> {
             {disabled ? (
               <SearchText>{searchText}</SearchText>
             ) : (
-              <StyledTextInput
-                autoCorrect={false}
-                editable={!disabled}
-                innerRef={this._captureInputRef}
-                onChangeText={onInputChange}
-                onSubmitEditing={this._onInputSubmit}
-                returnKeyLabel="Search"
-                returnKeyType="search"
-                showUnderline={false}
-                value={searchText}
-                testID="select-searchbar-textinput"
-              />
+              <FontContext.Consumer>
+                {({ fontFamily }) => {
+                  return (
+                    <StyledTextInput
+                      autoCorrect={false}
+                      editable={!disabled}
+                      innerRef={this._captureInputRef}
+                      onChangeText={onInputChange}
+                      onSubmitEditing={this._onInputSubmit}
+                      returnKeyLabel="Search"
+                      returnKeyType="search"
+                      showUnderline={false}
+                      value={searchText}
+                      testID="select-searchbar-textinput"
+                      fontFamily={fontFamily}
+                    />
+                  );
+                }}
+              </FontContext.Consumer>
             )}
             {this._renderSpinner()}
           </InnerContainer>
@@ -79,9 +88,9 @@ class SearchBar extends React.Component<Props> {
     );
   }
 
-  _input: ?React.ElementRef<typeof Text>;
+  _input: ?React.ElementRef<typeof TextInput>;
 
-  _captureInputRef = (ref: ?React.ElementRef<typeof Text>) => {
+  _captureInputRef = (ref: ?React.ElementRef<typeof TextInput>) => {
     this._input = ref;
     const { inputRef } = this.props;
     inputRef && inputRef(ref);
@@ -134,7 +143,7 @@ const IconContainer = styled.View`
 
 const IconText = styled.Text``;
 
-const SearchText = styled.Text.attrs({
+const SearchText = styled(Text).attrs({
   numberOfLines: 1,
 })`
   margin-left: 34px;
@@ -147,9 +156,10 @@ const SpinnerContainer = styled.View`
 
 const StyledTextInput = styled.TextInput`
   flex: 1;
+  font-family: ${props => props.fontFamily};
   font-size: 14px;
   height: 28px;
   margin-top: 2px;
   margin-bottom: 1px;
-  margin-left: 34px;
+  margin-left: 38px;
 `;

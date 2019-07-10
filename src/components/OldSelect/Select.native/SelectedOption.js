@@ -1,7 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components';
+import { styled } from '../../../apis/Style';
+import Text from '../../../primitives/Text';
+import View from '../../../primitives/View';
 import type { Option } from '../types.js.flow';
 
 type Props = {
@@ -23,11 +25,11 @@ class SelectedOption extends React.Component<Props> {
 
 export default SelectedOption;
 
-const Container = styled.View`
+const Container = styled(View)`
   flex-direction: row;
   align-items: center;
 `;
 
-const Label = styled.Text`
+const Label = styled(Text)`
   color: #333;
 `;
