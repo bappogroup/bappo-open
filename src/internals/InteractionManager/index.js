@@ -1,1 +1,1 @@
-export { default } from 'react-native-web/dist/exports/InteractionManager';
+export { default } from 'react-native-web/dist/cjs/exports/InteractionManager';
