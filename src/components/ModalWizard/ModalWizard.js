@@ -133,11 +133,15 @@ class ModalWizard extends React.Component {
   };
 
   render() {
-    const { screens, onRequestClose } = this.props;
+    const { screens, onRequestClose, placement, visible = true } = this.props;
     const currentScreen = screens[this.state.step];
 
     return (
-      <Modal visible onRequestClose={onRequestClose}>
+      <Modal
+        visible={visible}
+        onRequestClose={onRequestClose}
+        placement={placement}
+      >
         <HeadingContainer>
           <Heading>{currentScreen.title || 'Wizard'}</Heading>
         </HeadingContainer>
