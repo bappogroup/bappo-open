@@ -832,8 +832,8 @@ class Select extends React.Component<Props, State> {
       const value = multi
         ? valueArray
         : valueArray.length > 0
-          ? valueArray[0]
-          : null;
+        ? valueArray[0]
+        : null;
       onValueChange(value);
     }
   };
@@ -956,7 +956,7 @@ class Select extends React.Component<Props, State> {
   _renderLoading = () => {
     if (!this.props.isLoading) return null;
     return (
-      <LoadingZone aria-hidden="true">
+      <LoadingZone aria-hidden="true" data-testid="select-spinner">
         <Loading />
       </LoadingZone>
     );
@@ -1064,8 +1064,9 @@ class Select extends React.Component<Props, State> {
   _renderSingleSelectedValues = (selectedOptions: Array<Option>) => {
     return (
       <ValueWrapper>
-        {this.state.isFocused &&
-          this.props.searchable && <Icon name="search" />}
+        {this.state.isFocused && this.props.searchable && (
+          <Icon name="search" />
+        )}
         {this._renderSelectedValue(selectedOptions)}
         {this._renderInput()}
       </ValueWrapper>
@@ -1076,8 +1077,9 @@ class Select extends React.Component<Props, State> {
     return (
       <MultiValueWrapper>
         {this._renderSelectedValue(selectedOptions)}
-        {this.state.isFocused &&
-          this.props.searchable && <Icon name="search" />}
+        {this.state.isFocused && this.props.searchable && (
+          <Icon name="search" />
+        )}
         {this._renderInput()}
       </MultiValueWrapper>
     );

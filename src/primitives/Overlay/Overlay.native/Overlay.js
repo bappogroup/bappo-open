@@ -21,7 +21,11 @@ class Overlay extends React.Component<Props> {
         transparent
         visible={visible}
       >
-        <OverlayContainer onLayout={onLayout} onPress={this._onPress}>
+        <OverlayContainer
+          onLayout={onLayout}
+          onPress={this._onPress}
+          testID="overlay-container"
+        >
           {children}
         </OverlayContainer>
       </RN.Modal>

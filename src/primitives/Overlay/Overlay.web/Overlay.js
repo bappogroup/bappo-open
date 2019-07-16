@@ -48,7 +48,11 @@ class Overlay extends React.Component<Props> {
     } = this.props;
 
     const portalChild = visible ? (
-      <OverlayContainer onClick={this._onClick} onLayout={onLayout}>
+      <OverlayContainer
+        onClick={this._onClick}
+        onLayout={onLayout}
+        testID="overlay-container"
+      >
         {children}
         {showCloseButton && (
           <CloseButton onPress={onClose} closeButtonStyle={closeButtonStyle} />
