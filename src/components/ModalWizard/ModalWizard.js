@@ -105,7 +105,7 @@ class ModalWizard extends React.Component {
   };
 
   renderNonForm = () => {
-    const { screens, submitButtonText } = this.props;
+    const { screens, submitButtonText, canSubmit = true } = this.props;
     const isLastStep = this.state.step + 1 === screens.length;
 
     return (
@@ -119,6 +119,7 @@ class ModalWizard extends React.Component {
               text={submitButtonText || 'Submit'}
               onPress={this.handleSubmit}
               loading={this.state.submitting}
+              disabled={!canSubmit}
             />
           ) : (
             <FooterButton
