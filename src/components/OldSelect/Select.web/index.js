@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import FlatList from '../../../primitives/FlatList';
-import Icon from '../../../components/Icon';
 import Menu from './Menu';
 import SelectedOption from './SelectedOption';
 import {
@@ -1064,9 +1063,6 @@ class Select extends React.Component<Props, State> {
   _renderSingleSelectedValues = (selectedOptions: Array<Option>) => {
     return (
       <ValueWrapper>
-        {this.state.isFocused && this.props.searchable && (
-          <Icon name="search" />
-        )}
         {this._renderSelectedValue(selectedOptions)}
         {this._renderInput()}
       </ValueWrapper>
@@ -1077,9 +1073,6 @@ class Select extends React.Component<Props, State> {
     return (
       <MultiValueWrapper>
         {this._renderSelectedValue(selectedOptions)}
-        {this.state.isFocused && this.props.searchable && (
-          <Icon name="search" />
-        )}
         {this._renderInput()}
       </MultiValueWrapper>
     );
