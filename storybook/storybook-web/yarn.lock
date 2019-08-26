@@ -1066,6 +1066,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@7.5.5":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
+  integrity sha512-28QvEGyQyNkB0/m2B4FU7IEZGK2NUrcMtT6BZEFALTguLk+AUT6ofsHtPk5QyjAdUkpMJ+/Em+quwz4HOt30AQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
@@ -2561,12 +2568,12 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@0.1.0-alpha.105:
-  version "0.1.0-alpha.105"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.105.tgz#a72cfe407de6fed75677d2d0b68191632aaaa4a5"
-  integrity sha512-L4tg2K5cUWYUhobcPNqS9cmKLUrMd30tLRmkwfqb/GDzrQKNeW9ltIpyl3cE+FOzk4KacSOmHMkcNzco25327g==
+bappo-components@0.1.0-alpha.106:
+  version "0.1.0-alpha.106"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.106.tgz#3ced02eb0206243520fbbd3498aa47928553bc1c"
+  integrity sha512-N5SUR9/ttmMnzvZT8DI+8Nf/M2+Tlgm1jrEZ8Fni7Pjf7BwcYgEb6zJczup7uFzSXzS37dtIvGGyhh8zQaCHTw==
   dependencies:
-    "@babel/runtime" "^7.4.3"
+    "@babel/runtime" "7.5.5"
     es6-error "^4.1.1"
     exenv "^1.2.2"
     fbjs "^0.8.16"
