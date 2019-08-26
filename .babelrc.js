@@ -7,6 +7,7 @@ const plugins = [
       loose: true,
     },
   ],
+  require.resolve('babel-plugin-lodash'),
   require.resolve('babel-plugin-styled-components'),
 ];
 
