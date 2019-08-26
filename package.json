@@ -41,7 +41,7 @@
     "postpublish": "yarn --cwd storybook/storybook-web run release"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
+    "@babel/runtime": "7.5.5",
     "es6-error": "^4.1.1",
     "exenv": "^1.2.2",
     "fbjs": "^0.8.16",
@@ -55,14 +55,16 @@
     "react-responsive": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-transform-destructuring": "^7.4.4",
-    "@babel/plugin-transform-flow-strip-types": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
+    "@babel/plugin-transform-destructuring": "7.5.0",
+    "@babel/plugin-transform-flow-strip-types": "7.4.4",
+    "@babel/plugin-transform-runtime": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.3.3",
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.129",
     "@types/react": "^16.8.17",
