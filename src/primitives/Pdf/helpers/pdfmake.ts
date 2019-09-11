@@ -231,15 +231,28 @@ function sanitizeDefinition(definition: any) {
   return set(fontPropertyPath, defaultFont.name, definition);
 }
 
+function sanitizeTableLayouts(tableLayouts: any) {
+  if (tableLayouts === undefined) return tableLayouts;
+  if (typeof tableLayouts !== 'object' || tableLayouts === 'null') {
+    throw new Error(`Pdf: Invalid table layouts`);
+  }
+  return tableLayouts;
+}
+
 export async function createDataUrlFromDefinition(
   definition: any,
+  tableLayouts?: any,
 ): Promise<string> {
   const sanitizedDefinition = sanitizeDefinition(definition);
+  const sanitizedTableLayouts = sanitizeTableLayouts(tableLayouts);
 
   // TODO: only wait for fonts used by the definition
   await waitForFonts();
 
-  const pdfDocGenerator = pdfMake.createPdf(sanitizedDefinition);
+  const pdfDocGenerator = pdfMake.createPdf(
+    sanitizedDefinition,
+    sanitizedTableLayouts,
+  );
   return new Promise(resolve => {
     pdfDocGenerator.getDataUrl(resolve);
   });

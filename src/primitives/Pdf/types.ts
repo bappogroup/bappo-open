@@ -4,6 +4,7 @@ export type PdfUriSource = {
 
 export type PdfDefinitionSource = {
   definition: {};
+  tableLayouts?: {};
 };
 
 export interface PdfProps {

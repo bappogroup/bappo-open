@@ -5,9 +5,46 @@ import { Code } from '../../../../ui-explorer';
 const httpUrl =
   'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
 const definition = {
-  content: 'Document created from definition',
+  content: [
+    'Document created from definition',
+    {
+      layout: 'exampleLayout',
+      table: {
+        headerRows: 1,
+        widths: ['*', 'auto', 100, '*'],
+
+        body: [
+          ['First', 'Second', 'Third', 'The last one'],
+          ['Value 1', 'Value 2', 'Value 3', 'Value 4'],
+          [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
+        ],
+      },
+    },
+  ],
   info: {
     title: 'Document created from definition',
+  },
+};
+const tableLayouts = {
+  exampleLayout: {
+    hLineWidth: (i, node) => {
+      if (i === 0 || i === node.table.body.length) {
+        return 0;
+      }
+      return i === node.table.headerRows ? 2 : 1;
+    },
+    vLineWidth: i => {
+      return 0;
+    },
+    hLineColor: i => {
+      return i === 1 ? 'black' : '#aaa';
+    },
+    paddingLeft: i => {
+      return i === 0 ? 0 : 8;
+    },
+    paddingRight: (i, node) => {
+      return i === node.table.widths.length - 1 ? 0 : 8;
+    },
   },
 };
 
@@ -31,15 +68,53 @@ const PdfPropSourceExample = () => {
       />
       <Code>{`source={
   definition: {
-    content: 'Document created from definition',
+    content: [
+      'Document created from definition',
+      {
+        layout: "exampleLayout",
+        table: {
+          headerRows: 1,
+          widths: ['*', 'auto', 100, '*'],
+  
+          body: [
+            ['First', 'Second', 'Third', 'The last one'],
+            ['Value 1', 'Value 2', 'Value 3', 'Value 4'],
+            [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
+          ],
+        },
+      },
+    ],
     info: {
       title: 'Document created from definition'
     }
+  },
+  tableLayouts: {
+    exampleLayout: {
+      hLineWidth: (i, node) => {
+        if (i === 0 || i === node.table.body.length) {
+          return 0;
+        }
+        return i === node.table.headerRows ? 2 : 1;
+      },
+      vLineWidth: i => {
+        return 0;
+      },
+      hLineColor: i => {
+        return i === 1 ? 'black' : '#aaa';
+      },
+      paddingLeft: i => {
+        return i === 0 ? 0 : 8;
+      },
+      paddingRight: (i, node) => {
+        return i === node.table.widths.length - 1 ? 0 : 8;
+      },
+    },
   }
 }`}</Code>
       <Pdf
         source={{
           definition,
+          tableLayouts,
         }}
         style={styles.pdf}
       />
