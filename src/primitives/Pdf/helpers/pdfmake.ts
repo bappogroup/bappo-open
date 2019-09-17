@@ -1,13 +1,14 @@
 import { get, set } from 'lodash/fp';
 import pdfMake from 'pdfmake';
 import InteractionManager from '../../../internals/InteractionManager';
+import { PdfDefinitionSource } from '../types';
 
 const filePathSymbol = Symbol('pdfFilePath');
 
 interface FontFileDefinition {
   fileName: string;
   url: string;
-  [filePathSymbol]: string;
+  [filePathSymbol]?: string;
 }
 
 const getStandardFontFileDefinition = (
@@ -141,72 +142,87 @@ async function fetchFontFileWithRetry(
   }
 }
 
-const fileStatusMap: {
-  [fileName: string]: 'pending' | 'fulfilled' | 'rejected';
-} = {};
-let resolveAllFilesSettled = () => {};
-const allFontFilesSettled = new Promise(resolve => {
-  resolveAllFilesSettled = resolve;
-});
-const tryResolveAllFilesSettled = () => {
-  if (
-    Object.values(fileStatusMap).every(
-      status => status === 'fulfilled' || status === 'rejected',
-    )
-  ) {
-    resolveAllFilesSettled();
-  }
+const createFileManager = () => {
+  const fileStatusMap: {
+    [fileName: string]: 'pending' | 'fulfilled' | 'rejected';
+  } = {};
+  let allFontFilesSettled = false;
+  let resolveAllFilesSettled: () => void;
+  let allFontFilesSettledPromise = new Promise(resolve => {
+    resolveAllFilesSettled = () => {
+      allFontFilesSettled = true;
+      resolve();
+    };
+  });
+  const tryResolveAllFilesSettled = () => {
+    if (
+      Object.values(fileStatusMap).every(
+        status => status === 'fulfilled' || status === 'rejected',
+      )
+    ) {
+      resolveAllFilesSettled();
+    }
+  };
+
+  return {
+    add(fileName: string, fetchFile: () => Promise<any>) {
+      if (fileStatusMap[fileName]) {
+        // file already loaded
+        return;
+      }
+
+      // reset promise if it's already settled
+      if (allFontFilesSettled) {
+        allFontFilesSettledPromise = new Promise(resolve => {
+          resolveAllFilesSettled = () => {
+            allFontFilesSettled = true;
+            resolve();
+          };
+        });
+      }
+
+      fileStatusMap[fileName] = 'pending';
+      fetchFile()
+        .then(() => {
+          fileStatusMap[fileName] = 'fulfilled';
+          tryResolveAllFilesSettled();
+        })
+        .catch(err => {
+          console.error(err);
+          fileStatusMap[fileName] = 'rejected';
+          tryResolveAllFilesSettled();
+        });
+    },
+    async waitForAll() {
+      await allFontFilesSettledPromise;
+    },
+  };
 };
+const fileManager = createFileManager();
+
 function loadFontIfNecessary(
   fontName: string,
   fontStyle: string,
   fontFileDefinition: FontFileDefinition,
 ) {
   const { fileName } = fontFileDefinition;
-  if (!fileStatusMap[fileName]) {
-    fileStatusMap[fileName] = 'pending';
-    fetchFontFileWithRetry(fontName, fontStyle, fontFileDefinition)
-      .then(() => {
-        fileStatusMap[fileName] = 'fulfilled';
-        tryResolveAllFilesSettled();
-      })
-      .catch(err => {
-        console.error(err);
-        fileStatusMap[fileName] = 'rejected';
-        tryResolveAllFilesSettled();
-      });
-  }
-}
-function waitForFonts(waitMS?: number): Promise<undefined> {
-  let timeout: any;
-  return new Promise(resolve => {
-    if (waitMS) {
-      timeout = setTimeout(() => {
-        timeout = undefined;
-        resolve();
-      }, waitMS);
-    }
-
-    allFontFilesSettled.then(() => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      resolve();
-    });
-  });
-}
-
-export function initializePdfFonts() {
-  // point all fonts to the default font so that if some fonts are unavailable
-  // we can still show something instead of crashing
-  if (!pdfMake.fonts) {
-    pdfMake.fonts = {};
-  }
-  Object.keys(fontDefinitions).forEach(fontName => {
+  if (!pdfMake.fonts[fontName]) {
+    // point to the default font so that if the font failed to load we can still
+    // show something instead of crashing
     pdfMake.fonts[fontName] = {
       normal: fontDefinitions[defaultFont.name][defaultFont.style].fileName,
     };
-  });
+  }
+
+  fileManager.add(fileName, () =>
+    fetchFontFileWithRetry(fontName, fontStyle, fontFileDefinition),
+  );
+}
+
+export function initializePdfFonts() {
+  if (!pdfMake.fonts) {
+    pdfMake.fonts = {};
+  }
 
   // load all font files if not loaded yet
   InteractionManager.runAfterInteractions(async () => {
@@ -239,15 +255,30 @@ function sanitizeTableLayouts(tableLayouts: any) {
   return tableLayouts;
 }
 
-export async function createDataUrlFromDefinition(
-  definition: any,
-  tableLayouts?: any,
-): Promise<string> {
+export async function createDataUrlFromDefinition({
+  definition,
+  fonts,
+  tableLayouts,
+}: PdfDefinitionSource): Promise<string> {
   const sanitizedDefinition = sanitizeDefinition(definition);
   const sanitizedTableLayouts = sanitizeTableLayouts(tableLayouts);
 
+  // load custom fonts
+  if (fonts) {
+    Object.entries(fonts).forEach(([fontName, fontDefinition]) => {
+      Object.entries(fontDefinition).forEach(([fontStyle, url]) => {
+        if (url) {
+          loadFontIfNecessary(fontName, fontStyle, {
+            fileName: `${fontName}-${fontStyle}`,
+            url,
+          });
+        }
+      });
+    });
+  }
+
   // TODO: only wait for fonts used by the definition
-  await waitForFonts();
+  await fileManager.waitForAll();
 
   const pdfDocGenerator = pdfMake.createPdf(
     sanitizedDefinition,

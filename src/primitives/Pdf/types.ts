@@ -4,6 +4,14 @@ export type PdfUriSource = {
 
 export type PdfDefinitionSource = {
   definition: {};
+  fonts?: {
+    [fontFamily: string]: {
+      normal?: string;
+      bold?: string;
+      italics?: string;
+      bolditalics?: string;
+    };
+  };
   tableLayouts?: {};
 };
 

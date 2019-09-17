@@ -16,13 +16,27 @@ const definition = {
         body: [
           ['First', 'Second', 'Third', 'The last one'],
           ['Value 1', 'Value 2', 'Value 3', 'Value 4'],
-          [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
+          [
+            {
+              text: 'Bold value',
+              bold: true,
+              style: {
+                font: 'Helvetica',
+              },
+            },
+            'Val 2',
+            'Val 3',
+            'Val 4',
+          ],
         ],
       },
     },
   ],
   info: {
     title: 'Document created from definition',
+  },
+  defaultStyle: {
+    font: 'Open Sans',
   },
 };
 const tableLayouts = {
@@ -47,6 +61,12 @@ const tableLayouts = {
     },
   },
 };
+const fonts = {
+  'Open Sans': {
+    normal:
+      'https://unpkg.com/npm-font-open-sans@1.1.0/fonts/Regular/OpenSans-Regular.ttf',
+  },
+};
 
 const PdfPropSourceExample = () => {
   return (
@@ -66,7 +86,8 @@ const PdfPropSourceExample = () => {
         }}
         style={styles.pdf}
       />
-      <Code>{`source={
+      <Code>
+        {`source={
   definition: {
     content: [
       'Document created from definition',
@@ -79,14 +100,28 @@ const PdfPropSourceExample = () => {
           body: [
             ['First', 'Second', 'Third', 'The last one'],
             ['Value 1', 'Value 2', 'Value 3', 'Value 4'],
-            [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
+            [
+              {
+                text: 'Bold value',
+                bold: true,
+                style: {
+                  font: 'Helvetica',
+                },
+              },
+              'Val 2',
+              'Val 3',
+              'Val 4',
+            ],
           ],
         },
       },
     ],
     info: {
       title: 'Document created from definition'
-    }
+    },
+    defaultStyle: {
+      font: "Open Sans"
+    },
   },
   tableLayouts: {
     exampleLayout: {
@@ -109,12 +144,19 @@ const PdfPropSourceExample = () => {
         return i === node.table.widths.length - 1 ? 0 : 8;
       },
     },
-  }
-}`}</Code>
+  },
+  fonts: {
+    "Open Sans": {
+      normal: "https://unpkg.com/npm-font-open-sans@1.1.0/fonts/Regular/OpenSans-Regular.ttf"
+    },
+  },
+}`}
+      </Code>
       <Pdf
         source={{
           definition,
           tableLayouts,
+          fonts,
         }}
         style={styles.pdf}
       />

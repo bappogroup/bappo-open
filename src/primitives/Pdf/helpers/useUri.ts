@@ -9,6 +9,7 @@ export function useUri(
   const definition = (source as PdfDefinitionSource).definition as
     | {}
     | undefined;
+  const fonts = (source as PdfDefinitionSource).fonts;
   const tableLayouts = (source as PdfDefinitionSource).tableLayouts;
 
   const [uriFromDefinition, setUriFromDefinition] = React.useState<
@@ -16,16 +17,20 @@ export function useUri(
   >();
   React.useEffect(() => {
     let cancelled = false;
-    if (!uri) {
-      createDataUrlFromDefinition(definition, tableLayouts).then(uri => {
+    if (definition) {
+      createDataUrlFromDefinition({
+        definition,
+        fonts,
+        tableLayouts,
+      }).then(dataUri => {
         if (cancelled) return;
-        setUriFromDefinition(uri);
+        setUriFromDefinition(dataUri);
       });
     }
     return () => {
       cancelled = true;
     };
-  }, [uri, definition, tableLayouts]);
+  }, [definition, fonts, tableLayouts, uri]);
 
   return uri || uriFromDefinition;
 }
