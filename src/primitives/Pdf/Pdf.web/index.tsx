@@ -1,6 +1,9 @@
 import React from 'react';
 import FlexIframe from '../../../internals/web/FlexIframe';
-import { initializePdfFonts } from '../helpers/pdfmake';
+import {
+  createDataUrlFromDefinition,
+  initializePdfFonts,
+} from '../helpers/pdfmake';
 import { useUri } from '../helpers/useUri';
 import { validateSource } from '../helpers/validateSource';
 import { Props } from './types';
@@ -28,3 +31,5 @@ export default function Pdf(props: Props) {
   };
   return <FlexIframe {...iframeProps} />;
 }
+
+Pdf.createDataUrlFromDefinition = createDataUrlFromDefinition;
