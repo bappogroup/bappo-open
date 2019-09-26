@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "axios": "^0.16.2",
-    "bappo-components": "0.1.0-alpha.116",
+    "bappo-components": "0.1.0-alpha.117",
     "create-react-class": "^15.6.2",
     "react": "16.8.3",
     "react-native": "0.59.0",
