@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Overlay from '../../../primitives/Overlay';
 import type { ModalProps } from '../types.js.flow';
+import { SafeAreaView } from 'react-native';
 
 type Props = ModalProps;
 
@@ -14,9 +15,9 @@ class Modal extends React.Component<Props> {
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
         <ModalOuterContainer>
-          <ModalSafeArea>
+          <SafeAreaView forceInset={{ top: 'always' }}>
             <ModalContentContainer>{children}</ModalContentContainer>
-          </ModalSafeArea>
+          </SafeAreaView>
         </ModalOuterContainer>
       </Overlay>
     );
