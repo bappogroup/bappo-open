@@ -38,7 +38,3 @@ export const BackLink = styled(TouchableView)`
   align-items: center;
   padding-left: 8px;
 `;
-
-export const ClickThrough = styled(View)`
-  pointer-events: none;
-`;

@@ -4,6 +4,7 @@ import * as React from 'react';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
 import Icon from '../Icon';
+import View from '../../primitives/View';
 import {
   ActionRow,
   LinkContainer,
@@ -49,9 +50,9 @@ class Dropdown extends React.Component<Props, State> {
         <Modal onRequestClose={this._close} visible={this.state.active}>
           <ModalContainer>
             <BackLink onPress={this._close}>
-              <ClickThrough>
+              <View pointerEvents="none">
                 <Icon name="arrow-back-ios" />
-              </ClickThrough>
+              </View>
             </BackLink>
             {actions.map(this.renderAction)}
           </ModalContainer>
