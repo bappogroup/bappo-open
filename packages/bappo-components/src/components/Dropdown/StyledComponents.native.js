@@ -32,7 +32,7 @@ export const ModalContainer = styled(View)``;
 
 export const BackLink = styled(TouchableView)`
   padding-top: 20px;
-  background-color: #eee;
+  background-color: #ddf;
   flex-direction: row;
   height: 60px;
   align-items: center;
