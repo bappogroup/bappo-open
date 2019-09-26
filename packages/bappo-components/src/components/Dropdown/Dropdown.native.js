@@ -11,6 +11,7 @@ import {
   ModalContainer,
   Label,
   BackLink,
+  ClickThrough,
 } from './StyledComponents.native.js';
 
 type RequiredProps = {
@@ -48,7 +49,9 @@ class Dropdown extends React.Component<Props, State> {
         <Modal onRequestClose={this._close} visible={this.state.active}>
           <ModalContainer>
             <BackLink onPress={this._close}>
-              <Icon name="arrow-back-ios" />
+              <ClickThrough>
+                <Icon name="arrow-back-ios" />
+              </ClickThrough>
             </BackLink>
             {actions.map(this.renderAction)}
           </ModalContainer>
