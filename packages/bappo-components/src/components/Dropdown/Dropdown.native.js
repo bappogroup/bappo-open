@@ -50,7 +50,10 @@ class Dropdown extends React.Component<Props, State> {
         <Modal onRequestClose={this._close} visible={this.state.active}>
           <ModalContainer>
             <BackLink onPress={this._close}>
-              <View pointerEvents="none">
+              <View
+                pointerEvents={'none'}
+                style={{ backgroundColor: 'yellow' }}
+              >
                 <Icon name="arrow-back-ios" />
               </View>
             </BackLink>
