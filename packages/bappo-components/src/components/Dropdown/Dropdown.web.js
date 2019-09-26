@@ -90,7 +90,7 @@ class Dropdown extends React.Component<Props, State> {
             this.el = el;
           }}
         >
-          {children || <Icon name={icon} />}
+          {children || <Icon name={icon} color="blue" />}
         </div>
         <Modal
           onRequestClose={this._close}
