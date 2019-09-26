@@ -16,6 +16,7 @@ import {
 type RequiredProps = {
   actions: any,
   icon: string,
+  iconColor: string,
 };
 type OptionalProps = {
   children: any,
@@ -32,12 +33,17 @@ class Dropdown extends React.Component<Props, State> {
   };
 
   render() {
-    const { actions, icon = 'more-vert', children } = this.props;
+    const {
+      actions,
+      icon = 'more-vert',
+      iconColor = 'black',
+      children,
+    } = this.props;
 
     return (
       <LinkContainer>
         <LinkInner onPress={() => this.setState({ active: true })}>
-          {children || <Icon name={icon} />}
+          {children || <Icon name={icon} color={iconColor} />}
         </LinkInner>
         <Modal onRequestClose={this._close} visible={this.state.active}>
           <ModalContainer>
