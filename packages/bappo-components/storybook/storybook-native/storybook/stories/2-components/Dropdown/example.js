@@ -46,7 +46,12 @@ const DropdownExample = () => (
     </Dropdown>
     <Dropdown actions={actions} icon="cloud" />
     <Dropdown actions={actions} icon="menu" align="left" />
-    <Dropdown actions={actionsWide} icon="computer" width={600} />
+    <Dropdown
+      actions={actionsWide}
+      icon="computer"
+      iconColor="blue"
+      width={600}
+    />
   </View>
 );
 
