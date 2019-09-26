@@ -1,0 +1,11 @@
+// @flow
+
+import * as React from 'react';
+
+export type ModalProps = {
+  onRequestClose: () => void,
+  children?: ?React.Node,
+  onOverlayPress?: () => void,
+  visible?: ?boolean,
+  placement?: any,
+};

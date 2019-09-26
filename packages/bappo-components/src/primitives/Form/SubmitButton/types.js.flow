@@ -1,0 +1,12 @@
+// @flow
+
+import * as React from 'react';
+import type { FormStateAndHelpersAndActions } from '../FormState/types.js.flow';
+
+export type SubmitButtonProps = {
+  children?:
+    | ?React.Node
+    | ((formState: FormStateAndHelpersAndActions) => React.Node),
+  style?: any,
+  testID?: string,
+};

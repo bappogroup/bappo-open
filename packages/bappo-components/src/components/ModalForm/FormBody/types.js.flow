@@ -1,0 +1,14 @@
+// @flow
+
+import * as React from 'react';
+
+export type FormBodyPropTypes = {
+  children?: React.Node,
+  onCancel: () => any,
+  onDelete?: ?() => any,
+  onSubmit: () => any,
+  submitButtonText?: string,
+  submitting?: boolean,
+  testID?: string,
+  title?: string,
+};

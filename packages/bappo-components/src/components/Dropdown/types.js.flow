@@ -1,0 +1,10 @@
+// @flow
+
+export type ModalFormCancelButtonProps = {
+  onPress?: () => void,
+  text?: string,
+};
+
+export type ModalFormSubmitButtonProps = {
+  text?: string,
+};

@@ -1,0 +1,41 @@
+// @flow
+
+export type BlurEvent = {
+  nativeEvent: {},
+};
+
+export type FocusEvent = {
+  nativeEvent: {},
+};
+
+export type ScrollEvent = {
+  nativeEvent: {
+    contentOffset: {
+      x: number,
+      y: number,
+    },
+    contentSize: {
+      height: number,
+      width: number,
+    },
+    layoutMeasurement: {
+      height: number,
+      width: number,
+    },
+  },
+  timeStamp: number,
+}
+
+type ViewLayout = {
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+};
+
+export type ViewLayoutEvent = {
+  nativeEvent: {
+    layout: ViewLayout,
+  },
+  timeStamp: number,
+};
