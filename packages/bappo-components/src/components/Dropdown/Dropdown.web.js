@@ -20,6 +20,7 @@ type OptionalProps = {
   align: string,
   width: number,
   children: any,
+  iconColor: string,
 };
 
 type Props = RequiredProps & OptionalProps;
