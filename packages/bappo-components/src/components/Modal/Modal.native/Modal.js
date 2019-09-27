@@ -15,9 +15,9 @@ class Modal extends React.Component<Props> {
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
         <ModalOuterContainer>
-          <SafeAreaView forceInset={{ top: 'always' }}>
+          <ModalSafeArea>
             <ModalContentContainer>{children}</ModalContentContainer>
-          </SafeAreaView>
+          </ModalSafeArea>
         </ModalOuterContainer>
       </Overlay>
     );

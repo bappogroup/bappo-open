@@ -12,7 +12,6 @@ import {
   ModalContainer,
   Label,
   BackLink,
-  ClickThrough,
 } from './StyledComponents.native.js';
 
 type RequiredProps = {
