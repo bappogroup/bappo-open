@@ -23,6 +23,7 @@ const createButton = (
     className,
     disabled,
     icon,
+    iconStyle,
     loading,
     onPress,
     style,
@@ -54,7 +55,7 @@ const createButton = (
         onPress={onPress}
         testID={testID}
       >
-        {icon && <StyledIcon {...styleProps} name={icon} />}
+        {icon && <StyledIcon {...styleProps} name={icon} style={iconStyle} />}
         {text && (
           <ButtonLabel {...styleProps} style={textStyle}>
             {text}

@@ -2,6 +2,7 @@
 
 export type ButtonContainerProps = {
   disabled?: boolean,
+  iconStyle?: any,
   onPress?: () => void,
   style?: any,
   textStyle?: any,
