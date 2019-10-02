@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Form, TextField, Text } from 'bappo-components';
+import { View, Form, SubmitButton, TextField } from 'bappo-components';
 
 class Minimal extends React.Component {
   render() {
@@ -19,9 +19,7 @@ class Minimal extends React.Component {
               type: 'email',
             }}
           />
-          <Form.SubmitButton testID="submit-button">
-            <Text>Submit</Text>
-          </Form.SubmitButton>
+          <SubmitButton text="Submit" />
         </Form>
       </View>
     );

@@ -7,11 +7,10 @@ import Icon from '../../../components/Icon';
 import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
 import FlexForm from '../../../internals/web/FlexForm';
-import { Form } from '../../../primitives/Form';
 import Text from '../../../primitives/Text';
 import TouchableView from '../../../primitives/TouchableView';
 import Button from '../../Button';
-import createButton from '../../Button/createButton';
+import SubmitButton from '../../SubmitButton';
 import {
   ModalFormHeaderCancelButton,
   ModalFormHeaderSubmitButton,
@@ -99,7 +98,7 @@ class FormBody extends React.Component<FormBodyPropTypes, State> {
                 text="Cancel"
                 testID="modalForm-footer-cancel-button"
               />
-              <ModalFormFooterSubmitButton
+              <SubmitButton
                 loading={submitting}
                 text={submitButtonText}
                 testID="modalForm-footer-submit-button"
@@ -228,5 +227,3 @@ const ModalFormFooterCancelButton = styled(Button).attrs({
 const ModalFormFooterDeleteButton = styled(Button).attrs({
   type: 'destructive',
 })``;
-
-const ModalFormFooterSubmitButton = createButton(Form.SubmitButton);

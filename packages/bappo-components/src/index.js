@@ -37,6 +37,7 @@ export { default as Card } from './components/Card';
 export { default as Dropdown } from './components/Dropdown';
 export { default as Background } from './components/Background';
 export { default as Separator } from './components/Separator';
+export { default as SubmitButton } from './components/SubmitButton';
 export { default as OldSelect } from './components/OldSelect';
 export { default as TabPicker } from './components/TabPicker';
 export { default as VerticalSeparator } from './components/VerticalSeparator';

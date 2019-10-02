@@ -4,8 +4,7 @@ import Modal from '../Modal';
 import Button from '../Button';
 import View from '../../primitives/View';
 import Text from '../../primitives/Text';
-import { Form } from '../../primitives/Form';
-import createButton from '../Button/createButton';
+import SubmitButton from '../SubmitButton';
 import { BodyContainer, headingStyle, footerStyle } from './styles';
 
 class ModalWizard extends React.Component {
@@ -176,6 +175,6 @@ const FooterButton = styled(Button)`
   margin-left: 16px;
 `;
 
-const FormSubmitButton = styled(createButton(Form.SubmitButton))`
+const FormSubmitButton = styled(SubmitButton)`
   margin-left: 16px;
 `;

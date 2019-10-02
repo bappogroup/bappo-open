@@ -7,6 +7,7 @@ export type SubmitButtonProps = {
   children?:
     | ?React.Node
     | ((formState: FormStateAndHelpersAndActions) => React.Node),
+  disabled?: boolean,
   style?: any,
   testID?: string,
 };

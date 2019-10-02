@@ -10,7 +10,13 @@ type Props = SubmitButtonProps & {
   className?: string,
 };
 
-const SubmitButton = ({ children, className, style, testID }: Props) => {
+const SubmitButton = ({
+  children,
+  className,
+  disabled,
+  style,
+  testID,
+}: Props) => {
   return (
     <FormStateConsumer>
       {formState => {
@@ -18,6 +24,7 @@ const SubmitButton = ({ children, className, style, testID }: Props) => {
           <TouchableViewBase
             className={className}
             component="button"
+            disabled={disabled}
             style={style}
             type="submit"
             testID={testID}
