@@ -47,14 +47,11 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
       "bappo-components": path.join(__dirname, "../bappo-components/es"),
-      react: path.join(__dirname, "../bappo-components/node_modules/react"),
-      "react-dom": path.join(
+      react: path.join(__dirname, "./sample-app/node_modules/react"),
+      "react-dom": path.join(__dirname, "./sample-app/node_modules/react-dom"),
+      "./sample-app/node_modules/unstable-native-dependencies": path.join(
         __dirname,
-        "../bappo-components/node_modules/react-dom"
-      ),
-      "react-dom/unstable-native-dependencies": path.join(
-        __dirname,
-        "../bappo-components/node_modules/react-dom/unstable-native-dependencies"
+        "./sample-app/node_modules/react-dom/unstable-native-dependencies"
       )
     }
   },
