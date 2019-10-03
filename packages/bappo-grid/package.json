@@ -1,6 +1,6 @@
 {
   "name": "bappo-grid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bappo Grid",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -66,8 +66,10 @@
     "babel-loader": "^8.0.6",
     "html-loader": "^0.5.5"
   },
+  "peer-dependencies": {
+    "bappo-components": "^0.1.0-alpha.122"
+  },
   "dependencies": {
-    "bappo-components": "0.1.0-alpha.122",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "styled-components": "^3.2.6"

@@ -44,7 +44,19 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "bappo-components": path.join(__dirname, "../bappo-components/es"),
+      react: path.join(__dirname, "../bappo-components/node_modules/react"),
+      "react-dom": path.join(
+        __dirname,
+        "../bappo-components/node_modules/react-dom"
+      ),
+      "react-dom/unstable-native-dependencies": path.join(
+        __dirname,
+        "../bappo-components/node_modules/react-dom/unstable-native-dependencies"
+      )
+    }
   },
   devServer: {
     port: 9001
