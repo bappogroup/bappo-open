@@ -1,11 +1,15 @@
 {
   "name": "bappo-grid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bappo Grid",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "test": "test",
-    "start": "webpack-dev-server --open --mode development"
+    "start": "webpack-dev-server --open --mode development",
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts,.tsx' src/ -d lib/",
+    "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts,.tsx' src/ -d es/"
   },
   "keywords": [
     "bappo-grid",
@@ -67,5 +71,5 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "styled-components": "^3.2.6"
-  }  
+  }
 }
