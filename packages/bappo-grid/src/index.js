@@ -23,10 +23,6 @@ class Grid extends React.Component {
   }
 
   handleScroll = ({ scrollTop, scrollLeft }) => {
-    // const element = e.target;
-    // const scrollTop = element.scrollTop;
-    // const scrollLeft = element.scrollLeft;
-
     this.rowLabels.current.scrollTo({ y: scrollTop, animated: false });
     this.columnLabels.current.scrollTo({ x: scrollLeft, animated: false });
 
@@ -125,10 +121,10 @@ class Grid extends React.Component {
     };
     return (
       <View style={{ height: this.getHeaderHeight() }}>
-        <ScrollView horizontal ref={this.columnLabels}>
+        <ScrollView horizontal={"true"} ref={this.columnLabels}>
           <TopSectionInner style={style}>
             {this.state.columns &&
-              this.state.columns.map(this.renderColumnHeader)}
+              this.state.columns.map(this.renderColumnLabel)}
           </TopSectionInner>
         </ScrollView>
       </View>
@@ -164,7 +160,7 @@ class Grid extends React.Component {
     </Item>
   );
 
-  renderColumnHeader = columnIndex => (
+  renderColumnLabel = columnIndex => (
     <Item
       key={columnIndex}
       style={{
@@ -174,7 +170,7 @@ class Grid extends React.Component {
         width: this.props.cellWidth
       }}
     >
-      {this.props.renderColumnHeader({ columnIndex })}
+      {this.props.renderColumnLabel({ columnIndex })}
     </Item>
   );
 
@@ -203,8 +199,14 @@ class Grid extends React.Component {
       // first event direct after mounting
       // we're doing it here instead of componentDidMount because we need
       // the visibleWidth and visibleHeight, everything depends on it
-      const colEnd = Math.ceil(s.visibleWidth / this.props.cellWidth) + 2;
-      const rowEnd = Math.ceil(s.visibleHeight / this.props.cellHeight) + 2;
+      const colEnd = Math.min(
+        Math.ceil(s.visibleWidth / this.props.cellWidth) + 2,
+        this.props.columnCount - 1
+      );
+      const rowEnd = Math.min(
+        Math.ceil(s.visibleHeight / this.props.cellHeight) + 2,
+        this.props.rowCount - 1
+      );
       s.rows = makeArray(0, rowEnd);
       s.columns = makeArray(0, colEnd);
     }
@@ -236,7 +238,7 @@ Grid.defaultProps = {
   columnCount: 30,
   rowLabelWidth: 80,
   renderRowLabel: ({ rowIndex }) => <Text>{rowIndex}</Text>,
-  renderColumnHeader: ({ columnIndex }) => <Text>{columnIndex}</Text>,
+  renderColumnLabel: ({ columnIndex }) => <Text>{columnIndex}</Text>,
   renderTopLeftCorner: () => null,
   renderCell: ({ columnIndex, rowIndex }) => (
     <Text>
