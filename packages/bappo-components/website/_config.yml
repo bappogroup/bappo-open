@@ -22,7 +22,7 @@ social_links:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://bappogroup.github.io/bappo-components
+url: https://bappogroup.github.io/bappo-open
 root: /bappo-components/
 permalink: :year/:month/:day/:title/
 permalink_defaults:

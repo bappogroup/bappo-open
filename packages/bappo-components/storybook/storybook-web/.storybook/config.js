@@ -13,7 +13,7 @@ addParameters({
   options: {
     theme: {
       brandTitle: 'Bappo Components',
-      brandUrl: 'https://bappogroup.github.io/bappo-components',
+      brandUrl: 'https://bappogroup.github.io/bappo-open',
     },
     isFullScreen: false,
     showPanel: false,
