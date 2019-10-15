@@ -72,7 +72,7 @@
     "html-loader": "^0.5.5"
   },
   "peerDependencies": {
-    "bappo-components": ">=0.1.0-alpha.110",
+    "bappo-components": ">=0.1.0-alpha.125",
     "react": ">=16.8.3"
   },
   "dependencies": {
