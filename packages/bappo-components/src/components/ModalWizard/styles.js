@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { bodyContainerStyle } from './common-styles';
-import ScrollView from '../../primitives/ScrollView';
+import View from '../../primitives/View';
 
-export const BodyContainer = styled(ScrollView)`
+export const BodyContainer = styled(View)`
   flex: 1;
   background-color: #fff;
   padding: 16px 32px;
