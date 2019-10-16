@@ -1,6 +1,6 @@
-import React from "react";
-import { styled, View, Text, ScrollView } from "bappo-components";
-import ScrollBox from "./scrollBox";
+import React from 'react';
+import { styled, View, Text, ScrollView } from 'bappo-components';
+import ScrollBox from './scrollBox/index.js';
 
 class Grid extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Grid extends React.Component {
 
     this.state = {
       scrollHeight: this.props.rowCount * this.props.cellHeight,
-      scrollWidth: this.props.columnCount * this.props.cellWidth
+      scrollWidth: this.props.columnCount * this.props.cellWidth,
     };
 
     this.rowLabels = React.createRef();
@@ -38,7 +38,7 @@ class Grid extends React.Component {
 
     const visible = {
       column: {},
-      row: {}
+      row: {},
     };
 
     visible.column.count =
@@ -66,7 +66,7 @@ class Grid extends React.Component {
     visible.row.end = Math.min(visible.row.end, this.props.rowCount - 1);
     visible.column.end = Math.min(
       visible.column.end,
-      this.props.columnCount - 1
+      this.props.columnCount - 1,
     );
 
     const rows = makeArray(visible.row.begin, visible.row.end);
@@ -78,7 +78,7 @@ class Grid extends React.Component {
   renderCenterSection = () => {
     const style = {
       height: this.state.scrollHeight,
-      width: this.state.scrollWidth
+      width: this.state.scrollWidth,
     };
     return (
       <CenterSectionOuter onLayout={this.onLayout}>
@@ -90,7 +90,7 @@ class Grid extends React.Component {
           <CenterSectionInner style={style}>
             {this.state.rows &&
               this.state.rows.map(ri =>
-                this.state.columns.map(ci => this.renderCell(ri, ci))
+                this.state.columns.map(ci => this.renderCell(ri, ci)),
               )}
           </CenterSectionInner>
         </ScrollBox>
@@ -117,11 +117,11 @@ class Grid extends React.Component {
 
   renderTopSection = () => {
     const style = {
-      width: this.state.scrollWidth + 100
+      width: this.state.scrollWidth + 100,
     };
     return (
       <View style={{ height: this.getHeaderHeight() }}>
-        <ScrollView horizontal={"true"} ref={this.columnLabels}>
+        <ScrollView horizontal={'true'} ref={this.columnLabels}>
           <TopSectionInner style={style}>
             {this.state.columns &&
               this.state.columns.map(this.renderColumnLabel)}
@@ -136,7 +136,7 @@ class Grid extends React.Component {
       <TopLeftCornerSection
         style={{
           height: this.props.headerHeight || this.props.cellHeight,
-          width: this.props.rowLabelWidth
+          width: this.props.rowLabelWidth,
         }}
       >
         {this.props.renderTopLeftCorner && this.props.renderTopLeftCorner()}
@@ -153,7 +153,7 @@ class Grid extends React.Component {
         top: rowIndex * this.props.cellHeight,
         left: 0,
         height: this.props.cellHeight,
-        width: this.props.rowLabelWidth
+        width: this.props.rowLabelWidth,
       }}
     >
       {this.props.renderRowLabel({ rowIndex })}
@@ -167,7 +167,7 @@ class Grid extends React.Component {
         top: 0,
         left: columnIndex * this.props.cellWidth,
         height: this.props.headerHeight || this.props.cellHeight,
-        width: this.props.cellWidth
+        width: this.props.cellWidth,
       }}
     >
       {this.props.renderColumnLabel({ columnIndex })}
@@ -182,7 +182,7 @@ class Grid extends React.Component {
           top: rowIndex * this.props.cellHeight,
           left: columnIndex * this.props.cellWidth,
           height: this.props.cellHeight,
-          width: this.props.cellWidth
+          width: this.props.cellWidth,
         }}
       >
         {this.props.renderCell({ rowIndex, columnIndex })}
@@ -201,11 +201,11 @@ class Grid extends React.Component {
       // the visibleWidth and visibleHeight, everything depends on it
       const colEnd = Math.min(
         Math.ceil(s.visibleWidth / this.props.cellWidth) + 2,
-        this.props.columnCount - 1
+        this.props.columnCount - 1,
       );
       const rowEnd = Math.min(
         Math.ceil(s.visibleHeight / this.props.cellHeight) + 2,
-        this.props.rowCount - 1
+        this.props.rowCount - 1,
       );
       s.rows = makeArray(0, rowEnd);
       s.columns = makeArray(0, colEnd);
@@ -244,7 +244,7 @@ Grid.defaultProps = {
     <Text>
       {columnIndex}:{rowIndex}
     </Text>
-  )
+  ),
 };
 
 export default Grid;

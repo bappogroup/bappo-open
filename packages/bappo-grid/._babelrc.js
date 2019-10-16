@@ -76,7 +76,20 @@ module.exports = {
         useBuiltIns: true,
       },
     ],
-
+    // Polyfills the runtime needed for async/await, generators, and friends
+    // https://babeljs.io/docs/en/babel-plugin-transform-runtime
+    [
+      require('@babel/plugin-transform-runtime').default,
+      {
+        corejs: false,
+        helpers: true,
+        regenerator: true,
+        // https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules
+        // We should turn this on once the lowest version of Node LTS
+        // supports ES Modules.
+        useESModules,
+      },
+    ],
     require.resolve('babel-plugin-lodash'),
     require.resolve('babel-plugin-styled-components'),
   ],
