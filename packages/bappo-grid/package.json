@@ -1,6 +1,6 @@
 {
   "name": "bappo-grid",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "Bappo Grid",
   "main": "lib/index.js",
   "module": "es/index.js",

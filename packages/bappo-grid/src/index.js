@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled, View, Text, ScrollView } from 'bappo-components';
-import ScrollBox from './scrollBox/index.js';
+import ScrollBox from './scrollBox';
 
 class Grid extends React.Component {
   constructor(props) {
