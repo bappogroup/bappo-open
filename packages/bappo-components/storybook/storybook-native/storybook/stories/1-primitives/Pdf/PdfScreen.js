@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import { View } from 'bappo-components';
 import UIExplorer, {
   AppText,
@@ -13,12 +14,9 @@ import PropSource from './examples/PropSource';
 
 const TextScreen = () => (
   <UIExplorer title="Pdf" url="1-primitives/Pdf">
+    <WebLink href={`${url}/src/primitives/Pdf`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Pdf"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Pdf/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/Pdf/examples`}
       text="Examples Code"
     />
     <Description>

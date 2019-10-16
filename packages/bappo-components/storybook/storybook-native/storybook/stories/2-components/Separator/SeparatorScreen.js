@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -12,12 +13,9 @@ import Example from './example';
 
 const SeparatorScreen = () => (
   <UIExplorer title="Separator" url="2-components/Separator">
+    <WebLink href={`${url}/src/primitives/Separator`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Separator"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/Separator/example.js"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Separator/example.js`}
       text="Examples Code"
     />
     <Description>

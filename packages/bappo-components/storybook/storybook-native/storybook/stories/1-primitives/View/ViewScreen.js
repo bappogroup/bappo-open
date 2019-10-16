@@ -10,13 +10,10 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import PropPointerEvents from './examples/PropPointerEvents';
 import StyledView from './examples/StyledView';
-
+import { url } from '../../../url';
 const ViewScreen = () => (
   <UIExplorer title="View" url="1-primitives/View">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/View"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/View`} text="Source Code" />
 
     <Description>
       <AppText>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -11,10 +12,7 @@ import Example from './examples/Example';
 
 const ModalWizardScreen = () => (
   <UIExplorer title="ModalWizard" url="2-components/ModalWizard">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/ModalWizard"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/ModalWizard`} text="Source Code" />
 
     <Description>
       <AppText>
@@ -80,7 +78,7 @@ const ModalWizardScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/ModalWizard/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/2-components/ModalWizard/examples`}
         text="Examples Code"
       />
       <DocItem

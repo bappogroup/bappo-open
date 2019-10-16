@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -16,10 +17,7 @@ import PropSubmitButtonText from './examples/PropSubmitButtonText';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/ModalForm"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/ModalForm`} text="Source Code" />
 
     <Description>
       <AppText>Form in a modal.</AppText>
@@ -63,7 +61,7 @@ const ModalFormScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/ModalForm/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/2-components/ModalForm/examples`}
         text="Examples Code"
       />
       <DocItem

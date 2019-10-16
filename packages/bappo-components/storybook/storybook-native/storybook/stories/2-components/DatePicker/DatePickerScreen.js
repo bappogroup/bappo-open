@@ -9,13 +9,11 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
+import { url } from '../../../url';
 
 const DatePickerScreen = () => (
   <UIExplorer title="DatePicker" url="2-components/DatePicker">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/DatePicker"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/DatePicker`} text="Source Code" />
 
     <Description>
       <AppText>DatePicker is an input that lets you pick a date.</AppText>

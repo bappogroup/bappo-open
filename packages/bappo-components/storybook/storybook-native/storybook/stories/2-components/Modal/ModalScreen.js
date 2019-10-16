@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -12,12 +13,9 @@ import PropOnOverlayPress from './examples/PropOnOverlayPress';
 
 const ModalScreen = () => (
   <UIExplorer title="Modal" url="2-components/Modal">
+    <WebLink href={`${url}/src/components/Modal`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Modal"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Modal/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Modal/examples`}
       text="Examples Code"
     />
 

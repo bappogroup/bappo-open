@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   Description,
   DocItem,
@@ -10,10 +11,7 @@ import WithCloseButton from './examples/WithCloseButton';
 
 const OverlayScreen = () => (
   <UIExplorer title="Overlay" url="1-primitives/Overlay">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Overlay"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/Overlay`} text="Source Code" />
 
     <Description>Show a full screen overlay on top of the page</Description>
     <Section title="Props">
@@ -56,7 +54,7 @@ const OverlayScreen = () => (
 
     <Section title="Example">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Overlay/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/Overlay/examples`}
         text="Examples Code"
       />
       <DocItem

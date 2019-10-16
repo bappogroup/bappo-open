@@ -10,13 +10,10 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
-
+import { url } from '../../../url';
 const HeadingScreen = () => (
   <UIExplorer title="Heading" url="2-components/Heading">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Heading"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/Heading`} text="Source Code" />
     <Description>
       <AppText>Heading.</AppText>
     </Description>

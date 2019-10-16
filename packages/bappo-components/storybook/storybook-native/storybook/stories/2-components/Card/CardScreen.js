@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -13,12 +14,9 @@ import Example from './example';
 
 const CardScreen = () => (
   <UIExplorer title="Card" url="2-components/Card">
+    <WebLink href={`${url}/src/components/Card`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Card"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/Card/example.js"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Card/example.js`}
       text="Examples Code"
     />
     <Description>

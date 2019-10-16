@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -13,12 +14,9 @@ import PropNumberOfLines from './examples/PropNumberOfLines';
 
 const TextScreen = () => (
   <UIExplorer title="Text" url="1-primitives/Text">
+    <WebLink href={`${url}/src/primitives/Text`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Text"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Text/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/Text/examples`}
       text="Examples Code"
     />
     <Description>

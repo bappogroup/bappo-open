@@ -10,15 +10,13 @@ import UIExplorer, {
   Section,
 } from '../../../ui-explorer';
 import Example from './example';
+import { url } from '../../../url';
 
 const DropdownScreen = () => (
   <UIExplorer title="Dropdown" url="2-components/Dropdown">
+    <WebLink href={`${url}/src/components/Dropdown`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Dropdown"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/Dropdown/example.js"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Dropdown/example.js`}
       text="Example Code"
     />
 

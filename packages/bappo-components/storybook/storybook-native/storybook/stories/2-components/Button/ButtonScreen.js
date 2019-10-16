@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -17,12 +18,9 @@ import PropLoading from './examples/PropLoading';
 
 const ButtonScreen = () => (
   <UIExplorer title="Button" url="2-components/Button">
+    <WebLink href={`${url}/src/components/Button`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Button"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Button/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Button/examples`}
       text="Examples Code"
     />
 

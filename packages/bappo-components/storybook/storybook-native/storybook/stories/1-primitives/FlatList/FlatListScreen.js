@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -20,12 +21,9 @@ import PropListEmptyComponent from './examples/PropListEmptyComponent';
 
 const FlatListScreen = () => (
   <UIExplorer title="FlatList" url="1-primitives/FlatList">
+    <WebLink href={`${url}/src/primitives/FlatList`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/FlatList"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/FlatList/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/FlatList/examples`}
       text="Examples Code"
     />
 

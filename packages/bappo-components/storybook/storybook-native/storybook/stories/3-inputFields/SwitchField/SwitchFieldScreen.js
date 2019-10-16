@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -13,7 +14,7 @@ import Minimal from './examples/Minimal';
 const SwitchFieldScreen = () => (
   <UIExplorer title="SwitchField" url="3-inputFields/SwitchField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SwitchField"
+      href={`${url}/src/components/input-fields/SwitchField`}
       text="Source Code"
     />
 
@@ -94,7 +95,7 @@ const SwitchFieldScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/SwitchField/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/3-inputFields/SwitchField/examples`}
         text="Examples Code"
       />
       <DocItem

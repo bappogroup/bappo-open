@@ -21,10 +21,7 @@ import TouchableWrapper from './examples/TouchableWrapper';
 
 const TextInputScreen = () => (
   <UIExplorer title="TextInput" url="1-primitives/TextInput">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TextInput"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/TextInput`} text="Source Code" />
 
     <Description>
       <AppText>

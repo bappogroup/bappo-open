@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -15,10 +16,7 @@ import Example2 from './examples/tabPickerExample2';
 
 const TabPickerScreen = () => (
   <UIExplorer title="TabPicker" url="2-components/TabPicker">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TabPicker"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/TabPicker`} text="Source Code" />
     <Description>
       <AppText>TabPicker</AppText>
     </Description>
@@ -87,7 +85,7 @@ const TabPickerScreen = () => (
     />
 
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/TabPicker/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/TabPicker/examples`}
       text="Examples Code"
     />
 

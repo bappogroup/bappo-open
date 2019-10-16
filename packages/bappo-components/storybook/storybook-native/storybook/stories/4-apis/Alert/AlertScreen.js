@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -11,10 +12,7 @@ import Minimal from './examples/Minimal';
 
 const AlertScreen = () => (
   <UIExplorer title="Alert" url="3-apis/Alert">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/apis/Alert"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/apis/Alert`} text="Source Code" />
     <Description>
       <AppText>
         Launches an alert dialog with the specified title and message.
@@ -56,7 +54,7 @@ const AlertScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/4-apis/Alert/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/4-apis/Alert/examples`}
         text="Examples Code"
       />
       <DocItem

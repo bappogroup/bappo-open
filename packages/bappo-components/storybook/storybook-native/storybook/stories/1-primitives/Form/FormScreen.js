@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -13,10 +14,7 @@ import GetFieldValues from './examples/GetFieldValues';
 
 const FormScreen = () => (
   <UIExplorer title="Form" url="1-primitives/Form">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/Form"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/Form`} text="Source Code" />
 
     <Description>
       <AppText>Form</AppText>
@@ -90,7 +88,7 @@ const FormScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/Form/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/Form/examples`}
         text="Examples Code"
       />
       <DocItem

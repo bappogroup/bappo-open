@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -13,7 +14,7 @@ import Minimal from './examples/Minimal';
 const TimeFieldScreen = () => (
   <UIExplorer title="TimeField" url="3-inputFields/TimeField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/TimeField"
+      href={`${url}/src/components/input-fields/TimeField`}
       text="Source Code"
     />
 
@@ -115,7 +116,7 @@ const TimeFieldScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/TimeField/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/3-inputFields/TimeField/examples`}
         text="Examples Code"
       />
 

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -13,11 +14,11 @@ import Example from './example';
 const VerticalSeparatorScreen = () => (
   <UIExplorer title="Separator(Vertical)" url="2-components/Separator">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/VerticalSeparator"
+      href={`${url}/src/primitives/VerticalSeparator`}
       text="Source Code"
     />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/blob/master/storybook/storybook-native/storybook/stories/2-components/VerticalSeparator/example.js"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/VerticalSeparator/example.js`}
       text="Examples Code"
     />
     <Description>

@@ -10,13 +10,10 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import Example from './example';
-
+import { url } from '../../../url';
 const BackgroundScreen = () => (
   <UIExplorer title="Background" url="2-components/Background">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Background"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/Background`} text="Source Code" />
 
     <Description>
       <AppText>Background</AppText>

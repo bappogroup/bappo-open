@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -18,11 +19,11 @@ import TextInputEvents from './examples/TextInputEvents';
 const TextFieldScreen = () => (
   <UIExplorer title="TextField" url="3-inputFields/TextField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/blob/master/src/components/input-fields/TextField.js"
+      href={`${url}/src/components/input-fields/TextField.js`}
       text="Source Code"
     />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/TextField/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/3-inputFields/TextField/examples`}
       text="Examples Code"
     />
 

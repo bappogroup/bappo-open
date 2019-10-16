@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind, react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -16,12 +17,9 @@ import ScrollToEndExample from './examples/ScrollToEnd';
 
 const ScrollViewScreen = () => (
   <UIExplorer title="ScrollView" url="1-primitives/ScrollView">
+    <WebLink href={`${url}/src/primitives/ScrollView`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/ScrollView"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/ScrollView/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/ScrollView/examples`}
       text="Examples Code"
     />
 

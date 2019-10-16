@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Description,
@@ -17,7 +18,7 @@ import Multi from './examples/Multi';
 const SelectFieldScreen = () => (
   <UIExplorer title="SelectField" url="3-inputFields/SelectField">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/input-fields/SelectField"
+      href={`${url}/src/components/input-fields/SelectField`}
       text="Source Code"
     />
 
@@ -101,7 +102,7 @@ const SelectFieldScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/3-inputFields/SelectField/examples"
+        href={`${url}/storybook/storybook-native/storybook/stories/3-inputFields/SelectField/examples`}
         text="Examples Code"
       />
       <DocItem

@@ -9,13 +9,10 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import Minimal from './examples/Minimal';
-
+import { url } from '../../../url';
 const TimePickerScreen = () => (
   <UIExplorer title="TimePicker" url="2-components/TimePicker">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/TimePicker"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/primitives/TimePicker`} text="Source Code" />
     <Description>
       <AppText>TimePicker is an input that lets you pick a time.</AppText>
     </Description>

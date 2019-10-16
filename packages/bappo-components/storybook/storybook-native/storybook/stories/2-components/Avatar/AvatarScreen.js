@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   AppText,
   Code,
@@ -17,12 +18,9 @@ import PropBadge from './examples/PropBadge';
 
 const AvatarScreen = () => (
   <UIExplorer title="Avatar" url="2-components/Avatar">
+    <WebLink href={`${url}/src/components/Avatar`} text="Source Code" />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Avatar"
-      text="Source Code"
-    />
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/2-components/Avatar/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Avatar/examples`}
       text="Examples Code"
     />
 

@@ -11,13 +11,10 @@ import UIExplorer, {
   WebLink,
 } from '../../../ui-explorer';
 import AllIcons from './AllIcons';
-
+import { url } from '../../../url';
 const IconScreen = () => (
   <UIExplorer title="Icon" url="2-components/Icon">
-    <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/components/Icon"
-      text="Source Code"
-    />
+    <WebLink href={`${url}/src/components/Icon`} text="Source Code" />
     <Description>
       <AppText>Icon.</AppText>
     </Description>

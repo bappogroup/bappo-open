@@ -1,4 +1,5 @@
 import React from 'react';
+import { url } from '../../../url';
 import UIExplorer, {
   Description,
   DocItem,
@@ -13,11 +14,11 @@ import PropSize from './examples/PropSize';
 const ActivityIndicatorScreen = () => (
   <UIExplorer title="ActivityIndicator" url="1-primitives/ActivityIndicator">
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/src/primitives/ActivityIndicator"
+      href={`${url}/src/primitives/ActivityIndicator`}
       text="Source Code"
     />
     <WebLink
-      href="https://github.com/bappogroup/bappo-components/tree/master/storybook/storybook-native/storybook/stories/1-primitives/ActivityIndicator/examples"
+      href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/ActivityIndicator/examples`}
       text="Examples Code"
     />
     <Description>Displays a customizable activity indicator</Description>
