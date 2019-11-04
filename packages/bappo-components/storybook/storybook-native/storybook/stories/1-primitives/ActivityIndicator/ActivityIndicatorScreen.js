@@ -21,7 +21,7 @@ const ActivityIndicatorScreen = () => (
       href={`${url}/storybook/storybook-native/storybook/stories/1-primitives/ActivityIndicator/examples`}
       text="Examples Code"
     />
-    <Description>Displays a customizable activity indicator</Description>
+    <Description>Display a customizable activity indicator</Description>
     <Section title="Props">
       <DocItem
         name="animating?"
