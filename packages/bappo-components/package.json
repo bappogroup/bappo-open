@@ -37,8 +37,9 @@
     "test:update": "npm run test:cover -s -- --updateSnapshot",
     "test:ts": "tsc --noEmit -p ./tsconfig.json",
     "test:flow": "flow",
+    "release-storybook": "yarn --cwd storybook/storybook-web run release",
     "prepublish": "npm run build",
-    "postpublish": "yarn --cwd storybook/storybook-web run release"
+    "postpublish": "npm run release-storybook"
   },
   "dependencies": {
     "@babel/runtime": "7.5.5",

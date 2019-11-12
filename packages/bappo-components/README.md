@@ -102,6 +102,10 @@ project.ext.vectoricons: [
 apply from: "../../node_modules/bappo-components/fonts.gradle"
 ```
 
+### Update Docs
+
+`npm run release-storybook`
+
 ## Credits
 
 - This library is inspired by [ReactXP](https://github.com/Microsoft/reactxp) and [React Primitives](https://github.com/lelandrichardson/react-primitives).
