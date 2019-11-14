@@ -18,6 +18,7 @@ import TextInputRewrite, {
 } from './examples/Rewrite';
 import TextInputEvents from './examples/TextInputEvents';
 import TouchableWrapper from './examples/TouchableWrapper';
+import { url } from '../../../url';
 
 const TextInputScreen = () => (
   <UIExplorer title="TextInput" url="1-primitives/TextInput">
