@@ -54,13 +54,19 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       cursor: inherit;
     `}
   
-    ${({ numberOfLines }) =>
-      numberOfLines === 1 &&
+    ${({ numberOfLines, fontSizeValue }) =>
+      numberOfLines &&
       `
-      max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      line-height: ${fontSizeValue + 2}px;
+      max-height: ${(fontSizeValue + 2) * numberOfLines}px;
+      ::after {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
     `}
   `;
   const RootText = ChildText.withComponent(containerComponent);
