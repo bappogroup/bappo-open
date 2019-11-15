@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = ({ config }) => {
+module.exports = ({ config, mode }) => {
   const babelRule = config.module.rules[0];
   babelRule.include.push(
     path.join(__dirname, '../../storybook-native/storybook/data'),
@@ -42,7 +42,7 @@ module.exports = ({ config }) => {
     ],
   };
 
-  config.resolve.alias = {
+  prdConfig = {
     '@storybook/react-native': path.join(
       __dirname,
       '../node_modules/@storybook/react',
@@ -53,19 +53,28 @@ module.exports = ({ config }) => {
       __dirname,
       '../node_modules/react-dom/unstable-native-dependencies',
     ),
-    // only use the following for development
-    // 'bappo-components': path.join(__dirname, '../../../'),
-    // react: path.join(__dirname, '../../../node_modules/react'),
-    // 'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
-    // 'react-dom/unstable-native-dependencies': path.join(
-    //   __dirname,
-    //   '../../../node_modules/react-dom/unstable-native-dependencies',
-    // ),
-    // 'styled-components': path.join(
-    //   __dirname,
-    //   '../../../node_modules/styled-components',
-    // ),
   };
+
+  devConfig = {
+    'bappo-components': path.join(__dirname, '../../../'),
+    react: path.join(__dirname, '../../../node_modules/react'),
+    'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
+    'react-dom/unstable-native-dependencies': path.join(
+      __dirname,
+      '../../../node_modules/react-dom/unstable-native-dependencies',
+    ),
+    'styled-components': path.join(
+      __dirname,
+      '../../../node_modules/styled-components',
+    ),
+  };
+
+  if (mode === 'DEVELOPMENT') {
+    config.resolve.alias = { ...prdConfig, ...devConfig };
+  } else {
+    config.resolve.alias = { ...prdConfig };
+  }
+  // console.log('config.resolve.alias: ', config.resolve.alias);
 
   return config;
 };
