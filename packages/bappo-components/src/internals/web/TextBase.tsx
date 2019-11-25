@@ -61,10 +61,17 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       `
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 100%;
+      ${
+        numberOfLines === 1
+          ? `white-space: nowrap;`
+          : `
       line-height: ${fontSizeValue + 2}px;
       max-height: ${(fontSizeValue + 2) * numberOfLines}px;
-      max-width: 100%;
+      `
+      }
       ${ellipsis &&
+        numberOfLines !== 1 &&
         `::after {
           content: '...';
           position: absolute;

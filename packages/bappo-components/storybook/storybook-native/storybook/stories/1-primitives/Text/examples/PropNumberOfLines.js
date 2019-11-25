@@ -4,11 +4,11 @@ import { Text, View } from 'bappo-components';
 const TextNumberOfLinesExample = () => (
   <View style={{ maxWidth: 320 }}>
     <Text numberOfLines={1} style={{ marginBottom: 20 }}>
-      Maximum of one line without an ellipsis
+      Maximum of one line
     </Text>
-    <Text numberOfLines={1} ellipsis>
-      Maximum of one line with an ellipsis, no matter how much I write here. If
-      I keep writing, it
+    <Text numberOfLines={2}>
+      Maximum of two line without an ellipsis, no matter how much I write here.
+      If I keep writing, it
       {"'"}
       ll just truncate after one line.
     </Text>
