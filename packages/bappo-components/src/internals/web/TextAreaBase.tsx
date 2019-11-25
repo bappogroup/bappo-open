@@ -23,7 +23,7 @@ function TextAreaBase({
         return (
           <StyledTextArea
             {...props}
-            aria-lable={accessibilityLabel}
+            aria-label={accessibilityLabel}
             data-testid={testID}
             innerRef={nativeRef as any}
             fontFamilyValue={fontFamily}

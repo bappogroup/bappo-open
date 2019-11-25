@@ -5,30 +5,30 @@ import styled, { keyframes } from 'styled-components';
 // $FlowFixMe typescript
 import ViewBase from '../../internals/web/ViewBase';
 
-type Props = {
-  /**
-   * Whether to show the indicator (true, the default) or hide it (false).
-   */
-  animating: boolean,
-  className?: string,
-  /**
-   * The foreground color of the spinner (default is gray).
-   */
-  color: string,
-  /**
-   * Size of the indicator (default is 'small').
-   */
-  size: 'small' | 'large',
-  // TODO
-  style?: any,
-};
+// type Props = {
+//   /**
+//    * Whether to show the indicator (true, the default) or hide it (false).
+//    */
+//   animating: boolean;
+//   className?: string;
+//   /**
+//    * The foreground color of the spinner (default is gray).
+//    */
+//   color: string;
+//   /**
+//    * Size of the indicator (default is 'small').
+//    */
+//   size: 'small' | 'large';
+//   // TODO
+//   style?: any;
+// };
 
 const sizeMap = {
   small: 20,
   large: 36,
 };
 
-class ActivityIndicator extends React.Component<Props> {
+class ActivityIndicator extends React.Component {
   static defaultProps = {
     animating: true,
     color: '#999',
@@ -42,7 +42,6 @@ class ActivityIndicator extends React.Component<Props> {
 
     const containerStyleProps = {
       className,
-      hide: !animating,
       style,
     };
     const spinnerContainerStyleProps = {
@@ -52,8 +51,11 @@ class ActivityIndicator extends React.Component<Props> {
       color,
     };
 
+    const containerStyle = {};
+    if (!animating) containerStyle.visibility = 'hidden';
+
     return (
-      <Container {...containerStyleProps}>
+      <Container {...containerStyleProps} style={containerStyle}>
         <SpinnerContainer {...spinnerContainerStyleProps}>
           <Svg height="100%" viewBox="25 25 50 50" width="100%">
             <Circle
@@ -77,7 +79,6 @@ export default ActivityIndicator;
 const Container = styled(ViewBase)`
   align-items: center;
   justify-content: center;
-  ${({ hide }) => hide && 'visibility: hidden;'};
 `;
 
 const SpinnerContainer = styled(ViewBase)`

@@ -26,6 +26,7 @@ type OptionalProps = {
   testID?: string,
   title?: string,
   visible?: ?boolean,
+  placement?: { type: string },
 };
 type Props = RequiredProps & OptionalProps;
 
@@ -39,6 +40,7 @@ class ModalForm extends React.Component<Props> {
       testID,
       title,
       visible,
+      placement,
     } = this.props;
 
     return (
@@ -53,6 +55,7 @@ class ModalForm extends React.Component<Props> {
           return (
             <Modal
               onRequestClose={() => this._onCancel(formStateAndActions)}
+              placement={placement}
               visible={visible}
             >
               <ModalFormBody

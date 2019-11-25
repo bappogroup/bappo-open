@@ -33,6 +33,7 @@ class ModalFormDependentFieldExample extends React.Component {
           }
           title="Modal Form Dependent Field Example"
           visible={this.state.modalVisible}
+          placement={{ type: 'fullscreen' }}
         >
           {({ getFieldValue }) => {
             const country = getFieldValue('country');
