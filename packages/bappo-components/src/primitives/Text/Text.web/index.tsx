@@ -5,6 +5,7 @@ import { TextProps } from '../types';
 type Props = TextProps & {
   // will be removed
   className?: string;
+  ellipsis?: boolean;
 };
 
 export default function Text({
@@ -15,6 +16,7 @@ export default function Text({
   selectable,
   style,
   testID,
+  ellipsis,
 }: Props) {
   const props = {
     accessibilityLabel,
@@ -24,6 +26,7 @@ export default function Text({
     selectable,
     style,
     testID,
+    ellipsis,
   };
 
   return <TextBase {...props} />;

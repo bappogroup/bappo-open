@@ -6,6 +6,7 @@ import { TextProps } from '../../primitives/Text/types';
 
 type TextBaseProps = TextProps & {
   className?: string;
+  ellipsis?: boolean;
 };
 
 interface InternalProps {
@@ -22,6 +23,7 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     numberOfLines?: number;
     isParentAText: boolean;
     selectable?: boolean;
+    ellipsis?: boolean;
   }>`
     box-sizing: border-box;
     color: ${Colors.BLACK};
@@ -54,19 +56,21 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       cursor: inherit;
     `}
   
-    ${({ numberOfLines, fontSizeValue }) =>
+    ${({ numberOfLines, fontSizeValue, ellipsis }) =>
       numberOfLines &&
       `
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: ${fontSizeValue + 2}px;
       max-height: ${(fontSizeValue + 2) * numberOfLines}px;
-      ::after {
-        content: '...';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-      }
+      max-width: 100%;
+      ${ellipsis &&
+        `::after {
+          content: '...';
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }`}
     `}
   `;
   const RootText = ChildText.withComponent(containerComponent);
@@ -80,6 +84,7 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     selectable,
     style,
     testID,
+    ellipsis,
   }: TextBaseProps & InternalProps) {
     // import after mount so that it doesn't break server-side rendering
     React.useEffect(() => {
@@ -96,6 +101,7 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       fontSizeValue: fontSize,
       isParentAText,
       numberOfLines,
+      ellipsis,
       selectable,
       style,
     };

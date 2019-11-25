@@ -61,9 +61,18 @@ const TextScreen = () => (
       />
 
       <DocItem
+        name="ellipsis?"
+        typeInfo="boolean"
+        description="Add an ellipsis at the end of the line."
+        example={{
+          render: () => <PropNumberOfLines />,
+        }}
+      />
+
+      <DocItem
         name="numberOfLines?"
         typeInfo="number"
-        description="Truncates the text with an ellipsis after this many lines."
+        description="Truncates the text after this many lines."
         example={{
           render: () => <PropNumberOfLines />,
         }}
