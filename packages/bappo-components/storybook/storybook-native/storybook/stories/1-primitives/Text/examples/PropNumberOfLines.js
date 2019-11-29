@@ -2,11 +2,11 @@ import React from 'react';
 import { Text, View } from 'bappo-components';
 
 const TextNumberOfLinesExample = () => (
-  <View style={{ maxWidth: 320 }}>
+  <View style={{ maxWidth: 400 }}>
     <Text numberOfLines={1} style={{ marginBottom: 20 }}>
       Maximum of one line
     </Text>
-    <Text numberOfLines={2}>
+    <Text numberOfLines={2} style={{ fontSize: 18 }}>
       Maximum of two line without an ellipsis, no matter how much I write here.
       If I keep writing, it
       {"'"}

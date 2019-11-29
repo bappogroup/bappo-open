@@ -102,10 +102,14 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
 
     const { fontFamily, fontSize } = React.useContext(FontContext);
 
+    let fontSizeValue = fontSize;
+    if (style && style.fontSize) {
+      fontSizeValue = style.fontSize;
+    }
     const styleProps = {
       className,
       fontFamilyValue: fontFamily,
-      fontSizeValue: fontSize,
+      fontSizeValue,
       isParentAText,
       numberOfLines,
       ellipsis,
