@@ -47,6 +47,10 @@ Object.defineProperties(Colors, {
     ...valuePropertyDescriptor,
     value: colors.ORANGE,
   },
+  LIGHTORANGE: {
+    ...valuePropertyDescriptor,
+    value: colors.LIGHTORANGE,
+  },
   RED: {
     ...valuePropertyDescriptor,
     value: colors.RED,
