@@ -10,6 +10,7 @@ const colors = {
   YELLOW: '#FFB75D',
   BROWN: '#B8977E',
   ORANGE: '#FF7800',
+  LIGHTORANGE: '#F3A83C',
   RED: '#C23934',
   PINK: '#F77FB3',
   PURPLE: '#976DD0',
