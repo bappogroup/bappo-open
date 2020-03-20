@@ -57,15 +57,15 @@ module.exports = ({ config, mode }) => {
 
   devConfig = {
     'bappo-components': path.join(__dirname, '../../../'),
-    react: path.join(__dirname, '../../../node_modules/react'),
-    'react-dom': path.join(__dirname, '../../../node_modules/react-dom'),
+    react: path.join(__dirname, '../node_modules/react'),
+    'react-dom': path.join(__dirname, '../node_modules/react-dom'),
     'react-dom/unstable-native-dependencies': path.join(
       __dirname,
-      '../../../node_modules/react-dom/unstable-native-dependencies',
+      '../node_modules/react-dom/unstable-native-dependencies',
     ),
     'styled-components': path.join(
       __dirname,
-      '../../../node_modules/styled-components',
+      '../node_modules/styled-components',
     ),
   };
 
