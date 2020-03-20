@@ -1,4 +1,5 @@
 import { addDecorator } from '@storybook/react-native';
+
 import centered from '../decorator-centered';
 
 addDecorator(centered);
@@ -24,6 +25,7 @@ require('./2-components/DatePicker/DatePickerScreen');
 require('./2-components/Dropdown/DropdownScreen');
 require('./2-components/Heading/HeadingScreen');
 require('./2-components/Icon/IconScreen');
+require('./2-components/IconButton/IconButtonScreen');
 require('./2-components/Modal/ModalScreen');
 require('./2-components/ModalForm/ModalFormScreen');
 require('./2-components/ModalWizard/ModalWizardScreen');
