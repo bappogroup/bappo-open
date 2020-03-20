@@ -1,3 +1,6 @@
 {
-  "javascript.validate.enable":false
+  "javascript.validate.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "prettier.configPath": "node_modules/@bappo/scripts/prettier.js",
+  "prettier.prettierPath": "node_modules/prettier"
 }

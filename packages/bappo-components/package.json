@@ -28,18 +28,19 @@
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts,.tsx' src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts,.tsx' src/ -d es/",
     "build:es:watch": "rimraf es/ && BABEL_ENV=es babel --watch --extensions '.js,.ts,.tsx' src/ -d es/",
-    "lint": "kcd-scripts lint",
+    "lint": "bappo-scripts lint",
     "test": "npm run test:web && npm run test:native",
-    "test:web": "kcd-scripts test --config jest.web.config.js",
-    "test:native": "kcd-scripts test --config jest.native.config.js",
-    "test:cover": "kcd-scripts test --coverage",
-    "test:ssr": "kcd-scripts test --config other/ssr/jest.config.js --no-watch",
+    "test:web": "bappo-scripts test --config jest.web.config.js",
+    "test:native": "bappo-scripts test --config jest.native.config.js",
+    "test:cover": "bappo-scripts test --coverage",
+    "test:ssr": "bappo-scripts test --config other/ssr/jest.config.js --no-watch",
     "test:update": "npm run test:cover -s -- --updateSnapshot",
     "test:ts": "tsc --noEmit -p ./tsconfig.json",
     "test:flow": "flow",
     "release-storybook": "yarn --cwd storybook/storybook-web run release",
     "prepublish": "npm run build",
-    "postpublish": "npm run release-storybook"
+    "postpublish": "npm run release-storybook",
+    "validate": "bappo-scripts validate"
   },
   "dependencies": {
     "@babel/runtime": "7.5.5",
@@ -66,27 +67,19 @@
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
+    "@bappo/scripts": "^1.2.0",
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.129",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-native": "^0.60.0",
     "@types/rn-fetch-blob": "^1.2.1",
-    "@typescript-eslint/eslint-plugin": "^1.9.0",
-    "babel-eslint": "^10.0.1",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-styled-components": "^1.5.1",
-    "eslint-config-react-app": "^4.0.1",
-    "eslint-plugin-flowtype": "2.50.1",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-react": "7.11.1",
     "flow-bin": "^0.82.0",
     "flow-typed": "^2.5.1",
     "git-branch-is": "^2.1.0",
-    "husky": "^1.2.0",
     "jest-styled-components": "^6.3.1",
-    "kcd-scripts": "^1.3.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native-pdf": "^5.1.3",
@@ -104,7 +97,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-branch-is master && kcd-scripts pre-commit"
+      "pre-commit": "git-branch-is master && bappo-scripts pre-commit"
     }
   },
   "rnpm": {
@@ -112,5 +105,11 @@
       "fonts"
     ]
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  }
 }
