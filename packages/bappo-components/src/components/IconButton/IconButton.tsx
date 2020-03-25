@@ -7,7 +7,7 @@ import Icon from '../Icon';
 interface IconButtonProps {
   name: string;
   color: string;
-  size: number;
+  size: number | 'small' | 'medium' | 'large' | undefined;
   onPress: () => void;
 }
 
@@ -20,7 +20,7 @@ const IconButton: React.FC<IconButtonProps> = props => {
 
   return (
     <TouchableView onPress={props.onPress}>
-      <Icon {...IconStyle} style={{ fontSize: '80px' }} />
+      <Icon {...IconStyle} />
     </TouchableView>
   );
 };
