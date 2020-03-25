@@ -24,11 +24,29 @@ const IconButtonScreen = () => (
       href={`${url}/storybook/storybook-native/storybook/stories/2-components/IconButton/example.js`}
       text="Examples Code"
     />
-    <DocItem
-      example={{
-        render: () => <Example />,
-      }}
-    />
+    <Section title="Props">
+      <DocItem name="name?" typeInfo="string" description="Icon name." />
+      <DocItem
+        name="color?"
+        typeInfo="string"
+        description="The color of each Icon"
+      />
+      <DocItem
+        name="size?"
+        typeInfo="number | 'small' | 'medium' | 'large' "
+        description="Size of Icon"
+      />
+      <DocItem
+        name="onPress?"
+        typeInfo="()=>void"
+        description="Define click event"
+      />
+      <DocItem
+        example={{
+          render: () => <Example />,
+        }}
+      />
+    </Section>
   </UIExplorer>
 );
 

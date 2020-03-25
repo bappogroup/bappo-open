@@ -1,5 +1,3 @@
-// @flow
-
 import { styled } from '../../apis/Style';
 import IconMaterial from './IconMaterial';
 

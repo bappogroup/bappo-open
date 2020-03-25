@@ -3,7 +3,7 @@ import React from 'react';
 
 const IconButtonExample = () => (
   <Background>
-    <Text>Default</Text>
+    <Text>Small</Text>
     <IconButton
       name="adjust"
       onPress={() => {
@@ -14,7 +14,7 @@ const IconButtonExample = () => (
     />
     <Text>Medium</Text>
     <IconButton
-      name="adjust"
+      name="account-circle"
       onPress={() => {
         alert('Welcom to Bappo-Components');
       }}
@@ -23,7 +23,7 @@ const IconButtonExample = () => (
     />
     <Text>Large</Text>
     <IconButton
-      name="adjust"
+      name="chat-bubble"
       onPress={() => {
         alert('Welcom to Bappo-Components');
       }}
@@ -32,12 +32,12 @@ const IconButtonExample = () => (
     />
     <Text>User Define</Text>
     <IconButton
-      name="adjust"
+      name="computer"
       onPress={() => {
         alert('Welcom to Bappo-Components');
       }}
       size={120}
-      color="red"
+      color="green"
     />
   </Background>
 );
