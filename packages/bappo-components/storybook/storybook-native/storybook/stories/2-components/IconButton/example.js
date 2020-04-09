@@ -1,15 +1,23 @@
-import { Background, Text, Colors, IconButton, styled } from 'bappo-components';
+import { Background, Colors, IconButton, Text, styled } from 'bappo-components';
 import React from 'react';
 
 const IconButtonExample = () => (
   <Background>
+    <Text>Default</Text>
+    <IconButton
+      name="360"
+      onPress={() => {
+        alert('Welcom to Bappo-Components');
+      }}
+      color="green"
+    />
     <Text>Small</Text>
     <IconButton
       name="adjust"
       onPress={() => {
         alert('Welcom to Bappo-Components');
       }}
-      fontSize="small"
+      size="small"
       color="blue"
     />
     <Text>Medium</Text>
