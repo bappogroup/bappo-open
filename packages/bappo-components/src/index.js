@@ -26,6 +26,7 @@ export { default as DatePicker } from './components/DatePicker';
 export { default as Icon } from './components/Icon';
 export { default as IconCard } from './components/IconCard';
 export { default as IconButton } from './components/IconButton';
+export { default as IconSelector } from './components/IconSelector';
 export * from './components/input-fields';
 export { default as Modal } from './components/Modal';
 export { default as ModalForm } from './components/ModalForm';

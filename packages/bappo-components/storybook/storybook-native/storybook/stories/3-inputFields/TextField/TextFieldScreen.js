@@ -1,14 +1,15 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import PropMultiline from './examples/PropMultiline';
 import PropPlaceholder from './examples/PropPlaceholder';
 import PropReadOnly from './examples/PropReadOnly';
@@ -85,6 +86,12 @@ const TextFieldScreen = () => (
         example={{
           render: () => <PropMultiline />,
         }}
+      />
+
+      <DocItem
+        name="reserveErrorSpace?"
+        typeInfo="boolean = true"
+        description="Space reserved for error message under the Textfield"
       />
 
       <DocItem

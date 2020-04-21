@@ -2,11 +2,16 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+
+import IconButton from '../../../components/IconButton';
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { breakpoint } from '../../../internals/web/breakpoint';
+import FlexDiv from '../../../internals/web/FlexDiv';
 // $FlowFixMe typescript
 import ViewBase from '../../../internals/web/ViewBase';
 import Overlay from '../../../primitives/Overlay';
+import Text from '../../../primitives/Text';
+import View from '../../../primitives/View';
 import type { ModalProps } from '../types.js.flow';
 
 type Props = ModalProps;
@@ -18,6 +23,9 @@ type State = {
 };
 
 class Modal extends React.Component<Props, State> {
+  static defaultProps = {
+    hideHeader: false,
+  };
   state = {
     modalContentLayout: null,
   };
@@ -29,7 +37,15 @@ class Modal extends React.Component<Props, State> {
   }
 
   render() {
-    const { children, onRequestClose, visible, placement } = this.props;
+    const {
+      children,
+      onRequestClose,
+      visible,
+      placement,
+      title,
+      renderFooter,
+      hideHeader,
+    } = this.props;
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
         <ModalContentContainer
@@ -39,7 +55,25 @@ class Modal extends React.Component<Props, State> {
           onLayout={this._onModalContentLayout}
           placement={placement}
         >
+          {/* There are three condition here
+          1. Bydefault the header will not show as older application using previous version modal,
+          there has been header there.
+          2. When user give a title the new modal will show title in a header
+          3. When user don't want a title but a header he will use showHeader
+          */}
+          {title || !hideHeader ? (
+            <ModalHeadr>
+              <ModalTitleContainer>
+                <ModalTitleText>{title}</ModalTitleText>
+              </ModalTitleContainer>
+              <ModalCloseIcon name="clear" onPress={onRequestClose} />
+            </ModalHeadr>
+          ) : null}
+
           {children}
+          {typeof renderFooter === 'function' ? (
+            <ModalFooter>{renderFooter()}</ModalFooter>
+          ) : null}
         </ModalContentContainer>
       </Overlay>
     );
@@ -101,6 +135,56 @@ export const ModalContentContainer = styled(ViewBase).attrs({
   @media (min-width: ${breakpoint.min}px) and (max-height: 768px) {
     max-height: 100%;
   }s
+`;
+
+const ModalHeadr = styled(View)`
+  flex: none;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px solid #dddbda;
+  height: 55px;
+`;
+
+export const ModalTitleContainer = styled(View)`
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 70px;
+  right: 70px;
+`;
+
+const ModalTitleText = styled(Text).attrs({
+  numberOfLines: 2,
+})`
+  font-size: 20px;
+  color: #2b2826;
+  line-height: 20px;
+
+  @media (max-width: ${breakpoint.max}px) {
+    font-size: 16px;
+    color: #2b2826;
+    line-height: 16px;
+    text-align: center;
+  }
+`;
+
+const ModalCloseIcon = styled(IconButton)`
+  position: absolute;
+  right: 20px;
+  top: 15px;
+`;
+
+const ModalFooter = styled(FlexDiv)`
+  flex: none;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f1f1f0;
+  border-top: 1px solid #dddbda;
+  height: 64px;
+  padding: 16px;
 `;
 
 const desktopStyle = ({ layout, placement }) => {

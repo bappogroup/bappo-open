@@ -1,14 +1,16 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import Minimal from './examples/Minimal';
+import ModalWithHeaderFooter from './examples/ModalWithHeaderFooter';
 import PropOnOverlayPress from './examples/PropOnOverlayPress';
 
 const ModalScreen = () => (
@@ -62,6 +64,18 @@ const ModalScreen = () => (
         description="Minimal"
         example={{
           render: () => <Minimal />,
+        }}
+      />
+      <DocItem
+        description="Give a Title"
+        example={{
+          render: () => <ModalWithHeaderFooter />,
+        }}
+      />
+      <DocItem
+        description="Give a Title"
+        example={{
+          render: () => <ModalWithHeaderFooter />,
         }}
       />
     </Section>

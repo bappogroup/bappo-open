@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import styled from 'styled-components';
+
 import { FormConfigProvider } from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
 import Button from '../../Button';
@@ -16,8 +17,8 @@ import {
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
 } from '../StyledComponents';
-import type { FormBodyPropTypes } from './types.js.flow';
 import FormBodyDefaultProps from './defaultProps';
+import type { FormBodyPropTypes } from './types.js.flow';
 
 const FormBody = ({
   children,
@@ -57,7 +58,7 @@ const StyledForm = styled(View)`
   flex: 1;
 `;
 
-const ModalFormTitleText = styled(Text).attrs({
+export const ModalFormTitleText = styled(Text).attrs({
   numberOfLines: 2,
 })`
   ${modalFormMobileTitleTextStyle};
@@ -69,7 +70,7 @@ const ModalFormHeaderContainer = styled.SafeAreaView`
 const ModalFormHeaderInnerContainer = styled.View`
   ${modalFormMobileHeaderStyle};
 `;
-const ModalFormHeader = ({ children }) => {
+export const ModalFormHeader = ({ children }) => {
   return (
     <ModalFormHeaderContainer>
       <ModalFormHeaderInnerContainer>{children}</ModalFormHeaderInnerContainer>

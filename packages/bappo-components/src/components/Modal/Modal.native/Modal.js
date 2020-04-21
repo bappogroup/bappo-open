@@ -1,24 +1,50 @@
 // @flow
 
 import * as React from 'react';
-import styled from 'styled-components';
-import Overlay from '../../../primitives/Overlay';
-import type { ModalProps } from '../types.js.flow';
 import { SafeAreaView } from 'react-native';
+import styled from 'styled-components';
+
+import Overlay from '../../../primitives/Overlay';
+import Text from '../../../primitives/Text';
+import {
+  ModalFormHeader,
+  ModalFormTitleText,
+} from '../../ModalForm/FormBody/FormBody.native';
+import {
+  ModalFormHeaderCancelButton,
+  ModalFormTitleContainer,
+} from '../../ModalForm/StyledComponents';
+import type { ModalProps } from '../types.js.flow';
 
 type Props = ModalProps;
 
 class Modal extends React.Component<Props> {
+  static defaultProps = {
+    hideHeader: false,
+  };
   render() {
-    const { children, onRequestClose, visible } = this.props;
+    const { children, onRequestClose, visible, title, hideHeader } = this.props;
 
     return (
       <Overlay onPress={onRequestClose} visible={visible}>
         <ModalOuterContainer>
+          {title || !hideHeader ? (
+            <ModalFormHeader>
+              <ModalFormHeaderCancelButton onPress={onRequestClose} />
+              <ModalFormTitleContainer>
+                <ModalFormTitleText>{title}</ModalFormTitleText>
+              </ModalFormTitleContainer>
+            </ModalFormHeader>
+          ) : null}
+
           <ModalSafeArea>
             <ModalContentContainer>{children}</ModalContentContainer>
           </ModalSafeArea>
         </ModalOuterContainer>
+
+        {/* {title || !hideHeader ? (
+         
+        ) : null} */}
       </Overlay>
     );
   }

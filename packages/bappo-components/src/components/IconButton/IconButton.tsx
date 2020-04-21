@@ -8,6 +8,8 @@ interface IconButtonProps {
   name: string;
   color: string;
   size: number | 'small' | 'medium' | 'large' | undefined;
+  className?: string;
+  style?: any;
   onPress: () => void;
 }
 
@@ -19,10 +21,19 @@ const IconButton: React.FC<IconButtonProps> = props => {
   };
 
   return (
-    <TouchableView onPress={props.onPress}>
+    <StyledTouchableView
+      onPress={props.onPress}
+      className={props.className}
+      style={props.style}
+    >
       <Icon {...IconStyle} />
-    </TouchableView>
+    </StyledTouchableView>
   );
 };
 
 export default IconButton;
+
+const StyledTouchableView = styled(TouchableView)`
+  align-items: center;
+  justify-content: center;
+`;
