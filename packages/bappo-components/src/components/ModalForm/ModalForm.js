@@ -1,16 +1,17 @@
 // @flow
 
 import * as React from 'react';
+
 import Alert from '../../apis/Alert';
+import { FormState } from '../../primitives/Form';
 import type {
   FormStateAndHelpers,
   FormStateAndHelpersAndActions,
   Values,
 } from '../../primitives/Form/FormState/types.js.flow';
-import { FormState } from '../../primitives/Form';
+import ModalFormBody from './FormBody';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
-import ModalFormBody from './FormBody';
 
 type RequiredProps = {
   onRequestClose: () => any,
@@ -57,6 +58,7 @@ class ModalForm extends React.Component<Props> {
               onRequestClose={() => this._onCancel(formStateAndActions)}
               placement={placement}
               visible={visible}
+              hideHeader={true}
             >
               <ModalFormBody
                 onCancel={() => this._onCancel(formStateAndActions)}
