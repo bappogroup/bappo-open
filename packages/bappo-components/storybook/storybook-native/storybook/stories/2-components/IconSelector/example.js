@@ -5,13 +5,22 @@ import {
   Text,
   styled,
 } from 'bappo-components';
-import React from 'react';
+import React, { useState } from 'react';
 
-const IconSelectorExample = () => (
-  <Background>
-    <Text>User Define</Text>
-    <IconSelector name="computer" size={24} color="green" />
-  </Background>
-);
+const IconSelectorExample = () => {
+  const [iconName, setIconName] = useState('style');
+  return (
+    <Background>
+      <Text>User Define</Text>
+      <IconSelector
+        name="computer"
+        size={24}
+        color="green"
+        value={iconName}
+        onValueChange={setIconName}
+      />
+    </Background>
+  );
+};
 
 export default IconSelectorExample;
