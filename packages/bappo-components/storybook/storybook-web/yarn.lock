@@ -2568,10 +2568,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@0.1.0-alpha.136:
-  version "0.1.0-alpha.136"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.136.tgz#718cd58df39026e1e439b8c4f9b1bf08cd4e8535"
-  integrity sha512-/39ivmLT+npvPf4EZDP5/OByQb52fFPoP4zuaSS2V05AGSFaFTh9lwk4KdXx6xx4DAkFe9ETGpbPqI/1UKeBdQ==
+bappo-components@0.1.0-alpha.137:
+  version "0.1.0-alpha.137"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.137.tgz#12e2a32a5a18ad0725792b3077ccc5c6da902089"
+  integrity sha512-YTUv5tsFEB7lrEkPm1egtQHcs3YlbIQ/IygcmwvP43Tvr7Sy8Ya+Knbm4SiKTuKaucIdQAMhl/BEc2MOlh6njA==
   dependencies:
     "@babel/runtime" "7.5.5"
     es6-error "^4.1.1"
