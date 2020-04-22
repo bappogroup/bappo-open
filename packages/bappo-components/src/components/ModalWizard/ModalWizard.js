@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { styled } from '../../apis/Style';
-import Modal from '../Modal';
-import Button from '../Button';
-import View from '../../primitives/View';
 import Text from '../../primitives/Text';
+import View from '../../primitives/View';
+import Button from '../Button';
+import Modal from '../Modal';
 import SubmitButton from '../SubmitButton';
-import { BodyContainer, headingStyle, footerStyle } from './styles';
+import { BodyContainer, footerStyle, headingStyle } from './styles';
 
 class ModalWizard extends React.Component {
   state = {
@@ -141,6 +142,7 @@ class ModalWizard extends React.Component {
         visible={visible}
         onRequestClose={onRequestClose}
         placement={placement}
+        hideHeader={true}
       >
         <HeadingContainer>
           <Heading>{currentScreen.title || 'Wizard'}</Heading>
