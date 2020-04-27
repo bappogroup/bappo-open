@@ -1,14 +1,15 @@
 // @flow
 
 import * as React from 'react';
+
+import Icon from '../Icon';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
-import Icon from '../Icon';
 import {
   ActionRow,
-  WebContainer,
-  Label,
   BackLink,
+  Label,
+  WebContainer,
 } from './StyledComponents.web.js';
 
 type RequiredProps = {
@@ -103,6 +104,7 @@ class Dropdown extends React.Component<Props, State> {
           onRequestClose={this._close}
           placement={placement}
           visible={this.state.active}
+          hideHeader={true}
         >
           <BackButton onPress={this._close} />
           {actions.map(this._renderAction)}
