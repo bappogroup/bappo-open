@@ -36,7 +36,7 @@ export default IconButton;
 
 const StyledTouchableView = styled(TouchableView)<IconButtonProps>`
   ${({ size }) => {
-    let frontSizeString;
+    let containerSizeString;
     const sizes = {
       small: 16,
       medium: 32,
@@ -46,15 +46,14 @@ const StyledTouchableView = styled(TouchableView)<IconButtonProps>`
     // Else if use input is nothing return default 16, and the container should be 24x24 to keep a space between two Icons
     // If user input small, medium or large then return the relevent one
     if (typeof size === 'number' && Number.isFinite(size) && size > 0) {
-      frontSizeString = size;
+      containerSizeString = size;
     } else if (size === 'small' || size === 'medium' || size === 'large') {
-      frontSizeString = sizes[size];
+      containerSizeString = sizes[size];
     } else {
-      frontSizeString = 16;
       return `height: 24px;
               width: 24px;`;
     }
-    return `height: ${frontSizeString}px;
-          width: ${frontSizeString}px;`;
+    return `height: ${containerSizeString}px;
+          width: ${containerSizeString}px;`;
   }};
 `;

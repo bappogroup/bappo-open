@@ -11,7 +11,7 @@ const Icon = styled(IconMaterial)<IconProps>`
   align-items: center;
   ${({ color }) => color && `color: ${color}`};
   ${({ size }) => {
-    let frontSizeString;
+    let fontSizeString;
     const sizes = {
       small: 16,
       medium: 32,
@@ -21,20 +21,20 @@ const Icon = styled(IconMaterial)<IconProps>`
     // Else if use input is nothing return default 16
     // If user input small, medium or large then return the relevent one
     if (typeof size === 'number' && Number.isFinite(size) && size > 0) {
-      frontSizeString = size;
+      fontSizeString = size;
     } else if (size === 'small' || size === 'medium' || size === 'large') {
-      frontSizeString = sizes[size];
+      fontSizeString = sizes[size];
     } else {
-      frontSizeString = 16;
+      fontSizeString = 16;
       return `height: 24px;
               line-height: 24px;
               width: 24px;
-              font-size: ${frontSizeString}px`;
+              font-size: ${fontSizeString}px`;
     }
-    return `height: ${frontSizeString}px;
-            line-height: ${frontSizeString}px;
-            width: ${frontSizeString}px;
-            font-size: ${frontSizeString}px`;
+    return `height: ${fontSizeString}px;
+            line-height: ${fontSizeString}px;
+            width: ${fontSizeString}px;
+            font-size: ${fontSizeString}px`;
   }};
 `;
 Icon.displayName = 'Icon';
