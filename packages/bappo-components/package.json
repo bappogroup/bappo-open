@@ -111,5 +111,8 @@
       "style": "module",
       "parser": "typescript"
     }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
