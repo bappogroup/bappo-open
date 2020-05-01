@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.5.5",
+    "@reach/tooltip": "^0.10.1",
     "es6-error": "^4.1.1",
     "exenv": "^1.2.2",
     "fbjs": "^0.8.16",

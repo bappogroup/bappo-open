@@ -34,7 +34,9 @@ const IconButton: React.FC<IconButtonProps> = props => {
 
 export default IconButton;
 
-const StyledTouchableView = styled(TouchableView)<IconButtonProps>`
+const StyledTouchableView = styled(TouchableView)<
+  Pick<IconButtonProps, 'size'>
+>`
   ${({ size }) => {
     let containerSizeString;
     const sizes = {

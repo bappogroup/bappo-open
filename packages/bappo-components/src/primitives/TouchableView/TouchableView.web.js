@@ -2,10 +2,11 @@
 
 /* eslint-disable react/no-direct-mutation-state */
 
-import * as React from 'react';
 import TouchEventUtils from 'fbjs/lib/TouchEventUtils';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
+
 import TouchableViewBase from '../../internals/web/TouchableViewBase';
 
 type Props = {
@@ -272,6 +273,7 @@ class TouchableView extends React.Component<Props, State> {
         role="button"
         tabIndex={disabled ? undefined : 0}
         testID={testID}
+        tooltip={this.props.tooltip}
       >
         {children}
       </TouchableViewBase>
