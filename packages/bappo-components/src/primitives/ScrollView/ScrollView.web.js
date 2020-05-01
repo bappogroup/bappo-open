@@ -47,6 +47,10 @@ type Props = {
   // TODO
   style?: any,
   /**
+   * These styles will be applied to the scroll view content container which wraps all of the child views.
+   */
+  contentContainerStyle?: any,
+  /**
    * Used to locate this view in end-to-end tests.
    */
   testID?: string,
@@ -86,6 +90,7 @@ class ScrollView extends React.Component<Props> {
       horizontal,
       onLayout,
       style,
+      contentContainerStyle,
       testID,
     } = this.props;
 
@@ -107,6 +112,7 @@ class ScrollView extends React.Component<Props> {
         <ContentContainer
           horizontal={horizontal}
           onLayout={this._onContentLayout}
+          style={contentContainerStyle}
         >
           {children}
         </ContentContainer>

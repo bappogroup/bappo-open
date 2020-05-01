@@ -1,6 +1,6 @@
 {
   "name": "bappo-components",
-  "version": "0.1.0-alpha.138",
+  "version": "0.1.0-alpha.139",
   "description": "Cross-platform React components for building Bappo apps",
   "keywords": [
     "bappo"
@@ -112,5 +112,8 @@
       "style": "module",
       "parser": "typescript"
     }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

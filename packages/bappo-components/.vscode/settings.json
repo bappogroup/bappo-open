@@ -1,6 +1,8 @@
 {
-  "javascript.validate.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.options": {
+    "config": "node_modules/@bappo/scripts/eslint.js"
+  },
   "prettier.configPath": "node_modules/@bappo/scripts/prettier.js",
   "prettier.prettierPath": "node_modules/prettier"
 }

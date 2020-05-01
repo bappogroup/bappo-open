@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 
-import React, { PureComponent } from 'react';
 import { ScrollView, Text, TouchableView, View } from 'bappo-components';
+import React, { PureComponent } from 'react';
 
 export default class ScrollToExample extends PureComponent {
   render() {
@@ -13,6 +13,7 @@ export default class ScrollToExample extends PureComponent {
           }}
           scrollEventThrottle={16} // ~60 events per second
           style={styles.scrollViewStyle}
+          contentContainerStyle={{ backgroundColor: 'pink' }}
         >
           {Array.from({ length: 50 }).map((item, i) => (
             <TouchableView key={i} onPress={() => {}} style={styles.box}>
