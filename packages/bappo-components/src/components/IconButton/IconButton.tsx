@@ -3,18 +3,14 @@ import React from 'react';
 import { styled } from '../../apis/Style';
 import TouchableView from '../../primitives/TouchableView';
 import Icon from '../Icon';
+import { IconProps } from '../Icon/Icon';
 
-interface IconButtonProps {
-  name: string;
-  color: string;
-  size: number | 'small' | 'medium' | 'large' | undefined;
+interface IconButtonProps extends IconProps {
+  onPress?: () => void;
   tooltip?: string;
-  className?: string;
-  style?: any;
-  onPress: () => void;
 }
 
-const IconButton: React.FC<IconButtonProps> = props => {
+const IconButton: React.FC<IconButtonProps> = (props) => {
   const IconStyle = {
     color: props.color,
     name: props.name,

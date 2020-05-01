@@ -1,6 +1,9 @@
 import Colors from '../../apis/Colors';
+import { ButtonContainerStyleProps } from './types';
 
-export const getFocusedBackgroundColor = ({ type }) => {
+export const getFocusedBackgroundColor = ({
+  type,
+}: Pick<ButtonContainerStyleProps, 'type'>) => {
   switch (type) {
     case 'primary':
       return '#FF9333';
@@ -15,7 +18,14 @@ export const getFocusedBackgroundColor = ({ type }) => {
   }
 };
 
-export const getBackgroundColor = ({ hasDisabledStyle, loading, type }) => {
+export const getBackgroundColor = ({
+  hasDisabledStyle,
+  loading,
+  type,
+}: Pick<
+  ButtonContainerStyleProps,
+  'hasDisabledStyle' | 'loading' | 'type'
+>) => {
   if (hasDisabledStyle) {
     return '#B3B3B3';
   }
@@ -36,7 +46,9 @@ export const getBackgroundColor = ({ hasDisabledStyle, loading, type }) => {
   }
 };
 
-export const getFocusedBorderColor = ({ type }) => {
+export const getFocusedBorderColor = ({
+  type,
+}: Pick<ButtonContainerStyleProps, 'type'>) => {
   switch (type) {
     case 'primary':
       return getFocusedBackgroundColor({ type });
@@ -51,7 +63,14 @@ export const getFocusedBorderColor = ({ type }) => {
   }
 };
 
-export const getBorderColor = ({ hasDisabledStyle, loading, type }) => {
+export const getBorderColor = ({
+  hasDisabledStyle,
+  loading,
+  type,
+}: Pick<
+  ButtonContainerStyleProps,
+  'hasDisabledStyle' | 'loading' | 'type'
+>) => {
   if (hasDisabledStyle) {
     return '#B3B3B3';
   }
@@ -72,7 +91,10 @@ export const getBorderColor = ({ hasDisabledStyle, loading, type }) => {
   }
 };
 
-export const getTextColor = ({ hasDisabledStyle, type }) => {
+export const getTextColor = ({
+  hasDisabledStyle,
+  type,
+}: Pick<ButtonContainerStyleProps, 'hasDisabledStyle' | 'type'>) => {
   if (hasDisabledStyle) {
     return 'white';
   }
@@ -90,7 +112,10 @@ export const getTextColor = ({ hasDisabledStyle, type }) => {
   }
 };
 
-export const getFocusedTextColor = ({ hasDisabledStyle, type }) => {
+export const getFocusedTextColor = ({
+  hasDisabledStyle,
+  type,
+}: Pick<ButtonContainerStyleProps, 'hasDisabledStyle' | 'type'>) => {
   if (hasDisabledStyle) {
     return 'white';
   }
@@ -108,7 +133,9 @@ export const getFocusedTextColor = ({ hasDisabledStyle, type }) => {
   }
 };
 
-export const getActiveBackgroundColor = ({ type }) => {
+export const getActiveBackgroundColor = ({
+  type,
+}: Pick<ButtonContainerStyleProps, 'type'>) => {
   switch (type) {
     case 'primary':
       return '#E36A00';
@@ -123,7 +150,9 @@ export const getActiveBackgroundColor = ({ type }) => {
   }
 };
 
-export const getActiveBorderColor = ({ type }) => {
+export const getActiveBorderColor = ({
+  type,
+}: Pick<ButtonContainerStyleProps, 'type'>) => {
   switch (type) {
     case 'primary':
       return getActiveBackgroundColor({ type });
@@ -138,6 +167,8 @@ export const getActiveBorderColor = ({ type }) => {
   }
 };
 
-export const getActiveTextColor = () => {
+export const getActiveTextColor = ({
+  type,
+}: Pick<ButtonContainerStyleProps, 'type'>) => {
   return 'white';
 };

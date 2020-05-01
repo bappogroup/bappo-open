@@ -1,37 +1,53 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import type { ButtonContainerProps, ButtonProps } from './types.js.flow';
-import { buttonContainerStyle, ButtonLabel, StyledIcon } from './styles';
+
 import ButtonSpinner from './ButtonSpinner';
+import { ButtonLabel, StyledIcon, buttonContainerStyle } from './styles';
+import { ButtonContainerStyleProps, ButtonProps } from './types';
 
 type Props = ButtonProps & {
   // Will be removed
-  className?: string,
+  className?: string;
 };
 
+interface ButtonContainerProps {
+  children?: React.ReactNode;
+  disabled?: boolean;
+  onPress?: () => void;
+  style?: any;
+  testID?: string;
+  [prop: string]: any;
+}
+
 const createButton = (
-  containerComponent: React.ComponentType<ButtonContainerProps>,
-  containerProps?: {},
+  containerComponent: React.ComponentType<
+    ButtonContainerProps & {
+      // Will be removed
+      className?: string;
+    }
+  >,
+  getContainerProps?: (
+    buttonProps: ButtonProps,
+  ) => Partial<ButtonContainerProps>,
 ) => {
-  const StyledContainer = styled(containerComponent)`
+  const StyledContainer = styled(containerComponent)<ButtonContainerStyleProps>`
     ${buttonContainerStyle};
   `;
 
-  const Button = ({
-    className,
-    disabled,
-    icon,
-    iconStyle,
-    loading,
-    onPress,
-    style,
-    textStyle,
-    testID,
-    text,
-    type,
-  }: Props) => {
+  function Button(props: Props) {
+    const {
+      className,
+      disabled,
+      icon,
+      iconStyle,
+      loading,
+      onPress,
+      style,
+      textStyle,
+      testID,
+      text,
+      type,
+    } = props;
     const styleProps = {
       // pass the original value of `disabled` so that we know if button is
       // disabled because it's loading
@@ -49,7 +65,7 @@ const createButton = (
 
     return (
       <StyledContainer
-        {...containerProps || {}}
+        {...((getContainerProps && getContainerProps(props)) || {})}
         {...containerStyleProps}
         disabled={disabled || loading}
         onPress={onPress}
@@ -64,7 +80,7 @@ const createButton = (
         {loading && <ButtonSpinner {...styleProps} />}
       </StyledContainer>
     );
-  };
+  }
 
   Button.defaultProps = {
     type: 'primary',

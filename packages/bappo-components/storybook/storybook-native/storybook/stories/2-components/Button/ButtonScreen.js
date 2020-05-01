@@ -1,20 +1,22 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
-import PropType from './examples/PropType';
+import { url } from '../../../url';
 import PropDisabled from './examples/PropDisabled';
 import PropIcon from './examples/PropIcon';
 import PropLoading from './examples/PropLoading';
+import PropTooltip from './examples/PropTooltip';
+import PropType from './examples/PropType';
 
 const ButtonScreen = () => (
   <UIExplorer title="Button" url="2-components/Button">
@@ -69,6 +71,14 @@ const ButtonScreen = () => (
         typeInfo="boolean"
         example={{
           render: () => <PropLoading />,
+        }}
+      />
+
+      <DocItem
+        name="tooltip?"
+        typeInfo="string"
+        example={{
+          render: () => <PropTooltip />,
         }}
       />
 

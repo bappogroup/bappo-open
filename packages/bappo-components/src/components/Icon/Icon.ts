@@ -1,9 +1,10 @@
+import { IconProps as BaseIconProps } from '../../apis/Icon/types';
 import { styled } from '../../apis/Style';
 import IconMaterial from './IconMaterial';
 
-interface IconProps {
-  color: string;
-  size: number | 'small' | 'medium' | 'large' | undefined;
+export interface IconProps extends BaseIconProps {
+  color?: string;
+  size?: number | 'small' | 'medium' | 'large';
 }
 
 const Icon = styled(IconMaterial)<IconProps>`
