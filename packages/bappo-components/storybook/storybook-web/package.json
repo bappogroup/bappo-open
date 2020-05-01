@@ -19,6 +19,5 @@
   "resolutions": {
     "@storybook/react/**/react": "16.8.3",
     "@storybook/react/**/react-dom": "16.8.3"
-  },
-  "version": "0.1.0-alpha.139"
+  }
 }
