@@ -7,8 +7,12 @@ const action = msg => () => {
 };
 
 const TooltipExample = () => (
-  <View>
-    <StyledButton tooltip="heihei" disabled={false} onPress={action('pressed')}>
+  <View style={{ alignItems: 'center' }}>
+    <StyledButton
+      tooltip="Your tooltip show here"
+      disabled={false}
+      onPress={action('pressed')}
+    >
       <Text>Hover for tooltip</Text>
     </StyledButton>
   </View>

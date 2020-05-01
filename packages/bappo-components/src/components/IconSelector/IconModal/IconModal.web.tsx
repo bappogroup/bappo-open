@@ -74,6 +74,7 @@ const IconModal: React.FC<IconModalProps> = ({
                         setIconName(icon);
                         setModalVisable(false);
                       }}
+                      tooltip={icon}
                     />
                   );
                 })}

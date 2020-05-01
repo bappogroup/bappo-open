@@ -8,6 +8,7 @@ interface IconButtonProps {
   name: string;
   color: string;
   size: number | 'small' | 'medium' | 'large' | undefined;
+  tooltip?: string;
   className?: string;
   style?: any;
   onPress: () => void;
@@ -26,6 +27,7 @@ const IconButton: React.FC<IconButtonProps> = props => {
       className={props.className}
       style={props.style}
       size={props.size}
+      tooltip={props.tooltip}
     >
       <Icon {...IconStyle} />
     </StyledTouchableView>
