@@ -1,16 +1,17 @@
 /* eslint-disable react/jsx-no-bind, react/jsx-sort-props */
 
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import PropHorizontal from './examples/PropHorizontal';
 import ScrollToExample from './examples/ScrollTo';
 import ScrollToEndExample from './examples/ScrollToEnd';
@@ -102,6 +103,12 @@ const ScrollViewScreen = () => (
       />
 
       <DocItem name="style?" typeInfo="style" description="Same as View" />
+
+      <DocItem
+        name="contentContainerStyle?"
+        typeInfo="style"
+        description="These styles will be applied to the scroll view content container which wraps all of the child views."
+      />
 
       <DocItem name="testID?" typeInfo="string" description="Same as View" />
     </Section>
