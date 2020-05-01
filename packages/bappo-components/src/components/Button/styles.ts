@@ -1,10 +1,10 @@
 import { css } from '../../apis/Style';
 import {
-  buttonContainerStyle,
-  buttonTextStyle,
   ButtonLabel,
   SpinnerContainer,
   StyledIcon,
+  buttonContainerStyle,
+  buttonTextStyle,
 } from './common-styles';
 import {
   getActiveBackgroundColor,
@@ -14,8 +14,9 @@ import {
   getFocusedBorderColor,
   getFocusedTextColor,
 } from './helpers';
+import { ButtonContainerStyleProps } from './types';
 
-const webButtonContainerStyle = css`
+const webButtonContainerStyle = css<ButtonContainerStyleProps>`
   ${buttonContainerStyle};
 
   ${({ disabled, type }) =>

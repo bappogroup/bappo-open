@@ -11,7 +11,8 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer';
 import { url } from '../../../url';
-import Example from './example';
+import Example from './examples/example';
+import TooltipExample from './examples/TooltipExample';
 
 const IconButtonScreen = () => (
   <UIExplorer title="IconButton" url="2-components/IconButton">
@@ -41,6 +42,15 @@ const IconButtonScreen = () => (
         typeInfo="()=>void"
         description="Define click event"
       />
+      <DocItem
+        name="tooltip?"
+        typeInfo="string"
+        description="show tooltip when hovering on it"
+        example={{
+          render: () => <TooltipExample />,
+        }}
+      />
+
       <DocItem
         example={{
           render: () => <Example />,

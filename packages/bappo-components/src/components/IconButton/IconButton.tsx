@@ -3,17 +3,14 @@ import React from 'react';
 import { styled } from '../../apis/Style';
 import TouchableView from '../../primitives/TouchableView';
 import Icon from '../Icon';
+import { IconProps } from '../Icon/Icon';
 
-interface IconButtonProps {
-  name: string;
-  color: string;
-  size: number | 'small' | 'medium' | 'large' | undefined;
-  className?: string;
-  style?: any;
-  onPress: () => void;
+interface IconButtonProps extends IconProps {
+  onPress?: () => void;
+  tooltip?: string;
 }
 
-const IconButton: React.FC<IconButtonProps> = props => {
+const IconButton: React.FC<IconButtonProps> = (props) => {
   const IconStyle = {
     color: props.color,
     name: props.name,
@@ -26,6 +23,7 @@ const IconButton: React.FC<IconButtonProps> = props => {
       className={props.className}
       style={props.style}
       size={props.size}
+      tooltip={props.tooltip}
     >
       <Icon {...IconStyle} />
     </StyledTouchableView>
@@ -34,7 +32,9 @@ const IconButton: React.FC<IconButtonProps> = props => {
 
 export default IconButton;
 
-const StyledTouchableView = styled(TouchableView)<IconButtonProps>`
+const StyledTouchableView = styled(TouchableView)<
+  Pick<IconButtonProps, 'size'>
+>`
   ${({ size }) => {
     let containerSizeString;
     const sizes = {

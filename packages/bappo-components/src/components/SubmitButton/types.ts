@@ -1,13 +1,14 @@
-export interface SubmitButtonProps {
-  disabled?: boolean;
-  icon?: string;
-  iconStyle?: any;
-  style?: any;
-  /**
-   * Used to locate this view in end-to-end tests.
-   */
-  testID?: string;
-  textStyle?: any;
-  text?: string;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'destructive';
-}
+import { ButtonProps } from '../Button/types';
+
+export type SubmitButtonProps = Pick<
+  ButtonProps,
+  | 'disabled'
+  | 'icon'
+  | 'iconStyle'
+  | 'style'
+  | 'testID'
+  | 'text'
+  | 'textStyle'
+  | 'tooltip'
+  | 'type'
+>;

@@ -13,6 +13,7 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import FeedbackEvents from './examples/FeedbackEvents';
 import PropDisabled from './examples/PropDisabled';
+import TooltipExample from './examples/TooltipExample';
 
 const TouchableViewScreen = () => (
   <UIExplorer title="TouchableView" url="1-primitives/TouchableView">
@@ -72,6 +73,14 @@ const TouchableViewScreen = () => (
       <DocItem name="style?" typeInfo="style" description="Same as View" />
 
       <DocItem name="testID?" typeInfo="string" description="Same as View" />
+      <DocItem
+        name="tooltip?"
+        typeInfo="string"
+        description="show tooltip when hovering on it"
+        example={{
+          render: () => <TooltipExample />,
+        }}
+      />
     </Section>
 
     <Section title="More examples">
