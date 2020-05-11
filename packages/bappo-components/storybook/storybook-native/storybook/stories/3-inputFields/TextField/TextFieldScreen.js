@@ -14,6 +14,7 @@ import PropMultiline from './examples/PropMultiline';
 import PropPlaceholder from './examples/PropPlaceholder';
 import PropReadOnly from './examples/PropReadOnly';
 import PropType from './examples/PropType';
+import PropValidate from './examples/PropValidate';
 import TextInputRewrite from './examples/Rewrite';
 import TextInputEvents from './examples/TextInputEvents';
 
@@ -165,6 +166,22 @@ const TextFieldScreen = () => (
         }
         example={{
           render: () => <PropType />,
+        }}
+      />
+
+      <DocItem
+        name="validate?"
+        typeInfo="((value: V) => string | undefined) | ((value: V) => string | undefined)[]"
+        description={
+          <AppText>
+            Field validator function or a list of field validator functions.
+            Return an error string or undefined if no error. Only works outside
+            a form. When inside a form, use{' '}
+            <Code>{'<Form.Field component={TextField} validate={} />'}</Code>
+          </AppText>
+        }
+        example={{
+          render: () => <PropValidate />,
         }}
       />
 

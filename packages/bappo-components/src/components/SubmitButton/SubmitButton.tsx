@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { Form } from '../../primitives/Form';
-import { FormStateConsumer } from '../../primitives/Form/FormState';
+import { useFormStateStrict } from '../../primitives/Form/FormState';
 import createButton from '../Button/createButton';
 import { SubmitButtonProps } from './types';
 
@@ -21,6 +22,8 @@ const SubmitButton = ({
   text,
   type,
 }: Props) => {
+  const { submitting } = useFormStateStrict();
+
   const props = {
     className,
     disabled,
@@ -33,13 +36,7 @@ const SubmitButton = ({
     type,
   };
 
-  return (
-    <FormStateConsumer>
-      {(formState: any) => {
-        return <Button {...props} loading={formState.submitting} />;
-      }}
-    </FormStateConsumer>
-  );
+  return <Button {...props} loading={submitting} />;
 };
 
 export default SubmitButton;

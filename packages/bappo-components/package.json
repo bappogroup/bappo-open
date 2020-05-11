@@ -48,6 +48,7 @@
     "es6-error": "^4.1.1",
     "exenv": "^1.2.2",
     "fbjs": "^0.8.16",
+    "invariant": "^2.2.4",
     "lodash": "^4.17.10",
     "moment": "^2.19.1",
     "pdfmake": "^0.1.57",
@@ -55,7 +56,8 @@
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-web": "^0.9.1",
     "react-recomponent": "^0.2.0",
-    "react-responsive": "^5.0.0"
+    "react-responsive": "^5.0.0",
+    "warning": "^4.0.3"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -69,12 +71,14 @@
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.3.3",
     "@bappo/scripts": "^1.2.0",
+    "@types/invariant": "^2.2.32",
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.129",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-native": "^0.60.0",
     "@types/rn-fetch-blob": "^1.2.1",
+    "@types/warning": "^3.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-styled-components": "^1.5.1",
     "flow-bin": "^0.82.0",

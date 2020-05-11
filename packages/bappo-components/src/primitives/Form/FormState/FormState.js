@@ -1,22 +1,23 @@
 // @flow
 
+import { flow, get, identity, merge, pick, set, unset } from 'lodash/fp';
 import * as React from 'react';
-import { get, flow, identity, merge, pick, set, unset } from 'lodash/fp';
-import { ReComponent, NoUpdate, Update } from 'react-recomponent';
+import { NoUpdate, ReComponent, Update } from 'react-recomponent';
+
+import { FormStateProvider } from './Context';
+import SubmissionError from './SubmissionError';
 import type {
-  FormActionSenders,
   ActionTypes,
   Errors,
   FieldValidator,
+  FormActionSenders,
   FormState,
-  FormValidator,
   FormStateAndHelpers,
   FormStateAndHelpersAndActions,
+  FormValidator,
   Values,
-} from './types.js.flow';
+} from './types.ts';
 import { deepEqual, unwrapChildren } from './utils';
-import { FormStateProvider } from './Context';
-import SubmissionError from './SubmissionError';
 
 type Props = {
   children: (
@@ -241,10 +242,7 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
         return Update(newState);
       }
       case 'TOUCH_ALL': {
-        const update = flow(
-          set('allTouched', true),
-          set('anyTouched', true),
-        );
+        const update = flow(set('allTouched', true), set('anyTouched', true));
         const newState = update(state);
         return Update(newState);
       }
