@@ -6,7 +6,7 @@ import { FieldState, FieldValidator, InputFieldProps } from './types';
 export function useFieldState<V>(props: InputFieldProps<V>) {
   const insideForm = !!props.fieldState;
   const [minimalState, dispatch] = React.useReducer(
-    fieldStateReducer,
+    createFieldStateReducer<V>(),
     props,
     getInitialState,
   );
@@ -76,36 +76,38 @@ type Action<V> =
       type: 'FOCUS';
     };
 
-function fieldStateReducer<V>(
-  state: MinimalFieldState<V>,
-  action: Action<V>,
-): MinimalFieldState<V> {
-  switch (action.type) {
-    case 'BLUR':
-      return {
-        ...state,
-        touched: true,
-      };
-    case 'CHANGE_VALUE_OR_VALIDATORS':
-      const newState: typeof state = {
-        ...state,
-        errors: [],
-      };
-      if (action.newValidators) {
-        newState.errors = validate(
-          getFieldStateFromMinimal(action.newValue, newState),
-          action.newValidators,
-        );
-      }
-      return newState;
-    case 'FOCUS':
-      return {
-        ...state,
-        visited: true,
-      };
-    default:
-      return state;
-  }
+function createFieldStateReducer<V>() {
+  return function fieldStateReducer(
+    state: MinimalFieldState<V>,
+    action: Action<V>,
+  ): MinimalFieldState<V> {
+    switch (action.type) {
+      case 'BLUR':
+        return {
+          ...state,
+          touched: true,
+        };
+      case 'CHANGE_VALUE_OR_VALIDATORS':
+        const newState: typeof state = {
+          ...state,
+          errors: [],
+        };
+        if (action.newValidators) {
+          newState.errors = validate(
+            getFieldStateFromMinimal(action.newValue, newState),
+            action.newValidators,
+          );
+        }
+        return newState;
+      case 'FOCUS':
+        return {
+          ...state,
+          visited: true,
+        };
+      default:
+        return state;
+    }
+  };
 }
 
 function getInitialState<V>(props: InputFieldProps<V>): MinimalFieldState<V> {

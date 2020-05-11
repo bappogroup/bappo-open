@@ -47,8 +47,9 @@ function TimeField(props: Props, ref: React.Ref<InputField>) {
       fieldState={fieldState}
       focusInput={focusInput}
       label={label}
+      onValueChange={onValueChange}
       required={required}
-      reserverErrorSpace={reserveErrorSpace}
+      reserveErrorSpace={reserveErrorSpace}
       testID={testID}
     >
       <TimePicker

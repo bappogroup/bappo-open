@@ -47,6 +47,7 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
       fieldState={fieldState}
       focusInput={focusInput}
       label={label}
+      onValueChange={onValueChange}
       reserveErrorSpace={reserveErrorSpace}
       testID={testID}
       value={value}

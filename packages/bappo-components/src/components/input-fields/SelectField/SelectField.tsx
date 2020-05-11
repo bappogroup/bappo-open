@@ -7,9 +7,9 @@ import { InputField, InputFieldProps } from '../types';
 import { useFieldState } from '../useFieldState';
 import { InputFieldWrapper } from '../wrappers';
 
-type Props<V> = InputFieldProps<V> & SelectProps;
+type Props = InputFieldProps<SelectProps['value']> & SelectProps;
 
-function SelectField<V>(props: Props<V>, ref: React.Ref<InputField>) {
+function SelectField<V>(props: Props, ref: React.Ref<InputField>) {
   const {
     fieldState: passedFieldState,
     label,
@@ -48,6 +48,7 @@ function SelectField<V>(props: Props<V>, ref: React.Ref<InputField>) {
       fieldState={fieldState}
       focusInput={focusInput}
       label={label}
+      onValueChange={onValueChange}
       required={required}
       reserveErrorSpace={reserveErrorSpace}
       testID={testID}

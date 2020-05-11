@@ -47,6 +47,7 @@ function DateField(props: Props, ref: React.Ref<InputField>) {
       fieldState={fieldState}
       focusInput={focusInput}
       label={label}
+      onValueChange={onValueChange}
       required={required}
       reserveErrorSpace={reserveErrorSpace}
       testID={testID}

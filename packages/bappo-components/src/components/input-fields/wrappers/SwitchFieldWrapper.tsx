@@ -1,19 +1,18 @@
-// @flow
+import React from 'react';
 
-import * as React from 'react';
 import { styled } from '../../../apis/Style';
 import View from '../../../primitives/View';
 import Paragraph from '../../Paragraph';
 import FieldContainer from '../FieldContainer';
 import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
-import type { InputWrapperProps } from './types.js.flow';
+import { InputWrapperProps } from './types';
 
-const SwitchFieldWrapper = (props: InputWrapperProps) => {
+function SwitchFieldWrapper(props: InputWrapperProps<boolean>) {
   const {
     children,
     className,
-    fieldState = {},
+    fieldState,
     label,
     onValueChange,
     style,
@@ -40,7 +39,7 @@ const SwitchFieldWrapper = (props: InputWrapperProps) => {
       )}
     </FieldContainer>
   );
-};
+}
 
 export default SwitchFieldWrapper;
 

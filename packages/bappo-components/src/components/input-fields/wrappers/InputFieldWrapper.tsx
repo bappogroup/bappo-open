@@ -1,22 +1,21 @@
-// @flow
+import React from 'react';
 
-import * as React from 'react';
 import Paragraph from '../../Paragraph';
 import FieldContainer from '../FieldContainer';
 import FieldLabel from '../FieldLabel';
-import TouchToFocusArea from '../TouchToFocusArea';
 import {
   FieldInputContainer,
   FieldLabelAsterisk,
   FieldLabelContainer,
 } from '../StyledComponents';
-import type { InputWrapperProps } from './types.js.flow';
+import TouchToFocusArea from '../TouchToFocusArea';
+import { InputWrapperProps } from './types';
 
-const InputFieldWrapper = (props: InputWrapperProps) => {
+function InputFieldWrapper<V>(props: InputWrapperProps<V>) {
   const {
     children,
     className,
-    fieldState = {},
+    fieldState,
     focusInput,
     label,
     required,
@@ -48,6 +47,6 @@ const InputFieldWrapper = (props: InputWrapperProps) => {
       )}
     </FieldContainer>
   );
-};
+}
 
 export default InputFieldWrapper;
