@@ -14,6 +14,7 @@
   "author": "Bappo",
   "files": [
     ".flowconfig",
+    "dist",
     "es",
     "fonts",
     "fonts.gradle",
@@ -23,8 +24,9 @@
   ],
   "main": "lib/index.js",
   "module": "es/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "npm run build:cjs && npm run build:es",
+    "build": "npm run build:cjs && npm run build:es && tsc",
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts,.tsx' src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts,.tsx' src/ -d es/",
     "build:es:watch": "rimraf es/ && BABEL_ENV=es babel --watch --extensions '.js,.ts,.tsx' src/ -d es/",
@@ -93,7 +95,7 @@
     "rn-fetch-blob": "^0.11.2",
     "styled-components": "3.4.10",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5",
+    "typescript": "^3.8.3",
     "yargs": "^12.0.2"
   },
   "peerDependencies": {

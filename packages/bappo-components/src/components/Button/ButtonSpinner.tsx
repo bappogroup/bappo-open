@@ -3,13 +3,12 @@ import React from 'react';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
 import { getFocusedTextColor } from './helpers';
 import { SpinnerContainer } from './styles';
+import { ButtonContainerStyleProps } from './types';
 
-type Props = {
-  hasDisabledStyle?: boolean;
-  type?: 'primary' | 'secondary' | 'tertiary' | 'destructive';
-};
-
-const ButtonSpinner = ({ hasDisabledStyle, type }: Props) => {
+const ButtonSpinner = ({
+  hasDisabledStyle,
+  type,
+}: Pick<ButtonContainerStyleProps, 'hasDisabledStyle' | 'type'>) => {
   const styleProps = {
     hasDisabledStyle,
     type,

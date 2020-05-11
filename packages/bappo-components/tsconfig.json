@@ -7,9 +7,13 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "node",
     "newLine": "CRLF",
-    "noEmit": true,
     "baseUrl": ".",
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
-    "strictNullChecks": true
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true
   }
 }

@@ -7,12 +7,12 @@ import {
 import { useFieldState } from './FormState';
 import { FieldValidator } from './FormState/types';
 
-interface InternalProps<
+type InternalProps<
   V,
   InputProps extends {
     [prop: string]: any;
   }
-> {
+> = {
   component: InputFieldComponent<V, InputProps>;
   inputRef: React.Ref<InputField>;
   label: string;
@@ -20,8 +20,8 @@ interface InternalProps<
   props: InputProps;
   testID?: string;
   validate?: FieldValidator | FieldValidator[];
-}
-type Props<
+};
+type FieldProps<
   V,
   InputProps extends {
     [prop: string]: any;
@@ -100,7 +100,7 @@ export const Field = React.forwardRef(
       [prop: string]: any;
     }
   >(
-    props: Props<V, InputProps>,
+    props: FieldProps<V, InputProps>,
     ref: React.Ref<InputField>,
   ) => {
     return (

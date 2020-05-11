@@ -1,3 +1,4 @@
+import chunk from 'lodash/chunk';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
@@ -14,37 +15,24 @@ interface IconModalProps {
   setIconName: (value: string) => void;
 }
 
+const iconList = Object.keys(MateriIcon);
+
 const IconModal: React.FC<IconModalProps> = ({
   modalVisable,
   setModalVisable,
   setIconName,
 }) => {
-  //Init the Iconlist from JSON file.useMemo can save resource
-  const iconList = useMemo(() => Object.keys(MateriIcon), []);
-
-  //Init the 2D array for flatList
   const ARRAY_SIZE = 23;
-  const [resultArray, setResultArray] = useState(() => {
-    const initIconArrays = [];
-    for (var i = 0; i < iconList.length; i = i + ARRAY_SIZE) {
-      initIconArrays.push(iconList.slice(i, i + ARRAY_SIZE));
-    }
-    return initIconArrays;
-  });
-
-  const [value, setValue] = useState<string>('');
-
-  // When there is a change in Textinput, filter the list and generate new 2D array.
-  const handleChange = (input: string) => {
-    setValue(input);
-    const filtedIcons = iconList.filter(icon => icon.includes(input));
-
-    const newResultArray = [];
-    for (var i = 0; i < filtedIcons.length; i = i + ARRAY_SIZE) {
-      newResultArray.push(filtedIcons.slice(i, i + ARRAY_SIZE));
-    }
-    setResultArray(newResultArray);
-  };
+  const [input, setInput] = useState('');
+  // filter the list and generate 2D array for flatList
+  const resultArray = useMemo(
+    () =>
+      chunk(
+        iconList.filter(icon => (input ? icon.includes(input) : true)),
+        ARRAY_SIZE,
+      ),
+    [input],
+  );
 
   return (
     <Modal
@@ -54,8 +42,8 @@ const IconModal: React.FC<IconModalProps> = ({
     >
       <IconsContainer>
         <TextField
-          value={value}
-          onValueChange={(value: string) => handleChange(value)}
+          value={input}
+          onValueChange={setInput}
           placeholder="Type to search Icon"
           reserveErrorSpace={false}
         />
