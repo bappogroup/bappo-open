@@ -2311,16 +2311,17 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@^0.1.0-alpha.140:
-  version "0.1.0-alpha.140"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.140.tgz#c754b5acea665466ee292cd95309f9cd5ff9f565"
-  integrity sha512-l9b2xgENZK+ETmuZQKgeTIm3pdcOlX1KcpXUUxP//3fcEAs2ZNYRzV17x6L+7Eu0a7Gxge1lq/G5NLFCX03bww==
+bappo-components@^0.1.0-alpha.141:
+  version "0.1.0-alpha.141"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.141.tgz#01f3123dbaba0023575768d20ec8dfe4743e6e32"
+  integrity sha512-i35+iJZrATV0bobe8C/6sK8fRyF7A7tDDrpCmDU1VRFAuPQx9w+XzAbU/B9Of3KMkzRnhYj1oZRWHgGdw0oXvQ==
   dependencies:
     "@babel/runtime" "7.5.5"
     "@reach/tooltip" "^0.10.1"
     es6-error "^4.1.1"
     exenv "^1.2.2"
     fbjs "^0.8.16"
+    invariant "^2.2.4"
     lodash "^4.17.10"
     moment "^2.19.1"
     pdfmake "^0.1.57"
@@ -2329,6 +2330,7 @@ bappo-components@^0.1.0-alpha.140:
     react-native-web "^0.9.1"
     react-recomponent "^0.2.0"
     react-responsive "^5.0.0"
+    warning "^4.0.3"
 
 base-64@0.1.0:
   version "0.1.0"
