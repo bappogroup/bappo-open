@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import React from 'react';
 
 import { deepEqual } from '../../primitives/Form/FormState/utils';
@@ -16,7 +17,7 @@ export function useFieldState<V>(props: InputFieldProps<V>) {
     if (
       !insideForm &&
       (props.value !== prevValueRef.current ||
-        props.validate !== prevValueRef.current)
+        props.validate !== prevValidateRef.current)
     ) {
       dispatch({
         type: 'CHANGE_VALUE_OR_VALIDATORS',
@@ -87,7 +88,8 @@ function createFieldStateReducer<V>() {
           ...state,
           touched: true,
         };
-      case 'CHANGE_VALUE_OR_VALIDATORS':
+      case 'CHANGE_VALUE_OR_VALIDATORS': {
+        const oldErrors = state.errors;
         const newState: typeof state = {
           ...state,
           errors: [],
@@ -98,7 +100,12 @@ function createFieldStateReducer<V>() {
             action.newValidators,
           );
         }
+        if (isEqual(oldErrors, newState.errors)) {
+          // Errors didn't changed. Return old state to avoid rerender.
+          return state;
+        }
         return newState;
+      }
       case 'FOCUS':
         return {
           ...state,
