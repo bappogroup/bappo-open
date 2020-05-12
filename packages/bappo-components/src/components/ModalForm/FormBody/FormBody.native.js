@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styled from 'styled-components';
 
-import { FormConfigProvider } from '../../../primitives/Form/Form.native/FormConfigContext';
+import { FormConfigContext } from '../../../primitives/Form/Form.native/FormConfigContext';
 import Text from '../../../primitives/Text';
 import Button from '../../Button';
 import {
@@ -30,7 +30,7 @@ const FormBody = ({
   title,
 }: FormBodyPropTypes) => {
   return (
-    <FormConfigProvider value={{ onSubmit }}>
+    <FormConfigContext.Provider value={{ onSubmit }}>
       <StyledForm testID={testID}>
         <ModalFormHeader>
           <ModalFormHeaderCancelButton onPress={onCancel} />
@@ -46,7 +46,7 @@ const FormBody = ({
           )}
         </ModalFormContent>
       </StyledForm>
-    </FormConfigProvider>
+    </FormConfigContext.Provider>
   );
 };
 
