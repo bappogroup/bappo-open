@@ -25,6 +25,7 @@ export interface InputFieldProps<V> {
   onBlur?: () => void;
   onFocus?: () => void;
   onValueChange?: (value: V) => void;
+  ref?: React.Ref<InputField>;
   required?: boolean;
   reserveErrorSpace?: boolean;
   testID?: string;
