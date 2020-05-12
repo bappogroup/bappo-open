@@ -1,6 +1,7 @@
 import React from 'react';
 import RN from 'react-native';
 import styled from 'styled-components';
+
 import FontContext from '../Font/FontContext';
 import { TextInputProps } from './types';
 
@@ -57,7 +58,7 @@ class TextInput extends React.Component<TextInputProps> {
       placeholder,
       style,
       testID,
-      value,
+      value: value || '',
       underlineColorAndroid: 'rgba(0, 0, 0, 0)',
     };
 

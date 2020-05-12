@@ -7,7 +7,7 @@ import { InputField, InputFieldProps } from './types';
 import { useFieldState } from './useFieldState';
 import { InputFieldWrapper } from './wrappers';
 
-type Props = InputFieldProps<string> & TextInputProps;
+type Props = Omit<InputFieldProps<string>, 'value'> & TextInputProps;
 
 function TextField(props: Props, ref: React.Ref<InputField>) {
   const {
@@ -57,7 +57,7 @@ function TextField(props: Props, ref: React.Ref<InputField>) {
         onBlur={onBlur}
         onFocus={onFocus}
         onValueChange={onValueChange}
-        value={value || ''}
+        value={value}
       />
     </InputFieldWrapper>
   );

@@ -7,7 +7,7 @@ import { InputField, InputFieldProps } from '../types';
 import { useFieldState } from '../useFieldState';
 import { InputFieldWrapper } from '../wrappers';
 
-type Props = InputFieldProps<string> & DatePickerProps;
+type Props = Omit<InputFieldProps<string>, 'value'> & DatePickerProps;
 
 function DateField(props: Props, ref: React.Ref<InputField>) {
   const {

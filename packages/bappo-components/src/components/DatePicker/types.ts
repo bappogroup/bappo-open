@@ -51,7 +51,7 @@ export type DatePickerProps = {
   /**
    * The value of the date input.
    */
-  value?: string;
+  value?: string | null;
   /**
    * Date format of the input value.
    */

@@ -7,7 +7,7 @@ import { InputField, InputFieldProps } from '../types';
 import { useFieldState } from '../useFieldState';
 import { InputFieldWrapper } from '../wrappers';
 
-type Props = InputFieldProps<string> & TimePickerProps;
+type Props = Omit<InputFieldProps<string>, 'value'> & TimePickerProps;
 
 function TimeField(props: Props, ref: React.Ref<InputField>) {
   const {

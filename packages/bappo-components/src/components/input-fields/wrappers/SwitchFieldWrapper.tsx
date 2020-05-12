@@ -8,7 +8,7 @@ import FieldLabel from '../FieldLabel';
 import TouchToFocusArea from '../TouchToFocusArea';
 import { InputWrapperProps } from './types';
 
-function SwitchFieldWrapper(props: InputWrapperProps<boolean>) {
+function SwitchFieldWrapper(props: InputWrapperProps<boolean | null>) {
   const {
     children,
     className,

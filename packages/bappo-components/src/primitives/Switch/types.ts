@@ -30,5 +30,5 @@ export type SwitchProps = {
   /**
    * The value of the switch. If true the switch will be turned on. Default value is false.
    */
-  value?: boolean;
+  value?: boolean | null;
 };

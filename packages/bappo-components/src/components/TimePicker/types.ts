@@ -51,7 +51,7 @@ export type TimePickerProps = {
   /**
    * The value of the time input.
    */
-  value?: string;
+  value?: string | null;
   /**
    * Date format of the input value.
    */

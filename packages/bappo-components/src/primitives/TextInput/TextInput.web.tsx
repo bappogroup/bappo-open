@@ -1,7 +1,8 @@
-import React from 'react';
 // @ts-ignore
 import invariant from 'fbjs/lib/invariant';
+import React from 'react';
 import styled from 'styled-components';
+
 import InputBase from '../../internals/web/InputBase';
 import TextAreaBase from '../../internals/web/TextAreaBase';
 import { TextInputProps } from './types';
@@ -78,7 +79,7 @@ class TextInput extends React.Component<Props> {
       readOnly,
       testID,
       type,
-      value,
+      value: value || '',
     };
 
     const styleProps = {

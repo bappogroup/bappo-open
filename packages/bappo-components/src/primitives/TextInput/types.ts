@@ -58,5 +58,5 @@ export interface TextInputProps {
    * The value to show for the text input. TextInput is a controlled component, which means the
    * native value will be forced to match this value prop if provided.
    */
-  value?: string;
+  value?: string | null;
 }

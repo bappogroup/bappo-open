@@ -7,7 +7,7 @@ import { InputField, InputFieldProps } from '../types';
 import { useFieldState } from '../useFieldState';
 import { SwitchFieldWrapper } from '../wrappers';
 
-type Props = InputFieldProps<boolean> & SwitchProps;
+type Props = Omit<InputFieldProps<boolean>, 'value'> & SwitchProps;
 
 function SwitchField(props: Props, ref: React.Ref<InputField>) {
   const {

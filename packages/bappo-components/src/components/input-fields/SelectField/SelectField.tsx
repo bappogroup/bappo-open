@@ -9,7 +9,7 @@ import { InputFieldWrapper } from '../wrappers';
 
 type Props = InputFieldProps<SelectProps['value']> & SelectProps;
 
-function SelectField<V>(props: Props, ref: React.Ref<InputField>) {
+function SelectField(props: Props, ref: React.Ref<InputField>) {
   const {
     fieldState: passedFieldState,
     label,
