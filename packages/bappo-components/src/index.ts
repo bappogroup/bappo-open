@@ -1,6 +1,7 @@
 // APIs
 export { default as Alert } from './apis/Alert';
 export { default as Colors } from './apis/Colors';
+export * from './apis/DeviceKind';
 export { default as Platform } from './apis/Platform';
 export * from './apis/Style';
 
