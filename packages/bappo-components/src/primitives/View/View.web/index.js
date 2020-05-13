@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+
 import type { ViewLayoutEvent } from '../../../events.js.flow';
 // $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 
 type Props = {
   /**
@@ -91,7 +92,7 @@ const pointerEventsNone = `
   }
 `;
 
-const StyledViewBase = styled(ViewBase)`
+const StyledViewBase = styled(DivViewBase)`
   ${({ pointerEvents }) => {
     if (pointerEvents === 'auto') {
       return pointerEventsAuto;

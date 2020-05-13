@@ -1,12 +1,13 @@
 // @flow
 
-import * as React from 'react';
 import throttle from 'lodash/throttle';
+import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import styled from 'styled-components';
-// $FlowFixMe typescript
-import ViewBase from '../../internals/web/ViewBase';
+
 import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
+// $FlowFixMe typescript
+import { DivViewBase } from '../../internals/web/ViewBase';
 
 type Props = {
   /**
@@ -168,7 +169,7 @@ class ScrollView extends React.Component<Props> {
 
 export default ScrollView;
 
-const ScrollContainer = styled(ViewBase)`
+const ScrollContainer = styled(DivViewBase)`
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
@@ -184,7 +185,7 @@ const ScrollContainer = styled(ViewBase)`
   `};
 `;
 
-const ContentContainer = styled(ViewBase)`
+const ContentContainer = styled(DivViewBase)`
   ${({ horizontal }) =>
     horizontal
       ? `

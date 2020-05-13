@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+
 // $FlowFixMe typescript
-import ViewBase from '../../internals/web/ViewBase';
+import { DivViewBase } from '../../internals/web/ViewBase';
 
 // type Props = {
 //   /**
@@ -76,12 +77,12 @@ class ActivityIndicator extends React.Component {
 
 export default ActivityIndicator;
 
-const Container = styled(ViewBase)`
+const Container = styled(DivViewBase)`
   align-items: center;
   justify-content: center;
 `;
 
-const SpinnerContainer = styled(ViewBase)`
+const SpinnerContainer = styled(DivViewBase)`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
 `;

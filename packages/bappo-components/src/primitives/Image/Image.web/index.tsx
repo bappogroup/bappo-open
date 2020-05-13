@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { ViewLayout, ViewLayoutEvent } from '../../../events';
-import ViewBase from '../../../internals/web/ViewBase';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 import { ImageMeta, ImageProps } from '../types';
 // @ts-ignore
 import { getImageMeta, isPortrait } from '../utils';
@@ -102,7 +103,7 @@ export default function Image({
   );
 }
 
-const Container = styled(ViewBase)`
+const Container = styled(DivViewBase)`
   overflow: hidden;
 `;
 

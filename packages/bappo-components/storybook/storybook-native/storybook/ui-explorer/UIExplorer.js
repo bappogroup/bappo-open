@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 
+import {
+  DeviceKindProvider,
+  ScrollView,
+  View,
+  getDeviceKindByWidth,
+  styled,
+} from 'bappo-components';
 import React from 'react';
-import { styled, ScrollView, View } from 'bappo-components';
+
 import AppText from './AppText';
 import insertBetween from './insertBetween';
 
@@ -21,13 +28,33 @@ export const Description = ({ children }) => {
   );
 };
 
-const UIExplorer = ({ children, description, title }) => (
-  <Root>
-    <Title>{title}</Title>
-    {description}
-    {children}
-  </Root>
-);
+const UIExplorer = ({ children, description, title }) => {
+  const [deviceKind, setDeviceKind] = React.useState(
+    getDeviceKindByWidth(window.innerWidth),
+  );
+  React.useEffect(() => {
+    const listener = () => {
+      const newDeviceKind = getDeviceKindByWidth(window.innerWidth);
+      setDeviceKind(prevDeviceKind =>
+        prevDeviceKind !== newDeviceKind ? newDeviceKind : prevDeviceKind,
+      );
+    };
+    window.addEventListener('resize', listener);
+    return () => {
+      window.removeEventListener('resize', listener);
+    };
+  }, []);
+
+  return (
+    <DeviceKindProvider value={deviceKind}>
+      <Root>
+        <Title>{title}</Title>
+        {description}
+        {children}
+      </Root>
+    </DeviceKindProvider>
+  );
+};
 
 const Root = styled(ScrollView)`
   padding: 16px;

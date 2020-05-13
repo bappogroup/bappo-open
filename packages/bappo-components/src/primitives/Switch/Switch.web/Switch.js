@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+
 // $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
-import type { SwitchProps } from '../types.js.flow';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 import SwitchDefaultProps from '../defaultProps';
+import type { SwitchProps } from '../types.js.flow';
 
 type Props = SwitchProps & {
   // Will be removed
@@ -82,7 +83,7 @@ class Switch extends React.Component<Props> {
 
 export default Switch;
 
-const SwitchContainer = styled(ViewBase).attrs({
+const SwitchContainer = styled(DivViewBase).attrs({
   'aria-checked': ({ value }) => (value ? 'true' : 'false'),
   role: 'checkbox',
   tabIndex: 0,
@@ -97,7 +98,7 @@ const SwitchContainer = styled(ViewBase).attrs({
   width: 48px;
 `;
 
-const Handle = styled(ViewBase)`
+const Handle = styled(DivViewBase)`
   background-color: white;
   border-radius: 50%;
   height: 20px;

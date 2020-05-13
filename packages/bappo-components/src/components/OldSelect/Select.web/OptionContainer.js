@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-// $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
+
 import { styled } from '../../../apis/Style';
+// $FlowFixMe typescript
+import { DivViewBase } from '../../../internals/web/ViewBase';
 import type { Option } from '../types.js.flow';
 
 type Props = {
@@ -104,7 +105,7 @@ class OptionContainer extends React.Component<Props> {
 
 export default OptionContainer;
 
-const Container = styled(ViewBase)`
+const Container = styled(DivViewBase)`
   background-color: #fff;
   cursor: pointer;
 

@@ -7,7 +7,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
 
-import TouchableViewBase from '../../internals/web/TouchableViewBase';
+import { DivTouchableViewBase } from '../../internals/web/TouchableViewBase';
 
 type Props = {
   /**
@@ -259,7 +259,7 @@ class TouchableView extends React.Component<Props, State> {
     };
 
     return (
-      <TouchableViewBase
+      <DivTouchableViewBase
         {...styleProps}
         accessibilityLabel={accessibilityLabel}
         onKeyDown={this._onKeyDownUp}
@@ -276,7 +276,7 @@ class TouchableView extends React.Component<Props, State> {
         tooltip={this.props.tooltip}
       >
         {children}
-      </TouchableViewBase>
+      </DivTouchableViewBase>
     );
   }
 

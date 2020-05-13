@@ -1,10 +1,11 @@
 // @flow
 
 import styled from 'styled-components';
-// $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
 
-const FieldContainer = styled(ViewBase).attrs({
+// $FlowFixMe typescript
+import { DivViewBase } from '../../../internals/web/ViewBase';
+
+const FieldContainer = styled(DivViewBase).attrs({
   role: 'group',
 })`
   padding: 8px 0;

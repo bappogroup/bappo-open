@@ -8,7 +8,7 @@ import type { ViewLayoutEvent } from '../../../events.js.flow';
 import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
 // $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 import Overlay from '../../../primitives/Overlay';
 import Text from '../../../primitives/Text';
 import View from '../../../primitives/View';
@@ -108,7 +108,7 @@ class Modal extends React.Component<Props, State> {
 
 export default Modal;
 
-export const ModalContentContainer = styled(ViewBase).attrs({
+export const ModalContentContainer = styled(DivViewBase).attrs({
   // tabIndex: -1,
 })`
   background-color: white;

@@ -1,11 +1,11 @@
 // @flow
-import Tooltip, { TooltipPopup, useTooltip } from '@reach/tooltip';
+import Tooltip from '@reach/tooltip';
 import * as React from 'react';
 import styled, { injectGlobal } from 'styled-components';
 
 import { buttonDefaultStyle } from './styles';
 // $FlowFixMe typescript
-import ViewBase from './ViewBase';
+import { createViewBase } from './ViewBase';
 
 injectGlobal`
 :root {
@@ -27,22 +27,25 @@ injectGlobal`
 }
 `;
 
-const StyledViewBase = styled(ViewBase)`
-  ${buttonDefaultStyle};
-`;
-const StyledViewBaseWithForwardRef = React.forwardRef((props, ref) => {
-  return <StyledViewBase {...props} innerRef={ref} />;
-});
+export function createTouchableViewBase(component) {
+  const ViewBase = createViewBase(component);
+  const StyledViewBase = styled(ViewBase)`
+    ${buttonDefaultStyle};
+  `;
+  const StyledViewBaseWithForwardRef = React.forwardRef((props, ref) => {
+    return <StyledViewBase {...props} innerRef={ref} />;
+  });
 
-// $FlowFixMe: forwardRef not supported yet
-const TouchableViewBase = React.forwardRef((props, ref) => {
-  return props.tooltip ? (
-    <Tooltip label={props.tooltip}>
-      <StyledViewBaseWithForwardRef {...props} ref={ref} />
-    </Tooltip>
-  ) : (
-    <StyledViewBase {...props} innerRef={ref} />
-  );
-});
+  // $FlowFixMe: forwardRef not supported yet
+  return React.forwardRef((props, ref) => {
+    return props.tooltip ? (
+      <Tooltip label={props.tooltip}>
+        <StyledViewBaseWithForwardRef {...props} ref={ref} />
+      </Tooltip>
+    ) : (
+      <StyledViewBase {...props} innerRef={ref} />
+    );
+  });
+}
 
-export default TouchableViewBase;
+export const DivTouchableViewBase = createTouchableViewBase('div');

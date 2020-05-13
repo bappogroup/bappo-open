@@ -1,15 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
+
+import Button from '../../../components/Button';
+import { modalFormContentStyle } from '../../../components/ModalForm/StyledComponents';
+import Paragraph from '../../../components/Paragraph';
 import { breakpoint } from '../../../internals/web/breakpoint';
 import FlexDiv from '../../../internals/web/FlexDiv';
-import View from '../../../primitives/View';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 import Text from '../../../primitives/Text';
-import Paragraph from '../../../components/Paragraph';
-import Button from '../../../components/Button';
-import ViewBase from '../../../internals/web/ViewBase';
-import { modalFormContentStyle } from '../../../components/ModalForm/StyledComponents';
-import type { AlertOptions } from '../types.js.flow';
+import View from '../../../primitives/View';
 import AlertDefaultProps from '../defaultProps';
+import type { AlertOptions } from '../types.js.flow';
 
 type Props = AlertOptions & {
   onDismiss: () => any,
@@ -106,7 +107,7 @@ class AlertDialog extends React.Component<Props> {
 
 export default AlertDialog;
 
-export const AlertContentContainer = styled(ViewBase).attrs({
+export const AlertContentContainer = styled(DivViewBase).attrs({
   tabIndex: -1,
 })`
   background-color: white;

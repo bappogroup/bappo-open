@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+
 // $FlowFixMe typescript
-import ViewBase from '../../../internals/web/ViewBase';
+import { DivViewBase } from '../../../internals/web/ViewBase';
 
 type Props = {
   onPress?: any,
@@ -16,6 +17,6 @@ const TouchToFocusArea = ({ onPress, ...rest }: Props) => {
 
 export default TouchToFocusArea;
 
-const StyledView = styled(ViewBase)`
+const StyledView = styled(DivViewBase)`
   margin: 2px 0;
 `;

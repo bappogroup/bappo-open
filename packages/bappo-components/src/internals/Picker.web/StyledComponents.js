@@ -1,8 +1,9 @@
 // @flow
 
 import styled from 'styled-components';
+
 // $FlowFixMe typescript
-import ViewBase from '../web/ViewBase';
+import { DivViewBase } from '../web/ViewBase';
 
 export const Arrow = styled.span`
   border-color: #999 transparent transparent;
@@ -64,7 +65,7 @@ export const ClearZone = styled.div`
   }
 `;
 
-export const Container = styled(ViewBase)`
+export const Container = styled(DivViewBase)`
   font-size: 14px;
 `;
 
@@ -85,7 +86,7 @@ export const FakeInput = styled.div`
   }
 `;
 
-export const PopoverContainer = styled(ViewBase)`
+export const PopoverContainer = styled(DivViewBase)`
   background-color: #fff;
   border: 1px solid #ccc;
   border-top-color: #e6e6e6;
@@ -97,6 +98,6 @@ export const PopoverContainer = styled(ViewBase)`
   -webkit-overflow-scrolling: touch;
 `;
 
-export const ValueContainer = styled(ViewBase)`
+export const ValueContainer = styled(DivViewBase)`
   flex: 1;
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TouchableViewBase from '../../../internals/web/TouchableViewBase';
+import { createTouchableViewBase } from '../../../internals/web/TouchableViewBase';
 import { useFormStateStrict } from '../FormState';
 import { SubmitButtonProps } from './types';
 
@@ -8,6 +8,8 @@ type Props = SubmitButtonProps & {
   // Will be removed
   className?: string;
 };
+
+const ButtonTouchableViewBase = createTouchableViewBase('button');
 
 const SubmitButton = ({
   children,
@@ -18,16 +20,15 @@ const SubmitButton = ({
 }: Props) => {
   const formState = useFormStateStrict();
   return (
-    <TouchableViewBase
+    <ButtonTouchableViewBase
       className={className}
-      component="button"
       disabled={disabled}
       style={style}
       type="submit"
       testID={testID}
     >
       {typeof children === 'function' ? children(formState) : children}
-    </TouchableViewBase>
+    </ButtonTouchableViewBase>
   );
 };
 
