@@ -35,7 +35,6 @@ function FormBody({
   const [deleting, setDeleting] = React.useState(false);
 
   const handleDelete = async () => {
-    const { onDelete } = this.props;
     if (onDelete) {
       setDeleting(true);
       try {
