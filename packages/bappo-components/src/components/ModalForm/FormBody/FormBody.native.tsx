@@ -19,6 +19,7 @@ import { FormBodyProps } from './types';
 
 const FormBody = ({
   children,
+  contentContainerStyle,
   onCancel,
   onDelete,
   onSubmit,
@@ -36,7 +37,7 @@ const FormBody = ({
             <ModalFormTitleText>{title}</ModalFormTitleText>
           </ModalFormTitleContainer>
         </ModalFormHeader>
-        <ModalFormContent>
+        <ModalFormContent contentContainerStyle={contentContainerStyle}>
           {children}
           {onDelete && (
             <ModalFormDeleteButton onPress={onDelete} text="Delete" />

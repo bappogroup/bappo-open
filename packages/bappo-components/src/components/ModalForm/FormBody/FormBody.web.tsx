@@ -23,6 +23,7 @@ import { FormBodyProps } from './types';
 
 function FormBody({
   children,
+  contentContainerStyle,
   onCancel,
   onDelete,
   onSubmit,
@@ -53,7 +54,7 @@ function FormBody({
 
   return (
     <StyledForm data-testid={testID} onSubmit={handleSubmit}>
-      <ModalFormHeader>
+      <ModalFormHeader deviceKind={deviceKind}>
         {deviceKind === 'tablet' || deviceKind === 'desktop' ? (
           <ModalFormCloseButton onPress={onCancel} />
         ) : (
@@ -68,7 +69,7 @@ function FormBody({
           </ModalFormTitleText>
         </ModalFormTitleContainer>
       </ModalFormHeader>
-      <ModalFormContent>
+      <ModalFormContent deviceKind={deviceKind} style={contentContainerStyle}>
         {children}
         {(deviceKind === 'phone' || deviceKind === 'large-phone') &&
         onDelete ? (
