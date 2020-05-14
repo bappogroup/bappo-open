@@ -1,6 +1,4 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import styled from 'styled-components';
@@ -17,18 +15,17 @@ import {
   modalFormMobileHeaderStyle,
   modalFormMobileTitleTextStyle,
 } from '../StyledComponents';
-import FormBodyDefaultProps from './defaultProps';
-import type { FormBodyPropTypes } from './types.js.flow';
+import { FormBodyProps } from './types';
 
 const FormBody = ({
   children,
   onCancel,
   onDelete,
   onSubmit,
-  submitButtonText,
+  submitButtonText = 'Submit',
   testID,
   title,
-}: FormBodyPropTypes) => {
+}: FormBodyProps) => {
   return (
     <FormConfigContext.Provider value={{ onSubmit }}>
       <StyledForm testID={testID}>
@@ -52,8 +49,6 @@ const FormBody = ({
 
 export default FormBody;
 
-FormBody.defaultProps = FormBodyDefaultProps;
-
 const StyledForm = styled(View)`
   flex: 1;
 `;
@@ -64,10 +59,10 @@ export const ModalFormTitleText = styled(Text).attrs({
   ${modalFormMobileTitleTextStyle};
 `;
 
-const ModalFormHeaderContainer = styled.SafeAreaView`
+const ModalFormHeaderContainer = (styled as any).SafeAreaView`
   ${modalFormMobileHeaderContainerStyle};
 `;
-const ModalFormHeaderInnerContainer = styled.View`
+const ModalFormHeaderInnerContainer = (styled as any).View`
   ${modalFormMobileHeaderStyle};
 `;
 export const ModalFormHeader = ({ children }) => {

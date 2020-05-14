@@ -46,7 +46,7 @@ const createButton = (
       textStyle,
       testID,
       text,
-      type,
+      type = 'primary',
     } = props;
     const styleProps = {
       // pass the original value of `disabled` so that we know if button is
@@ -81,10 +81,6 @@ const createButton = (
       </StyledContainer>
     );
   }
-
-  Button.defaultProps = {
-    type: 'primary',
-  };
 
   return Button;
 };

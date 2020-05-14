@@ -9,7 +9,7 @@ export interface ButtonProps {
   text?: string;
   textStyle?: any;
   tooltip?: string;
-  type: 'primary' | 'secondary' | 'tertiary' | 'destructive';
+  type?: 'primary' | 'secondary' | 'tertiary' | 'destructive';
 }
 
 export type ButtonContainerStyleProps = Pick<
