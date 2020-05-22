@@ -1,11 +1,8 @@
 import React from 'react';
 
-import {
-  InputField,
-  InputFieldComponent,
-} from '../../components/input-fields/types';
-import { useFieldState } from './FormState';
 import { FieldValidator } from './FormState/types';
+import { InputField, InputFieldComponent } from './types';
+import { useFieldState } from './useFieldState';
 
 type InternalProps<
   V,
@@ -19,7 +16,7 @@ type InternalProps<
   name: string;
   props: InputProps;
   testID?: string;
-  validate?: FieldValidator | FieldValidator[];
+  validate?: FieldValidator<V> | FieldValidator<V>[];
 };
 type FieldProps<
   V,
@@ -36,59 +33,30 @@ function InternalField<
   InputProps extends {
     [prop: string]: any;
   }
->({
-  component,
-  inputRef,
-  label,
-  name,
-  props, // This prop may be `undefined`. Handle with care.
-  testID,
-  validate,
-}: InternalProps<V, InputProps>) {
+>(props: InternalProps<V, InputProps>) {
   const {
-    active,
-    dirty,
-    error,
-    pristine,
-    touched,
-    value,
-    visited,
-    formState,
-  } = useFieldState({
+    component,
+    inputRef,
+    label,
+    name,
+    props: inputProps,
+    testID,
+    validate,
+  } = props;
+  const { fieldState, onBlur, onFocus, onValueChange } = useFieldState({
     name,
     validate,
   });
 
-  const { actions } = formState;
-  const fieldState = {
-    active,
-    dirty,
-    error,
-    pristine,
-    touched,
-    value,
-    visited,
-  };
   return React.createElement(component, {
     fieldState,
     label,
     testID: testID || `${name}-field`,
-    value,
-    ...props,
-    onBlur: () => {
-      props && typeof props.onBlur === 'function' && props.onBlur();
-      actions.blur(name);
-    },
-    onFocus: () => {
-      props && typeof props.onFocus === 'function' && props.onFocus();
-      actions.focus(name);
-    },
-    onValueChange: value => {
-      props &&
-        typeof props.onValueChange === 'function' &&
-        props.onValueChange(value);
-      actions.changeValue(name, value);
-    },
+    value: fieldState.value,
+    ...inputProps,
+    onBlur,
+    onFocus,
+    onValueChange,
     ref: inputRef,
   });
 }

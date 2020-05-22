@@ -17,14 +17,13 @@ function SwitchFieldWrapper(props: InputWrapperProps<boolean | null>) {
     onValueChange,
     style,
     testID,
-    value,
     reserveErrorSpace = true,
   } = props;
 
   return (
     <FieldContainer className={className} style={style} testID={testID}>
       <SwitchTouchToFocusArea
-        onPress={() => onValueChange && onValueChange(!value)}
+        onPress={() => onValueChange && onValueChange(!fieldState.value)}
         testID={testID && `${testID}-control`}
       >
         {label && (

@@ -1,12 +1,5 @@
+import { Alert, Button, ModalForm, TextField, View } from 'bappo-components';
 import React from 'react';
-import {
-  Alert,
-  Button,
-  Form,
-  ModalForm,
-  TextField,
-  View,
-} from 'bappo-components';
 
 class ModalFormMinimalExample extends React.Component {
   state = {
@@ -29,12 +22,8 @@ class ModalFormMinimalExample extends React.Component {
           visible={this.state.modalVisible}
           testID="modalForm-minimal"
         >
-          <Form.Field
-            name="firstName"
-            component={TextField}
-            label="First Name"
-          />
-          <Form.Field name="lastName" component={TextField} label="Last Name" />
+          <TextField name="firstName" label="First Name" />
+          <TextField name="lastName" label="Last Name" />
         </ModalForm>
       </View>
     );

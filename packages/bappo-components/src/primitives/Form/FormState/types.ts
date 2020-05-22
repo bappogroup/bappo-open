@@ -36,11 +36,6 @@ export type FormStateAndHelpers = FormState & {
   getFieldValue: (fieldName: string) => any;
 };
 
-export type FieldValidator = (
-  value: any,
-  stateAndHelpers: FormStateAndHelpers,
-) => any;
-
 export type FormValidator = (stateAndHelpers: FormStateAndHelpers) => Errors;
 
 export type FormActionSenders = {
@@ -49,7 +44,7 @@ export type FormActionSenders = {
   focus: (fieldName: string) => void;
   setFieldValidators: (
     fieldName: string,
-    validators: FieldValidator | FieldValidator[],
+    validators: FieldValidator<unknown> | FieldValidator<unknown>[],
   ) => void;
   submit: (doSubmit: () => any) => Promise<void>;
   touchAll: () => void;
@@ -70,12 +65,16 @@ export type ActionTypes =
   | 'TOUCH_ALL'
   | 'VALIDATE';
 
-export type FieldState<V> = {
-  active: boolean;
+export interface FieldState<V> {
   dirty: boolean;
-  error: any;
+  error?: string;
   pristine: boolean;
   touched: boolean;
-  value: V;
+  value?: V;
   visited: boolean;
-};
+}
+
+export type FieldValidator<V> = (
+  value: V | undefined,
+  fieldState: FieldState<V>,
+) => string | undefined;

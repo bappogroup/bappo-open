@@ -1,10 +1,10 @@
 import React from 'react';
 import warning from 'warning';
 
+import { useFieldState } from '../../../primitives/Form';
+import { InputField, InputFieldProps } from '../../../primitives/Form/types';
 import DatePicker from '../../DatePicker';
 import { DatePickerProps } from '../../DatePicker/types';
-import { InputField, InputFieldProps } from '../types';
-import { useFieldState } from '../useFieldState';
 import { InputFieldWrapper } from '../wrappers';
 
 type Props = Omit<InputFieldProps<string>, 'value'> & DatePickerProps;
@@ -13,12 +13,10 @@ function DateField(props: Props, ref: React.Ref<InputField>) {
   const {
     fieldState: passedFieldState,
     label,
-    onValueChange,
     required,
     reserveErrorSpace,
     testID,
     validate,
-    value,
     ...rest
   } = props;
   warning(
@@ -40,7 +38,7 @@ function DateField(props: Props, ref: React.Ref<InputField>) {
     blur: blurInput,
   }));
 
-  const { fieldState, onBlur, onFocus } = useFieldState(props);
+  const { fieldState, onBlur, onFocus, onValueChange } = useFieldState(props);
 
   return (
     <InputFieldWrapper
@@ -58,7 +56,7 @@ function DateField(props: Props, ref: React.Ref<InputField>) {
         onBlur={onBlur}
         onFocus={onFocus}
         onValueChange={onValueChange}
-        value={value}
+        value={fieldState.value}
       />
     </InputFieldWrapper>
   );

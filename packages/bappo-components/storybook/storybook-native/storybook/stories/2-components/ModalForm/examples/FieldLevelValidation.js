@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Alert,
   Button,
@@ -8,6 +7,7 @@ import {
   TextField,
   View,
 } from 'bappo-components';
+import React from 'react';
 import { isEmail } from 'validator';
 
 class ModalFormFieldLevelValidationExample extends React.Component {
@@ -30,14 +30,13 @@ class ModalFormFieldLevelValidationExample extends React.Component {
           title="Modal Form Field Level Validation Example"
           visible={this.state.modalVisible}
         >
-          <Form.Field
+          <TextField
             name="email"
-            component={TextField}
             label="Email"
             validate={value =>
               value && isEmail(value) ? undefined : 'Invalid email'
             }
-            props={{ type: 'email' }}
+            type="email"
           />
           <Form.Field
             name="password"

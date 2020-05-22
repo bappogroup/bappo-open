@@ -1,10 +1,10 @@
 import React from 'react';
 import warning from 'warning';
 
+import { useFieldState } from '../../../primitives/Form';
+import { InputField, InputFieldProps } from '../../../primitives/Form/types';
 import Switch from '../../../primitives/Switch';
 import { SwitchProps } from '../../../primitives/Switch/types';
-import { InputField, InputFieldProps } from '../types';
-import { useFieldState } from '../useFieldState';
 import { SwitchFieldWrapper } from '../wrappers';
 
 type Props = Omit<InputFieldProps<boolean>, 'value'> & SwitchProps;
@@ -13,12 +13,10 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
   const {
     fieldState: passedFieldState,
     label,
-    onValueChange,
     required,
     reserveErrorSpace,
     testID,
     validate,
-    value,
     ...rest
   } = props;
   warning(
@@ -40,7 +38,7 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
     blur: blurInput,
   }));
 
-  const { fieldState, onBlur, onFocus } = useFieldState(props);
+  const { fieldState, onBlur, onFocus, onValueChange } = useFieldState(props);
 
   return (
     <SwitchFieldWrapper
@@ -50,7 +48,6 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
       onValueChange={onValueChange}
       reserveErrorSpace={reserveErrorSpace}
       testID={testID}
-      value={value}
     >
       <Switch
         {...rest}
@@ -58,7 +55,7 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
         onBlur={onBlur}
         onFocus={onFocus}
         onValueChange={onValueChange}
-        value={value}
+        value={fieldState.value}
       />
     </SwitchFieldWrapper>
   );

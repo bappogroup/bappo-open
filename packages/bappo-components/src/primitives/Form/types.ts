@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { FormStateAndHelpersAndActions, Values } from './FormState/types';
+import {
+  FieldState,
+  FieldValidator,
+  FormStateAndHelpersAndActions,
+  Values,
+} from './FormState/types';
 
 export interface FormProps {
   /**
@@ -18,3 +23,30 @@ export interface FormProps {
    */
   testID?: string;
 }
+
+export interface InputField {
+  blur(): void;
+  focus(): void;
+}
+
+export interface InputFieldProps<V> {
+  fieldState?: FieldState<V>;
+  label?: string;
+  name?: string;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  onValueChange?: (value: V) => void;
+  ref?: React.Ref<InputField>;
+  required?: boolean;
+  reserveErrorSpace?: boolean;
+  testID?: string;
+  validate?: FieldValidator<V> | FieldValidator<V>[];
+  value?: V;
+}
+
+export type InputFieldComponent<
+  V,
+  P extends {
+    [prop: string]: any;
+  }
+> = React.ComponentType<P & InputFieldProps<V>>;
