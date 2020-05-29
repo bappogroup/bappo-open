@@ -9,7 +9,7 @@
     "@storybook/react": "^5.1.9",
     "axios": "^0.16.2",
     "babel-loader": "^8.0.6",
-    "bappo-components": "0.1.0-alpha.149",
+    "bappo-components": "0.1.0-alpha.150",
     "create-react-class": "^15.6.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
