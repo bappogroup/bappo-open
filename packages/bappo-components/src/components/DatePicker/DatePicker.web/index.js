@@ -1,8 +1,9 @@
 // @flow
 
-import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
+import * as React from 'react';
+
 import PickerWeb from '../../../internals/Picker.web';
 import type { DatePickerProps } from '../types.js.flow';
 import Calendar from './Calendar';
@@ -22,6 +23,7 @@ class DatePicker extends React.Component<Props> {
     displayFormat: DEFAULT_DATE_FORMAT,
     readOnly: false,
     valueFormat: DEFAULT_DATE_FORMAT,
+    alignRight: false,
   };
 
   static displayName = 'DatePicker';
@@ -54,6 +56,7 @@ class DatePicker extends React.Component<Props> {
       testID,
       value,
       valueFormat,
+      alignRight,
     } = this.props;
 
     const styleProps = {
@@ -83,6 +86,7 @@ class DatePicker extends React.Component<Props> {
       renderPopover: this._renderPopover,
       renderValue: this._renderValue,
       testID,
+      alignRight,
     };
 
     return <PickerWeb {...styleProps} {...props} />;
@@ -97,7 +101,13 @@ class DatePicker extends React.Component<Props> {
   };
 
   _renderPopover = () => {
-    return <Calendar initialDate={this._date} onSelect={this._selectDate} />;
+    return (
+      <Calendar
+        alignRight={this.props.alignRight}
+        initialDate={this._date}
+        onSelect={this._selectDate}
+      />
+    );
   };
 
   _renderValue = () => {

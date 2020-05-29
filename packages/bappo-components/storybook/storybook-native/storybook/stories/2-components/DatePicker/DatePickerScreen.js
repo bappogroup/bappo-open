@@ -1,15 +1,16 @@
 import React from 'react';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
-import Minimal from './examples/Minimal';
 import { url } from '../../../url';
+import Minimal from './examples/Minimal';
 
 const DatePickerScreen = () => (
   <UIExplorer title="DatePicker" url="2-components/DatePicker">
@@ -108,6 +109,13 @@ const DatePickerScreen = () => (
         name="valueFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
         description={<AppText>Date format of the input value.</AppText>}
+      />
+      <DocItem
+        name="alignRight?"
+        typeInfo="boolean = false"
+        description={
+          <AppText>Align the calendar box with the text on the right.</AppText>
+        }
       />
     </Section>
 

@@ -2,15 +2,16 @@
 
 /* eslint-disable react/no-array-index-key */
 
-import * as React from 'react';
 import chunk from 'lodash/chunk';
 import moment from 'moment';
 import type Moment from 'moment';
+import * as React from 'react';
 import styled from 'styled-components';
 
 type Props = {
   initialDate?: ?Moment,
   onSelect?: ?(date: Moment) => void,
+  alignRight?: Boolean,
 };
 
 type State = {
@@ -76,7 +77,7 @@ class Calendar extends React.Component<Props, State> {
 
   render() {
     return (
-      <CalendarContainer>
+      <CalendarContainer alignRight={this.props.alignRight || false}>
         {this._renderNavigator()}
         {this._renderGrid()}
       </CalendarContainer>
@@ -301,7 +302,14 @@ const Arrow = styled.span`
 
 const CalendarContainer = styled.div.attrs({
   'data-component': 'calendar',
-})``;
+})`
+  ${({ alignRight }) =>
+    alignRight &&
+    `
+    position: absolute;
+    right: -80px;
+    `}
+`;
 
 const Cell = styled.div`
   align-items: center;
