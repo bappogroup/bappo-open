@@ -145,6 +145,7 @@ const Container = styled.div.attrs({
     position: absolute;
     border: 1px solid #ccc;
     right: ${displayRight}px;
+    background-color: #fff;
   `}
 `;
 

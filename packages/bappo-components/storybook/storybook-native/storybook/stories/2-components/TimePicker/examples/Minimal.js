@@ -11,7 +11,6 @@ class Minimal extends React.Component {
       <TimePicker
         onValueChange={value => this.setState({ value })}
         value={this.state.value}
-        // displayRight="-40"
       />
     );
   }

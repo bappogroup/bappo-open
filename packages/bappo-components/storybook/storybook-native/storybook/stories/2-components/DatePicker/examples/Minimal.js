@@ -11,7 +11,6 @@ class Minimal extends React.Component {
       <DatePicker
         onValueChange={value => this.setState({ value })}
         value={this.state.value}
-        // alignRight="-200"
       />
     );
   }

@@ -5,4 +5,6 @@ export const PlaceholderText = styled(Text)`
   color: #aaa;
 `;
 
-export const ValueText = styled(Text)``;
+export const ValueText = styled(Text)`
+  ${({ textColor }) => textColor && `color: ${textColor}`}
+`;

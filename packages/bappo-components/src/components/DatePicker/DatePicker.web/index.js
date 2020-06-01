@@ -24,6 +24,7 @@ class DatePicker extends React.Component<Props> {
     readOnly: false,
     valueFormat: DEFAULT_DATE_FORMAT,
     alignRight: undefined,
+    textColor: undefined,
   };
 
   static displayName = 'DatePicker';
@@ -57,6 +58,7 @@ class DatePicker extends React.Component<Props> {
       value,
       valueFormat,
       alignRight,
+      textColor,
     } = this.props;
 
     const styleProps = {
@@ -117,7 +119,9 @@ class DatePicker extends React.Component<Props> {
       return <PlaceholderText>{placeholder}</PlaceholderText>;
     }
 
-    return <ValueText>{this._dateStr}</ValueText>;
+    return (
+      <ValueText textColor={this.props.textColor}>{this._dateStr}</ValueText>
+    );
   };
 
   _selectDate = (date: Moment) => {

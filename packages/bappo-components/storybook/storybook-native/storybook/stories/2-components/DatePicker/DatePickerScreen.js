@@ -119,6 +119,11 @@ const DatePickerScreen = () => (
           </AppText>
         }
       />
+      <DocItem
+        name="textColor?"
+        typeInfo="string"
+        description={<AppText>Specifying the input text color.</AppText>}
+      />
     </Section>
 
     <Section title="More examples">
