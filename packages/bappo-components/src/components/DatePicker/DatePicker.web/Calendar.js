@@ -11,7 +11,7 @@ import styled from 'styled-components';
 type Props = {
   initialDate?: ?Moment,
   onSelect?: ?(date: Moment) => void,
-  alignRight?: Boolean,
+  alignRight?: string,
 };
 
 type State = {
@@ -307,7 +307,9 @@ const CalendarContainer = styled.div.attrs({
     alignRight &&
     `
     position: absolute;
-    right: -80px;
+    border: 1px solid #ccc;
+    right: ${alignRight}px;
+    background-color: #fff;
     `}
 `;
 

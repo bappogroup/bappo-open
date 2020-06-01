@@ -1,16 +1,17 @@
 // @flow
 
-import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
+import * as React from 'react';
+
 import PickerWeb from '../../../internals/Picker.web';
-import type { TimePickerProps } from '../types.js.flow';
 import {
   DEFAULT_TIME_DISPLAY_FORMAT,
   DEFAULT_TIME_VALUE_FORMAT,
 } from '../constants';
-import WheelPicker from './WheelPicker';
+import type { TimePickerProps } from '../types.js.flow';
 import { PlaceholderText, ValueText } from './StyledComponents';
+import WheelPicker from './WheelPicker';
 
 type Props = TimePickerProps & {
   // Will be removed
@@ -24,6 +25,7 @@ class TimePicker extends React.Component<Props> {
     displayFormat: DEFAULT_TIME_DISPLAY_FORMAT,
     readOnly: false,
     valueFormat: DEFAULT_TIME_VALUE_FORMAT,
+    displayRight: undefined,
   };
 
   static displayName = 'TimePicker';
@@ -56,6 +58,7 @@ class TimePicker extends React.Component<Props> {
       testID,
       value,
       valueFormat,
+      displayRight,
     } = this.props;
 
     const styleProps = {
@@ -99,7 +102,13 @@ class TimePicker extends React.Component<Props> {
   };
 
   _renderPopover = () => {
-    return <WheelPicker initialTime={this._time} onSelect={this._selectTime} />;
+    return (
+      <WheelPicker
+        displayRight={this.props.displayRight}
+        initialTime={this._time}
+        onSelect={this._selectTime}
+      />
+    );
   };
 
   _renderValue = () => {

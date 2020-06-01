@@ -1,15 +1,16 @@
 import React from 'react';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
-import Minimal from './examples/Minimal';
 import { url } from '../../../url';
+import Minimal from './examples/Minimal';
 const TimePickerScreen = () => (
   <UIExplorer title="TimePicker" url="2-components/TimePicker">
     <WebLink href={`${url}/src/primitives/TimePicker`} text="Source Code" />
@@ -106,6 +107,14 @@ const TimePickerScreen = () => (
         name="valueFormat?"
         typeInfo="string = 'HH:mm:ss'"
         description={<AppText>Date format of the input value.</AppText>}
+      />
+
+      <DocItem
+        name="right?"
+        typeInfo="string = 0"
+        description={
+          <AppText>Specifying the horizontal position of the wheelbox </AppText>
+        }
       />
     </Section>
 

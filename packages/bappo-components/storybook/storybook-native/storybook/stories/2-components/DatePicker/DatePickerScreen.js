@@ -112,9 +112,11 @@ const DatePickerScreen = () => (
       />
       <DocItem
         name="alignRight?"
-        typeInfo="boolean = false"
+        typeInfo="string = 0"
         description={
-          <AppText>Align the calendar box with the text on the right.</AppText>
+          <AppText>
+            Specifying the horizontal position of the calendar box.
+          </AppText>
         }
       />
     </Section>

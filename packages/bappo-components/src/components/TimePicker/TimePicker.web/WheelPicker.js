@@ -2,15 +2,17 @@
 
 /* eslint-disable react/no-array-index-key */
 
-import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
+import * as React from 'react';
 import styled from 'styled-components';
-import { HOURS, MINUTES, MERIDIEMS } from '../constants';
+
+import { HOURS, MERIDIEMS, MINUTES } from '../constants';
 
 type Props = {
   initialTime?: ?Moment,
   onSelect?: ?(time: Moment) => void,
+  displayRight?: string | undefined,
 };
 
 type State = {
@@ -50,7 +52,7 @@ class WheelPicker extends React.Component<Props, State> {
 
   render() {
     return (
-      <Container>
+      <Container displayRight={this.props.displayRight}>
         {this._renderWheels()}
         {this._renderFooter()}
       </Container>
@@ -136,7 +138,15 @@ export default WheelPicker;
 
 const Container = styled.div.attrs({
   'data-component': 'wheel-picker',
-})``;
+})`
+  ${({ displayRight }) =>
+    displayRight &&
+    `
+    position: absolute;
+    border: 1px solid #ccc;
+    right: ${displayRight}px;
+  `}
+`;
 
 const Cell = styled.div`
   align-items: center;

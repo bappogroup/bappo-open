@@ -1,5 +1,5 @@
-import React from 'react';
 import { DatePicker } from 'bappo-components';
+import React from 'react';
 
 class Minimal extends React.Component {
   state = {
@@ -11,6 +11,7 @@ class Minimal extends React.Component {
       <DatePicker
         onValueChange={value => this.setState({ value })}
         value={this.state.value}
+        // alignRight="-200"
       />
     );
   }

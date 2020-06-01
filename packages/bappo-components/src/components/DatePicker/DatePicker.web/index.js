@@ -23,7 +23,7 @@ class DatePicker extends React.Component<Props> {
     displayFormat: DEFAULT_DATE_FORMAT,
     readOnly: false,
     valueFormat: DEFAULT_DATE_FORMAT,
-    alignRight: false,
+    alignRight: undefined,
   };
 
   static displayName = 'DatePicker';
