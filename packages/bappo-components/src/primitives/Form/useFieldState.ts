@@ -101,10 +101,10 @@ export function useFieldState<V>(
   /* End form field mode */
 
   /* Begin standalone mode */
-  const [minimalState, dispatch] = React.useReducer(
+  const [standaloneState, dispatch] = React.useReducer(
     createFieldStateReducer<V>(),
     props,
-    getInitialState,
+    (...args) => getInitialStandaloneState(mode, ...args),
   );
 
   // validate whenever value or validator changes
@@ -134,7 +134,7 @@ export function useFieldState<V>(
   const standaloneModeReturnValue = React.useMemo(() => {
     if (mode !== 'standalone') return;
     return {
-      fieldState: getFieldStateFromMinimal(value, minimalState),
+      fieldState: getFieldStateFromStandaloneState(value, standaloneState),
       onBlur: () => {
         dispatch({
           type: 'BLUR',
@@ -149,7 +149,7 @@ export function useFieldState<V>(
       },
       onValueChange,
     };
-  }, [minimalState, mode, onBlur, onFocus, onValueChange, value]);
+  }, [mode, onBlur, onFocus, onValueChange, standaloneState, value]);
   /* End standalone mode */
 
   return mode === 'controlled'
@@ -164,7 +164,7 @@ export function useFieldState<V>(
     : standaloneModeReturnValue!;
 }
 
-type MinimalFieldState<V> = Pick<FieldState<V>, 'touched' | 'visited'> & {
+type StandaloneFieldState<V> = Pick<FieldState<V>, 'touched' | 'visited'> & {
   errors: string[];
   initialValue?: V;
 };
@@ -183,9 +183,9 @@ type Action<V> =
 
 function createFieldStateReducer<V>() {
   return function fieldStateReducer(
-    state: MinimalFieldState<V>,
+    state: StandaloneFieldState<V>,
     action: Action<V>,
-  ): MinimalFieldState<V> {
+  ): StandaloneFieldState<V> {
     switch (action.type) {
       case 'BLUR':
         return {
@@ -200,7 +200,7 @@ function createFieldStateReducer<V>() {
         };
         if (action.newValidators) {
           newState.errors = validate(
-            getFieldStateFromMinimal(action.newValue, newState),
+            getFieldStateFromStandaloneState(action.newValue, newState),
             action.newValidators,
           );
         }
@@ -221,25 +221,28 @@ function createFieldStateReducer<V>() {
   };
 }
 
-function getInitialState<V>(props: InputFieldProps<V>): MinimalFieldState<V> {
-  const initialState: MinimalFieldState<V> = {
+function getInitialStandaloneState<V>(
+  mode: 'controlled' | 'form-field' | 'standalone',
+  props: InputFieldProps<V>,
+): StandaloneFieldState<V> {
+  const initialState: StandaloneFieldState<V> = {
     errors: [],
     initialValue: props.value,
     touched: false,
     visited: false,
   };
-  if (props.validate) {
+  if (mode === 'standalone' && props.validate) {
     initialState.errors = validate(
-      getFieldStateFromMinimal(props.value, initialState),
+      getFieldStateFromStandaloneState(props.value, initialState),
       props.validate,
     );
   }
   return initialState;
 }
 
-function getFieldStateFromMinimal<V>(
+function getFieldStateFromStandaloneState<V>(
   value: InputFieldProps<V>['value'],
-  { errors, initialValue, touched, visited }: MinimalFieldState<V>,
+  { errors, initialValue, touched, visited }: StandaloneFieldState<V>,
 ): FieldState<V> {
   const pristine = deepEqual(initialValue, value);
   return {
@@ -256,7 +259,7 @@ function validate<V>(
   state: FieldState<V>,
   validators: NonNullable<InputFieldProps<V>['validate']>,
 ) {
-  const errors: MinimalFieldState<V>['errors'] = [];
+  const errors: StandaloneFieldState<V>['errors'] = [];
 
   const validateField = (validator: FieldValidator<V>) => {
     const error = validator(state.value, state);
