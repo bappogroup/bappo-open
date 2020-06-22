@@ -39,9 +39,11 @@ const UIExplorer = ({ children, description, title }) => {
         prevDeviceKind !== newDeviceKind ? newDeviceKind : prevDeviceKind,
       );
     };
-    window.addEventListener('resize', listener);
+    if (window && window.addEventListener)
+      window.addEventListener('resize', listener);
     return () => {
-      window.removeEventListener('resize', listener);
+      if (window && window.removeEventListener)
+        window.removeEventListener('resize', listener);
     };
   }, []);
 

@@ -40,7 +40,7 @@ class Popup extends React.Component<Props, State> {
     showModal: !!this.props.show,
   };
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (nextProps.show !== this.props.show) {
       this._setModalVisible(!!nextProps.show);
     }

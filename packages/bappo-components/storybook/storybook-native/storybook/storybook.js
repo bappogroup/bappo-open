@@ -1,7 +1,7 @@
+import { configure, getStorybookUI } from '@storybook/react-native';
 /* eslint-disable global-require */
 import React from 'react';
 import { AppRegistry, View } from 'react-native';
-import { getStorybookUI, configure } from '@storybook/react-native';
 
 // import stories
 configure(() => {
@@ -10,7 +10,11 @@ configure(() => {
 
 // This assumes that storybook is running on the same host as your RN packager,
 // to set manually use, e.g. host: 'localhost' option
-const StorybookUI = getStorybookUI({ port: 7007, onDeviceUI: true });
+const StorybookUI = getStorybookUI({
+  port: 7007,
+  onDeviceUI: true,
+  asyncStorage: null,
+});
 const StorybookUIWrapper = () => (
   <View style={{ paddingTop: 25, flex: 1 }}>
     <StorybookUI />
