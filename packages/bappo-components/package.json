@@ -55,7 +55,7 @@
     "moment": "^2.19.1",
     "pdfmake": "^0.1.57",
     "prop-types": "^15.6.0",
-    "react-native-keyboard-aware-scroll-view": "^0.8.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-web": "^0.9.1",
     "react-recomponent": "^0.2.0",
     "react-use": "^14.2.0",

@@ -1,6 +1,6 @@
 import React from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import View from '../../View';
 import { Field } from '../Field';
 import { FormState, SubmissionError } from '../FormState';
 import SubmitButton from '../SubmitButton';
@@ -26,14 +26,9 @@ class Form extends React.Component<Props> {
               : children;
           return (
             <FormConfigContext.Provider value={this.props}>
-              <KeyboardAwareScrollView
-                style={style}
-                contentContainerStyle={{ flex: 1 }}
-                testID={testID}
-                keyboardShouldPersistTaps={'handled'}
-              >
+              <View style={style} testID={testID}>
                 {formBody}
-              </KeyboardAwareScrollView>
+              </View>
             </FormConfigContext.Provider>
           );
         }}
