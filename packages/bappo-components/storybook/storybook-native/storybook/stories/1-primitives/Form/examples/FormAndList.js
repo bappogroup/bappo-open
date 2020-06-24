@@ -2,6 +2,9 @@ import { Form, ScrollView, TextField, View } from 'bappo-components';
 import React from 'react';
 // import Form from '../../../../../../../src/primitives/Form/Form.native/index';
 
+/**
+ * When testing in native storybook, wrap the entire screen with <KeyboardAwareScrollView>
+ */
 export default function FormAndList() {
   return (
     <View style={{ height: 400, overflow: 'hidden' }}>

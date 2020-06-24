@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.3",
-    "@storybook/react": "^5.1.9",
+    "@storybook/react": "^5.3.19",
     "axios": "^0.16.2",
     "babel-loader": "^8.0.6",
     "bappo-components": "0.1.0-alpha.154",
