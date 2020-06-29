@@ -107,9 +107,9 @@ class AlertDialog extends React.Component<Props> {
 
 export default AlertDialog;
 
-export const AlertContentContainer = styled(DivViewBase).attrs({
+export const AlertContentContainer = styled(DivViewBase).attrs(props => ({
   tabIndex: -1,
-})`
+}))`
   background-color: white;
   border-radius: 4px;
   overflow: hidden;

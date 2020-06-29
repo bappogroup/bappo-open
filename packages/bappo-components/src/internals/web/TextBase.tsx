@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import Colors from '../../apis/Colors';
 import FontContext from '../../primitives/Font/FontContext';
 import { TextProps } from '../../primitives/Text/types';
@@ -137,13 +138,13 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       }
       return child;
     };
-
     const renderContainer = (
       children: React.ReactNode,
       props: any,
       isChild: boolean,
     ) => {
       return React.createElement(
+        //@ts-ignore
         isChild ? ChildText : RootText,
         props,
         children,

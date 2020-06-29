@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 // $FlowFixMe typescript
 import { DivViewBase } from '../../internals/web/ViewBase';
@@ -92,7 +92,9 @@ const spin = keyframes`
     transform: rotate(360deg);
   }
 `;
-
+const spinRule = css`
+  ${spin} 2s infinite linear;
+`;
 const dash = keyframes`
   0% {
     stroke-dasharray: 1, 200;
@@ -109,7 +111,7 @@ const dash = keyframes`
 `;
 
 const Svg = styled.svg`
-  animation: ${spin} 2s infinite linear;
+  animation: ${spinRule};
 `;
 
 const Circle = styled.circle`

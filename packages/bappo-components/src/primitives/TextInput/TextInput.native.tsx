@@ -49,7 +49,7 @@ class TextInput extends React.Component<TextInputProps> {
       autoFocus,
       defaultValue,
       editable: !readOnly,
-      innerRef: this._captureInputRef,
+      ref: this._captureInputRef,
       maxLength,
       multiline,
       onChangeText: onValueChange,

@@ -54,9 +54,9 @@ const StyledForm = styled(View)`
   flex: 1;
 `;
 
-export const ModalFormTitleText = styled(Text).attrs({
+export const ModalFormTitleText = styled(Text).attrs(props => ({
   numberOfLines: 2,
-})`
+}))`
   ${modalFormMobileTitleTextStyle};
 `;
 
@@ -78,6 +78,6 @@ const ModalFormContent = styled(KeyboardAwareScrollView)`
   ${modalFormContentStyle};
 `;
 
-const ModalFormDeleteButton = styled(Button).attrs({
+const ModalFormDeleteButton = styled(Button).attrs(props => ({
   type: 'destructive',
-})``;
+}))``;

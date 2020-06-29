@@ -64,7 +64,7 @@ function Modal({
     <Overlay onPress={onRequestClose} visible={visible}>
       <ModalContentContainer
         deviceKind={deviceKind}
-        innerRef={modalContentContainerRef}
+        ref={modalContentContainerRef}
         layout={modalContentLayout}
         onKeyDown={onModalContentKeyDown}
         onLayout={onModalContentLayout}
@@ -96,9 +96,9 @@ function Modal({
 
 export default Modal;
 
-export const ModalContentContainer = styled(DivViewBase).attrs({
+export const ModalContentContainer = styled(DivViewBase).attrs(props => ({
   // tabIndex: -1,
-})<{
+}))<{
   deviceKind: DeviceKind;
   layout: Layout;
   placement: Props['placement'];
@@ -152,9 +152,9 @@ export const ModalTitleContainer = styled(View)`
   right: 70px;
 `;
 
-const ModalTitleText = styled(Text).attrs({
+const ModalTitleText = styled(Text).attrs(props => ({
   numberOfLines: 2,
-})<{
+}))<{
   deviceKind: DeviceKind;
 }>`
   font-size: 20px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import FontContext from '../../primitives/Font/FontContext';
 
 type TextAreaBaseProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -25,7 +26,7 @@ function TextAreaBase({
             {...props}
             aria-label={accessibilityLabel}
             data-testid={testID}
-            innerRef={nativeRef as any}
+            ref={nativeRef as any}
             fontFamilyValue={fontFamily}
             fontSizeValue={fontSize}
           />

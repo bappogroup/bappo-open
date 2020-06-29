@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import type { SwitchProps } from '../types.js.flow';
+
 import SwitchDefaultProps from '../defaultProps';
+import type { SwitchProps } from '../types.js.flow';
 
 type Props = SwitchProps;
 type State = {
@@ -59,9 +60,9 @@ class Switch extends React.Component<Props, State> {
 
 export default Switch;
 
-const SwitchContainer = styled.TouchableOpacity.attrs({
+const SwitchContainer = styled.TouchableOpacity.attrs(props => ({
   activeOpacity: 1,
-})`
+}))`
   flex: none;
   flex-direction: row;
   background-color: ${({ value }) => (value ? '#FF7800' : '#B0ADAB')};

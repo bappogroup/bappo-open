@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
+
 import FontContext from '../../../primitives/Font/FontContext';
 import Text from '../../../primitives/Text';
 
@@ -67,7 +68,7 @@ class SearchBar extends React.Component<Props> {
                     <StyledTextInput
                       autoCorrect={false}
                       editable={!disabled}
-                      innerRef={this._captureInputRef}
+                      ref={this._captureInputRef}
                       onChangeText={onInputChange}
                       onSubmitEditing={this._onInputSubmit}
                       returnKeyLabel="Search"
@@ -143,9 +144,9 @@ const IconContainer = styled.View`
 
 const IconText = styled.Text``;
 
-const SearchText = styled(Text).attrs({
+const SearchText = styled(Text).attrs(props => ({
   numberOfLines: 1,
-})`
+}))`
   margin-left: 34px;
   margin-right: 3px;
 `;

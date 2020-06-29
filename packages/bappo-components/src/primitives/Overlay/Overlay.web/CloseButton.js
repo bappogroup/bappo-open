@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import TouchableView from '../../TouchableView';
+
 import Icon from '../../../components/Icon';
+import TouchableView from '../../TouchableView';
 
 const CloseButton = ({ onPress, closeButtonStyle }) => (
   <Container onPress={onPress}>
@@ -11,9 +12,9 @@ const CloseButton = ({ onPress, closeButtonStyle }) => (
 
 export default CloseButton;
 
-const Container = styled(TouchableView).attrs({
+const Container = styled(TouchableView).attrs(props => ({
   activeOpacity: 1,
-})`
+}))`
   position: absolute;
   top: 0;
   left: 0;

@@ -70,7 +70,7 @@ class TextInput extends React.Component<Props> {
       autoComplete: 'off',
       defaultValue,
       dir: 'auto',
-      innerRef: this._captureInputRef,
+      ref: this._captureInputRef,
       maxLength,
       onBlur: this._createBlurEventHandler(),
       onChange: this._createChangeEventHandler(),
@@ -87,7 +87,7 @@ class TextInput extends React.Component<Props> {
       multiline,
       style,
     };
-
+    //@ts-ignore
     return <InputComponent {...props} {...styleProps} />;
   }
 
@@ -158,9 +158,9 @@ export default TextInput;
 
 const Input = styled(InputBase)``;
 
-const TextArea = styled(TextAreaBase).attrs({
+const TextArea = styled(TextAreaBase).attrs(props => ({
   rows: 5,
-})`
+}))`
   height: 18px;
   padding: 8px 0px;
 `;

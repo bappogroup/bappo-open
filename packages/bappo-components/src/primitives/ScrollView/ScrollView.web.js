@@ -105,7 +105,7 @@ class ScrollView extends React.Component<Props> {
       <ScrollContainer
         {...styleProps}
         accessibilityLabel={accessibilityLabel}
-        innerRef={this._captureScrollableNodeRef}
+        ref={this._captureScrollableNodeRef}
         onLayout={onLayout}
         onScroll={this._onScroll}
         testID={testID}

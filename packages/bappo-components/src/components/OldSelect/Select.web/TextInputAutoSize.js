@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
+
 import InputBase from '../../../internals/web/InputBase';
 import Text from '../../../primitives/Text';
 
@@ -154,13 +155,13 @@ class TextInputAutoSize extends React.Component<Props, State> {
       <Container className={className}>
         <Input
           {...inputProps}
-          innerRef={this.inputRef}
+          ref={this.inputRef}
           value={value}
           width={this.state.inputWidth}
         />
-        <Sizer innerRef={this.sizerRef}>{sizerValue}</Sizer>
+        <Sizer ref={this.sizerRef}>{sizerValue}</Sizer>
         {this.props.placeholder ? (
-          <Sizer innerRef={this.placeHolderSizerRef}>
+          <Sizer ref={this.placeHolderSizerRef}>
             <Text>{this.props.placeholder}</Text>
           </Sizer>
         ) : null}

@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
+
 import FlatList from '../../../primitives/FlatList';
+import type { Option, Value, renderOptionType } from '../types.js.flow';
 import Menu from './Menu';
 import SelectedOption from './SelectedOption';
 import {
@@ -16,12 +18,11 @@ import {
   LoadingZone,
   MenuInner,
   MenuOuter,
-  ValueWrapper,
   MultiValueWrapper,
   NoResults,
   Placeholder,
+  ValueWrapper,
 } from './StyledComponents';
-import type { Option, renderOptionType, Value } from '../types.js.flow';
 
 type Props = {
   /**
@@ -243,7 +244,7 @@ class Select extends React.Component<Props, State> {
         aria-label={accessibilityLabel}
         className={className}
         data-testid={testID}
-        innerRef={ref => {
+        ref={ref => {
           this._wrapper = ref;
         }}
         style={style}
@@ -927,7 +928,7 @@ class Select extends React.Component<Props, State> {
     const inputProps = {
       ...this._getSelectState(),
       'aria-expanded': isOpen,
-      innerRef: ref => {
+      ref: ref => {
         this._input = ref;
       },
       role: 'combobox',
@@ -1014,12 +1015,12 @@ class Select extends React.Component<Props, State> {
 
     return (
       <MenuOuter
-        innerRef={ref => {
+        ref={ref => {
           this._menuContainer = ref;
         }}
       >
         <MenuInner
-          innerRef={ref => {
+          ref={ref => {
             this._menu = ref;
           }}
           onMouseDown={this._onMenuMouseDown}

@@ -10,20 +10,17 @@
  * @format
  */
 
-import * as React from 'react';
 import invariant from 'fbjs/lib/invariant';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import UIManager from 'react-native-web/dist/cjs/exports/UIManager';
 import Batchinator from 'react-native-web/dist/cjs/vendor/react-native/Batchinator';
 import FillRateHelper from 'react-native-web/dist/cjs/vendor/react-native/FillRateHelper';
-import ViewabilityHelper, {
-  type ViewabilityConfig,
-  type ViewToken,
-  type ViewabilityConfigCallbackPair,
-} from 'react-native-web/dist/cjs/vendor/react-native/ViewabilityHelper';
+import ViewabilityHelper from 'react-native-web/dist/cjs/vendor/react-native/ViewabilityHelper';
 import { computeWindowedRenderLimits } from 'react-native-web/dist/cjs/vendor/react-native/VirtualizeUtils';
 import styled from 'styled-components';
+
 import ScrollView from '../../primitives/ScrollView';
 import View from '../../primitives/View';
 
@@ -36,8 +33,8 @@ export type renderItemType = (info: any) => ?React.Element<any>;
 type ViewabilityHelperCallbackTuple = {
   viewabilityHelper: ViewabilityHelper,
   onViewableItemsChanged: (info: {
-    viewableItems: Array<ViewToken>,
-    changed: Array<ViewToken>,
+    viewableItems: Array<any>,
+    changed: Array<any>,
   }) => void,
 };
 
@@ -155,8 +152,8 @@ type OptionalProps = {
    * `viewabilityConfig` prop.
    */
   onViewableItemsChanged?: ?(info: {
-    viewableItems: Array<ViewToken>,
-    changed: Array<ViewToken>,
+    viewableItems: Array<any>,
+    changed: Array<any>,
   }) => void,
   /**
    * Set this when offset is needed for the loading indicator to show correctly.
@@ -182,12 +179,12 @@ type OptionalProps = {
    * screen. Similar fill rate/responsiveness tradeoff as `maxToRenderPerBatch`.
    */
   updateCellsBatchingPeriod: number,
-  viewabilityConfig?: ViewabilityConfig,
+  viewabilityConfig?: any,
   /**
-   * List of ViewabilityConfig/onViewableItemsChanged pairs. A specific onViewableItemsChanged
-   * will be called when its corresponding ViewabilityConfig's conditions are met.
+   * List of any/onViewableItemsChanged pairs. A specific onViewableItemsChanged
+   * will be called when its corresponding any's conditions are met.
    */
-  viewabilityConfigCallbackPairs?: Array<ViewabilityConfigCallbackPair>,
+  viewabilityConfigCallbackPairs?: Array<any>,
   /**
    * Determines the maximum number of items rendered outside of the visible area, in units of
    * visible lengths. So if your list fills the screen, then `windowSize={21}` (the default) will
@@ -1000,9 +997,9 @@ class VirtualizedList extends React.PureComponent<Props, State> {
           JSON.stringify(props.refreshing) +
           '`',
       );
-      return <StyledScrollView innerRef={ref} {...props} />;
+      return <StyledScrollView ref={ref} {...props} />;
     } else {
-      return <StyledScrollView innerRef={ref} {...props} />;
+      return <StyledScrollView ref={ref} {...props} />;
     }
   };
 
@@ -1457,7 +1454,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     });
   };
 
-  _createViewToken = (index: number, isViewable: boolean) => {
+  _createany = (index: number, isViewable: boolean) => {
     const { data, getItem, keyExtractor } = this.props;
     const item = getItem(data, index);
     return { index, item, key: keyExtractor(item, index), isViewable };
@@ -1543,7 +1540,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         this._scrollMetrics.offset,
         this._scrollMetrics.visibleLength,
         this._getFrameMetrics,
-        this._createViewToken,
+        this._createany,
         tuple.onViewableItemsChanged,
         this.state,
       );
@@ -1718,8 +1715,8 @@ const DefaultCellView = styled(View)`
         ? 'flex-direction: row-reverse;'
         : 'flex-direction: column-reverse;'
       : horizontal
-        ? 'flex-direction: row;'
-        : 'flex-direction: column;'};
+      ? 'flex-direction: row;'
+      : 'flex-direction: column;'};
 `;
 
 const InvertableView = styled(View)``;

@@ -114,9 +114,9 @@ const StyledForm = styled(FlexForm)`
   flex: 1;
 `;
 
-const ModalFormTitleText = styled(Text).attrs({
+const ModalFormTitleText = styled(Text).attrs(props => ({
   numberOfLines: 2,
-})<{
+}))<{
   deviceKind: DeviceKind;
 }>`
   font-size: 20px;
@@ -166,9 +166,9 @@ const ModalFormHeaderMobileContainer = styled(FlexDiv)`
   justify-content: space-between;
 `;
 
-const ModalFormMobileDeleteButton = styled(Button).attrs({
+const ModalFormMobileDeleteButton = styled(Button).attrs(props => ({
   type: 'destructive',
-})``;
+}))``;
 
 const ModalFormContent = styled(FlexDiv)<{
   deviceKind: DeviceKind;
@@ -199,12 +199,12 @@ const ModalFormRow = styled(FlexDiv)`
   flex-direction: row;
 `;
 
-const ModalFormFooterCancelButton = styled(Button).attrs({
+const ModalFormFooterCancelButton = styled(Button).attrs(props => ({
   type: 'tertiary',
-})`
+}))`
   margin-right: 16px;
 `;
 
-const ModalFormFooterDeleteButton = styled(Button).attrs({
+const ModalFormFooterDeleteButton = styled(Button).attrs(props => ({
   type: 'destructive',
-})``;
+}))``;

@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
+
 import { styled } from '../../../apis/Style';
 import FlatList from '../../../primitives/FlatList';
 import Text from '../../../primitives/Text';
 import View from '../../../primitives/View';
+import Icon from '../../Icon';
 import type { Option, renderOptionType } from '../types.js.flow';
 import OptionContainer from './OptionContainer';
-import Icon from '../../Icon';
 
 type Props = {
   focusedOption: ?Option,
@@ -48,7 +49,7 @@ class Menu extends React.Component<Props> {
       <StyledFlatList
         data={options}
         getItemLayout={getItemLayout || this._defaultGetItemLayout}
-        innerRef={listRef}
+        ref={listRef}
         keyExtractor={this._keyExtractor}
         onEndReached={onEndReached}
         onEndReachedThreshold={onEndReachedThreshold}

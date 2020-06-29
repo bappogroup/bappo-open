@@ -1,15 +1,18 @@
 // @flow
 
 import styled, { css, keyframes } from 'styled-components';
-import TextInputAutoSize from './TextInputAutoSize';
+
 import Text from '../../../primitives/Text';
+import TextInputAutoSize from './TextInputAutoSize';
 
 const spin = keyframes`
 to {
   transform: rotate(1turn);
 }
 `;
-
+const spinRule = css`
+  ${spin} 400ms infinite linear;
+`;
 export const Arrow = styled.span`
   border-color: #999 transparent transparent;
   border-style: solid;
@@ -132,7 +135,7 @@ export const Input = styled(TextInputAutoSize)`
 `;
 
 export const Loading = styled.span`
-  animation: ${spin} 400ms infinite linear;
+  animation: ${spinRule};
   width: 16px;
   height: 16px;
   box-sizing: border-box;

@@ -43,7 +43,7 @@ class OptionContainer extends React.Component<Props> {
       </Container>
     ) : (
       <Container
-        innerRef={innerRef}
+        ref={innerRef}
         isFocused={isFocused}
         isSelected={isSelected}
         onClick={this._onClick}

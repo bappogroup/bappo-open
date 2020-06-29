@@ -300,9 +300,9 @@ const Arrow = styled.span`
   position: relative;
 `;
 
-const CalendarContainer = styled.div.attrs({
+const CalendarContainer = styled.div.attrs(props => ({
   'data-component': 'calendar',
-})`
+}))`
   ${({ alignRight }) =>
     alignRight &&
     `
@@ -387,10 +387,10 @@ const MonthContainer = styled.div`
   flex-direction: column;
 `;
 
-const NavigatorButton = styled.button.attrs({
+const NavigatorButton = styled.button.attrs(props => ({
   tabIndex: -1,
   type: 'button',
-})`
+}))`
   background: none;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -421,7 +421,7 @@ const Row = styled.div`
   display: flex;
 `;
 
-const HeaderContainer = Row.extend`
+const HeaderContainer = styled(Row)`
   border-bottom: 1px solid #ccc;
   display: flex;
 `;

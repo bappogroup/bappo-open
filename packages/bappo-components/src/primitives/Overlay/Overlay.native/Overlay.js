@@ -3,8 +3,9 @@
 import * as React from 'react';
 import RN from 'react-native';
 import styled from 'styled-components';
-import type { OverlayProps } from '../types.js.flow';
+
 import OverlayDefaultProps from '../defaultProps';
+import type { OverlayProps } from '../types.js.flow';
 
 type Props = OverlayProps;
 
@@ -42,9 +43,9 @@ class Overlay extends React.Component<Props> {
 
 export default Overlay;
 
-const OverlayContainer = styled.TouchableOpacity.attrs({
+const OverlayContainer = styled.TouchableOpacity.attrs(props => ({
   activeOpacity: 1,
-})`
+}))`
   flex: 1;
   background-color: rgba(178, 178, 178, 0.8);
 `;

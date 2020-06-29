@@ -83,11 +83,11 @@ class Switch extends React.Component<Props> {
 
 export default Switch;
 
-const SwitchContainer = styled(DivViewBase).attrs({
+const SwitchContainer = styled(DivViewBase).attrs(props => ({
   'aria-checked': ({ value }) => (value ? 'true' : 'false'),
   role: 'checkbox',
   tabIndex: 0,
-})`
+}))`
   flex: none;
   outline: none;
   flex-direction: row;
