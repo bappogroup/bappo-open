@@ -37,7 +37,11 @@ const FormBody = ({
             <ModalFormTitleText>{title}</ModalFormTitleText>
           </ModalFormTitleContainer>
         </ModalFormHeader>
-        <ModalFormContent contentContainerStyle={contentContainerStyle}>
+
+        <ModalFormContent
+          contentContainerStyle={contentContainerStyle}
+          extraScrollHeight={100}
+        >
           {children}
           {onDelete && (
             <ModalFormDeleteButton onPress={onDelete} text="Delete" />
