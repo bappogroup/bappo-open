@@ -20,7 +20,10 @@ class TextInput extends React.Component<Props> {
     readOnly: false,
     type: 'text',
   };
-
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   static displayName = 'TextInput';
 
   public blur() {

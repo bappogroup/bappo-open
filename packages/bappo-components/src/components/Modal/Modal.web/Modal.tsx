@@ -63,7 +63,7 @@ function Modal({
   return (
     <Overlay onPress={onRequestClose} visible={visible}>
       <ModalContentContainer
-        deviceKind={deviceKind}
+        $deviceKind={deviceKind}
         ref={modalContentContainerRef}
         layout={modalContentLayout}
         onKeyDown={onModalContentKeyDown}
@@ -96,10 +96,8 @@ function Modal({
 
 export default Modal;
 
-export const ModalContentContainer = styled(DivViewBase).attrs(props => ({
-  // tabIndex: -1,
-}))<{
-  deviceKind: DeviceKind;
+export const ModalContentContainer = styled(DivViewBase)<{
+  $deviceKind: DeviceKind;
   layout: Layout;
   placement: Props['placement'];
 }>`
@@ -113,7 +111,7 @@ export const ModalContentContainer = styled(DivViewBase).attrs(props => ({
   }
 
   ${props =>
-    props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
+    props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? `
       left: 0;
       right: 0;
@@ -124,7 +122,7 @@ export const ModalContentContainer = styled(DivViewBase).attrs(props => ({
       : desktopStyle(props)}
 
   ${props =>
-    props.deviceKind === 'desktop' || props.deviceKind === 'tablet'
+    props.$deviceKind === 'desktop' || props.$deviceKind === 'tablet'
       ? `
       @media (max-height: 768px) {
         max-height: 100%;
