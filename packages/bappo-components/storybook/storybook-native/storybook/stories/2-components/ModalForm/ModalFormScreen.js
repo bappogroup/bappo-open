@@ -1,19 +1,20 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import DependentField from './examples/DependentField';
-import Minimal from './examples/Minimal';
-import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
 import FieldLevelValidation from './examples/FieldLevelValidation';
+import Minimal from './examples/Minimal';
 import PropSubmitButtonText from './examples/PropSubmitButtonText';
+import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
@@ -47,6 +48,12 @@ const ModalFormScreen = () => (
         name="onSubmit?"
         typeInfo="(values: mixed) => void"
         description="Function to be called when form is submitted."
+      />
+
+      <DocItem
+        name="onCancel?"
+        typeInfo="(values: mixed) => void"
+        description="Function to be called when form is canceled."
       />
 
       <DocItem

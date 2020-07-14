@@ -1,6 +1,5 @@
 import { Alert, Button, ModalForm, TextField, View } from 'bappo-components';
 import React from 'react';
-
 class ModalFormMinimalExample extends React.Component {
   state = {
     modalVisible: false,
@@ -21,6 +20,9 @@ class ModalFormMinimalExample extends React.Component {
           title="Modal Form Minimal Example"
           visible={this.state.modalVisible}
           testID="modalForm-minimal"
+          onCancel={values => {
+            Alert.alert('canceled!!!');
+          }}
         >
           <TextField name="firstName" label="First Name" />
           <TextField name="lastName" label="Last Name" />

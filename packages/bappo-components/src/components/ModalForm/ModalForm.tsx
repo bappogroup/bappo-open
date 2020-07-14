@@ -23,6 +23,7 @@ type OptionalProps = {
   initialValues?: Values;
   onDelete?: (values: Values) => Promise<void>;
   onSubmit?: (values: Values) => Promise<void>;
+  onCancel?: (values: Values) => Promise<void>;
   placement?: ModalProps['placement'];
   submitButtonText?: string | ((formState: FormStateAndHelpers) => string);
   testID?: string;
@@ -43,8 +44,18 @@ function ModalForm({
   testID,
   title,
   visible,
+  onCancel,
 }: Props) {
-  const handleCancel = ({ dirty }: FormStateAndHelpersAndActions) => {
+  const handleCancel = async ({
+    dirty,
+    values,
+  }: FormStateAndHelpersAndActions) => {
+    async function handleCancelClose() {
+      if (onCancel) {
+        await onCancel(values);
+      }
+      onRequestClose();
+    }
     if (dirty) {
       Alert.alert({
         title: 'You have unsaved changes',
@@ -52,7 +63,7 @@ function ModalForm({
           confirm: {
             text: 'Discard',
             destructive: true,
-            onPress: () => onRequestClose(),
+            onPress: () => handleCancelClose(),
           },
           cancel: {
             text: 'Keep',
@@ -60,7 +71,7 @@ function ModalForm({
         },
       });
     } else {
-      onRequestClose();
+      handleCancelClose();
     }
   };
 
