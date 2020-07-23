@@ -4,6 +4,7 @@ import React from 'react';
 
 import UIExplorer, {
   AppText,
+  Code,
   Description,
   DocItem,
   Section,
@@ -12,6 +13,7 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import { url } from '../../../url';
 import Example from './examples/example';
+import PropDisabled from './examples/PropDisabled';
 import TooltipExample from './examples/TooltipExample';
 
 const IconButtonScreen = () => (
@@ -26,11 +28,23 @@ const IconButtonScreen = () => (
       text="Examples Code"
     />
     <Section title="Props">
-      <DocItem name="name?" typeInfo="string" description="Icon name." />
+      <DocItem name="name" typeInfo="string" description="Icon name." />
       <DocItem
         name="color?"
         typeInfo="string"
         description="The color of each Icon"
+      />
+      <DocItem
+        name="disabled?"
+        typeInfo="boolean"
+        description={
+          <AppText>
+            If <Code>true</Code>, disable all interactions for this component.
+          </AppText>
+        }
+        example={{
+          render: () => <PropDisabled />,
+        }}
       />
       <DocItem
         name="size?"

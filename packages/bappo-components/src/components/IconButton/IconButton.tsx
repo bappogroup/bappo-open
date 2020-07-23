@@ -5,27 +5,38 @@ import TouchableView from '../../primitives/TouchableView';
 import Icon from '../Icon';
 import { IconProps } from '../Icon/Icon';
 
-interface IconButtonProps extends IconProps {
-  onPress?: () => void;
+export interface IconButtonProps extends IconProps {
+  disabled?: boolean;
+  onPress?: () => any;
   tooltip?: string;
 }
 
-const IconButton: React.FC<IconButtonProps> = (props) => {
-  const IconStyle = {
-    color: props.color,
-    name: props.name,
-    size: props.size,
+const IconButton = ({
+  className,
+  color,
+  disabled,
+  name,
+  onPress,
+  style,
+  tooltip,
+  size,
+}: IconButtonProps) => {
+  const iconProps = {
+    color,
+    name,
+    size,
   };
 
   return (
     <StyledTouchableView
-      onPress={props.onPress}
-      className={props.className}
-      style={props.style}
-      size={props.size}
-      tooltip={props.tooltip}
+      className={className}
+      disabled={disabled}
+      onPress={onPress}
+      style={style}
+      tooltip={tooltip}
+      size={size}
     >
-      <Icon {...IconStyle} />
+      <Icon {...iconProps} />
     </StyledTouchableView>
   );
 };
