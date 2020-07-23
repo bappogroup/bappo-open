@@ -1,7 +1,9 @@
 import 'jest-styled-components';
 import 'react-testing-library/cleanup-after-each';
+
 import React from 'react';
 import { render } from 'react-testing-library';
+
 import { styled } from '../../../apis/Style';
 import Text from '../../Text';
 import Font from '..';
@@ -82,34 +84,34 @@ test('texts can override inherited font', () => {
     </Font>,
   );
   expect(getByTestId('test')).toMatchInlineSnapshot(`
-    .c1 {
-      box-sizing: border-box;
-      color: #191E26;
-      display: inline;
-      -webkit-box-flex: 0;
-      -webkit-flex-grow: 0;
-      -ms-flex-positive: 0;
-      flex-grow: 0;
-      -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-      flex-shrink: 0;
-      font-family: Times;
-      font-size: 10px;
-      position: relative;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      -ms-hyphens: auto;
-      cursor: inherit;
-    }
+.c0 {
+  box-sizing: border-box;
+  color: #191E26;
+  display: inline;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: Times;
+  font-size: 10px;
+  position: relative;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -ms-hyphens: auto;
+  cursor: inherit;
+}
 
-    .c0 {
-      font-size: 20px;
-    }
+.c1 {
+  font-size: 20px;
+}
 
-    <div
-      class="c0 c1"
-      data-testid="test"
-      data-text-as-pseudo-element="hello"
-    />
-  `);
+<div
+  class="c0 c1"
+  data-testid="test"
+  data-text-as-pseudo-element="hello"
+/>
+`);
 });
