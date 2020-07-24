@@ -2565,10 +2565,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@^0.1.0-alpha.159:
-  version "0.1.0-alpha.159"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.159.tgz#40d42a8001fc6af83ba635a33705381c6b120d45"
-  integrity sha512-6LXuze4C0Mzd5C9fvrwIM9kq9OFISA5tcAQDSuPh25ylk4gQc4pMe/YRgl2osSf58W6p25U7B4v5clkAazf5SQ==
+bappo-components@^0.1.0-alpha.160:
+  version "0.1.0-alpha.160"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.160.tgz#88908091c0bf9d9ddf8d64748b6bf4705a670071"
+  integrity sha512-WfV1iZ6iOuOL8yaWbhvcJnIO6TcwKYX934Rv9+hn19HO8S9UPMmmh3gKtdMLDPZ1nlvJPQFz4UKfH5azDXqUnw==
   dependencies:
     "@babel/runtime" "7.5.5"
     "@reach/tooltip" "^0.10.1"
