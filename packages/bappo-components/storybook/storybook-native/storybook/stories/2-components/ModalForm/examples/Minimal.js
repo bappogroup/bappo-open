@@ -24,7 +24,7 @@ class ModalFormMinimalExample extends React.Component {
             Alert.alert('canceled!!!');
           }}
         >
-          <TextField name="firstName" label="First Name" />
+          <TextField name="firstName" label="First Name" autoFocus />
           <TextField name="lastName" label="Last Name" />
         </ModalForm>
       </View>
