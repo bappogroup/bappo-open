@@ -75,15 +75,6 @@ function ModalForm({
     }
   };
 
-  React.useEffect(() => {
-    const input = document.activeElement;
-    if (visible && input !== null && input.tagName !== 'INPUT') {
-      //blur if active focus is not input
-      //@ts-ignore
-      document.activeElement.blur();
-    }
-  }, [visible]);
-
   const handleDelete = async ({ values }: FormStateAndHelpersAndActions) => {
     const res = onDelete && (await onDelete(values));
 

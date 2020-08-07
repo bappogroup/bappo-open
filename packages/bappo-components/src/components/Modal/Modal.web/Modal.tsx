@@ -42,7 +42,8 @@ function Modal({
         !domEl.contains(document.activeElement)
       ) {
         // only focus if modal container or its children does not have focus
-        domEl.focus();
+        //@ts-ignore
+        document.activeElement.blur();
       }
     }
     prevVisibleRef.current = visible;
