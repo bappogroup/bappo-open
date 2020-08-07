@@ -1,4 +1,5 @@
 import React from 'react';
+
 import UIExplorer, {
   AppText,
   Code,
@@ -33,14 +34,15 @@ const ImageScreen = () => (
         }}
       />
 
-      <DocItem 
-      name="style" 
-      typeInfo="?style" 
-      description={
+      <DocItem
+        name="style"
+        typeInfo="?style"
+        description={
           <AppText>
-            If no style is applied, the height defaults to 0 and the image will remain invisible.
+            If no style is applied, the height defaults to 0 and the image will
+            remain invisible.
           </AppText>
-
+        }
       />
     </Section>
 
