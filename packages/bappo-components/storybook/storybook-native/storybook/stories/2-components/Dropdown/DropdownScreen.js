@@ -1,16 +1,18 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
+
 import UIExplorer, {
   AppText,
   Description,
   DocItem,
-  storiesOf,
-  WebLink,
   Section,
+  WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
-import Example from './example';
 import { url } from '../../../url';
+import Example from './examples/example';
+import InsideModal from './examples/InsideModal';
 
 const DropdownScreen = () => (
   <UIExplorer title="Dropdown" url="2-components/Dropdown">
@@ -55,11 +57,22 @@ const DropdownScreen = () => (
       />
     </Section>
 
-    <DocItem
-      example={{
-        render: () => <Example />,
-      }}
-    />
+    <Section title="Examples">
+      <WebLink
+        href={`${url}/storybook/storybook-native/storybook/stories/2-components/Dropdown/examples`}
+        text="Examples Code"
+      />
+      <DocItem
+        example={{
+          render: () => <Example />,
+        }}
+      />
+      <DocItem
+        example={{
+          render: () => <InsideModal />,
+        }}
+      />
+    </Section>
   </UIExplorer>
 );
 
