@@ -94,21 +94,23 @@ class Dropdown extends React.Component<Props, State> {
             padding: '0px 5px',
           }}
           onClick={() => this.setState({ active: true })}
-          ref={el => {
+          ref={(el) => {
             this.el = el;
           }}
         >
           {children || <Icon name={icon} color={iconColor} />}
         </div>
-        <Modal
-          onRequestClose={this._close}
-          placement={placement}
-          visible={this.state.active}
-          hideHeader={true}
-        >
-          <BackButton onPress={this._close} />
-          {actions.map(this._renderAction)}
-        </Modal>
+        {this.state.active ? (
+          <Modal
+            onRequestClose={this._close}
+            placement={placement}
+            visible
+            hideHeader={true}
+          >
+            <BackButton onPress={this._close} />
+            {actions.map(this._renderAction)}
+          </Modal>
+        ) : null}
       </WebContainer>
     );
   }
