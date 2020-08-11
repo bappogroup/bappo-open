@@ -1,14 +1,15 @@
 // @flow
 
 import * as React from 'react';
+
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
 import Badge from '../Badge';
 import Icon from '../Icon';
-import type { AvatarProps } from './types.js.flow';
 import AvatarDefaultProps from './defaultProps';
 import { SizeToRadius, getInitials } from './helpers';
+import type { AvatarProps } from './types.js.flow';
 
 type Props = AvatarProps & {
   // Will be removed

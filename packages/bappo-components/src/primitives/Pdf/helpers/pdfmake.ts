@@ -1,5 +1,6 @@
 import { get, set } from 'lodash/fp';
 import pdfMake from 'pdfmake';
+
 import InteractionManager from '../../../internals/InteractionManager';
 import { PdfDefinitionSource } from '../types';
 
@@ -88,9 +89,7 @@ async function fetchFontFile(
       } else {
         reject(
           new Error(
-            `Fetching "${fontFileDefinition.url}" failed: ${
-              request.statusText
-            }`,
+            `Fetching "${fontFileDefinition.url}" failed: ${request.statusText}`,
           ),
         );
       }
@@ -130,9 +129,7 @@ async function fetchFontFileWithRetry(
         } else {
           // not throwing error and just use the default font as a fallback
           console.warn(
-            `Failed to fetch font ${fontName} (${fontStyle}). Falling back to ${
-              defaultFont.name
-            } (${defaultFont.style}).`,
+            `Failed to fetch font ${fontName} (${fontStyle}). Falling back to ${defaultFont.name} (${defaultFont.style}).`,
           );
           return;
         }

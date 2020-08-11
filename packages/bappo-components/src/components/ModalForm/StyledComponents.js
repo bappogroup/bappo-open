@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { styled, css } from '../../apis/Style';
+
+import { css, styled } from '../../apis/Style';
 import ActivityIndicator from '../../primitives/ActivityIndicator';
 import { Form } from '../../primitives/Form';
 import Text from '../../primitives/Text';

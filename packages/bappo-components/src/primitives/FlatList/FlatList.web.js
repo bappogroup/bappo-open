@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+
 import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 import VirtualizedList from '../../internals/VirtualizedList.web';
 

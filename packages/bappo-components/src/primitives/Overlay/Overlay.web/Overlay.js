@@ -1,12 +1,13 @@
 // @flow
 
-import * as React from 'react';
 import ExecutionEnvironment from 'exenv';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
-import type { OverlayProps } from '../types.js.flow';
+
 import OverlayDefaultProps from '../defaultProps';
-import OverlayContainer from './OverlayContainer';
+import type { OverlayProps } from '../types.js.flow';
 import CloseButton from './CloseButton';
+import OverlayContainer from './OverlayContainer';
 
 type Props = OverlayProps;
 

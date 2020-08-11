@@ -1,4 +1,5 @@
 import React from 'react';
+
 import defaultFont from './defaultFont';
 import FontContext from './FontContext';
 

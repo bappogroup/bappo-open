@@ -1,4 +1,5 @@
 import React from 'react';
+
 import FlexIframe from '../../../internals/web/FlexIframe';
 import {
   createDataUrlFromDefinition,
@@ -6,8 +7,8 @@ import {
 } from '../helpers/pdfmake';
 import { useUri } from '../helpers/useUri';
 import { validateSource } from '../helpers/validateSource';
-import { Props } from './types';
 import Loading from './Loading';
+import { Props } from './types';
 
 // start loading fonts as soon as this module gets imported
 initializePdfFonts();

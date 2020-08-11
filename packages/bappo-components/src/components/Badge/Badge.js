@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
+
 import { styled } from '../../apis/Style';
-import View from '../../primitives/View';
 import Text from '../../primitives/Text';
+import View from '../../primitives/View';
 
 type Props = {
   number?: number,

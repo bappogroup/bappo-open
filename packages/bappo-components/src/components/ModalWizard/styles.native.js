@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { bodyContainerStyle } from './common-styles';
+
 import View from '../../primitives/View';
+import { bodyContainerStyle } from './common-styles';
 
 export const BodyContainer = styled(View)`
   flex: 1;

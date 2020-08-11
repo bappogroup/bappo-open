@@ -1,12 +1,13 @@
 // @flow
 
-import * as React from 'react';
 import ExecutionEnvironment from 'exenv';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+
 import OverlayContainer from '../../../primitives/Overlay/Overlay.web/OverlayContainer';
+import { convertOptions, validateOptions } from '../helpers';
 import type { AlertOptions } from '../types.js.flow';
-import { validateOptions, convertOptions } from '../helpers';
 import AlertDialog from './AlertDialog';
 
 class Alert {
@@ -24,7 +25,7 @@ class Alert {
       ReactDOM.render(
         <StyledOverlayContainer>
           <AlertDialog
-            {...options || defaultOptions}
+            {...(options || defaultOptions)}
             onDismiss={result => {
               document.body && document.body.removeChild(el);
               resolve(result);

@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
+
 import { styled } from '../../apis/Style';
 import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
-import Icon from '../Icon';
 import Badge from '../Badge';
+import Icon from '../Icon';
 import SubHeading from '../SubHeading';
 
 type Props = {

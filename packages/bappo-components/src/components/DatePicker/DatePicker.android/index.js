@@ -1,16 +1,17 @@
 // @flow
 
-import * as React from 'react';
 import moment from 'moment';
 import type Moment from 'moment';
+import * as React from 'react';
 import { DatePickerAndroid } from 'react-native';
+
 import PickerNative from '../../../internals/Picker.native';
-import type { DatePickerProps } from '../types.js.flow';
 import {
   DEFAULT_DATE_DISPLAY_FORMAT,
   DEFAULT_DATE_VALUE_FORMAT,
 } from '../constants';
 import { PlaceholderText, ValueText } from '../StyledComponents';
+import type { DatePickerProps } from '../types.js.flow';
 
 type Props = DatePickerProps;
 

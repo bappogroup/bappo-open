@@ -1,4 +1,5 @@
 import React from 'react';
+
 import TextBase from '../../../internals/web/TextBase';
 import { TextProps } from '../types';
 

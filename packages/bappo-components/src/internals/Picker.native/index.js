@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Platform, TouchableOpacity, View } from 'react-native';
+
 import Popup from './Popup';
 import {
   Container,

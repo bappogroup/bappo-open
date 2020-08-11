@@ -1,6 +1,7 @@
 import React from 'react';
-import { IconProps, GlyphMap } from './types';
+
 import IconText from './IconText';
+import { GlyphMap, IconProps } from './types';
 
 const createIcon = (
   fontFamily: string,

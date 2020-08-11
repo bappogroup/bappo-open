@@ -1,12 +1,13 @@
 import React from 'react';
 import NativePdf from 'react-native-pdf';
-import { PdfProps } from '../types';
+
 import {
   createDataUrlFromDefinition,
   initializePdfFonts,
 } from '../helpers/pdfmake';
 import { useUri } from '../helpers/useUri';
 import { validateSource } from '../helpers/validateSource';
+import { PdfProps } from '../types';
 import Loading from './Loading';
 
 // start loading fonts as soon as this module gets imported

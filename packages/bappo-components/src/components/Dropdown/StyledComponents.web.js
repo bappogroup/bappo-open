@@ -1,9 +1,9 @@
 // @flow
 
 import { styled } from '../../apis/Style';
-import TouchableView from '../../primitives/TouchableView';
-import Text from '../../primitives/Text';
 import { breakpoint } from '../../internals/web/breakpoint';
+import Text from '../../primitives/Text';
+import TouchableView from '../../primitives/TouchableView';
 
 export const ActionRow = styled(TouchableView)`
   flex-direction: row;

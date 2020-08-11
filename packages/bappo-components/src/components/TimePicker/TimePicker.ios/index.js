@@ -1,15 +1,16 @@
 // @flow
 
-import * as React from 'react';
 import moment from 'moment';
+import * as React from 'react';
 import { DatePickerIOS } from 'react-native';
+
 import PickerNative from '../../../internals/Picker.native';
-import type { TimePickerProps } from '../types.js.flow';
 import {
   DEFAULT_TIME_DISPLAY_FORMAT,
   DEFAULT_TIME_VALUE_FORMAT,
 } from '../constants';
 import { PlaceholderText, ValueText } from '../StyledComponents';
+import type { TimePickerProps } from '../types.js.flow';
 
 type Props = TimePickerProps;
 

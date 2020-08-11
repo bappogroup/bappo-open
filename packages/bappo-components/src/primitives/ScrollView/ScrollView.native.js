@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import RN from 'react-native';
+
 import type { ScrollEvent, ViewLayoutEvent } from '../../events.js.flow';
 
 type Props = {

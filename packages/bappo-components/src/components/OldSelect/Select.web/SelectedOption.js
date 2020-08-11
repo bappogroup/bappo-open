@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import type { Option } from '../types.js.flow';
+
 import Text from '../../../primitives/Text';
+import type { Option } from '../types.js.flow';
 
 type Props = {
   hasValue?: ?boolean,

@@ -1,8 +1,9 @@
 // @flow
 
 import styled from 'styled-components';
-import TouchableView from '../../primitives/TouchableView';
+
 import Text from '../../primitives/Text';
+import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
 
 export const ActionRow = styled(TouchableView)`

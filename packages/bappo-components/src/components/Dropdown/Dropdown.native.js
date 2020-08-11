@@ -1,17 +1,18 @@
 // @flow
 
 import * as React from 'react';
+
+import View from '../../primitives/View';
+import Icon from '../Icon';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
-import Icon from '../Icon';
-import View from '../../primitives/View';
 import {
   ActionRow,
+  BackLink,
+  Label,
   LinkContainer,
   LinkInner,
   ModalContainer,
-  Label,
-  BackLink,
 } from './StyledComponents.native.js';
 
 type RequiredProps = {

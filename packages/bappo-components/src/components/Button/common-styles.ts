@@ -12,8 +12,8 @@ export const buttonContainerStyle = css<ButtonContainerStyleProps>`
   justify-content: center;
   border-radius: 4px;
   height: 32px;
-  background-color: ${(props) => getBackgroundColor(props)};
-  border-color: ${(props) => getBorderColor(props)};
+  background-color: ${props => getBackgroundColor(props)};
+  border-color: ${props => getBorderColor(props)};
   border-style: solid;
   border-width: 1px;
   padding-left: ${({ icon, text }) => (icon && text ? 8 : text ? 16 : 0)}px;
@@ -22,7 +22,7 @@ export const buttonContainerStyle = css<ButtonContainerStyleProps>`
 
 export const buttonTextStyle = css<ButtonTextStyleProps>`
   font-size: 14px;
-  color: ${(props) => (props.loading ? 'transparent' : getTextColor(props))};
+  color: ${props => (props.loading ? 'transparent' : getTextColor(props))};
 `;
 
 export const ButtonLabel = styled(Text)`

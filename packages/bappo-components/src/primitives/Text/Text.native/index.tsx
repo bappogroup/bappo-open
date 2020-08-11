@@ -1,5 +1,6 @@
 import React from 'react';
 import RN from 'react-native';
+
 import Colors from '../../../apis/Colors';
 import FontContext from '../../Font/FontContext';
 import { TextProps } from '../types';

@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
+
 import { styled } from '../../apis/Style';
-import View from '../../primitives/View';
 import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
+import View from '../../primitives/View';
 import { ButtonCSS } from './styles';
 
 type Props = {

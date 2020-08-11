@@ -1,7 +1,7 @@
 import RN from 'react-native';
 
+import { convertOptions, validateOptions } from '../helpers';
 import type { AlertOptions } from '../types.js.flow';
-import { validateOptions, convertOptions } from '../helpers';
 
 const defaultAction = {
   text: 'OK',
