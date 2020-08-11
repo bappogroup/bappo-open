@@ -13,7 +13,7 @@ export const Arrow = styled.span`
   width: 0;
   position: relative;
 
-  ${props =>
+  ${(props) =>
     props.isOpen &&
     `
     top: -2px;
@@ -37,7 +37,7 @@ export const ArrowZone = styled.div`
     }
   }
 
-  ${props =>
+  ${(props) =>
     props.isDisabled &&
     `
     cursor: default;

@@ -85,7 +85,7 @@ class Calendar extends React.Component<Props, State> {
   }
 
   _changeGranularity = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let newGranularity;
       switch (prevState.granularity) {
         case 'day':
@@ -172,7 +172,7 @@ class Calendar extends React.Component<Props, State> {
     const now = moment();
     return (
       <HeaderContainer>
-        {[0, 1, 2, 3, 4, 5, 6].map(weekDayNum => {
+        {[0, 1, 2, 3, 4, 5, 6].map((weekDayNum) => {
           return (
             <HeaderCell key={weekDayNum}>
               <GridText>{now.day(weekDayNum).format('ddd.')}</GridText>
@@ -300,7 +300,7 @@ const Arrow = styled.span`
   position: relative;
 `;
 
-const CalendarContainer = styled.div.attrs(props => ({
+const CalendarContainer = styled.div.attrs((props) => ({
   'data-component': 'calendar',
 }))`
   ${({ alignRight }) =>
@@ -387,7 +387,7 @@ const MonthContainer = styled.div`
   flex-direction: column;
 `;
 
-const NavigatorButton = styled.button.attrs(props => ({
+const NavigatorButton = styled.button.attrs((props) => ({
   tabIndex: -1,
   type: 'button',
 }))`

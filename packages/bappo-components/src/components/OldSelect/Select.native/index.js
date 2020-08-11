@@ -232,8 +232,8 @@ class Select extends React.Component<Props, State> {
     const filterValue = this.state.inputValue.toLowerCase();
     const options = this.props.options || [];
     let excludeValues;
-    if (excludeOptions) excludeValues = excludeOptions.map(i => i[valueKey]);
-    return options.filter(option => {
+    if (excludeOptions) excludeValues = excludeOptions.map((i) => i[valueKey]);
+    return options.filter((option) => {
       if (excludeValues && excludeValues.indexOf(option[valueKey]) > -1)
         return false;
       if (filterOption) return filterOption(option, filterValue);
@@ -323,7 +323,7 @@ class Select extends React.Component<Props, State> {
       this.blur();
     }
     if (onValueChange) {
-      const valueArray = options.map(option => option[valueKey]);
+      const valueArray = options.map((option) => option[valueKey]);
       const value = multi
         ? valueArray
         : valueArray.length > 0
@@ -336,9 +336,9 @@ class Select extends React.Component<Props, State> {
   _toggleOption = (option: Option) => {
     const { valueKey } = this.props;
     const selectedOptions = this._getSelectedOptions();
-    if (selectedOptions.find(op => op[valueKey] === option[valueKey])) {
+    if (selectedOptions.find((op) => op[valueKey] === option[valueKey])) {
       this._setValue(
-        selectedOptions.filter(op => op[valueKey] !== option[valueKey]),
+        selectedOptions.filter((op) => op[valueKey] !== option[valueKey]),
       );
     } else {
       this._selectOption(option);
@@ -480,7 +480,7 @@ class Select extends React.Component<Props, State> {
       return <Placeholder>{placeholder}</Placeholder>;
     }
     if (multi) {
-      return selectedOptions.map(option => (
+      return selectedOptions.map((option) => (
         <SelectedOption
           key={`value-${option[valueKey]}`}
           labelKey={labelKey}

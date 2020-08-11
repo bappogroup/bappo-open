@@ -102,7 +102,7 @@ function ModalForm({
 
   return (
     <FormState initialValues={initialValues}>
-      {formStateAndActions => {
+      {(formStateAndActions) => {
         const { actions, ...formState } = formStateAndActions;
         const formContent =
           typeof children === 'function'

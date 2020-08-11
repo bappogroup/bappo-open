@@ -28,7 +28,7 @@ const IconModal: React.FC<IconModalProps> = ({
   const resultArray = useMemo(
     () =>
       chunk(
-        iconList.filter(icon => (input ? icon.includes(input) : true)),
+        iconList.filter((icon) => (input ? icon.includes(input) : true)),
         ARRAY_SIZE,
       ),
     [input],

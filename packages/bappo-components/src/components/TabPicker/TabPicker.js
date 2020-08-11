@@ -11,8 +11,8 @@ import { ButtonCSS } from './styles';
 type Props = {
   options: Array<any>,
   selected: Array<any>,
-  optionToString: any => string,
-  selectItem: any => any,
+  optionToString: (any) => string,
+  selectItem: (any) => any,
   onChange: (Array<any>) => void,
   multi?: boolean,
 };
@@ -29,7 +29,7 @@ const Picker = ({
       {options.map((option, i) => {
         let isSelected;
         if (multi)
-          isSelected = selected.find(op => op === option) ? true : false;
+          isSelected = selected.find((op) => op === option) ? true : false;
         else isSelected = selected === option;
         return (
           <TabButton
@@ -41,8 +41,8 @@ const Picker = ({
               if (!multi) {
                 output = option;
               } else {
-                if (selected.find(item => item === option)) {
-                  output = selected.filter(item => item !== option);
+                if (selected.find((item) => item === option)) {
+                  output = selected.filter((item) => item !== option);
                 } else {
                   output = [...selected, option];
                 }
@@ -72,19 +72,19 @@ const TabButton = styled(TouchableView)`
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: ${props => (props.isSelected ? 'orange' : '#f8f8f8')};
-  border-top-left-radius: ${props =>
+  background-color: ${(props) => (props.isSelected ? 'orange' : '#f8f8f8')};
+  border-top-left-radius: ${(props) =>
     props.position === 'first' ? '4px' : '0px'};
-  border-top-right-radius: ${props =>
+  border-top-right-radius: ${(props) =>
     props.position === 'first' ? '4px' : '0px'};
-  border-bottom-left-radius: ${props =>
+  border-bottom-left-radius: ${(props) =>
     props.position === 'last' ? '4px' : '0px'};
-  border-bottom-right-radius: ${props =>
+  border-bottom-right-radius: ${(props) =>
     props.position === 'last' ? '4px' : '0px'};
   margin-bottom: 1px;
   align-items: center;
   justify-content: center;
-  ${props => ButtonCSS(props)};
+  ${(props) => ButtonCSS(props)};
 `;
 
 const getPosition = (pos, length) => {

@@ -49,15 +49,15 @@ const getStateAndHelpers = (state: State): FormStateAndHelpers => {
   const { allTouched, fieldErrors, fieldStates, initialValues, values } = state;
 
   const pristine = deepEqual(initialValues, values);
-  const getFieldError = fieldName => get(fieldName, fieldErrors);
-  const getFieldValue = fieldName => {
+  const getFieldError = (fieldName) => get(fieldName, fieldErrors);
+  const getFieldValue = (fieldName) => {
     if (typeof values === 'object') {
       return get(fieldName, values);
     }
     return undefined;
   };
-  const fieldActive = fieldName => !!get([fieldName, 'active'], fieldStates);
-  const fieldPristine = fieldName => {
+  const fieldActive = (fieldName) => !!get([fieldName, 'active'], fieldStates);
+  const fieldPristine = (fieldName) => {
     const initialValue =
       typeof initialValues === 'object'
         ? get(fieldName, initialValues)
@@ -65,9 +65,10 @@ const getStateAndHelpers = (state: State): FormStateAndHelpers => {
     return deepEqual(initialValue, getFieldValue(fieldName));
   };
 
-  const fieldTouched = fieldName =>
+  const fieldTouched = (fieldName) =>
     !!allTouched || !!get([fieldName, 'touched'], fieldStates);
-  const fieldVisited = fieldName => !!get([fieldName, 'visited'], fieldStates);
+  const fieldVisited = (fieldName) =>
+    !!get([fieldName, 'visited'], fieldStates);
 
   return {
     // state
@@ -77,7 +78,7 @@ const getStateAndHelpers = (state: State): FormStateAndHelpers => {
     pristine,
     // helpers
     fieldActive,
-    fieldDirty: fieldName => !fieldPristine(fieldName),
+    fieldDirty: (fieldName) => !fieldPristine(fieldName),
     fieldPristine,
     fieldTouched,
     fieldVisited,
@@ -102,7 +103,7 @@ const validate = (state: State): Errors => {
   };
   Object.entries(fieldValidators).forEach(([fieldName, validators]) => {
     if (Array.isArray(validators)) {
-      validators.forEach(validator => validateField(fieldName, validator));
+      validators.forEach((validator) => validateField(fieldName, validator));
     } else {
       validateField(fieldName, validators);
     }
@@ -282,7 +283,7 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
 
   _getActions(stateAndHelpers: FormStateAndHelpers): FormActionSenders {
     return {
-      blur: fieldName =>
+      blur: (fieldName) =>
         this.send({
           type: 'BLUR',
           meta: {
@@ -298,7 +299,7 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
           payload: value,
         });
       },
-      focus: fieldName =>
+      focus: (fieldName) =>
         this.send({
           type: 'FOCUS',
           meta: {
@@ -320,7 +321,7 @@ class FormStateManager extends ReComponent<Props, State, ActionTypes> {
           payload: validators,
         });
       },
-      submit: async doSubmit => {
+      submit: async (doSubmit) => {
         try {
           this.send({
             type: 'START_SUBMIT',

@@ -369,10 +369,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   recordInteraction() {
-    this._nestedChildLists.forEach(childList => {
+    this._nestedChildLists.forEach((childList) => {
       childList.ref && childList.ref.recordInteraction();
     });
-    this._viewabilityTuples.forEach(t => {
+    this._viewabilityTuples.forEach((t) => {
       t.viewabilityHelper.recordInteraction();
     });
     this._updateViewableItems(this.props.data);
@@ -530,7 +530,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
 
     if (this.props.viewabilityConfigCallbackPairs) {
       this._viewabilityTuples = this.props.viewabilityConfigCallbackPairs.map(
-        pair => ({
+        (pair) => ({
           viewabilityHelper: new ViewabilityHelper(pair.viewabilityConfig),
           onViewableItemsChanged: pair.onViewableItemsChanged,
         }),
@@ -588,7 +588,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     }
     this._updateViewableItems(null);
     this._updateCellsToRenderBatcher.dispose({ abort: true });
-    this._viewabilityTuples.forEach(tuple => {
+    this._viewabilityTuples.forEach((tuple) => {
       tuple.viewabilityHelper.dispose();
     });
     this._fillRateHelper.deactivateAndFlush();
@@ -648,10 +648,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
           key={key}
           prevCellKey={prevCellKey}
           onUpdateSeparators={this._onUpdateSeparators}
-          onLayout={e => this._onCellLayout(e, key, ii)}
+          onLayout={(e) => this._onCellLayout(e, key, ii)}
           onUnmount={this._onCellUnmount}
           parentProps={this.props}
-          ref={ref => {
+          ref={(ref) => {
             this._cellRefs[key] = ref;
           }}
         />,
@@ -661,7 +661,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   _onUpdateSeparators = (keys: Array<?string>, newProps: Object) => {
-    keys.forEach(key => {
+    keys.forEach((key) => {
       const ref = key != null && this._cellRefs[key];
       ref && ref.updateSeparatorProps(newProps);
     });
@@ -931,7 +931,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
 
       // clear the viewableIndices cache to also trigger
       // the onViewableItemsChanged callback with the new data
-      this._viewabilityTuples.forEach(tuple => {
+      this._viewabilityTuples.forEach((tuple) => {
         tuple.viewabilityHelper.resetViewableIndices();
       });
     }
@@ -975,7 +975,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   _updateCellsToRenderBatcher: Batchinator;
   _viewabilityTuples: Array<ViewabilityHelperCallbackTuple> = [];
 
-  _captureScrollRef = ref => {
+  _captureScrollRef = (ref) => {
     this._scrollRef = ref;
   };
 
@@ -1049,7 +1049,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       ReactDOM.findDOMNode(
         this.context.virtualizedList.getOutermostParentListRef(),
       ),
-      error => {
+      (error) => {
         console.warn(
           "VirtualizedList: Encountered an error while measuring a list's" +
             ' offset from its containing VirtualizedList.',
@@ -1086,15 +1086,15 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     this._maybeCallOnEndReached();
   };
 
-  _onLayoutEmpty = e => {
+  _onLayoutEmpty = (e) => {
     this.props.onLayout && this.props.onLayout(e);
   };
 
-  _onLayoutFooter = e => {
+  _onLayoutFooter = (e) => {
     this._footerLength = this._selectLength(e.nativeEvent.layout);
   };
 
-  _onLayoutHeader = e => {
+  _onLayoutHeader = (e) => {
     this._headerLength = this._selectLength(e.nativeEvent.layout);
   };
 
@@ -1244,7 +1244,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   };
 
   _onScroll = (e: Object) => {
-    this._nestedChildLists.forEach(childList => {
+    this._nestedChildLists.forEach((childList) => {
       childList.ref && childList.ref._onScroll(e);
     });
     if (this.props.onScroll) {
@@ -1352,10 +1352,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   _onScrollBeginDrag = (e): void => {
-    this._nestedChildLists.forEach(childList => {
+    this._nestedChildLists.forEach((childList) => {
       childList.ref && childList.ref._onScrollBeginDrag(e);
     });
-    this._viewabilityTuples.forEach(tuple => {
+    this._viewabilityTuples.forEach((tuple) => {
       tuple.viewabilityHelper.recordInteraction();
     });
     this._hasInteracted = true;
@@ -1384,7 +1384,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     if (!data) {
       return;
     }
-    this.setState(state => {
+    this.setState((state) => {
       let newState;
       if (!isVirtualizationDisabled) {
         // If we run this with bogus data, we'll force-render window {first: 0, last: 0},
@@ -1534,7 +1534,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   _updateViewableItems(data: any) {
     const { getItemCount } = this.props;
 
-    this._viewabilityTuples.forEach(tuple => {
+    this._viewabilityTuples.forEach((tuple) => {
       tuple.viewabilityHelper.onUpdate(
         getItemCount(data),
         this._scrollMetrics.offset,
@@ -1615,7 +1615,7 @@ class CellRenderer extends React.Component<
   };
 
   updateSeparatorProps(newProps: Object) {
-    this.setState(state => ({
+    this.setState((state) => ({
       separatorProps: { ...state.separatorProps, ...newProps },
     }));
   }

@@ -244,7 +244,7 @@ class Select extends React.Component<Props, State> {
         aria-label={accessibilityLabel}
         className={className}
         data-testid={testID}
-        ref={ref => {
+        ref={(ref) => {
           this._wrapper = ref;
         }}
         style={style}
@@ -288,7 +288,7 @@ class Select extends React.Component<Props, State> {
 
   _addValue = (option: Option) => {
     const selectedOptions = this._getSelectedOptions();
-    const visibleOptions = this._visibleOptions.filter(val => !val.disabled);
+    const visibleOptions = this._visibleOptions.filter((val) => !val.disabled);
     const lastValueIndex = visibleOptions.indexOf(option);
     this._setValue(selectedOptions.concat(option));
     if (visibleOptions.length - 1 === lastValueIndex) {
@@ -320,7 +320,7 @@ class Select extends React.Component<Props, State> {
 
   _closeMenu = () => {
     this._handleInputValueChange('', false);
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isOpen: false,
       isPseudoFocused: prevState.isFocused && !this.props.multi,
       inputValue: '',
@@ -333,8 +333,8 @@ class Select extends React.Component<Props, State> {
     const filterValue = this.state.inputValue.toLowerCase();
     const options = this.props.options || [];
     let excludeValues;
-    if (excludeOptions) excludeValues = excludeOptions.map(i => i[valueKey]);
-    return options.filter(option => {
+    if (excludeOptions) excludeValues = excludeOptions.map((i) => i[valueKey]);
+    return options.filter((option) => {
       if (excludeValues && excludeValues.indexOf(option[valueKey]) > -1)
         return false;
       if (filterOption) return filterOption(option, filterValue);
@@ -349,7 +349,7 @@ class Select extends React.Component<Props, State> {
   ) => {
     const options = this._visibleOptions
       .map((option, index) => ({ option, index }))
-      .filter(option => !option.option.disabled);
+      .filter((option) => !option.option.disabled);
     this._scrollToFocusedOptionOnUpdate = true;
 
     if (!this.state.isOpen) {
@@ -783,7 +783,7 @@ class Select extends React.Component<Props, State> {
 
   _removeValue = (option: Option) => {
     const selectedOptions = this._getSelectedOptions();
-    this._setValue(selectedOptions.filter(i => i !== option));
+    this._setValue(selectedOptions.filter((i) => i !== option));
     this.focus();
   };
 
@@ -811,7 +811,7 @@ class Select extends React.Component<Props, State> {
       );
     } else {
       this.setState(
-        prevState => ({
+        (prevState) => ({
           inputValue: '',
           isPseudoFocused: prevState.isFocused,
         }),
@@ -828,7 +828,7 @@ class Select extends React.Component<Props, State> {
       this.blur();
     }
     if (onValueChange) {
-      const valueArray = options.map(option => option[valueKey]);
+      const valueArray = options.map((option) => option[valueKey]);
       const value = multi
         ? valueArray
         : valueArray.length > 0
@@ -847,9 +847,9 @@ class Select extends React.Component<Props, State> {
   _toggleOption = (option: Option) => {
     const { valueKey } = this.props;
     const selectedOptions = this._getSelectedOptions();
-    if (selectedOptions.find(op => op[valueKey] === option[valueKey])) {
+    if (selectedOptions.find((op) => op[valueKey] === option[valueKey])) {
       this._setValue(
-        selectedOptions.filter(op => op[valueKey] !== option[valueKey]),
+        selectedOptions.filter((op) => op[valueKey] !== option[valueKey]),
       );
     } else {
       this._selectOption(option);
@@ -928,7 +928,7 @@ class Select extends React.Component<Props, State> {
     const inputProps = {
       ...this._getSelectState(),
       'aria-expanded': isOpen,
-      ref: ref => {
+      ref: (ref) => {
         this._input = ref;
       },
       role: 'combobox',
@@ -984,7 +984,7 @@ class Select extends React.Component<Props, State> {
           focusedOption={focusedOption}
           focusedOptionRef={this._captureOptionRef}
           labelKey={labelKey}
-          listRef={ref => {
+          listRef={(ref) => {
             this._list = ref;
           }}
           onEndReached={onDropdownEndReached}
@@ -1015,12 +1015,12 @@ class Select extends React.Component<Props, State> {
 
     return (
       <MenuOuter
-        ref={ref => {
+        ref={(ref) => {
           this._menuContainer = ref;
         }}
       >
         <MenuInner
-          ref={ref => {
+          ref={(ref) => {
             this._menu = ref;
           }}
           onMouseDown={this._onMenuMouseDown}
@@ -1041,7 +1041,7 @@ class Select extends React.Component<Props, State> {
       return !this.state.inputValue && <Placeholder>{placeholder}</Placeholder>;
     }
     if (multi) {
-      return selectedOptions.map(option => (
+      return selectedOptions.map((option) => (
         <SelectedOption
           {...selectState}
           key={`value-${option[valueKey]}`}

@@ -60,7 +60,7 @@ class Switch extends React.Component<Props, State> {
 
 export default Switch;
 
-const SwitchContainer = styled.TouchableOpacity.attrs(props => ({
+const SwitchContainer = styled.TouchableOpacity.attrs((props) => ({
   activeOpacity: 1,
 }))`
   flex: none;

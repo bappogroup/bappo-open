@@ -109,11 +109,11 @@ const Container = styled(DivViewBase)`
   background-color: #fff;
   cursor: pointer;
 
-  ${props =>
+  ${(props) =>
     props.isFocused &&
     `
     background-color: #f9f9f9;
-  `} ${props =>
+  `} ${(props) =>
     props.isDisabled &&
     `
     color: #ccc;

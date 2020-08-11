@@ -19,7 +19,7 @@ type Props = AlertOptions & {
 class AlertDialog extends React.Component<Props> {
   static defaultProps = AlertDefaultProps;
 
-  createActionButtonHandler = (onPress: ?() => void) => value => {
+  createActionButtonHandler = (onPress: ?() => void) => (value) => {
     const { onDismiss } = this.props;
     onDismiss(value);
     onPress && onPress();
@@ -107,7 +107,7 @@ class AlertDialog extends React.Component<Props> {
 
 export default AlertDialog;
 
-export const AlertContentContainer = styled(DivViewBase).attrs(props => ({
+export const AlertContentContainer = styled(DivViewBase).attrs((props) => ({
   tabIndex: -1,
 }))`
   background-color: white;

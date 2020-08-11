@@ -77,7 +77,7 @@ class WheelPicker extends React.Component<Props, State> {
     return (
       <WheelsContainer>
         <Wheel
-          ref={ref => {
+          ref={(ref) => {
             this._wheelRefs[0] = ref;
           }}
         >
@@ -92,7 +92,7 @@ class WheelPicker extends React.Component<Props, State> {
           ))}
         </Wheel>
         <Wheel
-          ref={ref => {
+          ref={(ref) => {
             this._wheelRefs[1] = ref;
           }}
         >
@@ -107,7 +107,7 @@ class WheelPicker extends React.Component<Props, State> {
           ))}
         </Wheel>
         <Wheel
-          ref={ref => {
+          ref={(ref) => {
             this._wheelRefs[2] = ref;
           }}
         >
@@ -136,7 +136,7 @@ class WheelPicker extends React.Component<Props, State> {
 
 export default WheelPicker;
 
-const Container = styled.div.attrs(props => ({
+const Container = styled.div.attrs((props) => ({
   'data-component': 'wheel-picker',
 }))`
   ${({ displayRight }) =>
@@ -170,7 +170,7 @@ const Cell = styled.div`
   `};
 `;
 
-const DoneButton = styled.button.attrs(props => ({
+const DoneButton = styled.button.attrs((props) => ({
   tabIndex: -1,
   type: 'button',
 }))`

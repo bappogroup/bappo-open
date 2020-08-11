@@ -1,7 +1,7 @@
 import React from 'react';
 import RN from 'react-native';
 
-const Modal = props => {
+const Modal = (props) => {
   return <RN.Modal animationType="slide" {...props} />;
 };
 

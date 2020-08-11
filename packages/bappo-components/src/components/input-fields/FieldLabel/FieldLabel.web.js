@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { createText } from '../../../internals/web/TextBase';
 
 const LabelText = createText('label');
-const FieldLabel = styled(LabelText).attrs(props => ({
+const FieldLabel = styled(LabelText).attrs((props) => ({
   selectable: true,
 }))`
   font-size: 12px;

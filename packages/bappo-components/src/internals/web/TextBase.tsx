@@ -31,8 +31,8 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     display: inline;
     flex-grow: 0;
     flex-shrink: 0;
-    font-family: ${props => props.fontFamilyValue};
-    font-size: ${props => props.fontSizeValue}px;
+    font-family: ${(props) => props.fontFamilyValue};
+    font-size: ${(props) => props.fontSizeValue}px;
     position: relative;
     white-space: pre-wrap;
     word-wrap: break-word;

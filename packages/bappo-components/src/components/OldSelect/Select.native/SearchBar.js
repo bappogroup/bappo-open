@@ -144,7 +144,7 @@ const IconContainer = styled.View`
 
 const IconText = styled.Text``;
 
-const SearchText = styled(Text).attrs(props => ({
+const SearchText = styled(Text).attrs((props) => ({
   numberOfLines: 1,
 }))`
   margin-left: 34px;
@@ -157,7 +157,7 @@ const SpinnerContainer = styled.View`
 
 const StyledTextInput = styled.TextInput`
   flex: 1;
-  font-family: ${props => props.fontFamily};
+  font-family: ${(props) => props.fontFamily};
   font-size: 14px;
   height: 28px;
   margin-top: 2px;

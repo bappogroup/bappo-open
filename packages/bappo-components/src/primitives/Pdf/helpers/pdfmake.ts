@@ -95,7 +95,7 @@ async function fetchFontFile(
       }
     };
 
-    request.onerror = error =>
+    request.onerror = (error) =>
       new Error(`Fetching "${fontFileDefinition.url}" failed: ${error}`);
 
     request.send();
@@ -134,7 +134,7 @@ async function fetchFontFileWithRetry(
           return;
         }
       }
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
 }
@@ -145,7 +145,7 @@ const createFileManager = () => {
   } = {};
   let allFontFilesSettled = false;
   let resolveAllFilesSettled: () => void;
-  let allFontFilesSettledPromise = new Promise(resolve => {
+  let allFontFilesSettledPromise = new Promise((resolve) => {
     resolveAllFilesSettled = () => {
       allFontFilesSettled = true;
       resolve();
@@ -154,7 +154,7 @@ const createFileManager = () => {
   const tryResolveAllFilesSettled = () => {
     if (
       Object.values(fileStatusMap).every(
-        status => status === 'fulfilled' || status === 'rejected',
+        (status) => status === 'fulfilled' || status === 'rejected',
       )
     ) {
       resolveAllFilesSettled();
@@ -170,7 +170,7 @@ const createFileManager = () => {
 
       // reset promise if it's already settled
       if (allFontFilesSettled) {
-        allFontFilesSettledPromise = new Promise(resolve => {
+        allFontFilesSettledPromise = new Promise((resolve) => {
           resolveAllFilesSettled = () => {
             allFontFilesSettled = true;
             resolve();
@@ -184,7 +184,7 @@ const createFileManager = () => {
           fileStatusMap[fileName] = 'fulfilled';
           tryResolveAllFilesSettled();
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err);
           fileStatusMap[fileName] = 'rejected';
           tryResolveAllFilesSettled();
@@ -281,7 +281,7 @@ export async function createDataUrlFromDefinition({
     sanitizedDefinition,
     sanitizedTableLayouts,
   );
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     pdfDocGenerator.getDataUrl(resolve);
   });
 }

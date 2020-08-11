@@ -21,12 +21,12 @@ class Alert {
     const el = document.createElement('div');
     document.body && document.body.appendChild(el);
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       ReactDOM.render(
         <StyledOverlayContainer>
           <AlertDialog
             {...(options || defaultOptions)}
-            onDismiss={result => {
+            onDismiss={(result) => {
               document.body && document.body.removeChild(el);
               resolve(result);
             }}

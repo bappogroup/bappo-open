@@ -114,5 +114,5 @@ const Row = styled(View)`
 
 const SelectedIcon = styled(Text)`
   font-size: 20px;
-  opacity: ${props => (props.show ? '1' : '0')};
+  opacity: ${(props) => (props.show ? '1' : '0')};
 `;

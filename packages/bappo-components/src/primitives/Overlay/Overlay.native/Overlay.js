@@ -43,7 +43,7 @@ class Overlay extends React.Component<Props> {
 
 export default Overlay;
 
-const OverlayContainer = styled.TouchableOpacity.attrs(props => ({
+const OverlayContainer = styled.TouchableOpacity.attrs((props) => ({
   activeOpacity: 1,
 }))`
   flex: 1;

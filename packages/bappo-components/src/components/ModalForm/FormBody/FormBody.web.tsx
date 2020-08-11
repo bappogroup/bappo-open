@@ -114,7 +114,7 @@ const StyledForm = styled(FlexForm)`
   flex: 1;
 `;
 
-const ModalFormTitleText = styled(Text).attrs(props => ({
+const ModalFormTitleText = styled(Text).attrs((props) => ({
   numberOfLines: 2,
 }))<{
   deviceKind: DeviceKind;
@@ -123,7 +123,7 @@ const ModalFormTitleText = styled(Text).attrs(props => ({
   color: #2b2826;
   line-height: 20px;
 
-  ${props =>
+  ${(props) =>
     props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
       ? modalFormMobileTitleTextStyle
       : ''}
@@ -139,7 +139,7 @@ const ModalFormHeader = styled(FlexDiv)<{
   border-bottom: 1px solid #dddbda;
   height: 55px;
 
-  ${props =>
+  ${(props) =>
     props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
       ? `${modalFormMobileHeaderStyle};
       ${modalFormMobileHeaderContainerStyle};
@@ -153,7 +153,7 @@ const ModalFormCloseButtonContainer = styled(TouchableView)`
   margin-left: auto;
   padding: 20px;
 `;
-const ModalFormCloseButton = props => (
+const ModalFormCloseButton = (props) => (
   <ModalFormCloseButtonContainer {...props}>
     <Icon name="clear" />
   </ModalFormCloseButtonContainer>
@@ -166,7 +166,7 @@ const ModalFormHeaderMobileContainer = styled(FlexDiv)`
   justify-content: space-between;
 `;
 
-const ModalFormMobileDeleteButton = styled(Button).attrs(props => ({
+const ModalFormMobileDeleteButton = styled(Button).attrs((props) => ({
   type: 'destructive',
 }))``;
 
@@ -178,7 +178,7 @@ const ModalFormContent = styled(FlexDiv)<{
   overflow-y: auto;
   padding: 48px;
 
-  ${props =>
+  ${(props) =>
     props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
       ? modalFormContentStyle
       : ''}
@@ -199,12 +199,12 @@ const ModalFormRow = styled(FlexDiv)`
   flex-direction: row;
 `;
 
-const ModalFormFooterCancelButton = styled(Button).attrs(props => ({
+const ModalFormFooterCancelButton = styled(Button).attrs((props) => ({
   type: 'tertiary',
 }))`
   margin-right: 16px;
 `;
 
-const ModalFormFooterDeleteButton = styled(Button).attrs(props => ({
+const ModalFormFooterDeleteButton = styled(Button).attrs((props) => ({
   type: 'destructive',
 }))``;

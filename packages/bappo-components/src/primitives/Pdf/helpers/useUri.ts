@@ -23,7 +23,7 @@ export function useUri(
         definition,
         fonts,
         tableLayouts,
-      }).then(dataUri => {
+      }).then((dataUri) => {
         if (cancelled) return;
         setUriFromDefinition(dataUri);
       });

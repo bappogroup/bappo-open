@@ -161,7 +161,7 @@ export default TextInput;
 
 const Input = styled(InputBase)``;
 
-const TextArea = styled(TextAreaBase).attrs(props => ({
+const TextArea = styled(TextAreaBase).attrs((props) => ({
   rows: 5,
 }))`
   height: 18px;

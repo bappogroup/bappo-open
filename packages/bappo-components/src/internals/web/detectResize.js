@@ -5,7 +5,7 @@ import debounce from 'lodash/debounce';
 const registry: Map<string, any> = new Map();
 
 const triggerAll = () => {
-  registry.forEach(instance => {
+  registry.forEach((instance) => {
     instance._onLayout();
   });
 };

@@ -220,7 +220,7 @@ class PickerWeb extends React.Component<Props, State> {
   _renderInput = () => {
     return (
       <FakeInput
-        ref={ref => {
+        ref={(ref) => {
           this._input = ref;
         }}
         onBlur={this._onInputBlur}

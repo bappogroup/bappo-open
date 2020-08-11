@@ -83,8 +83,8 @@ const Container = styled(DivViewBase)`
 `;
 
 const SpinnerContainer = styled(DivViewBase)`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
 `;
 
 const spin = keyframes`
@@ -116,7 +116,7 @@ const Svg = styled.svg`
 
 const Circle = styled.circle`
   animation: ${dash} 1.5s infinite ease-in-out;
-  stroke: ${props => props.color};
+  stroke: ${(props) => props.color};
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
   transform-origin: center;

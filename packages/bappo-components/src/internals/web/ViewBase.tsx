@@ -125,7 +125,7 @@ export function createViewBase<T extends keyof JSX.IntrinsicElements>(
   }
 
   // Manually pass on responder event handlers since styled-components filters them out
-  const StyledViewBase = styled(ViewBase).attrs(props => ({
+  const StyledViewBase = styled(ViewBase).attrs((props) => ({
     onResponderGrant: props.onResponderGrant,
     onResponderMove: props.onResponderMove,
     onResponderRelease: props.onResponderRelease,

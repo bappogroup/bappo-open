@@ -143,7 +143,7 @@ class ScrollView extends React.Component<Props> {
     this._onScrollThrottled(event);
   };
 
-  _onScrollThrottled = throttle(event => {
+  _onScrollThrottled = throttle((event) => {
     const { onScroll } = this.props;
 
     onScroll &&

@@ -42,8 +42,8 @@ class Alert {
       });
     }
 
-    return new Promise(resolve => {
-      actions = actions.map(a => {
+    return new Promise((resolve) => {
+      actions = actions.map((a) => {
         const { response, ...action } = a;
 
         action.onPress = () => {

@@ -178,7 +178,7 @@ const Container = styled.div`
 
 const Input = styled(InputBase)`
   box-sizing: content-box;
-  width: ${props => props.width}px;
+  width: ${(props) => props.width}px;
 `;
 
 const Sizer = styled.div`

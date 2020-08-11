@@ -111,7 +111,7 @@ export const ModalContentContainer = styled(DivViewBase)<{
     outline: none;
   }
 
-  ${props =>
+  ${(props) =>
     props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? `
       left: 0;
@@ -122,7 +122,7 @@ export const ModalContentContainer = styled(DivViewBase)<{
       `
       : desktopStyle(props)}
 
-  ${props =>
+  ${(props) =>
     props.$deviceKind === 'desktop' || props.$deviceKind === 'tablet'
       ? `
       @media (max-height: 768px) {
@@ -151,7 +151,7 @@ export const ModalTitleContainer = styled(View)`
   right: 70px;
 `;
 
-const ModalTitleText = styled(Text).attrs(props => ({
+const ModalTitleText = styled(Text).attrs((props) => ({
   numberOfLines: 2,
 }))<{
   deviceKind: DeviceKind;
@@ -160,7 +160,7 @@ const ModalTitleText = styled(Text).attrs(props => ({
   color: #2b2826;
   line-height: 20px;
 
-  ${props =>
+  ${(props) =>
     props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
       ? `
       font-size: 16px;

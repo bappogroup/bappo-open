@@ -12,7 +12,7 @@ const CloseButton = ({ onPress, closeButtonStyle }) => (
 
 export default CloseButton;
 
-const Container = styled(TouchableView).attrs(props => ({
+const Container = styled(TouchableView).attrs((props) => ({
   activeOpacity: 1,
 }))`
   position: absolute;

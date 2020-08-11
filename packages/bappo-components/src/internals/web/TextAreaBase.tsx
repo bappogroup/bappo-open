@@ -52,8 +52,8 @@ const StyledTextArea = styled.textarea<{
   border-radius: 0;
   border-width: 0;
   box-sizing: border-box;
-  font-family: ${props => props.fontFamilyValue};
-  font-size: ${props => props.fontSizeValue}px;
+  font-family: ${(props) => props.fontFamilyValue};
+  font-size: ${(props) => props.fontSizeValue}px;
   padding: 0;
   outline: none;
   resize: none;

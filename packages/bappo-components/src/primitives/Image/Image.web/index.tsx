@@ -25,7 +25,7 @@ const useImage = (uri: string) => {
     let cancelled = false;
     const requestId = ImageLoader.load(
       uri,
-      img => {
+      (img) => {
         getImageMeta(img).then(
           (meta: ImageMeta | undefined) => {
             if (!cancelled) {

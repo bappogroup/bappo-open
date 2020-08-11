@@ -19,7 +19,7 @@ class Form extends React.Component<Props> {
 
     return (
       <FormState initialValues={initialValues}>
-        {formState => {
+        {(formState) => {
           const formBody =
             typeof children === 'function'
               ? (children as any)(formState)

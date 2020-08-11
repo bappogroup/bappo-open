@@ -59,7 +59,7 @@ class ModalWizard extends React.Component {
         style={{ flex: 1 }}
         initialValues={initialValues}
         {...FormElement.props}
-        onSubmit={async filledFormValues => {
+        onSubmit={async (filledFormValues) => {
           // save in state
           this.setState(({ formValues }) => {
             const updatedFormValues = { ...formValues };
@@ -78,7 +78,7 @@ class ModalWizard extends React.Component {
           }
         }}
       >
-        {formState => {
+        {(formState) => {
           return (
             <React.Fragment>
               <BodyContainer>

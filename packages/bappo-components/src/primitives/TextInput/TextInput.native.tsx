@@ -148,8 +148,8 @@ const StyledTextInput = styled(RN.TextInput)<{
   fontFamily: string;
   fontSize: number;
 }>`
-  font-family: ${props => props.fontFamily};
-  font-size: ${props => props.fontSize}px;
+  font-family: ${(props) => props.fontFamily};
+  font-size: ${(props) => props.fontSize}px;
   height: ${({ multiline }) => (multiline ? '36' : '18')}px;
   margin: 0;
   padding: ${({ multiline }) => (multiline ? '8px 0px' : '0')};

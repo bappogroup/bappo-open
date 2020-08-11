@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { DivViewBase } from '../../../internals/web/ViewBase';
 
-const OverlayContainer = styled(DivViewBase).attrs(props => ({
+const OverlayContainer = styled(DivViewBase).attrs((props) => ({
   'aria-modal': 'true',
 }))`
   position: fixed;

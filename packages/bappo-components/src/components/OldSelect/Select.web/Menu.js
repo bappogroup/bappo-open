@@ -96,7 +96,7 @@ class Menu extends React.Component<Props> {
 
     return (
       <OptionContainer
-        innerRef={ref => focusedOptionRef(ref, isFocused)}
+        innerRef={(ref) => focusedOptionRef(ref, isFocused)}
         isDisabled={option.disabled}
         isFocused={isFocused}
         isSelected={isSelected}
@@ -134,5 +134,5 @@ const Row = styled(View)`
 `;
 
 const SelectedIcon = styled(Icon)`
-  opacity: ${props => (props.show ? '1' : '0')};
+  opacity: ${(props) => (props.show ? '1' : '0')};
 `;

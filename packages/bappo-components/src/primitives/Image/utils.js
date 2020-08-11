@@ -46,13 +46,13 @@ export async function getImageMeta(img) {
       // Object URL
       const fileReader = new FileReader();
       return new Promise((resolve, reject) => {
-        fileReader.onload = e => {
+        fileReader.onload = (e) => {
           resolve(findEXIFinJPEG(e.target.result));
         };
-        fileReader.onerror = err => {
+        fileReader.onerror = (err) => {
           reject(err);
         };
-        objectURLToBlob(img.src, blob => {
+        objectURLToBlob(img.src, (blob) => {
           fileReader.readAsArrayBuffer(blob);
         });
       });
@@ -67,7 +67,7 @@ export async function getImageMeta(img) {
           }
           http = null;
         };
-        http.onerror = err => {
+        http.onerror = (err) => {
           reject(err);
         };
         http.open('GET', img.src, true);
@@ -80,8 +80,8 @@ export async function getImageMeta(img) {
     (img instanceof window.Blob || img instanceof window.File)
   ) {
     const fileReader = new FileReader();
-    return new Promise(resolve => {
-      fileReader.onload = e => {
+    return new Promise((resolve) => {
+      fileReader.onload = (e) => {
         if (debug)
           console.log('Got file of length ' + e.target.result.byteLength);
         resolve(findEXIFinJPEG(e.target.result));
