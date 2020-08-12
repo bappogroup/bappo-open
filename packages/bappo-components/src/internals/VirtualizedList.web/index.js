@@ -706,8 +706,8 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         >
           <InvertableView
             onLayout={this._onLayoutHeader}
-            horizontal={horizontal}
-            inverted={this.props.inverted}
+            $horizontal={horizontal}
+            $inverted={this.props.inverted}
           >
             {/*
               Flow doesn't know this is a React.Element and not a React.Component
@@ -824,8 +824,8 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         <InvertableView
           key="$empty"
           onLayout={this._onLayoutEmpty}
-          horizontal={horizontal}
-          inverted={this.props.inverted}
+          $horizontal={horizontal}
+          $inverted={this.props.inverted}
         >
           {/*
             Flow doesn't know this is a React.Element and not a React.Component
@@ -849,8 +849,8 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         >
           <InvertableView
             onLayout={this._onLayoutFooter}
-            horizontal={horizontal}
-            inverted={this.props.inverted}
+            $horizontal={horizontal}
+            $inverted={this.props.inverted}
           >
             {/*
               Flow doesn't know this is a React.Element and not a React.Component
@@ -1654,8 +1654,8 @@ class CellRenderer extends React.Component<
     if (!CellRendererComponent) {
       return (
         <DefaultCellView
-          horizontal={horizontal}
-          inverted={inverted}
+          $horizontal={horizontal}
+          $inverted={inverted}
           onLayout={onLayout}
         >
           {element}
@@ -1709,12 +1709,12 @@ const StyledScrollView = styled(ScrollView)`
 `;
 
 const DefaultCellView = styled(View)`
-  ${({ horizontal, inverted }) =>
-    inverted
-      ? horizontal
+  ${({ $horizontal, $inverted }) =>
+    $inverted
+      ? $horizontal
         ? 'flex-direction: row-reverse;'
         : 'flex-direction: column-reverse;'
-      : horizontal
+      : $horizontal
       ? 'flex-direction: row;'
       : 'flex-direction: column;'};
 `;

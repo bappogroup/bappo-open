@@ -35,7 +35,7 @@ class OptionContainer extends React.Component<Props> {
 
     return isDisabled ? (
       <Container
-        isDisabled={isDisabled}
+        $isDisabled={isDisabled}
         onMouseDown={blockEvent}
         onClick={blockEvent}
       >
@@ -44,8 +44,8 @@ class OptionContainer extends React.Component<Props> {
     ) : (
       <Container
         ref={innerRef}
-        isFocused={isFocused}
-        isSelected={isSelected}
+        $isFocused={isFocused}
+        $isSelected={isSelected}
         onClick={this._onClick}
         onMouseEnter={this._onMouseEnter}
         onMouseMove={this._onMouseMove}
@@ -110,11 +110,11 @@ const Container = styled(DivViewBase)`
   cursor: pointer;
 
   ${(props) =>
-    props.isFocused &&
+    props.$isFocused &&
     `
     background-color: #f9f9f9;
   `} ${(props) =>
-    props.isDisabled &&
+    props.$isDisabled &&
     `
     color: #ccc;
     cursor: default;

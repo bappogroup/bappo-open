@@ -67,10 +67,10 @@ class Menu extends React.Component<Props> {
     const optionLabel = option[this.props.labelKey];
     return (
       <Row testID={`select-option-${optionLabel}`}>
-        <Label numberOfLines={2} isDisabled={option.disabled}>
+        <Label numberOfLines={2} $isDisabled={option.disabled}>
           {optionLabel}
         </Label>
-        <SelectedIcon show={isSelected}>✓</SelectedIcon>
+        <SelectedIcon $show={isSelected}>✓</SelectedIcon>
       </Row>
     );
   };
@@ -98,8 +98,8 @@ export default Menu;
 
 const Label = styled(Text)`
   flex: 1;
-  ${({ isDisabled }) =>
-    isDisabled &&
+  ${({ $isDisabled }) =>
+    $isDisabled &&
     `
     color: #ccc;
   `};
@@ -114,5 +114,5 @@ const Row = styled(View)`
 
 const SelectedIcon = styled(Text)`
   font-size: 20px;
-  opacity: ${(props) => (props.show ? '1' : '0')};
+  opacity: ${(props) => (props.$show ? '1' : '0')};
 `;

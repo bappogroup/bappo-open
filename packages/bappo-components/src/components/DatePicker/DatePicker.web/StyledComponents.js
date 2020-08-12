@@ -7,5 +7,5 @@ export const PlaceholderText = styled(Text)`
 `;
 
 export const ValueText = styled(Text)`
-  ${({ textColor }) => textColor && `color: ${textColor}`}
+  ${({ $textColor }) => $textColor && `color: ${$textColor}`}
 `;

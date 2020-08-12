@@ -41,16 +41,16 @@ const IconCard = ({
   return (
     // $FlowFixMe
     <Container
-      size={sizes[size]}
+      $size={sizes[size]}
       onPress={onPress}
       style={style}
       testID={testID}
     >
       {/* $FlowFixMe */}
-      <StyledView color={color} size={sizes[size]}>
+      <StyledView $color={color} $size={sizes[size]}>
         {badge && <Badge number={badge} />}
         {/* $FlowFixMe */}
-        <StyledIcon name={icon} color={color && 'white'} size={sizes[size]} />
+        <StyledIcon name={icon} color={color && 'white'} $size={sizes[size]} />
       </StyledView>
       {text && <StyledSubHeading>{text}</StyledSubHeading>}
     </Container>
@@ -63,8 +63,8 @@ export default IconCard;
 
 const Container = styled(TouchableView)`
   align-items: center;
-  width: ${(props) => `${props.size}px` || '40px'};
-  margin: ${(props) => `${props.size / 10}px` || '8px'};
+  width: ${(props) => `${props.$size}px` || '40px'};
+  margin: ${(props) => `${props.$size / 10}px` || '8px'};
 `;
 
 const StyledSubHeading = styled(SubHeading)``;
@@ -73,8 +73,8 @@ const StyledView = styled(View)`
   padding: 8px;
   border-radius: 3px;
   width: 100%;
-  height: ${(props) => `${props.size}px`};
-  background: ${(props) => props.color || '#D8D8D8'};
+  height: ${(props) => `${props.$size}px`};
+  background: ${(props) => props.$color || '#D8D8D8'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,6 +82,6 @@ const StyledView = styled(View)`
 `;
 
 const StyledIcon = styled(Icon)`
-  width: ${(props) => `${(props.size * 2) / 5}px` || '16px'};
-  font-size: ${(props) => `${props.size / 3}px` || '14px'};
+  width: ${(props) => `${(props.$size * 2) / 5}px` || '16px'};
+  font-size: ${(props) => `${props.$size / 3}px` || '14px'};
 `;

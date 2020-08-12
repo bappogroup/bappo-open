@@ -52,7 +52,7 @@ class WheelPicker extends React.Component<Props, State> {
 
   render() {
     return (
-      <Container displayRight={this.props.displayRight}>
+      <Container $displayRight={this.props.displayRight}>
         {this._renderWheels()}
         {this._renderFooter()}
       </Container>
@@ -85,7 +85,7 @@ class WheelPicker extends React.Component<Props, State> {
             <Cell
               key={hour}
               onClick={() => this.setState({ selectedHour: hourNum })}
-              isSelected={hourNum === this.state.selectedHour}
+              $isSelected={hourNum === this.state.selectedHour}
             >
               {hour}
             </Cell>
@@ -100,7 +100,7 @@ class WheelPicker extends React.Component<Props, State> {
             <Cell
               key={minuteNum}
               onClick={() => this.setState({ selectedMinute: minuteNum })}
-              isSelected={minuteNum === this.state.selectedMinute}
+              $isSelected={minuteNum === this.state.selectedMinute}
             >
               {minute}
             </Cell>
@@ -115,7 +115,7 @@ class WheelPicker extends React.Component<Props, State> {
             <Cell
               key={meridiem}
               onClick={() => this.setState({ selectedMeridiem: meridiem })}
-              isSelected={meridiem === this.state.selectedMeridiem}
+              $isSelected={meridiem === this.state.selectedMeridiem}
             >
               {meridiem}
             </Cell>
@@ -139,12 +139,12 @@ export default WheelPicker;
 const Container = styled.div.attrs((props) => ({
   'data-component': 'wheel-picker',
 }))`
-  ${({ displayRight }) =>
-    displayRight &&
+  ${({ $displayRight }) =>
+    $displayRight &&
     `
     position: absolute;
     border: 1px solid #ccc;
-    right: ${displayRight}px;
+    right: ${$displayRight}px;
     background-color: #fff;
   `}
 `;
@@ -157,8 +157,8 @@ const Cell = styled.div`
   justify-content: center;
   padding: 0 25px;
 
-  ${({ isSelected }) =>
-    isSelected
+  ${({ $isSelected }) =>
+    $isSelected
       ? `
     background-color: #445;
     color: #fff;

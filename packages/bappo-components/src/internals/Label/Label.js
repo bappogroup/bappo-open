@@ -12,7 +12,7 @@ type Props = {
 
 const Label = ({ children, color }: Props) => {
   return (
-    <StyledText selectable color={color}>
+    <StyledText selectable $color={color}>
       {children}
     </StyledText>
   );
@@ -25,5 +25,5 @@ Label.defaultProps = {
 export default Label;
 
 const StyledText = styled(Text)`
-  color: ${({ color }) => color};
+  color: ${({ $color }) => $color};
 `;

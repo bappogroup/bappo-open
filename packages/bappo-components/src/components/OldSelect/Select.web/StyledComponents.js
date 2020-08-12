@@ -23,7 +23,7 @@ export const Arrow = styled.span`
   position: relative;
 
   ${(props) =>
-    props.isOpen &&
+    props.$isOpen &&
     `
     top: -2px;
     border-color: transparent transparent #999;

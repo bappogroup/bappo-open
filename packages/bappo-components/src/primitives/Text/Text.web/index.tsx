@@ -6,7 +6,6 @@ import { TextProps } from '../types';
 type Props = TextProps & {
   // will be removed
   className?: string;
-  ellipsis?: boolean;
 };
 
 export default function Text({

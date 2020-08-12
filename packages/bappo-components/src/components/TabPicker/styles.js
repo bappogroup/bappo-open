@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
-export const ButtonCSS = ({ isSelected }) => {
-  if (isSelected) {
+export const ButtonCSS = ({ $isSelected }) => {
+  if ($isSelected) {
     return css`
       &:hover {
         opacity: 0.8;

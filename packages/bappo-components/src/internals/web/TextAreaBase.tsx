@@ -27,8 +27,8 @@ function TextAreaBase({
             aria-label={accessibilityLabel}
             data-testid={testID}
             ref={nativeRef as any}
-            fontFamilyValue={fontFamily}
-            fontSizeValue={fontSize}
+            $fontFamilyValue={fontFamily}
+            $fontSizeValue={fontSize}
           />
         );
       }}
@@ -43,8 +43,8 @@ export default React.forwardRef<HTMLTextAreaElement, TextAreaBaseProps>(
 );
 
 const StyledTextArea = styled.textarea<{
-  fontFamilyValue: string;
-  fontSizeValue: number;
+  $fontFamilyValue: string;
+  $fontSizeValue: number;
 }>`
   appearance: none;
   background-color: transparent;
@@ -52,8 +52,8 @@ const StyledTextArea = styled.textarea<{
   border-radius: 0;
   border-width: 0;
   box-sizing: border-box;
-  font-family: ${(props) => props.fontFamilyValue};
-  font-size: ${(props) => props.fontSizeValue}px;
+  font-family: ${(props) => props.$fontFamilyValue};
+  font-size: ${(props) => props.$fontSizeValue}px;
   padding: 0;
   outline: none;
   resize: none;

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import React from 'react';
-import { styled, Text } from 'bappo-components';
+import { Text, styled } from 'bappo-components';
 import { bool } from 'prop-types';
+import React from 'react';
 
 class AppText extends React.PureComponent {
   static contextTypes = {
@@ -12,10 +12,7 @@ class AppText extends React.PureComponent {
   render() {
     const { isParentAText } = this.context;
     return (
-      <BaseText
-        {...this.props}
-        isParentAText={isParentAText}
-      />
+      <BaseText {...this.props} isParentAText={isParentAText} selectable />
     );
   }
 }
@@ -23,7 +20,9 @@ class AppText extends React.PureComponent {
 export default AppText;
 
 const BaseText = styled(Text)`
-  ${({ isParentAText }) => !isParentAText && `
+  ${({ isParentAText }) =>
+    !isParentAText &&
+    `
     font-size: 16px;
   `}
 `;

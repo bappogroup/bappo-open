@@ -31,7 +31,7 @@ class Switch extends React.Component<Props> {
     const styleProps = {
       className,
       style,
-      value,
+      $value: value,
     };
 
     return (
@@ -83,15 +83,15 @@ class Switch extends React.Component<Props> {
 
 export default Switch;
 
-const SwitchContainer = styled(DivViewBase).attrs((props) => ({
-  'aria-checked': ({ value }) => (value ? 'true' : 'false'),
+const SwitchContainer = styled(DivViewBase).attrs(({ $value }) => ({
+  'aria-checked': $value ? 'true' : 'false',
   role: 'checkbox',
   tabIndex: 0,
 }))`
   flex: none;
   outline: none;
   flex-direction: row;
-  background-color: ${({ value }) => (value ? '#FF7800' : '#B0ADAB')};
+  background-color: ${({ $value }) => ($value ? '#FF7800' : '#B0ADAB')};
   border-radius: 12px;
   cursor: pointer;
   height: 24px;

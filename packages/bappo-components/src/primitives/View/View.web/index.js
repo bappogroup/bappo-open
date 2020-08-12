@@ -48,7 +48,7 @@ class View extends React.Component<Props> {
 
     const styleProps = {
       className,
-      pointerEvents,
+      $pointerEvents: pointerEvents,
       style,
     };
 
@@ -93,14 +93,14 @@ const pointerEventsNone = `
 `;
 
 const StyledViewBase = styled(DivViewBase)`
-  ${({ pointerEvents }) => {
-    if (pointerEvents === 'auto') {
+  ${({ $pointerEvents }) => {
+    if ($pointerEvents === 'auto') {
       return pointerEventsAuto;
-    } else if (pointerEvents === 'none') {
+    } else if ($pointerEvents === 'none') {
       return pointerEventsNone;
-    } else if (pointerEvents === 'box-none') {
+    } else if ($pointerEvents === 'box-none') {
       return pointerEventsBoxNone;
-    } else if (pointerEvents === 'box-only') {
+    } else if ($pointerEvents === 'box-only') {
       return pointerEventsBoxOnly;
     }
     return '';

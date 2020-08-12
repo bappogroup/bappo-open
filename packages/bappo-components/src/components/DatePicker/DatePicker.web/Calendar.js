@@ -77,7 +77,7 @@ class Calendar extends React.Component<Props, State> {
 
   render() {
     return (
-      <CalendarContainer alignRight={this.props.alignRight || false}>
+      <CalendarContainer $alignRight={this.props.alignRight || false}>
         {this._renderNavigator()}
         {this._renderGrid()}
       </CalendarContainer>
@@ -197,9 +197,9 @@ class Calendar extends React.Component<Props, State> {
                   <Cell
                     key={dayNum}
                     onClick={() => onSelect && onSelect(day)}
-                    isGray={day.month() !== month}
-                    isSelected={initialDate && day.isSame(initialDate, 'day')}
-                    isToday={day.isSame(moment(), 'day')}
+                    $isGray={day.month() !== month}
+                    $isSelected={initialDate && day.isSame(initialDate, 'day')}
+                    $isToday={day.isSame(moment(), 'day')}
                   >
                     <GridText>{day.date()}</GridText>
                   </Cell>
@@ -303,12 +303,12 @@ const Arrow = styled.span`
 const CalendarContainer = styled.div.attrs((props) => ({
   'data-component': 'calendar',
 }))`
-  ${({ alignRight }) =>
-    alignRight &&
+  ${({ $alignRight }) =>
+    $alignRight &&
     `
     position: absolute;
     border: 1px solid #ccc;
-    right: ${alignRight}px;
+    right: ${$alignRight}px;
     background-color: #fff;
     `}
 `;
@@ -321,21 +321,21 @@ const Cell = styled.div`
   height: 25px;
   justify-content: center;
 
-  ${({ isGray }) =>
-    isGray &&
+  ${({ $isGray }) =>
+    $isGray &&
     `
     color: #c3c3c3;
   `}
 
-  ${({ isToday }) =>
-    isToday &&
+  ${({ $isToday }) =>
+    $isToday &&
     `
     border: 1px solid #ccc;
     height: 23px;
   `}
 
-  ${({ isSelected }) =>
-    isSelected
+  ${({ $isSelected }) =>
+    $isSelected
       ? `
     background-color: #445;
     color: #fff;

@@ -16,7 +16,7 @@ type Props = {
  */
 const Paragraph = ({ children, type }: Props) => {
   return (
-    <StyledText selectable type={type}>
+    <StyledText selectable $type={type}>
       {children}
     </StyledText>
   );
@@ -32,8 +32,8 @@ const StyledText = styled(Text)`
   margin-bottom: 8px;
   line-height: 22px;
 
-  ${({ type }) => {
-    switch (type) {
+  ${({ $type }) => {
+    switch ($type) {
       case 'bold':
         return `
           font-weight: bold;

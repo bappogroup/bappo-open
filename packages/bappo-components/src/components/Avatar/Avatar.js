@@ -32,17 +32,17 @@ class Avatar extends React.Component<Props> {
 
     return (
       <AvatarContainer
-        avatarBgColor={backgroundColor}
+        $avatarBgColor={backgroundColor}
         className={className}
-        size={size}
+        $size={size}
         style={style}
       >
-        {badge && <Badge number={badge} />}
         {icon ? (
-          <StyledIcon name={icon} size={size} />
+          <Icon name={icon} color="white" size={size} />
         ) : (
-          <StyledText size={size}>{getInitials(name)}</StyledText>
+          <StyledText $size={size}>{getInitials(name)}</StyledText>
         )}
+        {badge && <Badge number={badge} />}
       </AvatarContainer>
     );
   }
@@ -53,21 +53,13 @@ export default Avatar;
 const AvatarContainer = styled(View)`
   align-items: center;
   justify-content: center;
-  background-color: ${({ avatarBgColor }) => avatarBgColor};
-  border-radius: ${({ size }) => SizeToRadius[size]}px;
-  height: ${({ size }) => 2 * SizeToRadius[size]}px;
-  width: ${({ size }) => 2 * SizeToRadius[size]}px;
-`;
-
-const StyledIcon = styled(Icon)`
-  font-size: ${({ size }) => SizeToRadius[size]}px;
-  color: white;
-  line-height: ${({ size }) => SizeToRadius[size]}px;
-  height: ${({ size }) => SizeToRadius[size]}px;
-  width: ${({ size }) => SizeToRadius[size]}px;
+  background-color: ${({ $avatarBgColor }) => $avatarBgColor};
+  border-radius: ${({ $size }) => SizeToRadius[$size]}px;
+  height: ${({ $size }) => 2 * SizeToRadius[$size]}px;
+  width: ${({ $size }) => 2 * SizeToRadius[$size]}px;
 `;
 
 const StyledText = styled(Text)`
-  font-size: ${({ size }) => SizeToRadius[size]}px;
+  font-size: ${({ $size }) => SizeToRadius[$size]}px;
   color: white;
 `;

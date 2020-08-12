@@ -54,7 +54,7 @@ function FormBody({
 
   return (
     <StyledForm data-testid={testID} onSubmit={handleSubmit}>
-      <ModalFormHeader deviceKind={deviceKind}>
+      <ModalFormHeader $deviceKind={deviceKind}>
         {deviceKind === 'tablet' || deviceKind === 'desktop' ? (
           <ModalFormCloseButton onPress={onCancel} />
         ) : (
@@ -64,12 +64,12 @@ function FormBody({
           </ModalFormHeaderMobileContainer>
         )}
         <ModalFormTitleContainer>
-          <ModalFormTitleText deviceKind={deviceKind}>
+          <ModalFormTitleText $deviceKind={deviceKind}>
             {title}
           </ModalFormTitleText>
         </ModalFormTitleContainer>
       </ModalFormHeader>
-      <ModalFormContent deviceKind={deviceKind} style={contentContainerStyle}>
+      <ModalFormContent $deviceKind={deviceKind} style={contentContainerStyle}>
         {children}
         {(deviceKind === 'phone' || deviceKind === 'large-phone') &&
         onDelete ? (
@@ -117,20 +117,20 @@ const StyledForm = styled(FlexForm)`
 const ModalFormTitleText = styled(Text).attrs((props) => ({
   numberOfLines: 2,
 }))<{
-  deviceKind: DeviceKind;
+  $deviceKind: DeviceKind;
 }>`
   font-size: 20px;
   color: #2b2826;
   line-height: 20px;
 
   ${(props) =>
-    props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
+    props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? modalFormMobileTitleTextStyle
       : ''}
 `;
 
 const ModalFormHeader = styled(FlexDiv)<{
-  deviceKind: DeviceKind;
+  $deviceKind: DeviceKind;
 }>`
   flex: none;
   flex-direction: row;
@@ -140,7 +140,7 @@ const ModalFormHeader = styled(FlexDiv)<{
   height: 55px;
 
   ${(props) =>
-    props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
+    props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? `${modalFormMobileHeaderStyle};
       ${modalFormMobileHeaderContainerStyle};
       `
@@ -171,7 +171,7 @@ const ModalFormMobileDeleteButton = styled(Button).attrs((props) => ({
 }))``;
 
 const ModalFormContent = styled(FlexDiv)<{
-  deviceKind: DeviceKind;
+  $deviceKind: DeviceKind;
 }>`
   flex: 1;
   background-color: white;
@@ -179,7 +179,7 @@ const ModalFormContent = styled(FlexDiv)<{
   padding: 48px;
 
   ${(props) =>
-    props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
+    props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? modalFormContentStyle
       : ''}
 `;

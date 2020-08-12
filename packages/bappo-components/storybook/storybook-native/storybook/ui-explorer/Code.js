@@ -1,6 +1,8 @@
-import { styled, Text } from 'bappo-components';
+import { Text, styled } from 'bappo-components';
 
-const Code = styled(Text)`
+const Code = styled(Text).attrs({
+  selectable: true,
+})`
   font-size: 16px;
 `;
 

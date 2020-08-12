@@ -120,7 +120,7 @@ class DatePicker extends React.Component<Props> {
     }
 
     return (
-      <ValueText textColor={this.props.textColor}>{this._dateStr}</ValueText>
+      <ValueText $textColor={this.props.textColor}>{this._dateStr}</ValueText>
     );
   };
 

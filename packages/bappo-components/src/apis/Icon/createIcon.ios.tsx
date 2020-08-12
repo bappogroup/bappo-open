@@ -15,7 +15,7 @@ const createIcon = (
     }
 
     const styleProps = {
-      fontFamilyValue: fontFamily,
+      $fontFamilyValue: fontFamily,
       style,
     };
 

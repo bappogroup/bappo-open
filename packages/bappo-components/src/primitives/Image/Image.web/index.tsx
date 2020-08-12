@@ -90,11 +90,11 @@ export default function Image({
     >
       {layout && (
         <TransformContainer
-          layout={layout}
-          orientation={meta && meta.Orientation}
+          $layout={layout}
+          $orientation={meta && meta.Orientation}
         >
           {status !== 'LOADING' && (
-            <ImageContainer status={status} uri={formattedUri} />
+            <ImageContainer $status={status} $uri={formattedUri} />
           )}
         </TransformContainer>
       )}
@@ -108,30 +108,30 @@ const Container = styled(DivViewBase)`
 `;
 
 const TransformContainer = styled.div<{
-  layout: {
+  $layout: {
     height: number;
     width: number;
   };
-  orientation: number | undefined;
+  $orientation: number | undefined;
 }>`
   border-radius: inherit;
   max-height: 100%;
   max-width: 100%;
   position: relative;
 
-  ${({ layout, orientation }) =>
-    isPortrait(orientation)
+  ${({ $layout, $orientation }) =>
+    isPortrait($orientation)
       ? `
-    height: ${layout.width}px;
-    width: ${layout.height}px;
+    height: ${$layout.width}px;
+    width: ${$layout.height}px;
   `
       : `
-    height: ${layout.height}px;
-    width: ${layout.width}px;
+    height: ${$layout.height}px;
+    width: ${$layout.width}px;
   `};
 
-  ${({ orientation }) => {
-    switch (orientation) {
+  ${({ $orientation }) => {
+    switch ($orientation) {
       case 2:
         return 'transform: scaleX(-1)';
       case 3:
@@ -153,8 +153,8 @@ const TransformContainer = styled.div<{
 `;
 
 const ImageContainer = styled.div<{
-  status: Status;
-  uri: string;
+  $status: Status;
+  $uri: string;
 }>`
   position: absolute;
   top: 0;
@@ -167,8 +167,8 @@ const ImageContainer = styled.div<{
   height: 100%;
   width: 100%;
 
-  ${({ status, uri }) =>
-    status === 'ERROR'
+  ${({ $status, $uri }) =>
+    $status === 'ERROR'
       ? `
     background: #eee;
   `
@@ -176,7 +176,7 @@ const ImageContainer = styled.div<{
     animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
-    background-image: url(${uri});
+    background-image: url(${$uri});
   `}
 `;
 

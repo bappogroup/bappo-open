@@ -34,8 +34,8 @@ const Picker = ({
         return (
           <TabButton
             key={i}
-            isSelected={isSelected}
-            position={getPosition(i, options.length)}
+            $isSelected={isSelected}
+            $position={getPosition(i, options.length)}
             onPress={() => {
               let output;
               if (!multi) {
@@ -72,15 +72,15 @@ const TabButton = styled(TouchableView)`
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: ${(props) => (props.isSelected ? 'orange' : '#f8f8f8')};
+  background-color: ${(props) => (props.$isSelected ? 'orange' : '#f8f8f8')};
   border-top-left-radius: ${(props) =>
-    props.position === 'first' ? '4px' : '0px'};
+    props.$position === 'first' ? '4px' : '0px'};
   border-top-right-radius: ${(props) =>
-    props.position === 'first' ? '4px' : '0px'};
+    props.$position === 'first' ? '4px' : '0px'};
   border-bottom-left-radius: ${(props) =>
-    props.position === 'last' ? '4px' : '0px'};
+    props.$position === 'last' ? '4px' : '0px'};
   border-bottom-right-radius: ${(props) =>
-    props.position === 'last' ? '4px' : '0px'};
+    props.$position === 'last' ? '4px' : '0px'};
   margin-bottom: 1px;
   align-items: center;
   justify-content: center;

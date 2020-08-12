@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 
+import { Text, View, styled } from 'bappo-components';
 import React from 'react';
-import { styled, Text, View } from 'bappo-components';
+
 import AppText from './AppText';
 import insertBetween from './insertBetween';
 
@@ -10,7 +11,7 @@ const Divider = styled(View)`
 `;
 
 const createDescription = (description) => {
-  const nodeList = React.Children.map(description, child => (
+  const nodeList = React.Children.map(description, (child) => (
     <DescriptionText>{child}</DescriptionText>
   ));
   let content;
@@ -54,7 +55,9 @@ const PropText = ({ label, name, typeInfo }) => (
   </AppText>
 );
 
-const Code = styled(Text)`
+const Code = styled(Text).attrs({
+  selectable: true,
+})`
   font-size: 16px;
 `;
 
@@ -66,11 +69,15 @@ const Title = styled(AppText)`
   font-size: 16px;
 `;
 
-const DescriptionText = styled(Text)`
+const DescriptionText = styled(Text).attrs({
+  selectable: true,
+})`
   font-size: 16px;
 `;
 
-const Label = styled(Text)`
+const Label = styled(Text).attrs({
+  selectable: true,
+})`
   background-color: #ddd;
   border-radius: 16px;
   color: #555;
@@ -81,7 +88,9 @@ const Label = styled(Text)`
   padding-right: 8px;
 `;
 
-const PropName = styled(Text)`
+const PropName = styled(Text).attrs({
+  selectable: true,
+})`
   font-weight: bold;
 `;
 
@@ -90,13 +99,13 @@ const Description = styled(View)`
 `;
 
 const RenderBox = styled(View)`
-  border: 1px solid #E6ECF0;
+  border: 1px solid #e6ecf0;
   padding: 21px;
   margin-top: 21px;
 `;
 
 const ExampleText = styled(AppText)`
-  color: #AAB8C2;
+  color: #aab8c2;
   font-size: 12.8px;
   font-weight: bold;
   margin-bottom: 10.5px;

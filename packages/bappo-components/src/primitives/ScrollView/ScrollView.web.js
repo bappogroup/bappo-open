@@ -97,7 +97,7 @@ class ScrollView extends React.Component<Props> {
 
     const styleProps = {
       className,
-      horizontal,
+      $horizontal: horizontal,
       style,
     };
 
@@ -111,7 +111,7 @@ class ScrollView extends React.Component<Props> {
         testID={testID}
       >
         <ContentContainer
-          horizontal={horizontal}
+          $horizontal={horizontal}
           onLayout={this._onContentLayout}
           style={contentContainerStyle}
         >
@@ -176,8 +176,8 @@ const ScrollContainer = styled(DivViewBase)`
   -webkit-overflow-scrolling: touch;
   transform: translateZ(0);
 
-  ${({ horizontal }) =>
-    horizontal &&
+  ${({ $horizontal }) =>
+    $horizontal &&
     `
     flex-direction: row;
     overflow-x: auto;
@@ -186,8 +186,8 @@ const ScrollContainer = styled(DivViewBase)`
 `;
 
 const ContentContainer = styled(DivViewBase)`
-  ${({ horizontal }) =>
-    horizontal
+  ${({ $horizontal }) =>
+    $horizontal
       ? `
     flex-direction: row;
     min-width: 100%;

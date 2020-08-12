@@ -7,7 +7,6 @@ import { TextProps } from '../../primitives/Text/types';
 
 type TextBaseProps = TextProps & {
   className?: string;
-  ellipsis?: boolean;
 };
 
 interface InternalProps {
@@ -19,27 +18,27 @@ const IsParentATextContext = React.createContext(false);
 export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
   const ChildText = styled.div<{
     'data-text-as-pseudo-element'?: React.ReactText;
-    fontFamilyValue: string;
-    fontSizeValue: number;
-    numberOfLines?: number;
-    isParentAText: boolean;
-    selectable?: boolean;
-    ellipsis?: boolean;
+    $fontFamilyValue: string;
+    $fontSizeValue: number;
+    $numberOfLines?: number;
+    $isParentAText: boolean;
+    $selectable?: boolean;
+    $ellipsis?: boolean;
   }>`
     box-sizing: border-box;
     color: ${Colors.BLACK};
     display: inline;
     flex-grow: 0;
     flex-shrink: 0;
-    font-family: ${(props) => props.fontFamilyValue};
-    font-size: ${(props) => props.fontSizeValue}px;
+    font-family: ${(props) => props.$fontFamilyValue};
+    font-size: ${(props) => props.$fontSizeValue}px;
     position: relative;
     white-space: pre-wrap;
     word-wrap: break-word;
     -ms-hyphens: auto;
   
-    ${({ isParentAText }) =>
-      isParentAText &&
+    ${({ $isParentAText }) =>
+      $isParentAText &&
       `
       color: inherit;
       font-family: inherit;
@@ -47,8 +46,8 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       white-space: inherit;
     `}
   
-    ${({ selectable }) =>
-      selectable
+    ${({ $selectable }) =>
+      $selectable
         ? `
       cursor: text;
       user-select: text;
@@ -57,22 +56,22 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       cursor: inherit;
     `}
   
-    ${({ numberOfLines, fontSizeValue, ellipsis }) =>
-      numberOfLines &&
+    ${({ $numberOfLines, $fontSizeValue, $ellipsis }) =>
+      $numberOfLines &&
       `
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
       ${
-        numberOfLines === 1
+        $numberOfLines === 1
           ? `white-space: nowrap;`
           : `
-      line-height: ${fontSizeValue + 2}px;
-      max-height: ${(fontSizeValue + 2) * numberOfLines}px;
+      line-height: ${$fontSizeValue + 2}px;
+      max-height: ${($fontSizeValue + 2) * $numberOfLines}px;
       `
       }
-      ${ellipsis &&
-        numberOfLines !== 1 &&
+      ${$ellipsis &&
+        $numberOfLines > 1 &&
         `::after {
           content: '...';
           position: absolute;
@@ -109,12 +108,12 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     }
     const styleProps = {
       className,
-      fontFamilyValue: fontFamily,
-      fontSizeValue,
-      isParentAText,
-      numberOfLines,
-      ellipsis,
-      selectable,
+      $fontFamilyValue: fontFamily,
+      $fontSizeValue: fontSizeValue,
+      $isParentAText: isParentAText,
+      $numberOfLines: numberOfLines,
+      $ellipsis: ellipsis,
+      $selectable: selectable,
       style,
     };
 
@@ -125,13 +124,16 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       ref: nativeRef,
     };
 
-    const renderChild = (child: React.ReactNode, props: Object) => {
+    const renderChild = (
+      child: React.ReactNode,
+      props: Record<string, any>,
+    ) => {
       if (typeof child === 'string' || typeof child === 'number') {
         return renderText(
           child,
           {
             ...props,
-            isParentAText: true,
+            $isParentAText: true,
           },
           true,
         );
@@ -144,7 +146,7 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       isChild: boolean,
     ) => {
       return React.createElement(
-        //@ts-ignore
+        // @ts-ignore
         isChild ? ChildText : RootText,
         props,
         children,

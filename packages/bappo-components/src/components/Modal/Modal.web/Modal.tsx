@@ -66,10 +66,10 @@ function Modal({
       <ModalContentContainer
         $deviceKind={deviceKind}
         ref={modalContentContainerRef}
-        layout={modalContentLayout}
+        $layout={modalContentLayout}
         onKeyDown={onModalContentKeyDown}
         onLayout={onModalContentLayout}
-        placement={placement}
+        $placement={placement}
       >
         {/* There are three condition here
         1. Bydefault the header will not show as older application using previous version modal,
@@ -80,7 +80,7 @@ function Modal({
         {title || !hideHeader ? (
           <ModalHeadr>
             <ModalTitleContainer>
-              <ModalTitleText deviceKind={deviceKind}>{title}</ModalTitleText>
+              <ModalTitleText $deviceKind={deviceKind}>{title}</ModalTitleText>
             </ModalTitleContainer>
             <ModalCloseIcon name="clear" onPress={onRequestClose} />
           </ModalHeadr>
@@ -99,8 +99,8 @@ export default Modal;
 
 export const ModalContentContainer = styled(DivViewBase)<{
   $deviceKind: DeviceKind;
-  layout: Layout;
-  placement: Props['placement'];
+  $layout: Layout;
+  $placement: Props['placement'];
 }>`
   background-color: white;
   position: absolute;
@@ -154,14 +154,14 @@ export const ModalTitleContainer = styled(View)`
 const ModalTitleText = styled(Text).attrs((props) => ({
   numberOfLines: 2,
 }))<{
-  deviceKind: DeviceKind;
+  $deviceKind: DeviceKind;
 }>`
   font-size: 20px;
   color: #2b2826;
   line-height: 20px;
 
   ${(props) =>
-    props.deviceKind === 'phone' || props.deviceKind === 'large-phone'
+    props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
       ? `
       font-size: 16px;
       color: #2b2826;
@@ -188,41 +188,41 @@ const ModalFooter = styled(FlexDiv)`
 `;
 
 const desktopStyle = ({
-  layout,
-  placement,
+  $layout,
+  $placement,
 }: {
-  layout: Layout;
-  placement: Props['placement'];
+  $layout: Layout;
+  $placement: Props['placement'];
 }) => {
   if (
-    placement &&
-    placement.type === 'dropdown' &&
-    placement.align === 'left'
+    $placement &&
+    $placement.type === 'dropdown' &&
+    $placement.align === 'left'
   ) {
     return `
       border-radius: 2px;
-      left: ${placement.left}px;
-      top: ${placement.top}px;
-      height: ${placement.height}px;
-      width: ${placement.width}px;        
+      left: ${$placement.left}px;
+      top: ${$placement.top}px;
+      height: ${$placement.height}px;
+      width: ${$placement.width}px;        
     `;
   }
 
   if (
-    placement &&
-    placement.type === 'dropdown' &&
-    placement.align === 'right'
+    $placement &&
+    $placement.type === 'dropdown' &&
+    $placement.align === 'right'
   ) {
     return `
       border-radius: 2px;
-      right: ${placement.right}px;
-      top: ${placement.top}px;
-      height: ${placement.height}px;
-      width: ${placement.width}px;        
+      right: ${$placement.right}px;
+      top: ${$placement.top}px;
+      height: ${$placement.height}px;
+      width: ${$placement.width}px;        
     `;
   }
 
-  if (placement && placement.type === 'fullscreen') {
+  if ($placement && $placement.type === 'fullscreen') {
     return `
       left: 0;
       right: 0;
@@ -240,9 +240,9 @@ const desktopStyle = ({
     min-height: 200px;
     width: 576px;
     ${
-      layout
+      $layout
         ? `
-          top: calc(50vh - ${Math.ceil(layout.height / 2)}px);
+          top: calc(50vh - ${Math.ceil($layout.height / 2)}px);
         `
         : `
           opacity: 0;

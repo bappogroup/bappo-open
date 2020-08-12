@@ -914,7 +914,7 @@ class Select extends React.Component<Props, State> {
         {renderDropdownIcon ? (
           renderDropdownIcon()
         ) : (
-          <Arrow isOpen={this.state.isOpen} />
+          <Arrow $isOpen={this.state.isOpen} />
         )}
       </ArrowZone>
     );

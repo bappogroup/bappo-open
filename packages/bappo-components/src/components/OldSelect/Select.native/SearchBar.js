@@ -76,7 +76,7 @@ class SearchBar extends React.Component<Props> {
                       showUnderline={false}
                       value={searchText}
                       testID="select-searchbar-textinput"
-                      fontFamily={fontFamily}
+                      $fontFamily={fontFamily}
                     />
                   );
                 }}
@@ -157,7 +157,7 @@ const SpinnerContainer = styled.View`
 
 const StyledTextInput = styled.TextInput`
   flex: 1;
-  font-family: ${(props) => props.fontFamily};
+  font-family: ${(props) => props.$fontFamily};
   font-size: 14px;
   height: 28px;
   margin-top: 2px;

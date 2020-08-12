@@ -39,7 +39,7 @@ class Switch extends React.Component<Props, State> {
 
     const styleProps = {
       style,
-      value,
+      $value: value,
     };
 
     return (
@@ -65,7 +65,7 @@ const SwitchContainer = styled.TouchableOpacity.attrs((props) => ({
 }))`
   flex: none;
   flex-direction: row;
-  background-color: ${({ value }) => (value ? '#FF7800' : '#B0ADAB')};
+  background-color: ${({ $value }) => ($value ? '#FF7800' : '#B0ADAB')};
   border-radius: 12px;
   height: 24px;
   width: 48px;

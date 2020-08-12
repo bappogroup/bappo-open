@@ -72,10 +72,10 @@ class Menu extends React.Component<Props> {
     isSelected: boolean,
   }) => (
     <Row>
-      <Label numberOfLines={2} isDisabled={option.disabled}>
+      <Label numberOfLines={2} $isDisabled={option.disabled}>
         {option[this.props.labelKey]}
       </Label>
-      <SelectedIcon name="check" show={isSelected} />
+      <SelectedIcon name="check" $show={isSelected} />
     </Row>
   );
 
@@ -97,7 +97,7 @@ class Menu extends React.Component<Props> {
     return (
       <OptionContainer
         innerRef={(ref) => focusedOptionRef(ref, isFocused)}
-        isDisabled={option.disabled}
+        $isDisabled={option.disabled}
         isFocused={isFocused}
         isSelected={isSelected}
         onFocus={onItemFocus}
@@ -119,8 +119,8 @@ const StyledFlatList = styled(FlatList)`
 
 const Label = styled(Text)`
   flex: 1;
-  ${({ isDisabled }) =>
-    isDisabled &&
+  ${({ $isDisabled }) =>
+    $isDisabled &&
     `
     color: #ccc;
   `};
@@ -134,5 +134,5 @@ const Row = styled(View)`
 `;
 
 const SelectedIcon = styled(Icon)`
-  opacity: ${(props) => (props.show ? '1' : '0')};
+  opacity: ${(props) => (props.$show ? '1' : '0')};
 `;
