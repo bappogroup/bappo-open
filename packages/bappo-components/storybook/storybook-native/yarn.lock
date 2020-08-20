@@ -2565,10 +2565,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@^0.1.0-alpha.164:
-  version "0.1.0-alpha.164"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.164.tgz#cbdfc34eee86867124af05c3ed2ce7a19dfc9fd4"
-  integrity sha512-CCaIDQIIuIJBaaxV77D5+e/QD8NztoLLgwqfhAJZvzDnHMC7QxTPwTgjzbggPeI6oTxw5IfdT99qv+5OsZ14Ug==
+bappo-components@^0.1.0-alpha.165:
+  version "0.1.0-alpha.165"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.165.tgz#a571389bc19153f62c604ee89f66e75626af904d"
+  integrity sha512-uaJUiphH304yWhGXZjrMvka4tKavgRMv880CtkVbOA5v/+YVWbCO1nUl4W9pDp6YzJCOYafWlrxkCQCrbART3w==
   dependencies:
     "@babel/runtime" "7.5.5"
     "@reach/tooltip" "^0.10.1"
@@ -2581,7 +2581,7 @@ bappo-components@^0.1.0-alpha.164:
     pdfmake "^0.1.57"
     prop-types "^15.6.0"
     react-native-keyboard-aware-scroll-view "^0.9.1"
-    react-native-web "^0.9.1"
+    react-native-web "^0.9.13"
     react-recomponent "^0.2.0"
     react-use "^14.2.0"
     warning "^4.0.3"
@@ -7412,7 +7412,7 @@ react-native-swipe-gestures@^1.0.4:
   resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz#a172cb0f3e7478ccd681fd36b8bfbcdd098bde7c"
   integrity sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw==
 
-react-native-web@^0.9.1:
+react-native-web@^0.9.13:
   version "0.9.13"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.9.13.tgz#b277ccce2e4985a256ed340823104c08505f3096"
   integrity sha512-P1nCvBVFrv3J5BXu39iS4A3fR7m0vtGaCAy4MigAtZpakIuara/98h516fDQajPqoVy2T4cQgYZUQAr+FBnppQ==
