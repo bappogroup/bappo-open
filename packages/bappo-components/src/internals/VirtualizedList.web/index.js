@@ -265,6 +265,9 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         this._footerLength -
         this._scrollMetrics.visibleLength,
     );
+    if (this.props.inverted) {
+      offset = this._totalCellLength - offset;
+    }
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
@@ -309,13 +312,16 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       return;
     }
     const frame = this._getFrameMetricsApprox(index);
-    const offset =
+    let offset =
       Math.max(
         0,
         frame.offset -
           (viewPosition || 0) *
             (this._scrollMetrics.visibleLength - frame.length),
       ) - (viewOffset || 0);
+    if (this.props.inverted) {
+      offset = this._totalCellLength - offset;
+    }
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
@@ -356,7 +362,10 @@ class VirtualizedList extends React.PureComponent<Props, State> {
    * should do an animation while scrolling.
    */
   scrollToOffset(params: { animated?: ?boolean, offset: number }) {
-    const { animated, offset } = params;
+    const { animated } = params;
+    const offset = this.props.inverted
+      ? this._totalCellLength - params.offset
+      : params.offset;
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
@@ -921,7 +930,31 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
+  getSnapshotBeforeUpdate(prevProps: Props, prevState: State) {
+    // keep inverted list scroll position when data size changes
+    if (
+      this.props.inverted &&
+      (this.props.data.length > prevProps.data.length ||
+        this.state.last - this.state.first > prevState.last - prevState.first)
+    ) {
+      const scrollableNode = this._scrollRef._scrollableNode;
+      // only scroll to bottom if current scroll position is at bottom
+      return (
+        scrollableNode.scrollHeight ===
+        scrollableNode.scrollTop + scrollableNode.offsetHeight
+      );
+    }
+    return null;
+  }
+
+  componentDidUpdate(
+    prevProps: Props,
+    prevState: State,
+    shouldScrollToBottom: boolean | null,
+  ) {
+    if (shouldScrollToBottom) {
+      this._scrollRef._scrollableNode.scrollTop = this._scrollRef._scrollableNode.scrollHeight;
+    }
     const { data, extraData } = this.props;
     if (data !== prevProps.data || extraData !== prevProps.extraData) {
       this._hasDataChangedSinceEndReached = true;
@@ -1203,17 +1236,21 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   }
 
   _onContentSizeChange = (width: number, height: number) => {
-    if (
-      width > 0 &&
-      height > 0 &&
-      this.props.initialScrollIndex != null &&
-      this.props.initialScrollIndex > 0 &&
-      !this._hasDoneInitialScroll
-    ) {
-      this.scrollToIndex({
-        animated: false,
-        index: this.props.initialScrollIndex,
-      });
+    if (width > 0 && height > 0 && !this._hasDoneInitialScroll) {
+      if (this.props.inverted) {
+        this.scrollToIndex({
+          animated: false,
+          index: this.props.initialScrollIndex || 0,
+        });
+      } else if (
+        this.props.initialScrollIndex != null &&
+        this.props.initialScrollIndex > 0
+      ) {
+        this.scrollToIndex({
+          animated: false,
+          index: this.props.initialScrollIndex,
+        });
+      }
       this._hasDoneInitialScroll = true;
     }
     if (this.props.onContentSizeChange) {
