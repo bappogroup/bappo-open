@@ -1,14 +1,15 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import HeaderFooter from './examples/HeaderFooter';
 import Minimal from './examples/Minimal';
 import OnEndReached from './examples/OnEndReached';
@@ -18,6 +19,7 @@ import PropInitialScrollIndex from './examples/PropInitialScrollIndex';
 import PropInverted from './examples/PropInverted';
 import PropItemSeparatorComponent from './examples/PropItemSeparatorComponent';
 import PropListEmptyComponent from './examples/PropListEmptyComponent';
+import PropNumColumns from './examples/PropNumColumns';
 
 const FlatListScreen = () => (
   <UIExplorer title="FlatList" url="1-primitives/FlatList">
@@ -348,6 +350,19 @@ const FlatListScreen = () => (
         description="onEndReached and onEndReachedThreshold"
         example={{
           render: () => <OnEndReached />,
+        }}
+      />
+      <DocItem
+        description={
+          <AppText>
+            {`
+            Multiple columns can only be rendered with horizontal={false} and
+            will zig-zag like a flexWrap layout. Items should all be the same
+            height - masonry layouts are not supported.`}
+          </AppText>
+        }
+        example={{
+          render: () => <PropNumColumns />,
         }}
       />
     </Section>
