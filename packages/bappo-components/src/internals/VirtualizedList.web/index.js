@@ -258,7 +258,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     const animated = params ? params.animated : true;
     const veryLast = this.props.getItemCount(this.props.data) - 1;
     const frame = this._getFrameMetricsApprox(veryLast);
-    const offset = Math.max(
+    let offset = Math.max(
       0,
       frame.offset +
         frame.length +
