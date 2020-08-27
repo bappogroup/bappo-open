@@ -26,16 +26,16 @@ export interface TextInputProps {
   /**
    * Callback that is called when the text input is blurred.
    */
-  onBlur?: (event: BlurEvent) => void;
+  onBlur?: ((event: BlurEvent) => void) | null;
   /**
    * Callback that is called when the text input is focused.
    */
-  onFocus?: (event: FocusEvent) => void;
+  onFocus?: ((event: FocusEvent) => void) | null;
   /**
    * Callback that is called when the text input's text changes. Changed text is passed as an
    * argument to the callback handler.
    */
-  onValueChange?: (value: string) => void;
+  onValueChange?: ((value: string) => void) | null;
   /**
    * The string that will be rendered before text input has been entered.
    */

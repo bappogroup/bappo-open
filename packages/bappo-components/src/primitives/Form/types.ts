@@ -16,7 +16,7 @@ export interface FormProps {
     | React.ReactNode
     | ((formState: FormStateAndHelpersAndActions) => React.ReactNode);
   initialValues?: Values;
-  onSubmit?: (values: Values) => Promise<any>;
+  onSubmit?: ((values: Values) => any) | null;
   style?: any;
   /**
    * Used to locate this view in end-to-end tests.
@@ -33,15 +33,15 @@ export interface InputFieldProps<V> {
   fieldState?: FieldState<V>;
   label?: string;
   name?: string;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  onValueChange?: (value: V) => void;
+  onBlur?: (() => void) | null;
+  onFocus?: (() => void) | null;
+  onValueChange?: ((value: V) => void) | null;
   ref?: React.Ref<InputField>;
   required?: boolean;
   reserveErrorSpace?: boolean;
   testID?: string;
   validate?: FieldValidator<V> | FieldValidator<V>[];
-  value?: V;
+  value?: V | null;
 }
 
 export type InputFieldComponent<

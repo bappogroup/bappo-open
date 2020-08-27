@@ -26,7 +26,7 @@
   "module": "es/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "npm run build:cjs && npm run build:es && tsc",
+    "build": "tsc && npm run build:cjs && npm run build:es",
     "build:cjs": "rimraf lib/ && BABEL_ENV=cjs babel --extensions '.js,.ts,.tsx' src/ -d lib/",
     "build:es": "rimraf es/ && BABEL_ENV=es babel --extensions '.js,.ts,.tsx' src/ -d es/",
     "build:es:watch": "rimraf es/ && BABEL_ENV=es babel --watch --extensions '.js,.ts,.tsx' src/ -d es/",

@@ -21,9 +21,9 @@ type OptionalProps = {
     | ((formStateAndActions: FormStateAndHelpersAndActions) => React.ReactNode);
   contentContainerStyle?: any;
   initialValues?: Values;
-  onDelete?: (values: Values) => Promise<void>;
-  onSubmit?: (values: Values) => Promise<void>;
-  onCancel?: (values: Values) => Promise<void>;
+  onDelete?: ((values: Values) => any) | null;
+  onSubmit?: ((values: Values) => any) | null;
+  onCancel?: ((values: Values) => any) | null;
   placement?: ModalProps['placement'];
   submitButtonText?: string | ((formState: FormStateAndHelpers) => string);
   testID?: string;

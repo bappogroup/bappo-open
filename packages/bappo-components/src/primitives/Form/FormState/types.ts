@@ -70,11 +70,11 @@ export interface FieldState<V> {
   error?: string;
   pristine: boolean;
   touched: boolean;
-  value?: V;
+  value?: V | null;
   visited: boolean;
 }
 
 export type FieldValidator<V> = (
-  value: V | undefined,
+  value: V | null | undefined,
   fieldState: FieldState<V>,
 ) => string | undefined;

@@ -12,7 +12,7 @@ type InternalProps<
 > = {
   component: InputFieldComponent<V, InputProps>;
   inputRef: React.Ref<InputField>;
-  label: string;
+  label?: string;
   name: string;
   props: InputProps;
   testID?: string;
@@ -76,4 +76,11 @@ export const Field = React.forwardRef(
       <InternalField {...props} inputRef={ref} props={props.props || {}} />
     );
   },
-);
+) as <
+  V,
+  InputProps extends {
+    [prop: string]: any;
+  }
+>(
+  props: FieldProps<V, InputProps>,
+) => React.ReactElement | null;

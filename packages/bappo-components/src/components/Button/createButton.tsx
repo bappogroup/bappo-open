@@ -13,7 +13,7 @@ type Props = ButtonProps & {
 interface ButtonContainerProps {
   children?: React.ReactNode;
   disabled?: boolean;
-  onPress?: () => void;
+  onPress?: (() => void) | null;
   style?: any;
   testID?: string;
   [prop: string]: any;

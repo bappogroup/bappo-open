@@ -3,7 +3,7 @@ export interface ButtonProps {
   icon?: string;
   iconStyle?: any;
   loading?: boolean;
-  onPress?: () => void;
+  onPress?: (() => void) | null;
   style?: any;
   testID?: string;
   text?: string;

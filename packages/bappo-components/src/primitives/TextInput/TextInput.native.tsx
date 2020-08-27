@@ -52,7 +52,7 @@ class TextInput extends React.Component<TextInputProps> {
       ref: this._captureInputRef,
       maxLength,
       multiline,
-      onChangeText: onValueChange,
+      onChangeText: onValueChange || undefined,
       onEndEditing: this._createBlurEventHandler(),
       onFocus: this._createFocusEventHandler(),
       placeholder,
@@ -124,7 +124,7 @@ class TextInput extends React.Component<TextInputProps> {
         onBlur(event);
       };
     }
-    return onBlur;
+    return onBlur || undefined;
   };
 
   private _createFocusEventHandler = () => {
@@ -138,7 +138,7 @@ class TextInput extends React.Component<TextInputProps> {
         onFocus(event);
       };
     }
-    return onFocus;
+    return onFocus || undefined;
   };
 }
 

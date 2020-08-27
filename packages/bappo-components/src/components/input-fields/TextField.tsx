@@ -61,4 +61,7 @@ function TextField(props: Props, ref: React.Ref<InputField>) {
   );
 }
 
-export default React.forwardRef(TextField);
+const ForwardRefTextField = React.forwardRef(TextField);
+// Cast to NamedExoticComponent to remove `propTypes` which causes problems when
+// type checking.
+export default ForwardRefTextField as React.NamedExoticComponent<Props>;

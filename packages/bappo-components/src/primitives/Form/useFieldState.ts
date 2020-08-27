@@ -227,7 +227,7 @@ function getInitialStandaloneState<V>(
 ): StandaloneFieldState<V> {
   const initialState: StandaloneFieldState<V> = {
     errors: [],
-    initialValue: props.value,
+    initialValue: props.value == null ? undefined : props.value,
     touched: false,
     visited: false,
   };

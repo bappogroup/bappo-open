@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 
 import IconButton from '../../components/IconButton';
 import View from '../../primitives/View';
-import TextField from '../input-fields/TextField';
+import { IconProps } from '../Icon/Icon';
 import IconModal from './IconModal';
 
-interface IconSelectorProps {
-  size?: number;
-  color?: string;
-  value?: string;
+type IconSelectorProps = Pick<IconProps, 'color' | 'size'> & {
   onValueChange: (value: string) => void;
-}
+  value: string;
+};
 
 const IconSelector: React.FC<IconSelectorProps> = ({
   size,
@@ -19,7 +17,6 @@ const IconSelector: React.FC<IconSelectorProps> = ({
   onValueChange,
 }) => {
   const [modalVisable, setModalVisable] = useState(false);
-  const closeModal = () => setModalVisable(false);
   return (
     <View>
       <IconButton

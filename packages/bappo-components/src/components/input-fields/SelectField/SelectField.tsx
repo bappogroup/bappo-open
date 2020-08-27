@@ -7,7 +7,7 @@ import Select from '../../OldSelect';
 import { SelectProps } from '../../OldSelect/types';
 import { InputFieldWrapper } from '../wrappers';
 
-type Props = InputFieldProps<SelectProps['value']> & SelectProps;
+type Props = Omit<InputFieldProps<SelectProps['value']>, 'value'> & SelectProps;
 
 function SelectField(props: Props, ref: React.Ref<InputField>) {
   const {
@@ -64,4 +64,7 @@ function SelectField(props: Props, ref: React.Ref<InputField>) {
   );
 }
 
-export default React.forwardRef(SelectField);
+const ForwardRefSelectField = React.forwardRef(SelectField);
+// Cast to NamedExoticComponent to remove `propTypes` which causes problems when
+// type checking.
+export default ForwardRefSelectField as React.NamedExoticComponent<Props>;
