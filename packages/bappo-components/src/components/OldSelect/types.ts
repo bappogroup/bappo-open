@@ -52,12 +52,12 @@ export interface SelectProps {
   /**
    * Callback that is called when the input is blurred.
    */
-  onBlur?: () => void;
+  onBlur?: (() => void) | null;
   /**
    * Called once when the scroll position gets within `onDropdownEndReachedThreshold` of the
    * rendered content of the dropdown.
    */
-  onDropdownEndReached?: () => void;
+  onDropdownEndReached?: (() => void) | null;
   /**
    * How far from the end (in units of visible length of the list) the bottom edge of the
    * list must be from the end of the content to trigger the `onDropdownEndReached` callback.
@@ -66,15 +66,15 @@ export interface SelectProps {
   /**
    * Callback that is called when the input is focused.
    */
-  onFocus?: () => void;
+  onFocus?: (() => void) | null;
   /**
    * Callback that is called when the search input's text changes.
    */
-  onInputChange?: (text: string, triggeredByUser: boolean) => void;
+  onInputChange?: ((text: string, triggeredByUser: boolean) => void) | null;
   /**
    * Callback that is called when the input value changes.
    */
-  onValueChange?: (value: Value) => void;
+  onValueChange?: ((value: Value) => void) | null;
   /**
    * An array of options.
    */
@@ -91,7 +91,7 @@ export interface SelectProps {
   /**
    * Function to render the dropdown icon.
    */
-  renderDropdownIcon?: () => React.ReactNode;
+  renderDropdownIcon?: (() => React.ReactNode) | null;
   /**
    * Function to render an option. Requires `getDropdownItemLayout` to be implemented.
    */

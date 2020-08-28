@@ -12,15 +12,15 @@ export type SwitchProps = {
   /**
    * Callback that is called when the switch is blurred.
    */
-  onBlur?: (event: BlurEvent) => void;
+  onBlur?: ((event: BlurEvent) => void) | null;
   /**
    * Callback that is called when the switch is focused.
    */
-  onFocus?: (event: FocusEvent) => void;
+  onFocus?: ((event: FocusEvent) => void) | null;
   /**
    * Invoked with the new value when the value changes.
    */
-  onValueChange?: (value: boolean) => void;
+  onValueChange?: ((value: boolean) => void) | null;
   // TODO
   style?: any;
   /**

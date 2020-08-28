@@ -21,15 +21,15 @@ export type TimePickerProps = {
   /**
    * Callback that is called when the input is blurred.
    */
-  onBlur?: () => void;
+  onBlur?: (() => void) | null;
   /**
    * Callback that is called when the input is focused.
    */
-  onFocus?: () => void;
+  onFocus?: (() => void) | null;
   /**
    * Callback that is called when the input value changes.
    */
-  onValueChange?: (value: string | null) => void;
+  onValueChange?: ((value: string | null) => void) | null;
   /**
    * The string that will be rendered when there is no value.
    */
@@ -41,7 +41,7 @@ export type TimePickerProps = {
   /**
    * Function to render the dropdown icon.
    */
-  renderDropdownIcon?: () => React.ReactNode;
+  renderDropdownIcon?: (() => React.ReactNode) | null;
   // TODO
   style?: any;
   /**
