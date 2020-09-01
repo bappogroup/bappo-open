@@ -15,6 +15,7 @@ import FieldLevelValidation from './examples/FieldLevelValidation';
 import Minimal from './examples/Minimal';
 import PropSubmitButtonText from './examples/PropSubmitButtonText';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
+import ModalFormStyledExample from './examples/styledForm';
 
 const ModalFormScreen = () => (
   <UIExplorer title="ModalForm" url="2-components/ModalForm">
@@ -55,6 +56,25 @@ const ModalFormScreen = () => (
         typeInfo="(values: mixed) => void"
         description="Function to be called when form is canceled."
       />
+      <DocItem
+        name="headerContainerStyle?"
+        typeInfo="{
+        headerStyle: InlineCssStyle;
+        titleStyle: InlineCssStyle;
+        closeIconStyle: InlineCssStyle;
+      }"
+        description="Pass styles to low level components"
+      />
+      <DocItem
+        name="footerContainerStyle?"
+        typeInfo="{
+        footerStyle: InlineCssStyle;
+        cancelBtnStyle: InlineCssStyle;
+        submitBtnStyle: InlineCssStyle;
+        cancelBtnTextStyle: InlineCssStyle;
+      }"
+        description="Pass styles to low level components"
+      />
 
       <DocItem
         name="submitButtonText?"
@@ -90,9 +110,15 @@ const ModalFormScreen = () => (
         }}
       />
       <DocItem
-        description="Show/Hide field based on form state"
+        description="Show/Hide field based on form dte"
         example={{
           render: () => <ShowHideFieldBasedOnFormState />,
+        }}
+      />
+      <DocItem
+        description="Able to change header, footer and content style"
+        example={{
+          render: () => <ModalFormStyledExample />,
         }}
       />
     </Section>

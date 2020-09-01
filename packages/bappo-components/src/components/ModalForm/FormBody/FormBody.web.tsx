@@ -30,6 +30,8 @@ function FormBody({
   submitButtonText = 'Submit',
   testID,
   title,
+  headerContainerStyle,
+  footerContainerStyle,
 }: FormBodyProps) {
   const deviceKind = useDeviceKind();
   const isMounted = useMountedState();
@@ -51,12 +53,20 @@ function FormBody({
     event.preventDefault();
     onSubmit && onSubmit();
   };
-
+  const { headerStyle, titleStyle, closeIconStyle } = headerContainerStyle;
+  const {
+    footerStyle,
+    submitBtnStyle,
+    cancelBtnStyle,
+    cancelBtnTextStyle,
+  } = footerContainerStyle;
   return (
     <StyledForm data-testid={testID} onSubmit={handleSubmit}>
-      <ModalFormHeader $deviceKind={deviceKind}>
+      <ModalFormHeader $deviceKind={deviceKind} style={headerStyle}>
         {deviceKind === 'tablet' || deviceKind === 'desktop' ? (
-          <ModalFormCloseButton onPress={onCancel} />
+          <ModalFormCloseButtonContainer onPress={onCancel}>
+            <Icon style={closeIconStyle} name="clear" />
+          </ModalFormCloseButtonContainer>
         ) : (
           <ModalFormHeaderMobileContainer>
             <ModalFormHeaderCancelButton onPress={onCancel} />
@@ -64,7 +74,7 @@ function FormBody({
           </ModalFormHeaderMobileContainer>
         )}
         <ModalFormTitleContainer>
-          <ModalFormTitleText $deviceKind={deviceKind}>
+          <ModalFormTitleText $deviceKind={deviceKind} style={titleStyle}>
             {title}
           </ModalFormTitleText>
         </ModalFormTitleContainer>
@@ -81,7 +91,7 @@ function FormBody({
         ) : null}
       </ModalFormContent>
       {deviceKind === 'tablet' || deviceKind === 'desktop' ? (
-        <ModalFormFooter>
+        <ModalFormFooter style={footerStyle}>
           <ModalFormRow>
             {onDelete && (
               <ModalFormFooterDeleteButton
@@ -93,11 +103,14 @@ function FormBody({
           </ModalFormRow>
           <ModalFormRow>
             <ModalFormFooterCancelButton
+              style={cancelBtnStyle}
+              textStyle={cancelBtnTextStyle}
               onPress={onCancel}
               text="Cancel"
               testID="modalForm-footer-cancel-button"
             />
             <SubmitButton
+              style={submitBtnStyle}
               text={submitButtonText}
               testID="modalForm-footer-submit-button"
             />
@@ -153,11 +166,6 @@ const ModalFormCloseButtonContainer = styled(TouchableView)`
   margin-left: auto;
   padding: 20px;
 `;
-const ModalFormCloseButton = (props) => (
-  <ModalFormCloseButtonContainer {...props}>
-    <Icon name="clear" />
-  </ModalFormCloseButtonContainer>
-);
 
 const ModalFormHeaderMobileContainer = styled(FlexDiv)`
   display: flex;
@@ -199,9 +207,9 @@ const ModalFormRow = styled(FlexDiv)`
   flex-direction: row;
 `;
 
-const ModalFormFooterCancelButton = styled(Button).attrs((props) => ({
-  type: 'tertiary',
-}))`
+const ModalFormFooterCancelButton = styled(Button).attrs((props) => {
+  return props.style ? {} : { type: 'tertiary' };
+})`
   margin-right: 16px;
 `;
 

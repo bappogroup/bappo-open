@@ -10,4 +10,15 @@ export type FormBodyProps = {
   submitting?: boolean;
   testID?: string;
   title?: string;
+  headerContainerStyle: {
+    headerStyle: any;
+    titleStyle: any;
+    closeIconStyle: any;
+  };
+  footerContainerStyle: {
+    footerStyle: any;
+    cancelBtnStyle: any;
+    submitBtnStyle: any;
+    cancelBtnTextStyle: any;
+  };
 };
