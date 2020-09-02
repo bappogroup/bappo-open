@@ -20,8 +20,6 @@ type OptionalProps = {
     | React.ReactNode
     | ((formStateAndActions: FormStateAndHelpersAndActions) => React.ReactNode);
   contentContainerStyle?: any;
-  footerContainerStyle?: any;
-  headerContainerStyle?: any;
   initialValues?: Values;
   onDelete?: ((values: Values) => any) | null;
   onSubmit?: ((values: Values) => any) | null;
@@ -37,8 +35,6 @@ type Props = RequiredProps & OptionalProps;
 function ModalForm({
   children,
   contentContainerStyle,
-  headerContainerStyle,
-  footerContainerStyle,
   initialValues,
   onDelete,
   onRequestClose,
@@ -121,21 +117,6 @@ function ModalForm({
           >
             <ModalFormBody
               contentContainerStyle={contentContainerStyle}
-              headerContainerStyle={
-                headerContainerStyle || {
-                  headerStyle: undefined,
-                  titleStyle: undefined,
-                  closeIconStyle: undefined,
-                }
-              }
-              footerContainerStyle={
-                footerContainerStyle || {
-                  footerStyle: undefined,
-                  cancelBtnStyle: undefined,
-                  submitBtnStyle: undefined,
-                  cancelBtnTextStyle: undefined,
-                }
-              }
               onCancel={() => handleCancel(formStateAndActions)}
               onDelete={onDelete && (() => handleDelete(formStateAndActions))}
               onSubmit={() => handleSubmit(formStateAndActions)}
