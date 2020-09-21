@@ -10,9 +10,9 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer';
 import { url } from '../../../url';
-import CanSubmit from './examples/CanSubmit';
 import DependentField from './examples/DependentField';
 import FieldLevelValidation from './examples/FieldLevelValidation';
+import HoldSubmit from './examples/HoldSubmit';
 import Minimal from './examples/Minimal';
 import PropSubmitButtonText from './examples/PropSubmitButtonText';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
@@ -103,7 +103,7 @@ const ModalFormScreen = () => (
         typeInfo="boolean"
         description="Boolean value to disable submit button until set to false. This is useful when nesting modals since the top-most modal onSubmit function may also trigger an onSubmit action on the lower modal."
         example={{
-          render: () => <CanSubmit />,
+          render: () => <HoldSubmit />,
         }}
       />
     </Section>

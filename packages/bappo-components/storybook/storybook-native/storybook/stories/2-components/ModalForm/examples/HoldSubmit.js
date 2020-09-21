@@ -7,15 +7,15 @@ import {
   View,
 } from 'bappo-components';
 import React from 'react';
-class ModalFormCanSubmitExample extends React.Component {
+class ModalFormHoldSubmitExample extends React.Component {
   state = {
     modalVisible: false,
-    submitValidation: true,
+    holdSubmitValidation: true,
   };
 
   render() {
-    const thisCanSubmit = this.state.submitValidation;
-    console.log('canSubmit state: ', thisCanSubmit);
+    const thisHoldSubmit = this.state.holdSubmitValidation;
+    console.log('holdSubmitValidation: ', thisHoldSubmit);
     return (
       <View>
         <Button
@@ -27,23 +27,23 @@ class ModalFormCanSubmitExample extends React.Component {
           onSubmit={(values) =>
             Alert.alert({ message: JSON.stringify(values, null, 2) })
           }
-          title="Modal Form Can Submit Example"
+          title="Modal Form Hold Submit Example"
           visible={this.state.modalVisible}
-          testID="modalForm-canSubmit"
+          testID="modalForm-holdSubmit"
           onCancel={(values) => {
             Alert.alert('canceled!!!');
           }}
-          holdSubmit={this.state.submitValidation}
+          initialValues={{ holdSubmit: thisHoldSubmit }}
+          holdSubmit={this.state.holdSubmitValidation}
         >
           <TextField name="firstName" label="First Name" autoFocus />
           <TextField name="lastName" label="Last Name" />
           <SwitchField
-            name="canSubmit"
-            label="Can Submit"
+            name="holdSubmit"
+            label="Hold Submit"
             onValueChange={() =>
-              this.setState({ submitValidation: !thisCanSubmit })
+              this.setState({ holdSubmitValidation: !thisHoldSubmit })
             }
-            value={thisCanSubmit}
           />
         </ModalForm>
       </View>
@@ -51,4 +51,4 @@ class ModalFormCanSubmitExample extends React.Component {
   }
 }
 
-export default ModalFormCanSubmitExample;
+export default ModalFormHoldSubmitExample;
