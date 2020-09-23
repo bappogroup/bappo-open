@@ -11,8 +11,18 @@ test('should not trigger submit of the outer form when inner form is submitted',
   const handleOuterSubmit = jest.fn();
   const handleInnerSubmit = jest.fn();
   const { getByTestId } = render(
-    <ModalForm onRequestClose={handleOuterSubmit} testID="outer" visible>
-      <ModalForm onRequestClose={handleInnerSubmit} testID="inner" visible>
+    <ModalForm
+      onRequestClose={() => {}}
+      onSubmit={handleOuterSubmit}
+      testID="outer"
+      visible
+    >
+      <ModalForm
+        onRequestClose={() => {}}
+        onSubmit={handleInnerSubmit}
+        testID="inner"
+        visible
+      >
         <SubmitButton testID="submit" text="Submit" />
       </ModalForm>
     </ModalForm>,
