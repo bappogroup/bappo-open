@@ -33,6 +33,7 @@ class Form extends React.Component<Props> {
           const { fieldErrors, values, actions } = formState;
           const handleFormSubmit = (e: React.FormEvent) => {
             e.preventDefault();
+            e.stopPropagation();
             actions.touchAll();
             if (Object.keys(fieldErrors).length === 0) {
               actions.submit(() => onSubmit && onSubmit(values));
