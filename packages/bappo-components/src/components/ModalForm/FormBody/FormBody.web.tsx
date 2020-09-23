@@ -49,6 +49,7 @@ function FormBody({
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    event.stopPropagation();
     onSubmit && onSubmit();
   };
 
