@@ -9,7 +9,7 @@ import type { Option } from '../types.js.flow';
 
 type Props = {
   children?: React.Node,
-  index: Number,
+  index: number,
   innerRef?: ?(ref: ?HTMLDivElement) => void,
   isDisabled?: ?boolean,
   isFocused?: ?boolean,
