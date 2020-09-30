@@ -12,22 +12,23 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer';
 import { url } from '../../../url';
+import BooleanProps from './examples/BooleanProps';
 import Clean from './examples/Clean';
 import Minimal from './examples/Minimal';
 import Multi from './examples/Multi';
-import PropModal from './examples/PropModal';
+import PropRenderDropdownIcon from './examples/PropRenderDropdownIcon';
 
-const SelectFieldScreen = () => (
-  <UIExplorer title="SelectField" url="3-inputFields/SelectField">
+const SelectScreen = () => (
+  <UIExplorer title="Select" url="2-components/Select">
     <WebLink
-      href={`${url}/src/components/input-fields/SelectField`}
+      href={`${url}/src/components/input-fields/Select`}
       text="Source Code"
     />
 
     <Description>
       <AppText>
-        SelectField is the basic Select component wrapped with Bappo's stylings.
-        It can be either standalone or in a form.
+        Select is the basic Select component wrapped with Bappo's stylings. It
+        can be either standalone or in a form.
       </AppText>
       <AppText>
         It accepts props for basic select and props for InputFieldWrapper.
@@ -51,12 +52,6 @@ const SelectFieldScreen = () => (
         name="value?"
         typeInfo="string"
         description="Current selected option if specified. Should be the value of the option."
-      />
-
-      <DocItem
-        name="label?"
-        typeInfo="string"
-        description="Label displays before the select field."
       />
 
       <DocItem
@@ -100,11 +95,20 @@ const SelectFieldScreen = () => (
         typeInfo="boolean"
         description="Whether to show a cross button to clear field value. Defaults to true."
       />
+
+      <DocItem
+        name="renderDropdownIcon?"
+        typeInfo="() => JSX.Element | null"
+        description="Customer function to render dropdown icon."
+        example={{
+          render: () => <PropRenderDropdownIcon />,
+        }}
+      />
     </Section>
 
     <Section title="Examples">
       <WebLink
-        href={`${url}/storybook/storybook-native/storybook/stories/3-inputFields/SelectField/examples`}
+        href={`${url}/storybook/storybook-native/storybook/stories/2-components/Select/examples`}
         text="Examples Code"
       />
       <DocItem
@@ -121,6 +125,13 @@ const SelectFieldScreen = () => (
         }}
       />
 
+      <DocItem
+        description="Boolean props"
+        example={{
+          render: () => <BooleanProps />,
+        }}
+      />
+
       <View style={{ display: 'flex', flexDirection: 'column' }}>
         <AppText>Multiple select</AppText>
         <AppText>
@@ -133,15 +144,8 @@ const SelectFieldScreen = () => (
           render: () => <Multi />,
         }}
       />
-
-      <DocItem
-        description="Using modal for dropdown menu"
-        example={{
-          render: () => <PropModal />,
-        }}
-      />
     </Section>
   </UIExplorer>
 );
 
-storiesOf('Input Fields', module).add('SelectField', SelectFieldScreen);
+storiesOf('Components', module).add('Select', SelectScreen);

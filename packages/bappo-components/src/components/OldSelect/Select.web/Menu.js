@@ -12,7 +12,7 @@ import OptionContainer from './OptionContainer';
 
 type Props = {
   focusedOption: ?Option,
-  focusedOptionRef: (ref: ?HTMLDivElement, isFocused: boolean) => void,
+  focusedOptionRef?: ?(ref: ?HTMLDivElement, isFocused: boolean) => void,
   getItemLayout?: (
     item: Option,
     index: number,
@@ -25,7 +25,7 @@ type Props = {
   listRef: (ref: ?React.ElementRef<typeof FlatList>) => void,
   onEndReached?: ?() => void,
   onEndReachedThreshold?: ?number,
-  onItemFocus: (option: Option) => void,
+  onItemFocus?: ?(option: Option) => void,
   onItemSelect: (option: Option) => void,
   options: Array<Option>,
   renderOption?: ?renderOptionType,
@@ -35,36 +35,35 @@ type Props = {
 
 const ROW_HEIGHT = 35;
 
-class Menu extends React.Component<Props> {
-  render() {
-    const {
-      getItemLayout,
-      listRef,
-      onEndReached,
-      onEndReachedThreshold,
-      options,
-    } = this.props;
+const _defaultGetItemLayout = (item: Option, index: number) => ({
+  length: ROW_HEIGHT,
+  offset: ROW_HEIGHT * index,
+  index,
+});
 
-    return (
-      <StyledFlatList
-        data={options}
-        getItemLayout={getItemLayout || this._defaultGetItemLayout}
-        ref={listRef}
-        keyExtractor={this._keyExtractor}
-        onEndReached={onEndReached}
-        onEndReachedThreshold={onEndReachedThreshold}
-        renderItem={this._renderItem}
-      />
-    );
-  }
+function Menu({
+  focusedOption,
+  focusedOptionRef,
+  getItemLayout,
+  listRef,
+  labelKey,
+  onEndReached,
+  onEndReachedThreshold,
+  onItemFocus,
+  onItemSelect,
+  options,
+  renderOption,
+  selectedOptions,
+  valueKey,
+}: Props) {
+  const extraData = React.useMemo(() => {
+    return {
+      focusedOption,
+      selectedOptions,
+    };
+  }, [focusedOption, selectedOptions]);
 
-  _defaultGetItemLayout = (item: Option, index: number) => ({
-    length: ROW_HEIGHT,
-    offset: ROW_HEIGHT * index,
-    index,
-  });
-
-  _defaultRenderOption = ({
+  const _defaultRenderOption = ({
     option,
     isSelected,
   }: {
@@ -73,41 +72,54 @@ class Menu extends React.Component<Props> {
   }) => (
     <Row>
       <Label numberOfLines={2} $isDisabled={option.disabled}>
-        {option[this.props.labelKey]}
+        {option[labelKey]}
       </Label>
       <SelectedIcon name="check" $show={isSelected} />
     </Row>
   );
 
-  _keyExtractor = (option: Option) => option[this.props.valueKey];
+  const _keyExtractor = (option: Option) => option[valueKey];
 
-  _renderItem = ({ item: option, index }: { item: Option, index: number }) => {
-    const {
-      focusedOption,
-      focusedOptionRef,
-      onItemFocus,
-      onItemSelect,
-      selectedOptions,
-    } = this.props;
-    const renderOption = this.props.renderOption || this._defaultRenderOption;
+  const _renderItem = ({
+    item: option,
+    index,
+  }: {
+    item: Option,
+    index: number,
+  }) => {
+    const finalRenderOption = renderOption || _defaultRenderOption;
 
     const isFocused = option === focusedOption;
     const isSelected = selectedOptions.indexOf(option) > -1;
 
     return (
       <OptionContainer
-        innerRef={(ref) => focusedOptionRef(ref, isFocused)}
+        innerRef={(ref) => focusedOptionRef?.(ref, isFocused)}
         $isDisabled={option.disabled}
+        index={index}
         isFocused={isFocused}
         isSelected={isSelected}
         onFocus={onItemFocus}
         onSelect={onItemSelect}
         option={option}
       >
-        {renderOption({ option, index, isSelected })}
+        {finalRenderOption({ option, index, isSelected })}
       </OptionContainer>
     );
   };
+
+  return (
+    <StyledFlatList
+      data={options}
+      extraData={extraData}
+      getItemLayout={getItemLayout || _defaultGetItemLayout}
+      ref={listRef}
+      keyExtractor={_keyExtractor}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={onEndReachedThreshold}
+      renderItem={_renderItem}
+    />
+  );
 }
 
 export default Menu;

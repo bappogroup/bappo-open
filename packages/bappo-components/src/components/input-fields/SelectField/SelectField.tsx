@@ -3,16 +3,21 @@ import warning from 'warning';
 
 import { useFieldState } from '../../../primitives/Form';
 import { InputField, InputFieldProps } from '../../../primitives/Form/types';
-import Select from '../../OldSelect';
+import OldSelect from '../../OldSelect';
 import { SelectProps } from '../../OldSelect/types';
+import Select from '../../Select';
 import { InputFieldWrapper } from '../wrappers';
 
-type Props = Omit<InputFieldProps<SelectProps['value']>, 'value'> & SelectProps;
+type Props = Omit<InputFieldProps<SelectProps['value']>, 'value'> &
+  SelectProps & {
+    modal?: boolean;
+  };
 
 function SelectField(props: Props, ref: React.Ref<InputField>) {
   const {
     fieldState: passedFieldState,
     label,
+    modal,
     options,
     required,
     reserveErrorSpace,
@@ -25,7 +30,9 @@ function SelectField(props: Props, ref: React.Ref<InputField>) {
     `Prop "reserveErrorSpace" is set to false while "validate" is supplied. You will not see the validation error.`,
   );
 
-  const inputRef = React.useRef<Select>(null);
+  const SelectComponent = modal ? Select : OldSelect;
+
+  const inputRef = React.useRef<OldSelect>(null);
   const focusInput = React.useCallback(
     () => inputRef.current && inputRef.current.focus(),
     [],
@@ -51,7 +58,7 @@ function SelectField(props: Props, ref: React.Ref<InputField>) {
       reserveErrorSpace={reserveErrorSpace}
       testID={testID}
     >
-      <Select
+      <SelectComponent
         {...rest}
         ref={inputRef}
         onBlur={onBlur}

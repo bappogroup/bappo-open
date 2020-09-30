@@ -42,5 +42,6 @@ export { default as Background } from './components/Background';
 export { default as Separator } from './components/Separator';
 export { default as SubmitButton } from './components/SubmitButton';
 export { default as OldSelect } from './components/OldSelect';
+export { default as Select } from './components/Select';
 export { default as TabPicker } from './components/TabPicker';
 export { default as VerticalSeparator } from './components/VerticalSeparator';

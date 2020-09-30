@@ -9,12 +9,13 @@ import type { Option } from '../types.js.flow';
 
 type Props = {
   children?: React.Node,
+  index: Number,
   innerRef?: ?(ref: ?HTMLDivElement) => void,
   isDisabled?: ?boolean,
   isFocused?: ?boolean,
   isSelected?: ?boolean,
-  onFocus: (option: Option, event: SyntheticEvent<>) => void,
-  onSelect: (option: Option, event: SyntheticEvent<>) => void,
+  onFocus?: ?(option: Option, event: SyntheticEvent<>, index: number) => void,
+  onSelect: (option: Option, event: SyntheticEvent<>, index: number) => void,
   option: Option,
 };
 
@@ -65,14 +66,14 @@ class OptionContainer extends React.Component<Props> {
     event.preventDefault();
     event.stopPropagation();
 
-    const { onSelect, option } = this.props;
-    onSelect(option, event);
+    const { index, onSelect, option } = this.props;
+    onSelect(option, event, index);
   };
 
   _onFocus = (event: SyntheticEvent<>) => {
-    const { isFocused, onFocus, option } = this.props;
-    if (!isFocused) {
-      onFocus(option, event);
+    const { index, isFocused, onFocus, option } = this.props;
+    if (!isFocused && onFocus) {
+      onFocus(option, event, index);
     }
   };
 
