@@ -57,6 +57,8 @@ const Select = React.forwardRef(function Select(
     onInputChange?.(newValue, actionMeta.action === 'input-change');
   };
 
+  const selectRef = React.useRef<ReactSelect | null>(null);
+
   const selectedOption = multi
     ? ((value as (string | number)[]) ?? [])
         .map((val) => options?.find((op) => op.value === val))
@@ -65,7 +67,16 @@ const Select = React.forwardRef(function Select(
 
   return (
     <ReactSelect
-      ref={ref}
+      ref={(select) => {
+        selectRef.current = select;
+        if (ref) {
+          if (typeof ref === 'function') {
+            ref(select);
+          } else {
+            (ref as typeof selectRef).current = select;
+          }
+        }
+      }}
       aria-label={accessibilityLabel}
       autoFocus={autoFocus}
       className={className}
@@ -102,6 +113,7 @@ const Select = React.forwardRef(function Select(
       pageSize={pageSize}
       placeholder={placeholder ?? ''}
       renderDropdownIcon={renderDropdownIcon}
+      selectRef={selectRef}
       styles={{
         ...styles,
         container: () => ({
@@ -149,6 +161,12 @@ const styles: StylesConfig = {
     return {
       ...provided,
       backgroundColor: 'transparent',
+    };
+  },
+  input: (provided) => {
+    return {
+      ...provided,
+      visibility: 'hidden',
     };
   },
   noOptionsMessage: (provided) => {

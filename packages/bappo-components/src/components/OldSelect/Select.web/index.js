@@ -977,30 +977,26 @@ class Select extends React.Component<Props, State> {
       valueKey,
     } = this.props;
 
-    if (options.length > 0) {
-      const handleSelect = multi ? this._toggleOption : this._selectOption;
-      return (
-        <Menu
-          focusedOption={focusedOption}
-          focusedOptionRef={this._captureOptionRef}
-          labelKey={labelKey}
-          listRef={(ref) => {
-            this._list = ref;
-          }}
-          onEndReached={onDropdownEndReached}
-          onEndReachedThreshold={onDropdownEndReachedThreshold}
-          onItemFocus={this._focusOption}
-          onItemSelect={handleSelect}
-          options={options}
-          renderOption={renderOption}
-          selectedOptions={selectedOptions}
-          valueKey={valueKey}
-        />
-      );
-    } else if (noResultsText) {
-      return <NoResults>{noResultsText}</NoResults>;
-    }
-    return null;
+    const handleSelect = multi ? this._toggleOption : this._selectOption;
+    return (
+      <Menu
+        focusedOption={focusedOption}
+        focusedOptionRef={this._captureOptionRef}
+        labelKey={labelKey}
+        listRef={(ref) => {
+          this._list = ref;
+        }}
+        noResults={<NoResults>{noResultsText}</NoResults>}
+        onEndReached={onDropdownEndReached}
+        onEndReachedThreshold={onDropdownEndReachedThreshold}
+        onItemFocus={this._focusOption}
+        onItemSelect={handleSelect}
+        options={options}
+        renderOption={renderOption}
+        selectedOptions={selectedOptions}
+        valueKey={valueKey}
+      />
+    );
   };
 
   _renderOuter = (

@@ -1,5 +1,11 @@
 import { BlurEvent, FocusEvent } from '../../events';
 
+export interface TextInputHandle {
+  blur: () => void;
+  clear: () => void;
+  focus: () => void;
+}
+
 export interface TextInputProps {
   /**
    * Overrides the text that's read by the screen reader when the user interacts with the element.
@@ -15,6 +21,7 @@ export interface TextInputProps {
    * keep the controlled state in sync.
    */
   defaultValue?: string;
+  ref?: React.Ref<TextInputHandle>;
   /**
    * Limits the maximum number of characters that can be entered.
    */
