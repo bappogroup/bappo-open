@@ -100,6 +100,15 @@ const SelectFieldScreen = () => (
         typeInfo="boolean"
         description="Whether to show a cross button to clear field value. Defaults to true."
       />
+
+      <DocItem
+        name="modal?"
+        typeInfo="boolean"
+        description="Whether to use a modal for the dropdown menu. Use it when the dropdown menu gets cut off due to parent overflow settings. Defaults to false."
+        example={{
+          render: () => <PropModal />,
+        }}
+      />
     </Section>
 
     <Section title="Examples">
@@ -131,13 +140,6 @@ const SelectFieldScreen = () => (
       <DocItem
         example={{
           render: () => <Multi />,
-        }}
-      />
-
-      <DocItem
-        description="Using modal for dropdown menu"
-        example={{
-          render: () => <PropModal />,
         }}
       />
     </Section>

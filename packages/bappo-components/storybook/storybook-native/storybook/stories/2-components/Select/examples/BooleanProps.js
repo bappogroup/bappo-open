@@ -1,13 +1,7 @@
 import { Select, SwitchField, View, styled } from 'bappo-components';
 import React from 'react';
 
-const options = [
-  { label: 'Bob Mc Donald', value: '1' },
-  { label: 'Andrew Smith', value: '2' },
-  { label: 'Sandra Jones', value: '3' },
-  { label: 'Peter Soloman', value: '4' },
-  { label: 'Joe Peters', value: '5' },
-];
+import states from '../../../../data/states';
 
 export default function SelectBooleanPropsExample() {
   const [value, setValue] = React.useState(null);
@@ -41,7 +35,7 @@ export default function SelectBooleanPropsExample() {
           clearable={clearable}
           isLoading={isLoading}
           onValueChange={setValue}
-          options={options}
+          options={states.AU}
           searchable={searchable}
           value={value}
         />

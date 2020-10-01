@@ -1,13 +1,7 @@
 import { Select, View } from 'bappo-components';
 import React from 'react';
 
-const options = [
-  { label: 'Bob Mc Donald', value: '1' },
-  { label: 'Andrew Smith', value: '2' },
-  { label: 'Sandra Jones', value: '3' },
-  { label: 'Peter Soloman', value: '4' },
-  { label: 'Joe Peters', value: '5' },
-];
+import states from '../../../../data/states';
 
 class SelectMinimalExample extends React.Component {
   state = {
@@ -18,7 +12,7 @@ class SelectMinimalExample extends React.Component {
     return (
       <View style={{ width: 300 }}>
         <Select
-          options={options}
+          options={states.AU}
           value={this.state.selectedValue}
           onValueChange={(selectedValue) => this.setState({ selectedValue })}
         />
