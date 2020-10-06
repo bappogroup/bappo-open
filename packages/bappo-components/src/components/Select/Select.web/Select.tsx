@@ -87,7 +87,6 @@ const Select = React.forwardRef(function Select(
       }}
       data-testid={testID}
       filterOption={filterOption ?? createFilter({})}
-      formatOptionLabel={renderOption}
       getDropdownItemLayout={getDropdownItemLayout}
       inputValue={inputValue}
       isClearable={clearable ?? true}
@@ -113,6 +112,7 @@ const Select = React.forwardRef(function Select(
       pageSize={pageSize}
       placeholder={placeholder ?? ''}
       renderDropdownIcon={renderDropdownIcon}
+      renderOption={renderOption}
       selectRef={selectRef}
       styles={{
         ...styles,
