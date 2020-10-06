@@ -99,7 +99,7 @@ const Select = React.forwardRef(function Select(
       onBlur={onBlur ?? undefined}
       onChange={(option) => {
         if (multi) {
-          onValueChange?.(option.map((op) => op.value));
+          onValueChange?.(option ? option.map((op) => op.value) : []);
         } else {
           onValueChange?.(option?.value ?? null);
         }
