@@ -1,9 +1,9 @@
-import { SelectField, View } from 'bappo-components';
+import { Select, View } from 'bappo-components';
 import React from 'react';
 
 import states from '../../../../data/states';
 
-class SelectFieldMultiExample extends React.Component {
+class SelectMultiExample extends React.Component {
   state = {
     selectedValues: null,
   };
@@ -11,8 +11,7 @@ class SelectFieldMultiExample extends React.Component {
   render() {
     return (
       <View style={{ width: 300 }}>
-        <SelectField
-          label="State"
+        <Select
           placeholder="Type to search"
           options={states.AU}
           value={this.state.selectedValues}
@@ -24,4 +23,4 @@ class SelectFieldMultiExample extends React.Component {
   }
 }
 
-export default SelectFieldMultiExample;
+export default SelectMultiExample;

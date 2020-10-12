@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import InputBase from '../../internals/web/InputBase';
 import TextAreaBase from '../../internals/web/TextAreaBase';
+import FontContext from '../Font/FontContext';
 import { TextInputProps } from './types';
 
 type Props = TextInputProps & {
@@ -85,13 +86,21 @@ class TextInput extends React.Component<Props> {
       value: value || '',
     };
 
-    const styleProps = {
-      className,
-      multiline,
-      style,
-    };
-    //@ts-ignore
-    return <InputComponent {...props} {...styleProps} />;
+    return (
+      <FontContext.Consumer>
+        {({ fontFamily, fontSize }) => {
+          const styleProps = {
+            className,
+            multiline,
+            style,
+            $fontFamily: fontFamily,
+            $fontSize: fontSize,
+          };
+          //@ts-ignore
+          return <InputComponent {...props} {...styleProps} />;
+        }}
+      </FontContext.Consumer>
+    );
   }
 
   private _input: HTMLInputElement | HTMLTextAreaElement | null = null;
@@ -159,11 +168,21 @@ class TextInput extends React.Component<Props> {
 
 export default TextInput;
 
-const Input = styled(InputBase)``;
+type InputProps = {
+  $fontFamily: string;
+  $fontSize: string;
+};
 
-const TextArea = styled(TextAreaBase).attrs((props) => ({
+const Input = styled(InputBase)<InputProps>`
+  font-family: ${(props) => props.$fontFamily};
+  font-size: ${(props) => props.$fontSize}px;
+`;
+
+const TextArea = styled(TextAreaBase).attrs({
   rows: 5,
-}))`
+})`
+  font-family: ${(props: InputProps) => props.$fontFamily};
+  font-size: ${(props) => props.$fontSize}px;
   height: 18px;
   padding: 8px 0px;
 `;

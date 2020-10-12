@@ -1,9 +1,9 @@
-import { SelectField, View } from 'bappo-components';
+import { Select, View } from 'bappo-components';
 import React from 'react';
 
 import states from '../../../../data/states';
 
-class SelectFieldMinimalExample extends React.Component {
+class SelectCleanExample extends React.Component {
   state = {
     selectedValue: null,
   };
@@ -11,8 +11,9 @@ class SelectFieldMinimalExample extends React.Component {
   render() {
     return (
       <View style={{ width: 300 }}>
-        <SelectField
-          label="State"
+        <Select
+          searchable={false}
+          clearable={false}
           options={states.AU}
           value={this.state.selectedValue}
           onValueChange={(selectedValue) => this.setState({ selectedValue })}
@@ -22,4 +23,4 @@ class SelectFieldMinimalExample extends React.Component {
   }
 }
 
-export default SelectFieldMinimalExample;
+export default SelectCleanExample;

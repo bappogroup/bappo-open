@@ -1,37 +1,37 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 
 import { styled } from '../../../apis/Style';
-// $FlowFixMe typescript
 import { DivViewBase } from '../../../internals/web/ViewBase';
-import type { Option } from '../types.js.flow';
+import { Option } from '../types';
 
 type Props = {
-  children?: React.Node,
-  innerRef?: ?(ref: ?HTMLDivElement) => void,
-  isDisabled?: ?boolean,
-  isFocused?: ?boolean,
-  isSelected?: ?boolean,
-  onFocus: (option: Option, event: SyntheticEvent<>) => void,
-  onSelect: (option: Option, event: SyntheticEvent<>) => void,
-  option: Option,
+  children?: React.ReactNode;
+  index: number;
+  innerRef?: (ref: HTMLDivElement) => void;
+  isDisabled?: boolean;
+  isFocused?: boolean;
+  isSelected?: boolean;
+  onFocus?: (
+    option: Option,
+    event: React.SyntheticEvent<HTMLDivElement>,
+    index: number,
+  ) => void;
+  onSelect: (
+    option: Option,
+    event: React.SyntheticEvent<HTMLDivElement>,
+    index: number,
+  ) => void;
+  option: Option;
 };
 
-const blockEvent = (event: SyntheticEvent<>) => {
+const blockEvent = (event: React.SyntheticEvent) => {
   event.preventDefault();
   event.stopPropagation();
 };
 
 class OptionContainer extends React.Component<Props> {
   render() {
-    const {
-      children,
-      innerRef,
-      isDisabled,
-      isFocused,
-      isSelected,
-    } = this.props;
+    const { children, innerRef, isDisabled, isFocused } = this.props;
 
     return isDisabled ? (
       <Container
@@ -45,7 +45,6 @@ class OptionContainer extends React.Component<Props> {
       <Container
         ref={innerRef}
         $isFocused={isFocused}
-        $isSelected={isSelected}
         onClick={this._onClick}
         onMouseEnter={this._onMouseEnter}
         onMouseMove={this._onMouseMove}
@@ -59,32 +58,32 @@ class OptionContainer extends React.Component<Props> {
     );
   }
 
-  _dragging: ?boolean;
+  _dragging: boolean;
 
-  _onClick = (event: SyntheticEvent<>) => {
+  _onClick = (event: React.SyntheticEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const { onSelect, option } = this.props;
-    onSelect(option, event);
+    const { index, onSelect, option } = this.props;
+    onSelect(option, event, index);
   };
 
-  _onFocus = (event: SyntheticEvent<>) => {
-    const { isFocused, onFocus, option } = this.props;
-    if (!isFocused) {
-      onFocus(option, event);
+  _onFocus = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { index, isFocused, onFocus, option } = this.props;
+    if (!isFocused && onFocus) {
+      onFocus(option, event, index);
     }
   };
 
-  _onMouseEnter = (event: SyntheticMouseEvent<>) => {
+  _onMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     this._onFocus(event);
   };
 
-  _onMouseMove = (event: SyntheticMouseEvent<>) => {
+  _onMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     this._onFocus(event);
   };
 
-  _onTouchEnd = (event: SyntheticTouchEvent<>) => {
+  _onTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
     // Check if the view is being dragged, In this case
     // we don't want to fire the click event (because the user only wants to scroll)
     if (this._dragging) return;
@@ -105,7 +104,10 @@ class OptionContainer extends React.Component<Props> {
 
 export default OptionContainer;
 
-const Container = styled(DivViewBase)`
+const Container = styled(DivViewBase)<{
+  $isDisabled?: boolean;
+  $isFocused?: boolean;
+}>`
   background-color: #fff;
   cursor: pointer;
 
