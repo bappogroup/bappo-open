@@ -9,6 +9,7 @@ export interface IconButtonProps extends IconProps {
   disabled?: boolean;
   onPress?: () => any;
   tooltip?: string;
+  testID?: string;
 }
 
 const IconButton = ({
@@ -20,6 +21,7 @@ const IconButton = ({
   style,
   tooltip,
   size,
+  testID,
 }: IconButtonProps) => {
   const iconProps = {
     color,
@@ -35,6 +37,7 @@ const IconButton = ({
       style={style}
       tooltip={tooltip}
       size={size}
+      testID={testID || `iconButton-${name}`}
     >
       <Icon {...iconProps} />
     </StyledTouchableView>
