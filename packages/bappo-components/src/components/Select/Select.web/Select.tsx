@@ -93,7 +93,11 @@ const Select = React.forwardRef(function Select(
       isDisabled={readOnly}
       isLoading={isLoading}
       isMulti={multi}
-      isSearchable={searchable}
+      // Always set `isSearchable` to false so that ReactSelect renders a fake
+      // input. We pass a custom prop `searchable` down instead. If searchable,
+      // we render the input inside the menu.
+      isSearchable={false}
+      searchable={searchable}
       menuPortalTarget={document.body}
       noOptionsMessage={noResultsText ? () => noResultsText : undefined}
       onBlur={onBlur ?? undefined}
@@ -108,6 +112,7 @@ const Select = React.forwardRef(function Select(
       onDropdownEndReachedThreshold={onDropdownEndReachedThreshold}
       onFocus={onFocus ?? undefined}
       onInputChange={handleInputChange}
+      openMenuOnFocus={true}
       options={options}
       pageSize={pageSize}
       placeholder={placeholder ?? ''}

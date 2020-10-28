@@ -12,13 +12,13 @@ export function MenuList({
     filterOption,
     getDropdownItemLayout,
     inputValue,
-    isSearchable,
     noOptionsMessage,
     onBlur,
     onDropdownEndReached,
     onDropdownEndReachedThreshold,
     onInputChange,
     renderOption,
+    searchable,
     selectRef,
   },
 }: MenuListComponentProps<any>) {
@@ -51,7 +51,7 @@ export function MenuList({
     <Menu
       focusedOption={focusedOption}
       getItemLayout={getDropdownItemLayout}
-      isSearchable={isSearchable}
+      isSearchable={searchable}
       labelKey="label"
       noResults={
         <NoResults>
