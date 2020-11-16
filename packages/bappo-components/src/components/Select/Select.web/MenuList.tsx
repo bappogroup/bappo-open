@@ -51,7 +51,7 @@ export function MenuList({
     <Menu
       focusedOption={focusedOption}
       getItemLayout={getDropdownItemLayout}
-      isSearchable={searchable}
+      isSearchable={false}
       labelKey="label"
       noResults={
         <NoResults>
