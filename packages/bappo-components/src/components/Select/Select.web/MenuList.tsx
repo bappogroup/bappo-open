@@ -20,6 +20,7 @@ export function MenuList({
     renderOption,
     searchable,
     selectRef,
+    testID = 'bappo-select',
   },
 }: MenuListComponentProps<any>) {
   const visibleOptions = React.useMemo(
@@ -85,6 +86,7 @@ export function MenuList({
       renderOption={renderOption}
       searchText={inputValue ?? ''}
       selectedOptions={selectedOptions}
+      testID={`${testID}-menu`}
       valueKey="value"
     />
   );

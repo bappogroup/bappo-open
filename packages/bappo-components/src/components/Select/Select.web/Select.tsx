@@ -85,7 +85,6 @@ const Select = React.forwardRef(function Select(
         DropdownIndicator,
         MenuList,
       }}
-      data-testid={testID}
       filterOption={filterOption ?? createFilter({})}
       getDropdownItemLayout={getDropdownItemLayout}
       inputValue={inputValue}
@@ -127,6 +126,7 @@ const Select = React.forwardRef(function Select(
           ...style,
         }),
       }}
+      testID={testID}
       value={selectedOption}
     />
   );
