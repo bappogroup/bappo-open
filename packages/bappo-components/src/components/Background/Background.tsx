@@ -1,21 +1,20 @@
-// @flow
-
 import * as React from 'react';
 
 import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
 
 type Props = {
-  children?: string,
+  children?: string;
+  testID?: string;
 };
 
-const Background = ({ children }: Props) => {
-  return <StyledView selectable>{children}</StyledView>;
-};
-
-Background.defaultProps = {};
-
-export default Background;
+export default function Background({ children, testID }: Props = {}) {
+  return (
+    <StyledView selectable testID={testID}>
+      {children}
+    </StyledView>
+  );
+}
 
 const StyledView = styled(View)`
   background: #f7f7f7;
