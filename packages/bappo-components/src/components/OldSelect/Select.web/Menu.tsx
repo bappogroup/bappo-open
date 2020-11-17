@@ -35,6 +35,7 @@ type Props = {
   renderOption?: renderOptionType;
   searchText: string;
   selectedOptions: Array<Option>;
+  testID?: string;
   valueKey: string;
 };
 
@@ -64,6 +65,7 @@ function Menu({
   renderOption,
   searchText,
   selectedOptions,
+  testID,
   valueKey,
 }: Props) {
   const extraData = React.useMemo(() => {
@@ -139,6 +141,7 @@ function Menu({
           onEndReached={onEndReached}
           onEndReachedThreshold={onEndReachedThreshold}
           renderItem={_renderItem}
+          testID={`${testID}-list`}
         />
       ) : (
         noResults
