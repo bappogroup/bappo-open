@@ -8,7 +8,7 @@ type Props = {
   testID?: string;
 };
 
-export default function Background({ children, testID }: Props = {}) {
+export default function Background({ children, testID }: Props) {
   return (
     <StyledView selectable testID={testID}>
       {children}
