@@ -15,7 +15,7 @@ type Props = AvatarProps & {
 };
 
 export default function Avatar({
-  backgroundColor = Colors.GREY,
+  backgroundColor,
   className,
   icon,
   style,
