@@ -2,13 +2,9 @@ import * as React from 'react';
 
 import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
+import { BackgroundProps } from './types';
 
-type Props = {
-  children?: string;
-  testID?: string;
-};
-
-export default function Background({ children, testID }: Props) {
+export default function Background({ children, testID }: BackgroundProps) {
   return (
     <StyledView selectable testID={testID}>
       {children}

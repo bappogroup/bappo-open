@@ -3,13 +3,9 @@ import * as React from 'react';
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
+import { BadgeProps } from './types';
 
-type Props = {
-  number?: number;
-  testID?: string;
-};
-
-export default function Badge({ number, testID }: Props = {}) {
+export default function Badge({ number, testID }: BadgeProps) {
   return (
     <StyledView selectable testID={testID}>
       <StyledText>{number}</StyledText>
