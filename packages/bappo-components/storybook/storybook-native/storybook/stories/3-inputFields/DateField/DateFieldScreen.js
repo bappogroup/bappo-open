@@ -1,15 +1,17 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import Minimal from './examples/Minimal';
+import PropModal from './examples/PropModal';
 
 const DateFieldScreen = () => (
   <UIExplorer title="DateField" url="3-inputFields/DateField">
@@ -111,6 +113,15 @@ const DateFieldScreen = () => (
         name="valueFormat?"
         typeInfo="string = 'YYYY-MM-DD'"
         description={<AppText>Date format of the input value.</AppText>}
+      />
+
+      <DocItem
+        name="modal?"
+        typeInfo="boolean"
+        description="Whether to use a modal for the dropdown menu. Use it when the dropdown menu gets cut off due to parent overflow settings. Defaults to false."
+        example={{
+          render: () => <PropModal />,
+        }}
       />
     </Section>
 
