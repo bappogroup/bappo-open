@@ -1,27 +1,17 @@
-// @flow
-
 import * as React from 'react';
 
 import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
 import { shadowStyle } from './styles';
+import { CardProps } from './types';
 
-type Props = {
-  children?: string,
-  style?: any,
-};
-
-const Card = ({ children, ...rest }: Props) => {
+export default function Card({ children, testID, ...rest }: CardProps) {
   return (
-    <StyledView selectable {...rest}>
+    <StyledView selectable testID={testID} {...rest}>
       {children}
     </StyledView>
   );
-};
-
-Card.defaultProps = {};
-
-export default Card;
+}
 
 const StyledView = styled(View)`
   padding: 8px;
