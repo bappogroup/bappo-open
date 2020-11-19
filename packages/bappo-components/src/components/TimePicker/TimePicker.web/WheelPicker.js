@@ -7,6 +7,7 @@ import type Moment from 'moment';
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Text from '../../../primitives/Text';
 import { HOURS, MERIDIEMS, MINUTES } from '../constants';
 
 type Props = {
@@ -81,45 +82,54 @@ class WheelPicker extends React.Component<Props, State> {
             this._wheelRefs[0] = ref;
           }}
         >
-          {HOURS.map((hour: string, hourNum: number) => (
-            <Cell
-              key={hour}
-              onClick={() => this.setState({ selectedHour: hourNum })}
-              $isSelected={hourNum === this.state.selectedHour}
-            >
-              {hour}
-            </Cell>
-          ))}
+          {HOURS.map((hour: string, hourNum: number) => {
+            const isSelected = hourNum === this.state.selectedHour;
+            return (
+              <Cell
+                key={hour}
+                onClick={() => this.setState({ selectedHour: hourNum })}
+                $isSelected={isSelected}
+              >
+                <CellText $isSelected={isSelected}>{hour}</CellText>
+              </Cell>
+            );
+          })}
         </Wheel>
         <Wheel
           ref={(ref) => {
             this._wheelRefs[1] = ref;
           }}
         >
-          {MINUTES.map((minute: string, minuteNum: number) => (
-            <Cell
-              key={minuteNum}
-              onClick={() => this.setState({ selectedMinute: minuteNum })}
-              $isSelected={minuteNum === this.state.selectedMinute}
-            >
-              {minute}
-            </Cell>
-          ))}
+          {MINUTES.map((minute: string, minuteNum: number) => {
+            const isSelected = minuteNum === this.state.selectedMinute;
+            return (
+              <Cell
+                key={minuteNum}
+                onClick={() => this.setState({ selectedMinute: minuteNum })}
+                $isSelected={isSelected}
+              >
+                <CellText $isSelected={isSelected}>{minute}</CellText>
+              </Cell>
+            );
+          })}
         </Wheel>
         <Wheel
           ref={(ref) => {
             this._wheelRefs[2] = ref;
           }}
         >
-          {MERIDIEMS.map((meridiem: string) => (
-            <Cell
-              key={meridiem}
-              onClick={() => this.setState({ selectedMeridiem: meridiem })}
-              $isSelected={meridiem === this.state.selectedMeridiem}
-            >
-              {meridiem}
-            </Cell>
-          ))}
+          {MERIDIEMS.map((meridiem: string) => {
+            const isSelected = meridiem === this.state.selectedMeridiem;
+            return (
+              <Cell
+                key={meridiem}
+                onClick={() => this.setState({ selectedMeridiem: meridiem })}
+                $isSelected={isSelected}
+              >
+                <CellText $isSelected={isSelected}>{meridiem}</CellText>
+              </Cell>
+            );
+          })}
         </Wheel>
       </WheelsContainer>
     );
@@ -128,7 +138,9 @@ class WheelPicker extends React.Component<Props, State> {
   _renderFooter = () => {
     return (
       <FooterContainer>
-        <DoneButton onClick={this._submit}>Done</DoneButton>
+        <DoneButton onClick={this._submit}>
+          <Text>Done</Text>
+        </DoneButton>
       </FooterContainer>
     );
   };
@@ -161,13 +173,16 @@ const Cell = styled.div`
     $isSelected
       ? `
     background-color: #445;
-    color: #fff;
   `
       : `
     &:hover {
       background-color: #eee;
     }
   `};
+`;
+
+const CellText = styled(Text)`
+  ${({ $isSelected }) => $isSelected && `color: white;`};
 `;
 
 const DoneButton = styled.button.attrs((props) => ({
@@ -177,7 +192,6 @@ const DoneButton = styled.button.attrs((props) => ({
   background: none;
   border: none;
   cursor: pointer;
-  font: inherit;
   height: 100%;
   width: 100%;
 
