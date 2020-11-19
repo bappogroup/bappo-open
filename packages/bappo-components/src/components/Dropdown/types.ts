@@ -12,6 +12,7 @@ export type DropdownProps = {
   icon: string;
   children?: any;
   iconColor?: string;
+  testID?: string;
 };
 
 export type DropdownState = {

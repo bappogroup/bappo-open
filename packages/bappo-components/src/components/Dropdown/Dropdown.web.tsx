@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ModalProps } from 'react-native';
+import styled from 'styled-components';
 
 import Icon from '../Icon';
 // Note that this is not the Modal we export. It has a slide animation on native.
@@ -24,6 +25,7 @@ export default function Dropdown({
   width = 300,
   children,
   iconColor = 'black',
+  testID,
 }: Props) {
   const [active, setActive] = React.useState(false);
 
@@ -95,7 +97,7 @@ export default function Dropdown({
   );
 
   return (
-    <WebContainer>
+    <WebContainer data-testid={testID}>
       <div
         style={{
           display: 'inline-block',
