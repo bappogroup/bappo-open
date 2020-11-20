@@ -11,6 +11,8 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import { url } from '../../../url';
 import Minimal from './examples/Minimal';
+import PropModal from './examples/PropModal';
+
 const TimePickerScreen = () => (
   <UIExplorer title="TimePicker" url="2-components/TimePicker">
     <WebLink href={`${url}/src/primitives/TimePicker`} text="Source Code" />
@@ -115,6 +117,15 @@ const TimePickerScreen = () => (
         description={
           <AppText>Specifying the horizontal position of the wheelbox </AppText>
         }
+      />
+
+      <DocItem
+        name="modal?"
+        typeInfo="boolean"
+        description="Whether to use a modal for the dropdown menu. Use it when the dropdown menu gets cut off due to parent overflow settings. Defaults to false."
+        example={{
+          render: () => <PropModal />,
+        }}
       />
     </Section>
 

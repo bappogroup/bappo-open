@@ -49,6 +49,7 @@ class TimePicker extends React.Component<Props> {
       clearable,
       clearValueText,
       displayFormat,
+      modal,
       onBlur,
       onFocus,
       onValueChange,
@@ -58,7 +59,6 @@ class TimePicker extends React.Component<Props> {
       testID,
       value,
       valueFormat,
-      displayRight,
     } = this.props;
 
     const styleProps = {
@@ -79,6 +79,7 @@ class TimePicker extends React.Component<Props> {
       autoFocus,
       clearable,
       clearValueText,
+      modal,
       onBlur,
       onFocus,
       onValueChange,

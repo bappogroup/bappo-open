@@ -48,6 +48,7 @@ class DatePicker extends React.Component<Props> {
       clearable,
       clearValueText,
       displayFormat,
+      modal,
       onBlur,
       onFocus,
       onValueChange,
@@ -58,7 +59,6 @@ class DatePicker extends React.Component<Props> {
       value,
       valueFormat,
       alignRight,
-      textColor,
     } = this.props;
 
     const styleProps = {
@@ -79,6 +79,7 @@ class DatePicker extends React.Component<Props> {
       autoFocus,
       clearable,
       clearValueText,
+      modal,
       onBlur,
       onFocus,
       onValueChange,

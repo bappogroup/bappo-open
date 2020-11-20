@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 
+import { Popover } from '../Popover.web';
 import {
   Arrow,
   ArrowZone,
@@ -24,6 +25,7 @@ type Props = {
   className?: string,
   clearable: ?boolean,
   clearValueText: string,
+  modal?: boolean,
   onBlur?: ?() => void,
   onFocus?: ?() => void,
   onValueChange?: ?(value: string | null) => void,
@@ -73,6 +75,7 @@ class PickerWeb extends React.Component<Props, State> {
     return (
       <Container
         {...styleProps}
+        ref={this._containerRef}
         accessibilityLabel={accessibilityLabel}
         testID={testID}
       >
@@ -90,6 +93,7 @@ class PickerWeb extends React.Component<Props, State> {
     );
   }
 
+  _containerRef = React.createRef<HTMLDivElement>();
   _input: any;
 
   _clearValue = () => {
@@ -173,11 +177,7 @@ class PickerWeb extends React.Component<Props, State> {
   _onPopoverMouseDown = (event: SyntheticEvent<>) => {
     // if the event was triggered by a mousedown and not the primary
     // button, or if the component is read-only, ignore it.
-    if (
-      this.props.readOnly ||
-      // $FlowFixMe
-      (event.type === 'mousedown' && event.button !== 0)
-    ) {
+    if (this.props.readOnly) {
       return;
     }
     event.stopPropagation();
@@ -231,9 +231,18 @@ class PickerWeb extends React.Component<Props, State> {
   };
 
   _renderPopover = () => {
-    const { renderPopover } = this.props;
+    const { modal, renderPopover } = this.props;
 
-    return (
+    return modal ? (
+      <Popover
+        anchorEl={this._containerRef.current}
+        onContentMouseDown={this._onPopoverMouseDown}
+        onRequestClose={this._closePopover}
+        visible={this.state.isOpen}
+      >
+        {renderPopover && renderPopover()}
+      </Popover>
+    ) : (
       <PopoverContainer onMouseDown={this._onPopoverMouseDown}>
         {renderPopover && renderPopover()}
       </PopoverContainer>
