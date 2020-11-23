@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { Popover } from '../../internals/Popover.web';
-import { ScrollView } from '../../primitives/ScrollView';
 import Icon from '../Icon';
 import {
   ActionRow,
@@ -10,18 +9,20 @@ import {
   PopoverContentContainer,
   WebContainer,
 } from './StyledComponents.web';
-import { InlineMenuProps } from './types';
+import { MenuProps } from './types';
 
-type Props = InlineMenuProps & {
+type Props = MenuProps & {
   align?: 'left' | 'right';
   width?: number;
+  height?: number;
 };
 
-export default function InlineMenu({
+export default function Menu({
   actions,
   icon,
   align,
   width = 300,
+  height = 150,
   children,
   iconColor = 'black',
   testID,
@@ -46,13 +47,18 @@ export default function InlineMenu({
   );
 
   const renderPopover = () => (
-    <PopoverContentContainer $width={width} $maxHeight={600}>
-      {/* <ScrollView> */}
+    <PopoverContentContainer $width={width} $maxHeight={height}>
       <BackButton onPress={close} />
       {actions.map(renderAction)}
-      {/* </ScrollView> */}
     </PopoverContentContainer>
   );
+
+  const getPopoverPlacement = (anchorRect, popupContentRect) => {
+    return {
+      top: anchorRect.bottom,
+      left: anchorRect.left,
+    };
+  };
 
   return (
     <WebContainer data-testid={testID}>
@@ -67,15 +73,14 @@ export default function InlineMenu({
       >
         {children || <Icon name={icon} color={iconColor} />}
       </div>
-      {active && (
-        <Popover
-          anchorEl={containerRef.current}
-          onRequestClose={() => setActive(false)}
-          visible={active}
-        >
-          {renderPopover()}
-        </Popover>
-      )}
+      <Popover
+        anchorEl={containerRef.current}
+        onRequestClose={() => setActive(false)}
+        visible={active}
+        placement={getPopoverPlacement}
+      >
+        {renderPopover()}
+      </Popover>
     </WebContainer>
   );
 }

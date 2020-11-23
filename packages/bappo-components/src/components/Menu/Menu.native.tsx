@@ -12,14 +12,14 @@ import {
   LinkInner,
   ModalContainer,
 } from './StyledComponents.native';
-import { InlineMenuProps } from './types';
+import { MenuProps } from './types';
 
-export default function InlineMenu({
+export default function Menu({
   actions,
   icon,
   children,
   iconColor = 'black',
-}: InlineMenuProps) {
+}: MenuProps) {
   const [active, setActive] = React.useState(false);
 
   const close = () => setActive(false);

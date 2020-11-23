@@ -45,4 +45,5 @@ export const PopoverContentContainer = styled(View)<{
 }>`
   width: ${({ $width }) => `${$width}px`};
   max-height: ${({ $maxHeight }) => `${$maxHeight}px`};
+  overflow-y: scroll;
 `;

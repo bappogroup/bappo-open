@@ -14,11 +14,11 @@ import { url } from '../../../url';
 import Example from './examples/example';
 import InsideModal from './examples/InsideModal';
 
-const InlineMenuScreen = () => (
-  <UIExplorer title="Inline Menu" url="2-components/InlineMenu">
-    <WebLink href={`${url}/src/components/InlineMenu`} text="Source Code" />
+const MenuScreen = () => (
+  <UIExplorer title="Inline Menu" url="2-components/Menu">
+    <WebLink href={`${url}/src/components/Menu`} text="Source Code" />
     <WebLink
-      href={`${url}/storybook/storybook-native/storybook/stories/2-components/InlineMenu/example.js`}
+      href={`${url}/storybook/storybook-native/storybook/stories/2-components/Menu/example.js`}
       text="Example Code"
     />
 
@@ -59,7 +59,7 @@ const InlineMenuScreen = () => (
 
     <Section title="Examples">
       <WebLink
-        href={`${url}/storybook/storybook-native/storybook/stories/2-components/InlineMenu/examples`}
+        href={`${url}/storybook/storybook-native/storybook/stories/2-components/Menu/examples`}
         text="Examples Code"
       />
       <DocItem
@@ -76,4 +76,4 @@ const InlineMenuScreen = () => (
   </UIExplorer>
 );
 
-storiesOf('Components', module).add('InlineMenu', InlineMenuScreen);
+storiesOf('Components', module).add('Menu', MenuScreen);

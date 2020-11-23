@@ -1,4 +1,4 @@
-import { InlineMenu, Text, View } from 'bappo-components';
+import { Menu, Text, View } from 'bappo-components';
 import React from 'react';
 
 const actions = [
@@ -75,27 +75,22 @@ const actionsWide = [
   },
 ];
 
-const InlineMenuExample = () => (
+const MenuExample = () => (
   <View style={outerStyle}>
-    <InlineMenu actions={actions} />
-    <InlineMenu actions={actionsNoIcons}>
+    <Menu actions={actions} />
+    <Menu actions={actionsNoIcons}>
       <View>
         <Text>Custom children</Text>
       </View>
-    </InlineMenu>
-    <InlineMenu actions={actions} icon="cloud" />
-    <InlineMenu actions={actions} icon="menu" align="left" />
-    <InlineMenu
-      actions={actionsWide}
-      icon="computer"
-      iconColor="blue"
-      width={600}
-    />
-    <InlineMenu actions={manyactions} icon="menu" align="left" />
+    </Menu>
+    <Menu actions={actions} icon="cloud" />
+    <Menu actions={actions} icon="menu" align="left" />
+    <Menu actions={actionsWide} icon="computer" iconColor="blue" width={600} />
+    <Menu actions={manyactions} icon="menu" align="left" />
   </View>
 );
 
-export default InlineMenuExample;
+export default MenuExample;
 
 const outerStyle = {
   flexDirection: 'row',

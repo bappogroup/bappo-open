@@ -1,4 +1,4 @@
-import { Button, InlineMenu, Modal, Text } from 'bappo-components';
+import { Button, Menu, Modal, Text } from 'bappo-components';
 import React from 'react';
 
 export default function InsideModalExample() {
@@ -21,7 +21,7 @@ export default function InsideModalExample() {
           visible={innerModalVisible}
         >
           <Text>Inner</Text>
-          <InlineMenu
+          <Menu
             actions={[
               {
                 icon: 'home',

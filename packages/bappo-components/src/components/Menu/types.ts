@@ -1,11 +1,7 @@
-export type InlineMenuProps = {
+export type MenuProps = {
   actions: any;
   icon: string;
   children?: any;
   iconColor?: string;
   testID?: string;
-};
-
-export type InlineMenuState = {
-  active: boolean;
 };
