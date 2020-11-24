@@ -21,7 +21,17 @@ const actions = [
 
 test('should render a menu with two menu items', () => {
   const { getByTestId } = render(
-    <Menu actions={actions} icon="cloud" testID="test" />,
+    <Menu icon="cloud" testID="test">
+      <Menu.MenuItem
+        icon="home"
+        label="menu1"
+        onPress={() => console.log('menu1 pressed')}
+      />
+      <Menu.MenuItem
+        label="menu2"
+        onPress={() => console.log('menu2 pressed')}
+      />
+    </Menu>,
   );
 
   //Simulate mouse click to expand menu
@@ -180,7 +190,7 @@ test('should render a menu with two menu items', () => {
     opacity: 0;
   }
   
-  .c10 {
+  .c6 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -193,41 +203,19 @@ test('should render a menu with two menu items', () => {
     padding-left: 8px;
   }
   
-  .c10:hover {
+  .c6:hover {
     background-color: #fafafa;
   }
   
-  .c11 {
+  .c10 {
     padding-left: 4px;
   }
   
-  .c6 {
-    background-color: #eee;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    height: 40px;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-left: 8px;
-    display: none;
-  }
-  
   .c3 {
-    width: 300px;
+    min-width: 300px;
     max-height: 150px;
     overflow-y: scroll;
-  }
-  
-  @media (max-width:575.98px) {
-    .c6 {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-    }
+    overflow-x: scroll;
   }
   
   <div
@@ -248,30 +236,20 @@ test('should render a menu with two menu items', () => {
         >
           <div
             class="c7 c8 c9"
-            data-text-as-pseudo-element=""
-          />
-        </div>
-        <div
-          class="c4 c5 c10"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="c7 c8 c9"
             data-text-as-pseudo-element=""
           />
           <div
-            class="c7 c11"
+            class="c7 c10"
             data-text-as-pseudo-element="menu1"
           />
         </div>
         <div
-          class="c4 c5 c10"
+          class="c4 c5 c6"
           role="button"
           tabindex="0"
         >
           <div
-            class="c7 c11"
+            class="c7 c10"
             data-text-as-pseudo-element="menu2"
           />
         </div>

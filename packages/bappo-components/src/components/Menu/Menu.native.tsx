@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import View from '../../primitives/View';
 import Icon from '../Icon';
+import { Context, useMenuContext } from './MenuContext';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
 import {
@@ -12,46 +13,65 @@ import {
   LinkInner,
   ModalContainer,
 } from './StyledComponents.native';
-import { MenuProps } from './types';
+import { MenuItemProps, MenuProps } from './types';
 
 export default function Menu({
-  actions,
   icon,
   children,
   iconColor = 'black',
+  trigger,
 }: MenuProps) {
   const [active, setActive] = React.useState(false);
 
   const close = () => setActive(false);
 
-  const renderAction = (action: any) => (
-    <ActionRow
-      key={action.label}
-      onPress={() => {
-        close();
-        action.onPress();
-      }}
-    >
-      {action.icon && <Icon name={action.icon} />}
-      <Label>{action.label}</Label>
-    </ActionRow>
-  );
-
   return (
-    <LinkContainer>
-      <LinkInner onPress={() => setActive(true)}>
-        {children || <Icon name={icon} color={iconColor} />}
-      </LinkInner>
-      <Modal onRequestClose={close} visible={active}>
-        <ModalContainer>
-          <BackLink onPress={close}>
-            <View pointerEvents={'none'}>
-              <Icon name="arrow-back-ios" />
-            </View>
-          </BackLink>
-          {actions.map(renderAction)}
-        </ModalContainer>
-      </Modal>
-    </LinkContainer>
+    <Context.Provider value={{ close, active }}>
+      <LinkContainer>
+        <LinkInner onPress={() => setActive(true)}>
+          {trigger || <Icon name={icon} color={iconColor} />}
+        </LinkInner>
+        <Modal onRequestClose={close} visible={active}>
+          <ModalContainer>
+            <Menu.CloseButton />
+            {children}
+          </ModalContainer>
+        </Modal>
+      </LinkContainer>
+    </Context.Provider>
   );
 }
+
+const BackButton = ({ onPress }) => (
+  <BackLink onPress={onPress}>
+    <View pointerEvents={'none'}>
+      <Icon name="arrow-back-ios" />
+    </View>
+  </BackLink>
+);
+
+const CloseButton = () => {
+  const context = useMenuContext();
+
+  return <BackButton onPress={context.close} />;
+};
+
+const MenuItem = ({ label, icon, onPress }: MenuItemProps) => {
+  const context = useMenuContext();
+
+  return (
+    <ActionRow
+      key={label}
+      onPress={() => {
+        context.close();
+        onPress();
+      }}
+    >
+      {icon && <Icon name={icon} />}
+      <Label>{label}</Label>
+    </ActionRow>
+  );
+};
+
+Menu.MenuItem = MenuItem;
+Menu.CloseButton = CloseButton;

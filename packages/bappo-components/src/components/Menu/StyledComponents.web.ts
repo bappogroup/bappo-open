@@ -40,10 +40,13 @@ export const BackLink = styled(TouchableView)`
 `;
 
 export const PopoverContentContainer = styled(View)<{
-  $width: any;
-  $maxHeight: any;
+  $maxWidth?: any;
+  $minWidth?: any;
+  $maxHeight?: any;
 }>`
-  width: ${({ $width }) => `${$width}px`};
-  max-height: ${({ $maxHeight }) => `${$maxHeight}px`};
+  ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth}px; `}
+  ${({ $minWidth }) => $minWidth && `min-width: ${$minWidth}px; `}
+  ${({ $maxHeight }) => $maxHeight && `max-height: ${$maxHeight}px; `}
   overflow-y: scroll;
+  overflow-x: scroll;
 `;

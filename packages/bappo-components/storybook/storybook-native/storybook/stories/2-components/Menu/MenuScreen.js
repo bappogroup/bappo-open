@@ -23,27 +23,27 @@ const MenuScreen = () => (
     />
 
     <Description>
-      <AppText>Inline Menu</AppText>
+      <AppText>Menu</AppText>
       <AppText>
-        If the Inline Menu Link is closer to the left side of the page, the
-        dropdown will align with the left edge of the Button
+        If the Menu Link is closer to the left side of the page, the dropdown
+        will align with the left edge of the Button
       </AppText>
       <AppText>
-        If the Inline Menu Link is closer to the right side of the page. the
-        dropdown will align with the right edge of the Button
+        If the Menu Link is closer to the right side of the page, the dropdown
+        will align with the right edge of the Button
       </AppText>
     </Description>
 
     <Section title="Props">
       <DocItem
+        name="icon?"
+        typeInfo="string"
+        description="An icon to render inline above menu. Appears when children is not present. Defaults to three vertical dots."
+      />
+      <DocItem
         name="children?"
         typeInfo="React.Node"
         description="A react node to render inline menu above. Optional - will use an icon if not specified"
-      />
-      <DocItem
-        name="icon?"
-        typeInfo="string"
-        description="An icon to render inline menu above. Appears when children is not present. Defaults to three vertical dots."
       />
       <DocItem
         name="actions"
