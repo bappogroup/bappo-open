@@ -19,8 +19,4 @@ export interface TextProps {
    * Used to locate this view in end-to-end tests.
    */
   testID?: string;
-  /**
-   * Show ... for numberOfLines > 1 on web.
-   */
-  ellipsis?: boolean;
 }
