@@ -63,7 +63,15 @@ export function Popover({
   }, [updateContentContainerStyle]);
 
   return (
-    <Overlay color="transparent" onPress={onRequestClose} visible={visible}>
+    <Overlay
+      color={
+        deviceKind === 'desktop' || deviceKind === 'tablet'
+          ? 'transparent'
+          : 'rgba(0, 0, 0, 0.5)'
+      }
+      onPress={onRequestClose}
+      visible={visible}
+    >
       <ContentContainer
         ref={contentContainerRef}
         onMouseDown={onContentMouseDown}
