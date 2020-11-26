@@ -50,3 +50,9 @@ export const PopoverContentContainer = styled(View)<{
   overflow-y: scroll;
   overflow-x: scroll;
 `;
+
+export const MenuItemLabel = styled(Label)`
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: initial;
+`;

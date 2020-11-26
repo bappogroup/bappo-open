@@ -1,5 +1,5 @@
 export type MenuProps = {
-  icon: string;
+  icon?: string;
   children?: any;
   iconColor?: string;
   testID?: string;

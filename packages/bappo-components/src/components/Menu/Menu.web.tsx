@@ -8,6 +8,7 @@ import {
   ActionRow,
   BackLink,
   Label,
+  MenuItemLabel,
   PopoverContentContainer,
   WebContainer,
 } from './StyledComponents.web';
@@ -22,9 +23,9 @@ type Props = MenuProps & {
 };
 
 export default function Menu({
-  icon,
+  icon = 'menu',
   align,
-  minWidth = 300,
+  minWidth = 120,
   maxWidth,
   maxHeight = 150,
   children,
@@ -46,7 +47,11 @@ export default function Menu({
   const getPopoverPlacement = (anchorRect, popupContentRect) => {
     const right = anchorRect.left - popupContentRect.width + anchorRect.width;
 
-    const _align = align || (anchorRect.left < right * 2 ? 'left' : 'right');
+    const distanceFromRight =
+      window.innerWidth - anchorRect.left - anchorRect.width;
+
+    const _align =
+      align || (anchorRect.left < distanceFromRight * 2 ? 'left' : 'right');
 
     return {
       top: anchorRect.bottom,
@@ -95,7 +100,7 @@ const CloseButton = () => {
   return <BackButton onPress={context.close} />;
 };
 
-const MenuItem = ({ label, icon, numberOfLines, onPress }: MenuItemProps) => {
+const Item = ({ label, icon, numberOfLines = 1, onPress }: MenuItemProps) => {
   const context = useMenuContext();
 
   return (
@@ -107,10 +112,12 @@ const MenuItem = ({ label, icon, numberOfLines, onPress }: MenuItemProps) => {
       }}
     >
       {icon && <Icon name={icon} />}
-      <Label numberOfLines={numberOfLines}>{label}</Label>
+      <MenuItemLabel numberOfLines={numberOfLines} ellipsis>
+        {label}
+      </MenuItemLabel>
     </ActionRow>
   );
 };
 
-Menu.MenuItem = MenuItem;
+Menu.Item = Item;
 Menu.CloseButton = CloseButton;

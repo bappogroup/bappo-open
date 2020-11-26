@@ -16,7 +16,7 @@ import {
 import { MenuItemProps, MenuProps } from './types';
 
 export default function Menu({
-  icon,
+  icon = 'menu',
   children,
   iconColor = 'black',
   trigger,
@@ -56,7 +56,7 @@ const CloseButton = () => {
   return <BackButton onPress={context.close} />;
 };
 
-const MenuItem = ({ label, icon, onPress }: MenuItemProps) => {
+const Item = ({ label, icon, onPress }: MenuItemProps) => {
   const context = useMenuContext();
 
   return (
@@ -73,5 +73,5 @@ const MenuItem = ({ label, icon, onPress }: MenuItemProps) => {
   );
 };
 
-Menu.MenuItem = MenuItem;
+Menu.Item = Item;
 Menu.CloseButton = CloseButton;

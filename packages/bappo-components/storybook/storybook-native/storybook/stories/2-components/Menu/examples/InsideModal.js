@@ -21,19 +21,17 @@ export default function InsideModalExample() {
           visible={innerModalVisible}
         >
           <Text>Inner</Text>
-          <Menu
-            actions={[
-              {
-                icon: 'home',
-                label: 'Home',
-                onPress: () => console.log('you pressed Home'),
-              },
-              {
-                label: 'Timer',
-                onPress: () => alert('You pressed Timer'),
-              },
-            ]}
-          />
+          <Menu>
+            <Menu.Item
+              icon="home"
+              label="Home"
+              onPress={() => console.log('you pressed Home')}
+            />
+            <Menu.Item
+              label="Timer"
+              onPress={() => alert('You pressed Timer')}
+            />
+          </Menu>
         </Modal>
       </Modal>
     </>
