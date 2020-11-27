@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function InsideModalExample() {
   const [outerModalVisible, setOuterModalVisible] = React.useState(false);
-  const [innerModalVisible, setInnerModalVisible] = React.useState(true);
+  const [innerModalVisible, setInnerModalVisible] = React.useState(false);
   return (
     <>
       <Button onPress={() => setOuterModalVisible(true)} text="Open Modal" />
