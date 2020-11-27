@@ -1,3 +1,4 @@
+import { DeviceKind } from '../../apis/DeviceKind';
 import { styled } from '../../apis/Style';
 import { breakpoint } from '../../internals/web/breakpoint';
 import Text from '../../primitives/Text';
@@ -43,10 +44,18 @@ export const PopoverContentContainer = styled(View)<{
   $maxWidth?: any;
   $minWidth?: any;
   $maxHeight?: any;
+  $deviceKind: DeviceKind;
 }>`
-  ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth}px; `}
-  ${({ $minWidth }) => $minWidth && `min-width: ${$minWidth}px; `}
-  ${({ $maxHeight }) => $maxHeight && `max-height: ${$maxHeight}px; `}
+  ${({ $deviceKind, $maxWidth, $minWidth, $maxHeight }) => {
+    if ($deviceKind === 'desktop' || $deviceKind === 'tablet') {
+      return `${$maxWidth ? `max-width: ${$maxWidth}px; ` : ''}
+        ${$minWidth ? `min-width: ${$minWidth}px; ` : ''}
+        ${$maxHeight ? `max-height: ${$maxHeight}px; ` : ''}`;
+    } else {
+      return `max-height: 50vh;`;
+    }
+  }}
+
   overflow-y: scroll;
   overflow-x: scroll;
 `;

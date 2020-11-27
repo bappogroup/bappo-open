@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { CSSProperties } from 'styled-components';
 
+import { useDeviceKind } from '../../apis/DeviceKind';
 import { Popover } from '../../internals/Popover.web';
 import Icon from '../Icon';
 import { Context, useMenuContext } from './MenuContext';
 import {
   ActionRow,
-  BackLink,
-  Label,
   MenuItemLabel,
   PopoverContentContainer,
   WebContainer,
@@ -41,6 +40,8 @@ export default function Menu({
   const [active, setActive] = React.useState(false);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const deviceKind = useDeviceKind();
 
   const close = () => setActive(false);
 
@@ -79,6 +80,7 @@ export default function Menu({
             $minWidth={minWidth}
             $maxWidth={maxWidth}
             $maxHeight={maxHeight}
+            $deviceKind={deviceKind}
           >
             {children}
           </PopoverContentContainer>
@@ -87,18 +89,6 @@ export default function Menu({
     </Context.Provider>
   );
 }
-
-const BackButton = ({ onPress }) => (
-  <BackLink onPress={onPress}>
-    <Icon name="arrow-back-ios" />
-  </BackLink>
-);
-
-const CloseButton = () => {
-  const context = useMenuContext();
-
-  return <BackButton onPress={context.close} />;
-};
 
 const Item = ({ label, icon, numberOfLines = 1, onPress }: MenuItemProps) => {
   const context = useMenuContext();
@@ -120,4 +110,3 @@ const Item = ({ label, icon, numberOfLines = 1, onPress }: MenuItemProps) => {
 };
 
 Menu.Item = Item;
-Menu.CloseButton = CloseButton;

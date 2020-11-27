@@ -1,23 +1,15 @@
-import { Menu, Text, View } from 'bappo-components';
+import { Menu, Text, View, styled } from 'bappo-components';
 import React from 'react';
 
 const MenuExample = () => (
   <View style={outerStyle}>
     <Menu minWidth={200}>
-      <Menu.CloseButton />
       <Menu.Item
         icon="home"
         label="Home"
         onPress={() => console.log('you pressed Home')}
       />
-      <View
-        style={{
-          backgroundColor: 'gray',
-          width: '200px',
-          height: '5px',
-          margin: 0,
-        }}
-      ></View>
+      <HorizontalLine />
       <Menu.Item label="Timer" onPress={() => alert('You pressed Timer')} />
     </Menu>
     <Menu
@@ -127,3 +119,10 @@ const outerStyle = {
   padding: 20,
   margin: 20,
 };
+
+const HorizontalLine = styled(View)`
+  background-color: gray;
+  width: 100%;
+  height: 5px;
+  margin: 0;
+`;

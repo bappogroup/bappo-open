@@ -33,7 +33,7 @@ export default function Menu({
         </LinkInner>
         <Modal onRequestClose={close} visible={active}>
           <ModalContainer>
-            <Menu.CloseButton />
+            <BackButton onPress={close} />
             {children}
           </ModalContainer>
         </Modal>
@@ -49,12 +49,6 @@ const BackButton = ({ onPress }) => (
     </View>
   </BackLink>
 );
-
-const CloseButton = () => {
-  const context = useMenuContext();
-
-  return <BackButton onPress={context.close} />;
-};
 
 const Item = ({ label, icon, onPress }: MenuItemProps) => {
   const context = useMenuContext();
@@ -74,4 +68,3 @@ const Item = ({ label, icon, onPress }: MenuItemProps) => {
 };
 
 Menu.Item = Item;
-Menu.CloseButton = CloseButton;
