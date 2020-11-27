@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import Colors from '../../apis/Colors';
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
@@ -14,7 +15,7 @@ type Props = AvatarProps & {
 };
 
 export default function Avatar({
-  backgroundColor,
+  backgroundColor = Colors.GREY,
   className,
   icon,
   style,
