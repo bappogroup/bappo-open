@@ -57,8 +57,8 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     `}
   
     ${({ $numberOfLines, $fontSizeValue, $ellipsis }) =>
-      $numberOfLines &&
-      `
+      $numberOfLines
+        ? `
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
@@ -70,15 +70,18 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       max-height: ${($fontSizeValue + 2) * $numberOfLines}px;
       `
       }
-      ${$ellipsis &&
-        $numberOfLines > 1 &&
-        `::after {
+      ${
+        $ellipsis && $numberOfLines > 1
+          ? `::after {
           content: '...';
           position: absolute;
           right: 0;
           bottom: 0;
-        }`}
-    `}
+        }`
+          : ''
+      }
+    `
+        : ''}
   `;
   const RootText = ChildText.withComponent(containerComponent);
 

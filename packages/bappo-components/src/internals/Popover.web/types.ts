@@ -4,8 +4,11 @@ export type PopoverProps = {
   onContentMouseDown?: (event: React.MouseEvent) => void;
   onRequestClose: () => void;
   /**
-   * Note: please make sure you wrap a `React.useCallback` if you pass an inline
-   * function.
+   * **Note**: please make sure you wrap a `React.useCallback` if you pass an
+   * inline function.
+   *
+   * **Note**: This prop has no effect when screen size is large phone or phone
+   * as we will display a full screen popup.
    *
    * Callack function to customize the position of the popup. It is called with
    * the position of the anchor element and the popup content and must return

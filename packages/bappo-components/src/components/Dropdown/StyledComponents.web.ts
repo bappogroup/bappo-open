@@ -1,5 +1,3 @@
-// @flow
-
 import { styled } from '../../apis/Style';
 import { breakpoint } from '../../internals/web/breakpoint';
 import Text from '../../primitives/Text';

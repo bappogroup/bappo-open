@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { DeviceKind, useDeviceKind } from '../../apis/DeviceKind';
 import Overlay from '../../primitives/Overlay';
 import { DivViewBase } from '../web/ViewBase';
 import { GetPopupPosition, PopoverProps } from './types';
@@ -13,9 +14,15 @@ export function Popover({
   placement,
   visible,
 }: PopoverProps) {
+  const deviceKind = useDeviceKind();
+
   const contentContainerRef = React.useRef<HTMLDivElement>(null);
 
   const updateContentContainerStyle = React.useCallback(() => {
+    if (deviceKind === 'phone' || deviceKind === 'large-phone') {
+      // We will display a full screen popup
+      return;
+    }
     if (!anchorEl || !contentContainerRef.current) return;
     const { top, left } = calculateContentContainerStyle(
       anchorEl,
@@ -26,7 +33,7 @@ export function Popover({
     contentContainerRef.current.style.left = `${left}px`;
     // Now that we know the exact position of the popup, we can show it
     contentContainerRef.current.style.opacity = '1';
-  }, [anchorEl, placement]);
+  }, [anchorEl, deviceKind, placement]);
 
   // Update popup position upon open
   // 1. This component is re-rendered with visible = true
@@ -56,10 +63,19 @@ export function Popover({
   }, [updateContentContainerStyle]);
 
   return (
-    <Overlay color="transparent" onPress={onRequestClose} visible={visible}>
+    <Overlay
+      color={
+        deviceKind === 'desktop' || deviceKind === 'tablet'
+          ? 'transparent'
+          : 'rgba(0, 0, 0, 0.5)'
+      }
+      onPress={onRequestClose}
+      visible={visible}
+    >
       <ContentContainer
         ref={contentContainerRef}
         onMouseDown={onContentMouseDown}
+        $deviceKind={deviceKind}
       >
         {children}
       </ContentContainer>
@@ -105,11 +121,26 @@ function createGetPopupPositionFromPlacement(
   return placement;
 }
 
-const ContentContainer = styled(DivViewBase)`
+const ContentContainer = styled(DivViewBase)<{
+  $deviceKind: DeviceKind;
+}>`
   position: absolute;
   background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-  // hide popup initially until we know its exact position
-  opacity: 0;
+
+  ${({ $deviceKind }) =>
+    $deviceKind === 'desktop' || $deviceKind === 'tablet'
+      ? `}
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    // hide popup initially until we know its exact position
+    opacity: 0;
+  `
+      : `
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.06);
+    // grow from the bottom
+    bottom: 0;
+    left: 0;
+    right: 0;
+  `}
 `;
