@@ -38,7 +38,9 @@ function InputFieldWrapper<V>(props: InputWrapperProps<V>) {
             {required && <FieldLabelAsterisk />}
           </FieldLabelContainer>
         )}
-        <FieldInputContainer>{children}</FieldInputContainer>
+        <FieldInputContainer $hasError={fieldState.touched && fieldState.error}>
+          {children}
+        </FieldInputContainer>
       </TouchToFocusArea>
       {reserveErrorSpace && (
         <Paragraph type="error">
