@@ -27,10 +27,7 @@ test('should render a menu with two menu items', () => {
         label="menu1"
         onPress={() => console.log('menu1 pressed')}
       />
-      {/* <Menu.Item
-        label="menu2"
-        onPress={() => console.log('menu2 pressed')}
-      /> */}
+      <Menu.Item label="menu2" onPress={() => console.log('menu2 pressed')} />
     </Menu>,
   );
 
@@ -203,15 +200,17 @@ test('should render a menu with two menu items', () => {
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: transparent;
+      background-color: rgba(0,0,0,0.5);
     }
 
     .c2 {
       position: absolute;
       background-color: white;
-      border: 1px solid #ccc;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-      opacity: 0;
+      border-top: 1px solid #ccc;
+      box-shadow: 0 -1px 0 rgba(0,0,0,0.06);
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
 
     .c6 {
@@ -232,8 +231,7 @@ test('should render a menu with two menu items', () => {
     }
 
     .c3 {
-      min-width: 120px;
-      max-height: 150px;
+      max-height: 50vh;
       overflow-y: scroll;
       overflow-x: scroll;
     }
@@ -273,6 +271,16 @@ test('should render a menu with two menu items', () => {
             <div
               class="c10 sc-AxmLO c11"
               data-text-as-pseudo-element="menu1"
+            />
+          </div>
+          <div
+            class="c4 c5 c6"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="c10 sc-AxmLO c11"
+              data-text-as-pseudo-element="menu2"
             />
           </div>
         </div>
