@@ -12,4 +12,5 @@ export type OverlayProps = {
   showCloseButton?: ?boolean,
   onClose?: () => void,
   closeButtonStyle?: any,
+  testID?: string,
 };

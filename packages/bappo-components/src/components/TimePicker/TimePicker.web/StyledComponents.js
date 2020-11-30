@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-export const PlaceholderText = styled.span`
+import Text from '../../../primitives/Text';
+
+export const PlaceholderText = styled(Text)`
   color: #aaa;
 `;
 
-export const ValueText = styled.span``;
+export const ValueText = styled(Text)``;

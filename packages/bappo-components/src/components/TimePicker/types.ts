@@ -18,6 +18,7 @@ export type TimePickerProps = {
    * Date format of the displayed value.
    */
   displayFormat?: string;
+  modal?: boolean;
   /**
    * Callback that is called when the input is blurred.
    */

@@ -11,6 +11,7 @@ import UIExplorer, {
 } from '../../../ui-explorer';
 import { url } from '../../../url';
 import Minimal from './examples/Minimal';
+import PropModal from './examples/PropModal';
 
 const DatePickerScreen = () => (
   <UIExplorer title="DatePicker" url="2-components/DatePicker">
@@ -123,6 +124,15 @@ const DatePickerScreen = () => (
         name="textColor?"
         typeInfo="string"
         description={<AppText>Specifying the input text color.</AppText>}
+      />
+
+      <DocItem
+        name="modal?"
+        typeInfo="boolean"
+        description="Whether to use a modal for the dropdown menu. Use it when the dropdown menu gets cut off due to parent overflow settings. Defaults to false."
+        example={{
+          render: () => <PropModal />,
+        }}
       />
     </Section>
 

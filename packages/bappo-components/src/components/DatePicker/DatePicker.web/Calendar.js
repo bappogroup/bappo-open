@@ -8,6 +8,8 @@ import type Moment from 'moment';
 import * as React from 'react';
 import styled from 'styled-components';
 
+import Text from '../../../primitives/Text';
+
 type Props = {
   initialDate?: ?Moment,
   onSelect?: ?(date: Moment) => void,
@@ -192,16 +194,22 @@ class Calendar extends React.Component<Props, State> {
             <Row key={weekNum}>
               {weekDays.map((day: Moment, dayNum: number) => {
                 const { initialDate, onSelect } = this.props;
+                const isSelected =
+                  initialDate && day.isSame(initialDate, 'day');
 
                 return (
                   <Cell
                     key={dayNum}
                     onClick={() => onSelect && onSelect(day)}
-                    $isGray={day.month() !== month}
-                    $isSelected={initialDate && day.isSame(initialDate, 'day')}
+                    $isSelected={isSelected}
                     $isToday={day.isSame(moment(), 'day')}
                   >
-                    <GridText>{day.date()}</GridText>
+                    <GridText
+                      $isGray={day.month() !== month}
+                      $isSelected={isSelected}
+                    >
+                      {day.date()}
+                    </GridText>
                   </Cell>
                 );
               })}
@@ -321,12 +329,6 @@ const Cell = styled.div`
   height: 25px;
   justify-content: center;
 
-  ${({ $isGray }) =>
-    $isGray &&
-    `
-    color: #c3c3c3;
-  `}
-
   ${({ $isToday }) =>
     $isToday &&
     `
@@ -338,7 +340,6 @@ const Cell = styled.div`
     $isSelected
       ? `
     background-color: #445;
-    color: #fff;
   `
       : `
     &:hover {
@@ -361,7 +362,7 @@ const DisplayContainer = styled.div`
   }
 `;
 
-const DisplayText = styled.span`
+const DisplayText = styled(Text)`
   font-size: 14px;
 `;
 
@@ -369,8 +370,12 @@ const Grid = styled.div`
   width: 280px;
 `;
 
-const GridText = styled.span`
+const GridText = styled(Text)`
   font-size: 12.6px;
+
+  ${({ $isGray }) => $isGray && `color: #c3c3c3;`};
+
+  ${({ $isSelected }) => $isSelected && `color: white;`};
 `;
 
 const HeaderCell = styled.div`
@@ -409,7 +414,7 @@ const NavigatorButtonContainer = styled.div`
   padding: 3px;
 `;
 
-const NavigatorButtonText = styled.span``;
+const NavigatorButtonText = styled(Text)``;
 
 const NavigatorContainer = styled.div`
   display: flex;
