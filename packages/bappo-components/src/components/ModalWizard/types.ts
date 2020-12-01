@@ -9,8 +9,8 @@ export type ModalWizardState = {
 };
 
 export type ModalWizardProps = {
-  startFromStep: number;
-  onFinish: () => void;
+  startFromStep?: number;
+  onFinish?: () => void;
   onRequestClose: () => void;
   screens: Array<ModalWizardScreen>;
   submitButtonText?: string;

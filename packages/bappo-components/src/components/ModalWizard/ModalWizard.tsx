@@ -19,6 +19,7 @@ export default function ModalWizard({
   canSubmit = true,
   placement,
   visible = true,
+  testID,
 }: ModalWizardProps) {
   const [state, setState] = React.useState<ModalWizardState>({
     step: startFromStep || 0,
@@ -143,6 +144,7 @@ export default function ModalWizard({
       onRequestClose={onRequestClose}
       placement={placement}
       hideHeader={true}
+      data-testid={testID}
     >
       <HeadingContainer>
         <Heading>{currentScreen.title || 'Wizard'}</Heading>
