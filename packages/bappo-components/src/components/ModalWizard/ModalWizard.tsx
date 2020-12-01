@@ -63,11 +63,15 @@ export default function ModalWizard({
         {...FormElement.props}
         onSubmit={async (filledFormValues) => {
           // save in state
-          setState(({ formValues }) => {
+          setState(({ formValues, step }) => {
             const updatedFormValues = { ...formValues };
             updatedFormValues[state.step] = filledFormValues;
 
-            return { ...state, formValues: updatedFormValues };
+            return {
+              ...state,
+              formValues: updatedFormValues,
+              step: isLastStep ? step : step + 1,
+            };
           });
 
           // invoke user's onSubmit callback
@@ -76,8 +80,6 @@ export default function ModalWizard({
           // handling steps
           if (isLastStep) {
             handleSubmit();
-          } else {
-            setState(({ step }) => ({ ...state, step: step + 1 }));
           }
         }}
       >
