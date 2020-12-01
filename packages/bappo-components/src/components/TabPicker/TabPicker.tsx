@@ -1,5 +1,3 @@
-// @flow
-
 import * as React from 'react';
 
 import { styled } from '../../apis/Style';
@@ -7,29 +5,21 @@ import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
 import View from '../../primitives/View';
 import { ButtonCSS } from './styles';
+import { TabPickerProps } from './types';
 
-type Props = {
-  options: Array<any>,
-  selected: Array<any>,
-  optionToString: (any) => string,
-  selectItem: (any) => any,
-  onChange: (Array<any>) => void,
-  multi?: boolean,
-};
-
-const Picker = ({
+export default function Picker({
   options,
   selected = [],
   onChange,
   optionToString,
   multi = false,
-}: Props) => {
+  testID,
+}: TabPickerProps) {
   return (
-    <StyledView>
+    <StyledView testID={testID}>
       {options.map((option, i) => {
-        let isSelected;
-        if (multi)
-          isSelected = selected.find((op) => op === option) ? true : false;
+        let isSelected: boolean;
+        if (multi) isSelected = selected.includes(option);
         else isSelected = selected === option;
         return (
           <TabButton
@@ -41,7 +31,7 @@ const Picker = ({
               if (!multi) {
                 output = option;
               } else {
-                if (selected.find((item) => item === option)) {
+                if (selected.includes(option)) {
                   output = selected.filter((item) => item !== option);
                 } else {
                   output = [...selected, option];
@@ -56,31 +46,31 @@ const Picker = ({
       })}
     </StyledView>
   );
-};
-
-Picker.defaultProps = {};
-
-export default Picker;
+}
 
 const StyledView = styled(View)`
   flex-direction: column;
   max-width: 400px;
 `;
 
-const TabButton = styled(TouchableView)`
+const TabButton = styled(TouchableView)<{
+  $isSelected: boolean;
+  $position: string;
+}>`
   min-width: 50px;
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: ${(props) => (props.$isSelected ? 'orange' : '#f8f8f8')};
-  border-top-left-radius: ${(props) =>
-    props.$position === 'first' ? '4px' : '0px'};
-  border-top-right-radius: ${(props) =>
-    props.$position === 'first' ? '4px' : '0px'};
-  border-bottom-left-radius: ${(props) =>
-    props.$position === 'last' ? '4px' : '0px'};
-  border-bottom-right-radius: ${(props) =>
-    props.$position === 'last' ? '4px' : '0px'};
+  background-color: ${({ $isSelected }) =>
+    $isSelected ? 'orange' : '#f8f8f8'};
+  border-top-left-radius: ${({ $position }) =>
+    $position === 'first' ? '4px' : '0px'};
+  border-top-right-radius: ${({ $position }) =>
+    $position === 'first' ? '4px' : '0px'};
+  border-bottom-left-radius: ${({ $position }) =>
+    $position === 'last' ? '4px' : '0px'};
+  border-bottom-right-radius: ${({ $position }) =>
+    $position === 'last' ? '4px' : '0px'};
   margin-bottom: 1px;
   align-items: center;
   justify-content: center;

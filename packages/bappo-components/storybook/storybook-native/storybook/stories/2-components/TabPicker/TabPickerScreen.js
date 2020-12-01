@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
-  Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import Example from './examples/tabPickerExample';
 import Example2 from './examples/tabPickerExample2';
 
@@ -39,14 +39,14 @@ const TabPickerScreen = () => (
       typeInfo="Object or Array of Objects"
       description={
         <AppText>
-          <Section>An Object (if multi is off) </Section>
-          <Section>
+          <AppText>An Object (if multi is off)</AppText>
+          <AppText>
             An array of objects (if multi is on), where each array item is a
             pointer to an item in the options array. eg{' '}
             <Code>
               {`options = [{ ... }, { ... }, { ... }]; selected = [options[0], options[2]];`}
             </Code>
-          </Section>
+          </AppText>
         </AppText>
       }
     />
@@ -73,13 +73,13 @@ const TabPickerScreen = () => (
       typeInfo="(selected}) => {}"
       description={
         <AppText>
-          <Section>
+          <AppText>
             If Multi if off, this function returns the selected option.
-          </Section>
-          <Section>
+          </AppText>
+          <AppText>
             {' '}
             If Multi is on, it returns an array of the selected options.{' '}
-          </Section>
+          </AppText>
         </AppText>
       }
     />
