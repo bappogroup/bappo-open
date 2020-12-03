@@ -1,5 +1,3 @@
-// @flow
-
 export const SizeToRadius = {
   large: 32,
   medium: 20,

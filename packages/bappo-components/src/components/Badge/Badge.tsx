@@ -1,26 +1,17 @@
-// @flow
-
 import * as React from 'react';
 
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
 import View from '../../primitives/View';
+import { BadgeProps } from './types';
 
-type Props = {
-  number?: number,
-};
-
-const Badge = ({ number }: Props) => {
+export default function Badge({ number, testID }: BadgeProps) {
   return (
-    <StyledView selectable>
+    <StyledView selectable testID={testID}>
       <StyledText>{number}</StyledText>
     </StyledView>
   );
-};
-
-Badge.defaultProps = {};
-
-export default Badge;
+}
 
 const StyledView = styled(View)`
   padding: 2px;
