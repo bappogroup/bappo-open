@@ -1,34 +1,8 @@
-// @flow
-
-import * as React from 'react';
-
 import { styled } from '../../apis/Style';
 import Text from '../../primitives/Text';
+import { ParagraphProps } from './types';
 
-type Props = {
-  children?: string,
-  type?: 'default' | 'bold' | 'small' | 'error' | 'success' | 'white',
-};
-
-/**
- * Fixed height text component, no matter there's content or not
- * Reserve 1 line of space by default, and increase height if needed
- */
-const Paragraph = ({ children, type }: Props) => {
-  return (
-    <StyledText selectable $type={type}>
-      {children}
-    </StyledText>
-  );
-};
-
-Paragraph.defaultProps = {
-  type: 'default',
-};
-
-export default Paragraph;
-
-const StyledText = styled(Text)`
+export const StyledText = styled(Text)<{ $type: ParagraphProps['type'] }>`
   margin-bottom: 8px;
   line-height: 22px;
 
