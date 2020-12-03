@@ -1,23 +1,16 @@
-// @flow
-
 import * as React from 'react';
 
 import { styled } from '../../apis/Style';
 import View from '../../primitives/View';
+import { VerticalSeparatorProps } from './types';
 
-type Props = {
-  children?: string,
-  className?: string,
-  style?: any,
+type Props = VerticalSeparatorProps & {
+  className?: string;
 };
 
-const VerticalSeparator = ({ className, style }: Props) => {
-  return <StyledView className={className} style={style} />;
-};
-
-VerticalSeparator.defaultProps = {};
-
-export default VerticalSeparator;
+export default function VerticalSeparator({ className, style, testID }: Props) {
+  return <StyledView className={className} style={style} testID={testID} />;
+}
 
 const StyledView = styled(View)`
   border-width: 0px;
