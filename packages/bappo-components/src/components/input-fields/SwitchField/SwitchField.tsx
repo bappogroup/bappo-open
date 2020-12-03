@@ -24,7 +24,7 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
     `Prop "reserveErrorSpace" is set to false while "validate" is supplied. You will not see the validation error.`,
   );
 
-  const inputRef = React.useRef<Switch>(null);
+  const inputRef = React.useRef<HTMLDivElement>();
   const focusInput = React.useCallback(
     () => inputRef.current && inputRef.current.focus(),
     [],
