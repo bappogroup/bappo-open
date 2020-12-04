@@ -26,6 +26,8 @@ const Switch = React.forwardRef(
   ) => {
     const containerRef = React.useRef<HTMLDivElement>();
 
+    const [focus, setFocus] = React.useState(false);
+
     React.useImperativeHandle(ref, () => ({
       focus: () => {
         if (containerRef && containerRef.current) containerRef.current.focus();
@@ -36,6 +38,8 @@ const Switch = React.forwardRef(
     }));
 
     const _onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+      setFocus(false);
+
       onBlur &&
         onBlur({
           nativeEvent: {
@@ -45,6 +49,8 @@ const Switch = React.forwardRef(
     };
 
     const _onFocus = (event: React.FocusEvent<HTMLDivElement>) => {
+      setFocus(true);
+
       onFocus &&
         onFocus({
           nativeEvent: {
@@ -84,7 +90,12 @@ const Switch = React.forwardRef(
     };
 
     return (
-      <SwitchContainer ref={containerRef as any} {...props} {...styleProps}>
+      <SwitchContainer
+        $hasFocus={focus}
+        ref={containerRef as any}
+        {...props}
+        {...styleProps}
+      >
         <Handle position={value ? 'right' : 'left'} />
       </SwitchContainer>
     );
@@ -99,7 +110,7 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
     role: 'checkbox',
     tabIndex: 0,
   }),
-)<{ $value: boolean }>`
+)<{ $value: boolean; $hasFocus: boolean }>`
   flex: none;
   outline: none;
   flex-direction: row;
@@ -108,6 +119,7 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
   cursor: pointer;
   height: 24px;
   width: 48px;
+  border: 1px solid ${({ $hasFocus }) => ($hasFocus ? 'black' : 'transparent')};
 `;
 
 const Handle = styled(DivViewBase)<{ position: 'right' | 'left' }>`
@@ -116,8 +128,8 @@ const Handle = styled(DivViewBase)<{ position: 'right' | 'left' }>`
   height: 20px;
   width: 20px;
   position: absolute;
-  top: 2px;
-  bottom: 2px;
-  left: ${({ position }) => (position === 'left' ? 2 : 26)}px;
+  top: 1px;
+  bottom: 1px;
+  left: ${({ position }) => (position === 'left' ? 1 : 25)}px;
   transition: left 0.2s;
 `;
