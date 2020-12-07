@@ -37,46 +37,72 @@ test('should render a switch with value set to true', () => {
       min-width: 0;
     }
 
-    .c1 {
+    .c2 {
+      outline: none;
+      display: -webkit-inline-box;
+      display: -webkit-inline-flex;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
       -webkit-flex: none;
       -ms-flex: none;
       flex: none;
-      outline: none;
-      -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-      flex-direction: row;
-      background-color: #FF7800;
-      border-radius: 12px;
       cursor: pointer;
-      height: 24px;
-      width: 48px;
-      border: 1px solid transparent;
+      height: 38px;
+      width: 56px;
+      padding: 9px;
+      z-index: 0;
     }
 
-    .c2 {
+    .c5 {
       background-color: white;
       border-radius: 50%;
       height: 20px;
       width: 20px;
+      box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+    }
+
+    .c4 {
+      background-color: transparent;
+      border-radius: 50%;
+      padding: 9px;
       position: absolute;
-      top: 1px;
-      bottom: 1px;
-      left: 25px;
-      -webkit-transition: left 0.2s;
-      transition: left 0.2s;
+      top: 0px;
+      left: 18px;
+      -webkit-transition: left 0.2s,background-color 0.2s;
+      transition: left 0.2s,background-color 0.2s;
+      z-index: 1;
+    }
+
+    .c1:hover .c4,
+    .c1:focus .c4 {
+      background-color: #00000029;
+    }
+
+    .c3 {
+      background-color: #FF7800;
+      border-radius: 12px;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
     <div
       aria-checked="true"
-      class="c0 c1"
+      class="c0 c1 c2"
       data-testid="test"
       role="checkbox"
       tabindex="0"
     >
       <div
-        class="c0 c2"
-        position="right"
+        class="c0 c3"
       />
+      <div
+        class="c0 c4"
+      >
+        <div
+          class="c0 c5"
+        />
+      </div>
     </div>
   `);
 });
