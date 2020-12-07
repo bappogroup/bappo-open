@@ -34,7 +34,7 @@ const ScrollView = React.forwardRef(
       },
     }));
 
-    const scrollableNodeRef = React.useRef<RN.ScrollView>();
+    const scrollableNodeRef = React.useRef<RN.ScrollView>(null);
 
     const props: RN.ScrollViewProps = {
       accessibilityLabel,
@@ -51,7 +51,7 @@ const ScrollView = React.forwardRef(
     };
 
     return (
-      <RN.ScrollView {...props} ref={scrollableNodeRef as any}>
+      <RN.ScrollView {...props} ref={scrollableNodeRef}>
         {children}
       </RN.ScrollView>
     );

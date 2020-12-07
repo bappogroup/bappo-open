@@ -48,7 +48,7 @@ const ScrollView = React.forwardRef(
       },
     }));
 
-    const scrollableNodeRef = React.useRef<HTMLDivElement>();
+    const scrollableNodeRef = React.useRef<HTMLDivElement>(null);
 
     const styleProps = {
       className,
@@ -95,7 +95,7 @@ const ScrollView = React.forwardRef(
       <ScrollContainer
         {...styleProps}
         accessibilityLabel={accessibilityLabel}
-        ref={scrollableNodeRef as any}
+        ref={scrollableNodeRef}
         onLayout={onLayout}
         onScroll={_onScroll}
         testID={testID}
