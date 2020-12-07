@@ -26,8 +26,6 @@ const Switch = React.forwardRef(
   ) => {
     const containerRef = React.useRef<HTMLDivElement>();
 
-    const [focus, setFocus] = React.useState(false);
-
     React.useImperativeHandle(ref, () => ({
       focus: () => {
         if (containerRef && containerRef.current) containerRef.current.focus();
@@ -38,8 +36,6 @@ const Switch = React.forwardRef(
     }));
 
     const _onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-      setFocus(false);
-
       onBlur &&
         onBlur({
           nativeEvent: {
@@ -49,8 +45,6 @@ const Switch = React.forwardRef(
     };
 
     const _onFocus = (event: React.FocusEvent<HTMLDivElement>) => {
-      setFocus(true);
-
       onFocus &&
         onFocus({
           nativeEvent: {
@@ -90,13 +84,14 @@ const Switch = React.forwardRef(
     };
 
     return (
-      <SwitchContainer
-        $hasFocus={focus}
-        ref={containerRef as any}
-        {...props}
-        {...styleProps}
-      >
-        <Handle position={value ? 'right' : 'left'} />
+      <SwitchContainer ref={containerRef as any} {...props} {...styleProps}>
+        <Track $value={!!value} />
+        <FocusIndicator
+          $disabled={disabled}
+          $position={value ? 'right' : 'left'}
+        >
+          <Handle />
+        </FocusIndicator>
       </SwitchContainer>
     );
   },
@@ -110,26 +105,50 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
     role: 'checkbox',
     tabIndex: 0,
   }),
-)<{ $value: boolean; $hasFocus: boolean }>`
-  flex: none;
+)<{ $value: boolean }>`
   outline: none;
-  flex-direction: row;
-  background-color: ${({ $value }) => ($value ? '#FF7800' : '#B0ADAB')};
-  border-radius: 12px;
+  display: inline-flex;
+  flex: none;
   cursor: pointer;
-  height: 24px;
-  width: 48px;
-  border: 1px solid ${({ $hasFocus }) => ($hasFocus ? 'black' : 'transparent')};
+  height: 38px;
+  width: 56px;
+  padding: 9px;
+  z-index: 0;
 `;
 
-const Handle = styled(DivViewBase)<{ position: 'right' | 'left' }>`
+const Handle = styled(DivViewBase)`
   background-color: white;
   border-radius: 50%;
   height: 20px;
   width: 20px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+`;
+
+const FocusIndicator = styled(DivViewBase)<{
+  $position: 'right' | 'left';
+  $disabled: boolean;
+}>`
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 9px;
   position: absolute;
-  top: 1px;
-  bottom: 1px;
-  left: ${({ position }) => (position === 'left' ? 1 : 25)}px;
-  transition: left 0.2s;
+  top: 0px;
+  left: ${({ $position }) => ($position === 'left' ? 0 : 18)}px;
+  transition: left 0.2s, background-color 0.2s;
+  z-index: 1;
+  ${({ $disabled }) =>
+    !$disabled
+      ? `${SwitchContainer}:hover &, ${SwitchContainer}:focus &  {
+    background-color: #00000029;
+  },`
+      : ``}
+`;
+
+const Track = styled(DivViewBase)<{ $value: boolean }>`
+  background-color: ${({ $value }) => ($value ? '#FF7800' : '#B0ADAB')};
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 `;
