@@ -23,7 +23,6 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     $numberOfLines?: number;
     $isParentAText: boolean;
     $selectable?: boolean;
-    $ellipsis?: boolean;
   }>`
     box-sizing: border-box;
     color: ${Colors.BLACK};
@@ -55,29 +54,21 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
         : `
       cursor: inherit;
     `}
-  
-    ${({ $numberOfLines, $fontSizeValue, $ellipsis }) =>
-      $numberOfLines
+    
+    //When Text are nested in a Text, like <Text><Text numberOfLines={x}><Text/><Text/>
+    //the inner property numberOfLines should not work, otherwise may cause unexpected wrap
+    ${({ $numberOfLines, $isParentAText }) =>
+      $numberOfLines && !$isParentAText
         ? `
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
+      ${$numberOfLines === 1 ? `white-space: nowrap;` : ''}
       ${
-        $numberOfLines === 1
-          ? `white-space: nowrap;`
-          : `
-      line-height: ${$fontSizeValue + 2}px;
-      max-height: ${($fontSizeValue + 2) * $numberOfLines}px;
-      `
-      }
-      ${
-        $ellipsis && $numberOfLines > 1
-          ? `::after {
-          content: '...';
-          position: absolute;
-          right: 0;
-          bottom: 0;
-        }`
+        $numberOfLines >= 1
+          ? `display: -webkit-box;
+        -webkit-line-clamp: ${$numberOfLines};
+        -webkit-box-orient: vertical;`
           : ''
       }
     `
@@ -94,7 +85,6 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     selectable,
     style,
     testID,
-    ellipsis,
   }: TextBaseProps & InternalProps) {
     // import after mount so that it doesn't break server-side rendering
     React.useEffect(() => {
@@ -115,7 +105,6 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
       $fontSizeValue: fontSizeValue,
       $isParentAText: isParentAText,
       $numberOfLines: numberOfLines,
-      $ellipsis: ellipsis,
       $selectable: selectable,
       style,
     };

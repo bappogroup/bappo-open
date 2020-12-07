@@ -77,6 +77,9 @@ test('should render a menu with two menu items', () => {
       text-overflow: ellipsis;
       max-width: 100%;
       white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
     .c8 {

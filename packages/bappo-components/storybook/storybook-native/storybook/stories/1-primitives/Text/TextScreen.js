@@ -1,14 +1,15 @@
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import PropChildren from './examples/PropChildren';
 import PropNumberOfLines from './examples/PropNumberOfLines';
 
@@ -57,15 +58,6 @@ const TextScreen = () => (
         }
         example={{
           render: () => <PropChildren />,
-        }}
-      />
-
-      <DocItem
-        name="ellipsis?"
-        typeInfo="boolean"
-        description="Add an ellipsis at the end of the line."
-        example={{
-          render: () => <PropNumberOfLines />,
         }}
       />
 

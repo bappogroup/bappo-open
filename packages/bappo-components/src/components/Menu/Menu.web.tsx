@@ -102,9 +102,7 @@ const Item = ({ label, icon, numberOfLines = 1, onPress }: MenuItemProps) => {
       }}
     >
       {icon && <Icon name={icon} />}
-      <MenuItemLabel numberOfLines={numberOfLines} ellipsis>
-        {label}
-      </MenuItemLabel>
+      <MenuItemLabel numberOfLines={numberOfLines}>{label}</MenuItemLabel>
     </ActionRow>
   );
 };

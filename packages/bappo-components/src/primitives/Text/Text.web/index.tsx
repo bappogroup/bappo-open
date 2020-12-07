@@ -16,7 +16,6 @@ export default function Text({
   selectable,
   style,
   testID,
-  ellipsis,
 }: Props) {
   const props = {
     accessibilityLabel,
@@ -26,7 +25,6 @@ export default function Text({
     selectable,
     style,
     testID,
-    ellipsis,
   };
 
   return <TextBase {...props} />;
