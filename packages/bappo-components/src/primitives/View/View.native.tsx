@@ -21,7 +21,6 @@ const View = React.forwardRef(
     React.useImperativeHandle(ref, () => ({
       // To be able to use View inside TouchableHighlight/TouchableOpacity
       setNativeProps: (...args: Array<any>) =>
-        nativeViewRef &&
         nativeViewRef.current &&
         nativeViewRef.current.setNativeProps({ ...args }),
     }));
