@@ -45,3 +45,4 @@ export { default as OldSelect } from './components/OldSelect';
 export { default as Select } from './components/Select';
 export { default as TabPicker } from './components/TabPicker';
 export { default as VerticalSeparator } from './components/VerticalSeparator';
+export { default as Menu } from './components/Menu';

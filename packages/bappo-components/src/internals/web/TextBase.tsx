@@ -57,14 +57,12 @@ export const createText = (containerComponent: keyof JSX.IntrinsicElements) => {
     
     //When Text are nested in a Text, like <Text><Text numberOfLines={x}><Text/><Text/>
     //the inner property numberOfLines should not work, otherwise may cause unexpected wrap
-    ${({ $numberOfLines, $fontSizeValue, $isParentAText }) =>
+    ${({ $numberOfLines, $isParentAText }) =>
       $numberOfLines && !$isParentAText
         ? `
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
-      line-height: ${$fontSizeValue + 2}px;
-      max-height: ${($fontSizeValue + 2) * $numberOfLines}px;
       ${$numberOfLines === 1 ? `white-space: nowrap;` : ''}
       ${
         $numberOfLines >= 1

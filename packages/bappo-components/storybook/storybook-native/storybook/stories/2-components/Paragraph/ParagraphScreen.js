@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-sort-props */
 
 import React from 'react';
-import { url } from '../../../url';
+
 import UIExplorer, {
   AppText,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
+import { url } from '../../../url';
 import PropType from './examples/PropType';
 
 const ParagraphScreen = () => (
@@ -32,8 +33,8 @@ const ParagraphScreen = () => (
 
       <DocItem
         name="type?"
-        typeInfo="default | bold | small | error | success"
-        description="User name. The initial of the user name is displayed by default."
+        typeInfo="default | bold | small | error | success | white"
+        description="The type of information contained in the paragraph."
         example={{
           render: () => <PropType />,
         }}

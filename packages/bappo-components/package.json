@@ -80,6 +80,8 @@
     "@babel/preset-react": "7.9.1",
     "@babel/preset-typescript": "7.9.0",
     "@bappo/scripts": "^1.2.0",
+    "@testing-library/dom": "^7.28.0",
+    "@testing-library/user-event": "^12.2.2",
     "@types/invariant": "^2.2.32",
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.129",
