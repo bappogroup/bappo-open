@@ -90,7 +90,7 @@ const Switch = React.forwardRef(
           $disabled={disabled}
           $position={value ? 'right' : 'left'}
         >
-          <Handle />
+          <Handle $disabled={disabled} />
         </FocusIndicator>
       </SwitchContainer>
     );
@@ -116,8 +116,8 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
   z-index: 0;
 `;
 
-const Handle = styled(DivViewBase)`
-  background-color: white;
+const Handle = styled(DivViewBase)<{ $disabled: boolean }>`
+  background-color: ${({ $disabled }) => `${!$disabled ? 'white' : '#d6d3d1'}`};
   border-radius: 50%;
   height: 20px;
   width: 20px;
