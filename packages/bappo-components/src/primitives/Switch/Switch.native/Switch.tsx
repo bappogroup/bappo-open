@@ -28,21 +28,17 @@ const Switch = React.forwardRef(
     const containerRef = React.useRef<TouchableOpacity>(null);
 
     React.useImperativeHandle(ref, () => ({
-      focus: () => {
-        if (containerRef && containerRef.current) containerRef.current.focus();
-      },
-      blur: () => {
-        if (containerRef && containerRef.current) containerRef.current.blur();
-      },
+      focus: () => containerRef.current?.focus(),
+      blur: () => containerRef.current?.blur(),
     }));
 
-    const toggleHandleLeft = React.useRef(new Animated.Value(2)).current;
+    const toggleHandleLeft = React.useRef(new Animated.Value(2));
 
     const [prevValue, setPrevValue] = React.useState(value);
 
     React.useEffect(() => {
       if (!!value !== !!prevValue) {
-        Animated.timing(toggleHandleLeft, {
+        Animated.timing(toggleHandleLeft.current, {
           toValue: value ? 26 : 2,
           duration: 200,
         }).start();
@@ -51,22 +47,20 @@ const Switch = React.forwardRef(
       }
     }, [value, prevValue]);
 
-    const _onBlur = (event: NativeSyntheticEvent<TargetedEvent>) => {
-      onBlur &&
-        onBlur({
-          nativeEvent: {
-            value,
-          },
-        });
+    const _onBlur = (_event: NativeSyntheticEvent<TargetedEvent>) => {
+      onBlur?.({
+        nativeEvent: {
+          value,
+        },
+      });
     };
 
-    const _onFocus = (event: NativeSyntheticEvent<TargetedEvent>) => {
-      onFocus &&
-        onFocus({
-          nativeEvent: {
-            value,
-          },
-        });
+    const _onFocus = (_event: NativeSyntheticEvent<TargetedEvent>) => {
+      onFocus?.({
+        nativeEvent: {
+          value,
+        },
+      });
     };
 
     const _onKeyPress = (event: React.KeyboardEvent<TouchableOpacity>) => {
@@ -80,9 +74,7 @@ const Switch = React.forwardRef(
       }
     };
 
-    const _toggle = () => {
-      !disabled && onValueChange && onValueChange(!value);
-    };
+    const _toggle = () => !disabled && onValueChange?.(!value);
 
     const props = {
       accessibilityLabel,
@@ -100,7 +92,9 @@ const Switch = React.forwardRef(
 
     return (
       <SwitchContainer ref={containerRef} {...props} {...styleProps}>
-        <Animated.View style={[styles.handle, { left: toggleHandleLeft }]} />
+        <Animated.View
+          style={[styles.handle, { left: toggleHandleLeft.current }]}
+        />
       </SwitchContainer>
     );
   },
@@ -108,7 +102,7 @@ const Switch = React.forwardRef(
 
 export default Switch;
 
-const SwitchContainer = styled(TouchableOpacity).attrs((props) => ({
+const SwitchContainer = styled(TouchableOpacity).attrs((_props) => ({
   activeOpacity: 1,
 }))<{ $value: boolean }>`
   flex: none;

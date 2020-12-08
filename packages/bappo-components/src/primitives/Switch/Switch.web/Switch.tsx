@@ -28,12 +28,8 @@ const Switch = React.forwardRef(
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useImperativeHandle(ref, () => ({
-      focus: () => {
-        containerRef.current?.focus();
-      },
-      blur: () => {
-        if (containerRef && containerRef.current) containerRef.current.blur();
-      },
+      focus: () => containerRef.current?.focus(),
+      blur: () => containerRef.current?.blur(),
     }));
 
     const _onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
@@ -45,12 +41,11 @@ const Switch = React.forwardRef(
     };
 
     const _onFocus = (event: React.FocusEvent<HTMLDivElement>) => {
-      onFocus &&
-        onFocus({
-          nativeEvent: {
-            value,
-          },
-        });
+      onFocus?.({
+        nativeEvent: {
+          value,
+        },
+      });
     };
 
     const _onKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -64,9 +59,7 @@ const Switch = React.forwardRef(
       }
     };
 
-    const _toggle = () => {
-      !disabled && onValueChange && onValueChange(!value);
-    };
+    const _toggle = () => !disabled && onValueChange?.(!value);
 
     const props = {
       accessibilityLabel,
@@ -113,7 +106,6 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
   height: 38px;
   width: 56px;
   padding: 9px;
-  z-index: 0;
 `;
 
 const Handle = styled(DivViewBase)<{ $disabled: boolean }>`
@@ -136,7 +128,6 @@ const FocusIndicator = styled(DivViewBase)<{
   top: 0px;
   left: ${({ $position }) => ($position === 'left' ? 0 : 18)}px;
   transition: left 0.2s, background-color 0.2s;
-  z-index: 1;
   ${({ $disabled }) =>
     !$disabled
       ? `${SwitchContainer}:hover &, ${SwitchContainer}:focus &  {
@@ -150,5 +141,4 @@ const Track = styled(DivViewBase)<{ $value: boolean }>`
   border-radius: 12px;
   width: 100%;
   height: 100%;
-  z-index: -1;
 `;

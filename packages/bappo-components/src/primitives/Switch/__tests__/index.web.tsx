@@ -50,7 +50,6 @@ test('should render a switch with value set to true', () => {
       height: 38px;
       width: 56px;
       padding: 9px;
-      z-index: 0;
     }
 
     .c5 {
@@ -70,7 +69,6 @@ test('should render a switch with value set to true', () => {
       left: 18px;
       -webkit-transition: left 0.2s,background-color 0.2s;
       transition: left 0.2s,background-color 0.2s;
-      z-index: 1;
     }
 
     .c1:hover .c4,
@@ -83,7 +81,6 @@ test('should render a switch with value set to true', () => {
       border-radius: 12px;
       width: 100%;
       height: 100%;
-      z-index: -1;
     }
 
     <div
