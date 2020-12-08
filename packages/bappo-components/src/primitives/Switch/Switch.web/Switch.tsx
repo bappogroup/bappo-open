@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { InputHandle } from '../../../input-handle';
 import { DivViewBase } from '../../../internals/web/ViewBase';
 import { SwitchProps } from '../types';
 
@@ -22,9 +23,9 @@ const Switch = React.forwardRef(
       value = false,
       className,
     }: Props,
-    ref,
+    ref: React.Ref<InputHandle>,
   ) => {
-    const containerRef = React.useRef<HTMLDivElement>();
+    const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useImperativeHandle(ref, () => ({
       focus: () => {
@@ -84,7 +85,7 @@ const Switch = React.forwardRef(
     };
 
     return (
-      <SwitchContainer ref={containerRef as any} {...props} {...styleProps}>
+      <SwitchContainer ref={containerRef} {...props} {...styleProps}>
         <Track $value={!!value} />
         <FocusIndicator
           $disabled={disabled}

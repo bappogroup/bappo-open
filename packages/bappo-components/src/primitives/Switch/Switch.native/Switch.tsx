@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 
+import { InputHandle } from '../../../input-handle';
 import { SwitchProps } from '../types';
 
 const Switch = React.forwardRef(
@@ -22,9 +23,9 @@ const Switch = React.forwardRef(
       testID,
       value = false,
     }: SwitchProps,
-    ref,
+    ref: React.Ref<InputHandle>,
   ) => {
-    const containerRef = React.useRef<TouchableOpacity>();
+    const containerRef = React.useRef<TouchableOpacity>(null);
 
     React.useImperativeHandle(ref, () => ({
       focus: () => {
@@ -98,7 +99,7 @@ const Switch = React.forwardRef(
     };
 
     return (
-      <SwitchContainer ref={containerRef as any} {...props} {...styleProps}>
+      <SwitchContainer ref={containerRef} {...props} {...styleProps}>
         <Animated.View style={[styles.handle, { left: toggleHandleLeft }]} />
       </SwitchContainer>
     );
