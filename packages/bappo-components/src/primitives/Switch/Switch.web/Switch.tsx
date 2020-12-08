@@ -29,7 +29,7 @@ const Switch = React.forwardRef(
 
     React.useImperativeHandle(ref, () => ({
       focus: () => {
-        if (containerRef && containerRef.current) containerRef.current.focus();
+        containerRef.current?.focus();
       },
       blur: () => {
         if (containerRef && containerRef.current) containerRef.current.blur();
@@ -37,12 +37,11 @@ const Switch = React.forwardRef(
     }));
 
     const _onBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-      onBlur &&
-        onBlur({
-          nativeEvent: {
-            value,
-          },
-        });
+      onBlur?.({
+        nativeEvent: {
+          value,
+        },
+      });
     };
 
     const _onFocus = (event: React.FocusEvent<HTMLDivElement>) => {
