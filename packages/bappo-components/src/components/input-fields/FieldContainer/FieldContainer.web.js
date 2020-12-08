@@ -8,7 +8,7 @@ import { DivViewBase } from '../../../internals/web/ViewBase';
 const FieldContainer = styled(DivViewBase).attrs((props) => ({
   role: 'group',
 }))`
-  padding: 8px 0;
+  padding: 0px;
 `;
 
 FieldContainer.displayName = 'FieldContainer';

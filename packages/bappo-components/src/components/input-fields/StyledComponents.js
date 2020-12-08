@@ -26,10 +26,14 @@ export const FieldInputContainer = styled(View)`
   flex: none;
   justify-content: center;
   background-color: white;
-  border-color: #dddbda;
   border-style: solid;
-  border-width: 1px;
   border-radius: 4px;
   min-height: 40px;
   padding: 0px 16px;
+
+  ${({ $hasError }) => {
+    return $hasError
+      ? `border-color: #C23934;border-width: 1px;`
+      : `border-color: #dddbda;border-width: 1px;`;
+  }}
 `;

@@ -4,7 +4,7 @@ import { styled } from '../../../apis/Style';
 import View from '../../../primitives/View';
 
 const FieldContainer = styled(View)`
-  padding: 8px 0;
+  padding: 0px;
 `;
 
 FieldContainer.displayName = 'FieldContainer';

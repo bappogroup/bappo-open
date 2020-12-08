@@ -177,7 +177,7 @@ const ModalFormContent = styled(FlexDiv)<{
   flex: 1;
   background-color: white;
   overflow-y: auto;
-  padding: 48px;
+  padding: 38px 38px 20px 38px;
 
   ${(props) =>
     props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'

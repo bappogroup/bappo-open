@@ -1,6 +1,7 @@
 import {
   Alert,
   Button,
+  DateField,
   Form,
   ModalForm,
   SwitchField,
@@ -24,7 +25,7 @@ class ModalFormFieldLevelValidationExample extends React.Component {
         />
         <ModalForm
           onRequestClose={() => this.setState({ modalVisible: false })}
-          onSubmit={values =>
+          onSubmit={(values) =>
             Alert.alert({ message: JSON.stringify(values, null, 2) })
           }
           title="Modal Form Field Level Validation Example"
@@ -33,17 +34,24 @@ class ModalFormFieldLevelValidationExample extends React.Component {
           <TextField
             name="email"
             label="Email"
-            validate={value =>
+            validate={(value) =>
               value && isEmail(value) ? undefined : 'Invalid email'
             }
             type="email"
           />
+
           <Form.Field
             name="password"
             component={TextField}
             label="Password"
-            validate={value => (value ? undefined : 'Password is required')}
+            validate={(value) => (value ? undefined : 'Password is required')}
             props={{ type: 'password' }}
+          />
+          <Form.Field
+            name="Date"
+            component={DateField}
+            label="Date"
+            validate={(value) => (value ? undefined : 'Date is required')}
           />
           <Form.Field
             name="dummy1"
