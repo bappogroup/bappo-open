@@ -33,7 +33,7 @@ export const FieldInputContainer = styled(View)`
 
   ${({ $hasError }) => {
     return $hasError
-      ? `border-color: #C23934;border-width: 2px;`
+      ? `border-color: #C23934;border-width: 1px;`
       : `border-color: #dddbda;border-width: 1px;`;
   }}
 `;
