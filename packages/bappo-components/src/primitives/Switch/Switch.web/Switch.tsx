@@ -77,7 +77,12 @@ const Switch = React.forwardRef(
     };
 
     return (
-      <SwitchContainer ref={containerRef} {...props} {...styleProps}>
+      <SwitchContainer
+        ref={containerRef}
+        $disabled={disabled}
+        {...props}
+        {...styleProps}
+      >
         <Track $value={!!value} />
         <FocusIndicator
           $disabled={disabled}
@@ -98,11 +103,11 @@ const SwitchContainer = styled(DivViewBase).attrs<{ $value: boolean }>(
     role: 'checkbox',
     tabIndex: 0,
   }),
-)<{ $value: boolean }>`
+)<{ $value: boolean; $disabled: boolean }>`
   outline: none;
   display: inline-flex;
   flex: none;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => `${!$disabled ? 'pointer' : 'not-allowed'}`};
   height: 38px;
   width: 56px;
   padding: 9px;
