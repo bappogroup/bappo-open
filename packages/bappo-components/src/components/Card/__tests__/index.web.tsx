@@ -1,21 +1,14 @@
 import 'jest-styled-components';
 import 'react-testing-library/cleanup-after-each';
 
-import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { getByText, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
-import Background from '../../Background';
-import Paragraph from '../../Paragraph';
 import Card from '..';
 
 test('should render a card on a standard background with text', () => {
   const { getByTestId } = render(
-    <Background>
-      <Card testID="test">
-        Example card with a paragraph on the standard background.
-      </Card>
-    </Background>,
+    <Card testID="test">Example card with a paragraph</Card>,
   );
   expect(getByTestId('test')).toMatchInlineSnapshot(`
     .c0 {
@@ -57,7 +50,7 @@ test('should render a card on a standard background with text', () => {
       class="c0 c1"
       data-testid="test"
     >
-      Example card with a paragraph on the standard background.
+      Example card with a paragraph
     </div>
   `);
 });
