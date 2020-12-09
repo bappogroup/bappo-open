@@ -16,6 +16,7 @@ require('./1-primitives/TextInput/TextInputScreen');
 require('./1-primitives/TouchableView/TouchableViewScreen');
 require('./1-primitives/View/ViewScreen');
 require('./1-primitives/Overlay/OverlayScreen');
+require('./1-primitives/Checkbox/CheckboxScreen');
 
 require('./2-components/Avatar/AvatarScreen');
 require('./2-components/Background/BackgroundScreen');
