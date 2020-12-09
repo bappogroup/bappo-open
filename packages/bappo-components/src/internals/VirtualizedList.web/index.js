@@ -26,8 +26,8 @@ import ViewabilityHelper, {
 import { computeWindowedRenderLimits } from 'react-native-web/dist/cjs/vendor/react-native/VirtualizeUtils';
 import styled from 'styled-components';
 
-import ScrollView from '../../primitives/ScrollView';
 import View from '../../primitives/View';
+import { ScrollViewBase } from '../web/ScrollViewBase';
 
 const __DEV__ = process.env.NODE_ENV !== 'production';
 
@@ -253,30 +253,13 @@ type State = { first: number, last: number };
 class VirtualizedList extends React.PureComponent<Props, State> {
   props: Props;
 
-  // scrollToEnd may be janky without getItemLayout prop
   scrollToEnd(params?: ?{ animated?: ?boolean }) {
-    const animated = params ? params.animated : true;
-    const veryLast = this.props.getItemCount(this.props.data) - 1;
-    const frame = this._getFrameMetricsApprox(veryLast);
-    let offset = Math.max(
-      0,
-      frame.offset +
-        frame.length +
-        this._footerLength -
-        this._scrollMetrics.visibleLength,
-    );
-    if (this.props.inverted) {
-      offset = this._totalCellLength - offset;
+    if (!this._scrollRef) return;
+    if (this.props.horizontal) {
+      this._scrollRef.scrollLeft = this._scrollRef.scrollWidth;
+    } else {
+      this._scrollRef.scrollTop = this._scrollRef.scrollHeight;
     }
-    /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
-     * suppresses an error when upgrading Flow's support for React. To see the
-     * error delete this comment and run Flow. */
-    this._scrollRef.scrollTo(
-      /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This
-       * comment suppresses an error when upgrading Flow's support for React.
-       * To see the error delete this comment and run Flow. */
-      this.props.horizontal ? { x: offset, animated } : { y: offset, animated },
-    );
   }
 
   // scrollToIndex may be janky without getItemLayout prop
@@ -293,7 +276,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       getItemLayout,
       onScrollToIndexFailed,
     } = this.props;
-    const { animated, index, viewOffset, viewPosition } = params;
+    const { index, viewOffset, viewPosition } = params;
     invariant(
       index >= 0 && index < getItemCount(data),
       `scrollToIndex out of range: ${index} vs ${getItemCount(data) - 1}`,
@@ -311,6 +294,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       });
       return;
     }
+    if (!this._scrollRef) return;
     const frame = this._getFrameMetricsApprox(index);
     let offset =
       Math.max(
@@ -322,15 +306,11 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     if (this.props.inverted) {
       offset = this._totalCellLength - offset;
     }
-    /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
-     * suppresses an error when upgrading Flow's support for React. To see the
-     * error delete this comment and run Flow. */
-    this._scrollRef.scrollTo(
-      /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This
-       * comment suppresses an error when upgrading Flow's support for React.
-       * To see the error delete this comment and run Flow. */
-      horizontal ? { x: offset, animated } : { y: offset, animated },
-    );
+    if (horizontal) {
+      this._scrollRef.scrollLeft = offset;
+    } else {
+      this._scrollRef.scrollTop = offset;
+    }
   }
 
   // scrollToItem may be janky without getItemLayout prop. Required linear scan through items -
@@ -362,19 +342,15 @@ class VirtualizedList extends React.PureComponent<Props, State> {
    * should do an animation while scrolling.
    */
   scrollToOffset(params: { animated?: ?boolean, offset: number }) {
-    const { animated } = params;
+    if (!this._scrollRef) return;
     const offset = this.props.inverted
       ? this._totalCellLength - params.offset
       : params.offset;
-    /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
-     * suppresses an error when upgrading Flow's support for React. To see the
-     * error delete this comment and run Flow. */
-    this._scrollRef.scrollTo(
-      /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This
-       * comment suppresses an error when upgrading Flow's support for React.
-       * To see the error delete this comment and run Flow. */
-      this.props.horizontal ? { x: offset, animated } : { y: offset, animated },
-    );
+    if (this.props.horizontal) {
+      this._scrollRef.scrollLeft = offset;
+    } else {
+      this._scrollRef.scrollTop = offset;
+    }
   }
 
   recordInteraction() {
@@ -391,7 +367,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     /* $FlowFixMe(>=0.53.0 site=react_native_fb,react_native_oss) This comment
      * suppresses an error when upgrading Flow's support for React. To see the
      * error delete this comment and run Flow. */
-    this._scrollRef.flashScrollIndicators();
+    // this._scrollRef.flashScrollIndicators();
   }
 
   /**
@@ -410,12 +386,6 @@ class VirtualizedList extends React.PureComponent<Props, State> {
       return this._scrollRef.getScrollableNode();
     } else {
       return findNodeHandle(this._scrollRef);
-    }
-  }
-
-  setNativeProps(props: Object) {
-    if (this._scrollRef) {
-      this._scrollRef.setNativeProps(props);
     }
   }
 
@@ -933,16 +903,17 @@ class VirtualizedList extends React.PureComponent<Props, State> {
   getSnapshotBeforeUpdate(prevProps: Props, prevState: State) {
     // keep inverted list scroll position when data size changes
     if (
+      this._scrollRef &&
       this.props.inverted &&
       (this.props.data.length > prevProps.data.length ||
         this.state.last - this.state.first > prevState.last - prevState.first)
     ) {
-      const scrollableNode = this._scrollRef._scrollableNode;
       // only scroll to bottom if current scroll position is at bottom
-      return (
-        scrollableNode.scrollHeight ===
-        scrollableNode.scrollTop + scrollableNode.offsetHeight
-      );
+      return this.props.horizontal
+        ? this._scrollRef.scrollWidth ===
+            this._scrollRef.scrollLeft + this._scrollRef.offsetWidth
+        : this._scrollRef.scrollHeight ===
+            this._scrollRef.scrollTop + this._scrollRef.offsetHeight;
     }
     return null;
   }
@@ -953,7 +924,7 @@ class VirtualizedList extends React.PureComponent<Props, State> {
     shouldScrollToBottom: boolean | null,
   ) {
     if (shouldScrollToBottom) {
-      this._scrollRef._scrollableNode.scrollTop = this._scrollRef._scrollableNode.scrollHeight;
+      this.scrollToEnd();
     }
     const { data, extraData } = this.props;
     if (data !== prevProps.data || extraData !== prevProps.extraData) {
@@ -1757,7 +1728,7 @@ const styles = {
   },
 };
 
-const StyledScrollView = styled(ScrollView)`
+const StyledScrollView = styled(ScrollViewBase)`
   > div {
     ${({ horizontal, inverted }) =>
       inverted

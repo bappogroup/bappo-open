@@ -460,12 +460,6 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>, void> {
     }
   }
 
-  setNativeProps(props: Object) {
-    if (this._listRef) {
-      this._listRef.setNativeProps(props);
-    }
-  }
-
   UNSAFE_componentWillMount() {
     this._checkProps(this.props);
   }
