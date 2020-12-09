@@ -1,9 +1,6 @@
-import throttle from 'lodash/throttle';
 import * as React from 'react';
-import styled from 'styled-components';
 
-import { ViewLayoutEvent } from '../../events';
-import { DivViewBase } from '../../internals/web/ViewBase';
+import { ScrollViewBase } from '../../internals/web/ScrollViewBase';
 import { ScrollViewProps } from './types';
 
 type Props = ScrollViewProps & {
@@ -27,11 +24,13 @@ const ScrollView = React.forwardRef(
     }: Props,
     ref,
   ) => {
+    const scrollableNodeRef = React.useRef<HTMLDivElement>(null);
+
     React.useImperativeHandle(ref, () => ({
       scrollTo: (options: { x?: number; y?: number }) => {
         const { x, y } = options;
 
-        if (scrollableNodeRef && scrollableNodeRef.current) {
+        if (scrollableNodeRef.current) {
           if (typeof x === 'number') {
             scrollableNodeRef.current.scrollLeft = x;
           }
@@ -41,103 +40,37 @@ const ScrollView = React.forwardRef(
         }
       },
       scrollToEnd: () => {
-        if (scrollableNodeRef && scrollableNodeRef.current) {
-          scrollableNodeRef.current.scrollTop =
-            scrollableNodeRef.current.scrollHeight;
+        if (scrollableNodeRef.current) {
+          if (horizontal) {
+            scrollableNodeRef.current.scrollLeft =
+              scrollableNodeRef.current.scrollWidth;
+          } else {
+            scrollableNodeRef.current.scrollTop =
+              scrollableNodeRef.current.scrollHeight;
+          }
         }
       },
     }));
 
-    const scrollableNodeRef = React.useRef<HTMLDivElement>(null);
-
-    const styleProps = {
+    const props = {
+      accessibilityLabel,
       className,
-      $horizontal: horizontal,
-      style,
-    };
-
-    const onContentLayout = (event: ViewLayoutEvent) => {
-      const { width, height } = event.nativeEvent.layout;
-
-      onContentSizeChange && onContentSizeChange(width, height);
-    };
-
-    const _onScroll = (event: React.SyntheticEvent<HTMLDivElement>) => {
-      event.persist();
-      onScrollThrottled(event);
-    };
-
-    const onScrollThrottled = throttle(
-      (event: React.SyntheticEvent<HTMLDivElement>) => {
-        onScroll &&
-          onScroll({
-            nativeEvent: {
-              contentOffset: {
-                x: event.currentTarget.scrollLeft,
-                y: event.currentTarget.scrollTop,
-              },
-              contentSize: {
-                height: event.currentTarget.scrollHeight,
-                width: event.currentTarget.scrollWidth,
-              },
-              layoutMeasurement: {
-                height: event.currentTarget.offsetHeight,
-                width: event.currentTarget.offsetWidth,
-              },
-            },
-            timeStamp: Date.now(),
-          });
-      },
+      horizontal,
+      onContentSizeChange,
+      onLayout,
+      onScroll,
       scrollEventThrottle,
-    );
+      style,
+      contentContainerStyle,
+      testID,
+    };
 
     return (
-      <ScrollContainer
-        {...styleProps}
-        accessibilityLabel={accessibilityLabel}
-        ref={scrollableNodeRef}
-        onLayout={onLayout}
-        onScroll={_onScroll}
-        testID={testID}
-      >
-        <ContentContainer
-          $horizontal={horizontal}
-          onLayout={onContentLayout}
-          style={contentContainerStyle}
-        >
-          {children}
-        </ContentContainer>
-      </ScrollContainer>
+      <ScrollViewBase {...props} ref={scrollableNodeRef}>
+        {children}
+      </ScrollViewBase>
     );
   },
 );
 
 export default ScrollView;
-
-const ScrollContainer = styled(DivViewBase)<{ $horizontal?: boolean }>`
-  flex: 1;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  transform: translateZ(0);
-
-  ${({ $horizontal }) =>
-    $horizontal &&
-    `
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-  `};
-`;
-
-const ContentContainer = styled(DivViewBase)<{ $horizontal?: boolean }>`
-  ${({ $horizontal }) =>
-    $horizontal
-      ? `
-    flex-direction: row;
-    min-width: 100%;
-  `
-      : `
-    min-height: 100%;
-  `};
-`;

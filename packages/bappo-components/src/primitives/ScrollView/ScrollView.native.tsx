@@ -19,22 +19,16 @@ const ScrollView = React.forwardRef(
     }: ScrollViewProps,
     ref,
   ) => {
+    const scrollableNodeRef = React.useRef<RN.ScrollView>(null);
+
     React.useImperativeHandle(ref, () => ({
       scrollTo: (options: { x?: number; y?: number }) => {
-        scrollableNodeRef &&
-          scrollableNodeRef.current &&
-          scrollableNodeRef.current.scrollTo(options);
+        scrollableNodeRef.current?.scrollTo(options);
       },
       scrollToEnd: () => {
-        if (scrollableNodeRef && scrollableNodeRef.current) {
-          scrollableNodeRef &&
-            scrollableNodeRef.current &&
-            scrollableNodeRef.current.scrollToEnd();
-        }
+        scrollableNodeRef.current?.scrollToEnd();
       },
     }));
-
-    const scrollableNodeRef = React.useRef<RN.ScrollView>(null);
 
     const props: RN.ScrollViewProps = {
       accessibilityLabel,

@@ -321,6 +321,7 @@ class FlatList<ItemT> extends React.PureComponent<Props<ItemT>> {
     }
   }
 
+  // To be able to use View inside TouchableHighlight/TouchableOpacity
   setNativeProps = (props: Object) => {
     if (this._listRef) {
       this._listRef.setNativeProps(props);
