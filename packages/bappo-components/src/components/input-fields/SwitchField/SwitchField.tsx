@@ -1,6 +1,7 @@
 import React from 'react';
 import warning from 'warning';
 
+import { InputHandle } from '../../../input-handle';
 import { useFieldState } from '../../../primitives/Form';
 import { InputField, InputFieldProps } from '../../../primitives/Form/types';
 import Switch from '../../../primitives/Switch';
@@ -24,7 +25,7 @@ function SwitchField(props: Props, ref: React.Ref<InputField>) {
     `Prop "reserveErrorSpace" is set to false while "validate" is supplied. You will not see the validation error.`,
   );
 
-  const inputRef = React.useRef<Switch>(null);
+  const inputRef = React.useRef<InputHandle>(null);
   const focusInput = React.useCallback(
     () => inputRef.current && inputRef.current.focus(),
     [],
