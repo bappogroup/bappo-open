@@ -16,7 +16,7 @@ import { DropdownProps } from './types';
 
 export default function Dropdown({
   actions,
-  icon,
+  icon = 'menu',
   children,
   iconColor = 'black',
 }: DropdownProps) {

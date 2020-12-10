@@ -20,7 +20,7 @@ type Props = DropdownProps & {
 
 export default function Dropdown({
   actions,
-  icon,
+  icon = 'menu',
   align,
   width = 300,
   children,
