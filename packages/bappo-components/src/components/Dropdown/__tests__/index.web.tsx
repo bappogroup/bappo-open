@@ -149,7 +149,7 @@ test('should render a dropdown menu icon using the default icon', () => {
   >
     <div
       class="c1 c2 c3"
-      data-text-as-pseudo-element=""
+      data-text-as-pseudo-element=""
     />
   </div>
 </div>
