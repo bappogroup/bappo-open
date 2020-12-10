@@ -25,7 +25,6 @@ export default function ActivityIndicator({
   const containerStyleProps = {
     className,
     style,
-    testID,
   };
   const spinnerContainerStyleProps = {
     $size: sizeMap[size],
@@ -38,7 +37,7 @@ export default function ActivityIndicator({
   if (!animating) containerStyle.visibility = 'hidden';
 
   return (
-    <Container {...containerStyleProps} style={containerStyle}>
+    <Container {...containerStyleProps} style={containerStyle} testID={testID}>
       <SpinnerContainer {...spinnerContainerStyleProps}>
         <Svg height="100%" viewBox="25 25 50 50" width="100%">
           <Circle

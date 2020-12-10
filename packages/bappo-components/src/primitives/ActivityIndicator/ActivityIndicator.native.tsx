@@ -8,9 +8,6 @@ export default function ActivityIndicator({
   color = '#999',
   size = 'small',
   style,
-  testID,
 }: ActivityIndicatorProps) {
-  return (
-    <RN.ActivityIndicator {...{ color, animating, size, style, testID }} />
-  );
+  return <RN.ActivityIndicator {...{ color, animating, size, style }} />;
 }
