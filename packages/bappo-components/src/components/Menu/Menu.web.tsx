@@ -1,41 +1,39 @@
 import * as React from 'react';
-import { CSSProperties } from 'styled-components';
 
+import Colors from '../../apis/Colors';
 import { useDeviceKind } from '../../apis/DeviceKind';
 import { Popover } from '../../internals/Popover.web';
 import Icon from '../Icon';
 import { Context, useMenuContext } from './MenuContext';
 import {
   ActionRow,
+  MenuItemIcon,
   MenuItemLabel,
   PopoverContentContainer,
-  WebContainer,
+  TriggerContainer,
 } from './StyledComponents.web';
 import { MenuItemProps, MenuProps } from './types';
 
 type Props = MenuProps & {
   align?: 'left' | 'right';
+  className?: string;
   minWidth?: number;
   maxWidth?: number;
   maxHeight?: number;
-  triggerStyle?: CSSProperties;
 };
 
 export default function Menu({
-  icon = 'menu',
   align,
-  minWidth = 120,
-  maxWidth,
-  maxHeight = 150,
   children,
-  iconColor = 'black',
+  className,
+  icon = 'menu',
+  iconColor = Colors.BLACK,
+  maxHeight = 150,
+  maxWidth,
+  minWidth = 120,
   testID,
   trigger,
-  triggerStyle = {
-    display: 'inline-block',
-    cursor: 'pointer',
-    padding: '0px 5px',
-  },
+  triggerStyle,
 }: Props) {
   const [active, setActive] = React.useState(false);
 
@@ -62,19 +60,23 @@ export default function Menu({
 
   return (
     <Context.Provider value={{ close, active }}>
-      <WebContainer data-testid={testID}>
-        <div
-          style={triggerStyle}
-          onClick={() => setActive(true)}
-          ref={containerRef}
-        >
-          {trigger || <Icon name={icon} color={iconColor} />}
-        </div>
+      <TriggerContainer
+        ref={containerRef}
+        className={className}
+        onClick={() => setActive(true)}
+        testID={testID}
+        style={triggerStyle}
+      >
+        {typeof trigger === 'function'
+          ? trigger(active)
+          : trigger || <Icon name={icon} color={iconColor} />}
+      </TriggerContainer>
+      {active ? (
         <Popover
           anchorEl={containerRef.current}
           onRequestClose={() => setActive(false)}
-          visible={active}
           placement={getPopoverPlacement}
+          visible
         >
           <PopoverContentContainer
             $minWidth={minWidth}
@@ -85,24 +87,31 @@ export default function Menu({
             {children}
           </PopoverContentContainer>
         </Popover>
-      </WebContainer>
+      ) : null}
     </Context.Provider>
   );
 }
 
-const Item = ({ label, icon, numberOfLines = 1, onPress }: MenuItemProps) => {
+const Item = ({ children, icon, numberOfLines, onPress }: MenuItemProps) => {
   const context = useMenuContext();
 
   return (
     <ActionRow
-      key={label}
       onPress={() => {
         context.close();
-        onPress();
+        onPress?.();
       }}
     >
-      {icon && <Icon name={icon} />}
-      <MenuItemLabel numberOfLines={numberOfLines}>{label}</MenuItemLabel>
+      {typeof children === 'string' ? (
+        <React.Fragment>
+          {icon ? <MenuItemIcon name={icon} /> : null}
+          <MenuItemLabel numberOfLines={numberOfLines} $hasIcon={!!icon}>
+            {children}
+          </MenuItemLabel>
+        </React.Fragment>
+      ) : (
+        children
+      )}
     </ActionRow>
   );
 };

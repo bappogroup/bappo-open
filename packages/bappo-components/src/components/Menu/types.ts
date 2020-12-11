@@ -1,19 +1,15 @@
 export type MenuProps = {
+  children?: React.ReactNode;
   icon?: string;
-  children?: any;
   iconColor?: string;
   testID?: string;
   trigger?: React.ReactNode | ((isActive: boolean) => React.ReactNode);
-};
-
-export type MenuContext = {
-  close: () => void;
-  active: boolean;
+  triggerStyle?: React.CSSProperties;
 };
 
 export type MenuItemProps = {
-  label: string;
+  children?: React.ReactNode;
   icon?: string;
-  onPress: () => any;
   numberOfLines?: number;
+  onPress?: () => any;
 };

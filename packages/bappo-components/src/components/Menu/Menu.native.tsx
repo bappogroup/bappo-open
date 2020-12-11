@@ -1,25 +1,26 @@
 import * as React from 'react';
 
-import View from '../../primitives/View';
+import Colors from '../../apis/Colors';
 import Icon from '../Icon';
 import { Context, useMenuContext } from './MenuContext';
 // Note that this is not the Modal we export. It has a slide animation on native.
 import Modal from './Modal';
 import {
   ActionRow,
-  BackLink,
-  Label,
-  LinkContainer,
-  LinkInner,
+  MenuItemIcon,
+  MenuItemLabel,
   ModalContainer,
+  TriggerContainer,
 } from './StyledComponents.native';
 import { MenuItemProps, MenuProps } from './types';
 
 export default function Menu({
-  icon = 'menu',
   children,
-  iconColor = 'black',
+  icon = 'menu',
+  iconColor = Colors.BLACK,
+  testID,
   trigger,
+  triggerStyle,
 }: MenuProps) {
   const [active, setActive] = React.useState(false);
 
@@ -27,42 +28,42 @@ export default function Menu({
 
   return (
     <Context.Provider value={{ close, active }}>
-      <LinkContainer>
-        <LinkInner onPress={() => setActive(true)}>
-          {trigger || <Icon name={icon} color={iconColor} />}
-        </LinkInner>
-        <Modal onRequestClose={close} visible={active}>
-          <ModalContainer>
-            <BackButton onPress={close} />
-            {children}
-          </ModalContainer>
-        </Modal>
-      </LinkContainer>
+      <TriggerContainer
+        onPress={() => setActive(true)}
+        style={triggerStyle}
+        testID={testID}
+      >
+        {typeof trigger === 'function'
+          ? trigger(active)
+          : trigger || <Icon name={icon} color={iconColor} />}
+      </TriggerContainer>
+      <Modal onRequestClose={close} visible={active}>
+        <ModalContainer>{children}</ModalContainer>
+      </Modal>
     </Context.Provider>
   );
 }
 
-const BackButton = ({ onPress }) => (
-  <BackLink onPress={onPress}>
-    <View pointerEvents={'none'}>
-      <Icon name="arrow-back-ios" />
-    </View>
-  </BackLink>
-);
-
-const Item = ({ label, icon, onPress }: MenuItemProps) => {
+const Item = ({ children, icon, numberOfLines, onPress }: MenuItemProps) => {
   const context = useMenuContext();
 
   return (
     <ActionRow
-      key={label}
       onPress={() => {
         context.close();
-        onPress();
+        onPress?.();
       }}
     >
-      {icon && <Icon name={icon} />}
-      <Label>{label}</Label>
+      {typeof children === 'string' ? (
+        <React.Fragment>
+          {icon ? <MenuItemIcon name={icon} /> : null}
+          <MenuItemLabel numberOfLines={numberOfLines} $hasIcon={!!icon}>
+            {children}
+          </MenuItemLabel>
+        </React.Fragment>
+      ) : (
+        children
+      )}
     </ActionRow>
   );
 };

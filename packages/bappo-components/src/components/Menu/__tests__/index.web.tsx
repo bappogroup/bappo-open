@@ -3,31 +3,17 @@ import 'react-testing-library/cleanup-after-each';
 
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { getByText, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 
 import Menu from '..';
 
-const actions = [
-  {
-    icon: 'home',
-    label: 'menu1',
-    onPress: () => console.log('menu1 pressed'),
-  },
-  {
-    label: 'menu2',
-    onPress: () => console.log('menu2 pressed'),
-  },
-];
-
 test('should render a menu with two menu items', () => {
-  const { getByTestId, debug, container } = render(
+  const { getByTestId } = render(
     <Menu icon="cloud" testID="test">
-      <Menu.Item
-        icon="home"
-        label="menu1"
-        onPress={() => console.log('menu1 pressed')}
-      />
-      <Menu.Item label="menu2" onPress={() => console.log('menu2 pressed')} />
+      <Menu.Item icon="home" onPress={() => console.log('menu1 pressed')}>
+        menu1
+      </Menu.Item>
+      <Menu.Item onPress={() => console.log('menu2 pressed')}>menu2</Menu.Item>
     </Menu>,
   );
 
@@ -35,7 +21,7 @@ test('should render a menu with two menu items', () => {
   userEvent.click(getByTestId('test').querySelector('div')!);
 
   expect(getByTestId('overlay-container')).toMatchInlineSnapshot(`
-    .c7 {
+    .c9 {
       box-sizing: border-box;
       color: #191E26;
       display: inline;
@@ -56,50 +42,9 @@ test('should render a menu with two menu items', () => {
     }
 
     .c10 {
-      box-sizing: border-box;
-      color: #191E26;
-      display: inline;
-      -webkit-box-flex: 0;
-      -webkit-flex-grow: 0;
-      -ms-flex-positive: 0;
-      flex-grow: 0;
-      -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-      flex-shrink: 0;
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      font-size: 14px;
-      position: relative;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      -ms-hyphens: auto;
-      cursor: inherit;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      white-space: nowrap;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-    }
-
-    .c8 {
       font-family: Material Icons;
       font-size: 16px;
       text-align: center;
-    }
-
-    .c9 {
-      -webkit-flex: none;
-      -ms-flex: none;
-      flex: none;
-      -webkit-align-items: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      height: 24px;
-      line-height: 24px;
-      width: 24px;
-      font-size: 16px;
     }
 
     .c0 {
@@ -130,7 +75,7 @@ test('should render a menu with two menu items', () => {
       min-width: 0;
     }
 
-    .c4 {
+    .c6 {
       -webkit-align-items: stretch;
       -webkit-box-align: stretch;
       -ms-flex-align: stretch;
@@ -158,7 +103,7 @@ test('should render a menu with two menu items', () => {
       min-width: 0;
     }
 
-    .c5 {
+    .c7 {
       -webkit-align-items: stretch;
       -webkit-box-align: stretch;
       -ms-flex-align: stretch;
@@ -193,7 +138,7 @@ test('should render a menu with two menu items', () => {
       cursor: pointer;
     }
 
-    .c5 * {
+    .c7 * {
       cursor: pointer;
     }
 
@@ -216,7 +161,23 @@ test('should render a menu with two menu items', () => {
       right: 0;
     }
 
-    .c6 {
+    .c3 {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+
+    .c5 {
+      min-height: 100%;
+    }
+
+    .c8 {
       -webkit-flex-direction: row;
       -ms-flex-direction: row;
       flex-direction: row;
@@ -226,29 +187,38 @@ test('should render a menu with two menu items', () => {
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      padding-left: 8px;
     }
 
-    .c6:hover {
+    .c8:hover {
       background-color: #fafafa;
     }
 
-    .c3 {
+    .c4 {
       max-height: 50vh;
-      overflow-y: scroll;
-      overflow-x: scroll;
     }
 
     .c11 {
-      padding-left: 4px;
-      -webkit-box-flex: 1;
-      -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-      flex-grow: 1;
-      -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-      flex-shrink: 1;
-      max-width: initial;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      height: 24px;
+      line-height: 24px;
+      width: 24px;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+
+    .c12 {
+      padding-right: 8px;
+    }
+
+    .c13 {
+      padding-right: 8px;
+      padding-left: 8px;
     }
 
     <div
@@ -260,31 +230,35 @@ test('should render a menu with two menu items', () => {
         class="c0 c2"
       >
         <div
-          class="c0 c3"
+          class="c0 c3 c4"
         >
           <div
-            class="c4 c5 c6"
-            role="button"
-            tabindex="0"
+            class="c0 c5"
           >
             <div
-              class="c7 c8 c9"
-              data-text-as-pseudo-element=""
-            />
+              class="c6 c7 c8"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="c9 c10 c11"
+                data-text-as-pseudo-element=""
+              />
+              <div
+                class="c9 c12"
+                data-text-as-pseudo-element="menu1"
+              />
+            </div>
             <div
-              class="c10 sc-AxmLO c11"
-              data-text-as-pseudo-element="menu1"
-            />
-          </div>
-          <div
-            class="c4 c5 c6"
-            role="button"
-            tabindex="0"
-          >
-            <div
-              class="c10 sc-AxmLO c11"
-              data-text-as-pseudo-element="menu2"
-            />
+              class="c6 c7 c8"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="c9 c13"
+                data-text-as-pseudo-element="menu2"
+              />
+            </div>
           </div>
         </div>
       </div>
