@@ -4,13 +4,11 @@ import React from 'react';
 const MenuExample = () => (
   <View style={outerStyle}>
     <Menu minWidth={200}>
-      <Menu.Item
-        icon="home"
-        label="Home"
-        onPress={() => console.log('you pressed Home')}
-      />
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+        Home
+      </Menu.Item>
       <HorizontalLine />
-      <Menu.Item label="Timer" onPress={() => alert('You pressed Timer')} />
+      <Menu.Item onPress={() => alert('You pressed Timer')}>Timer</Menu.Item>
     </Menu>
     <Menu
       trigger={
@@ -19,93 +17,70 @@ const MenuExample = () => (
         </View>
       }
     >
-      <Menu.Item
-        label="Action 1 - No Icon"
-        onPress={() => alert('You pressed Action 1 - No Icon')}
-      />
-      <Menu.Item
-        label="Action 2 - No Icon"
-        onPress={() => alert('You pressed Action 2 - No Icon')}
-      />
+      <Menu.Item onPress={() => alert('You pressed Action 1 - No Icon')}>
+        Action 1 - No Icon
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 2 - No Icon')}>
+        Action 2 - No Icon
+      </Menu.Item>
     </Menu>
     <Menu icon="cloud" align="right">
-      <Menu.Item
-        icon="home"
-        label="Home"
-        onPress={() => console.log('you pressed Home')}
-      />
-      <Menu.Item label="Timer" onPress={() => alert('You pressed Timer')} />
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+        Home
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Timer')}>Timer</Menu.Item>
     </Menu>
     <Menu icon="menu">
-      <Menu.Item
-        icon="home"
-        label="Home"
-        onPress={() => console.log('you pressed Home')}
-      />
-      <Menu.Item label="Timer" onPress={() => alert('You pressed Timer')} />
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+        Home
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Timer')}>Timer</Menu.Item>
     </Menu>
     <Menu icon="computer" iconColor="blue" maxWidth={100}>
-      <Menu.Item
-        icon="home"
-        label="Option1, this is 600px wide"
-        onPress={() => console.log('you pressed Home')}
-      />
-      <Menu.Item
-        icon="home"
-        label="Option2, this is 600px wide"
-        onPress={() => console.log('you pressed Timer')}
-      />
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+        Option1, this is 600px wide
+      </Menu.Item>
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Timer')}>
+        Option2, this is 600px wide
+      </Menu.Item>
     </Menu>
     <Menu icon="menu" align="left">
-      <Menu.Item
-        label="Action 1"
-        onPress={() => alert('You pressed Action 1')}
-      />
-      <Menu.Item
-        label="Action 2"
-        onPress={() => alert('You pressed Action 2')}
-      />
-      <Menu.Item
-        label="Action 3"
-        onPress={() => alert('You pressed Action 3')}
-      />
-      <Menu.Item
-        label="Action 4"
-        onPress={() => alert('You pressed Action 4')}
-      />
-      <Menu.Item
-        label="Action 5"
-        onPress={() => alert('You pressed Action 5')}
-      />
-      <Menu.Item
-        label="Action 6"
-        onPress={() => alert('You pressed Action 6')}
-      />
-      <Menu.Item
-        label="Action 7"
-        onPress={() => alert('You pressed Action 7')}
-      />
-      <Menu.Item
-        label="Action 8"
-        onPress={() => alert('You pressed Action 8')}
-      />
-      <Menu.Item
-        label="Action 9"
-        onPress={() => alert('You pressed Action 9')}
-      />
+      <Menu.Item onPress={() => alert('You pressed Action 1')}>
+        Action 1
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 2')}>
+        Action 2
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 3')}>
+        Action 3
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 4')}>
+        Action 4
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 5')}>
+        Action 5
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 6')}>
+        Action 6
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 7')}>
+        Action 7
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 8')}>
+        Action 8
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 9')}>
+        Action 9
+      </Menu.Item>
     </Menu>
 
     <Menu>
-      <Menu.Item
-        icon="home"
-        label="Option1"
-        onPress={() => console.log('you pressed Home')}
-      />
-      <Menu.Item
-        icon="home"
-        label="Option2"
-        onPress={() => console.log('you pressed Timer')}
-      />
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+        Option1
+      </Menu.Item>
+      <Menu.Item icon="home" onPress={() => console.log('you pressed Timer')}>
+        Option2
+      </Menu.Item>
     </Menu>
   </View>
 );

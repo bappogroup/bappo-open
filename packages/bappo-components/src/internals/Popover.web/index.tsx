@@ -41,7 +41,7 @@ export function Popover({
   //    (opacity = 0)
   // 3. Effect runs and the style of the content container DOM element gets
   //    updated, making it visible in the right position
-  const [prevVisible, setPrevVisible] = React.useState(visible);
+  const [prevVisible, setPrevVisible] = React.useState(false);
   React.useEffect(() => {
     if (!prevVisible && visible) {
       updateContentContainerStyle();

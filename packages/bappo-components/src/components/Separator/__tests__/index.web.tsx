@@ -8,7 +8,7 @@ test('should render a separator', () => {
 
   expect(getByTestId('test')).toMatchInlineSnapshot(`
     <div
-      class="sc-AxjAm hwdivQ Viewweb__StyledViewBase-io1hre-0 gXDTWH sc-AxirZ iSCPWa"
+      class="sc-AxjAm hwdivQ sc-AxirZ feQoIa sc-AxiKw jeqquu"
       data-testid="test"
     />
   `);

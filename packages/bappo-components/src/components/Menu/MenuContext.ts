@@ -1,6 +1,9 @@
 import * as React from 'react';
 
-import { MenuContext } from './types';
+export type MenuContext = {
+  close: () => void;
+  active: boolean;
+};
 
 export const Context = React.createContext<MenuContext | undefined>(undefined);
 
