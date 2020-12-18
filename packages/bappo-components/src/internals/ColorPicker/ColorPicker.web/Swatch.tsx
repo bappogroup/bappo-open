@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Color, SwatchProps } from '../types';
+import { SwatchProps } from '../types';
+import { contrastingColor } from '../utils';
 
 const ENTER = 13;
 
-export const Swatch = ({
+const Swatch = ({
   color,
-  style,
   onClick,
   title = color.hex,
   active = false,
@@ -15,26 +15,16 @@ export const Swatch = ({
   const handleClick = (e) => onClick?.(color, e);
   const handleKeyDown = (e) => e.keyCode === ENTER && onClick?.(color, e);
 
-  const swatchStyle = {
-    background: color.hex,
-    height: '100%',
-    width: '100%',
-    cursor: 'pointer',
-    position: 'relative',
-    outline: 'none',
-    ...style,
-  };
-
   return (
-    <div
-      style={swatchStyle}
+    <SwatchControl
       onClick={handleClick}
       title={title}
       tabIndex={0}
       onKeyDown={handleKeyDown}
+      $color={color.hex}
     >
       {active ? <Dot $color={contrastingColor(color)} /> : null}
-    </div>
+    </SwatchControl>
   );
 };
 
@@ -50,15 +40,14 @@ const Dot = styled.div<{ $color: '#fff' | 'rgba(0,0,0,0.4)' | '#000' }>`
   right: 4px;
 `;
 
-const contrastingColor = (color?: Color) => {
-  if (!color) {
-    return '#fff';
-  }
-
-  if (color.a === 0) {
-    return 'rgba(0,0,0,0.4)';
-  }
-  const intensity =
-    (color.r ?? 0) * 299 + (color.g ?? 0) * 587 + (color.b ?? 0) * 114;
-  return intensity >= 128000 ? '#000' : '#fff';
-};
+const SwatchControl = styled.div<{ $color?: string }>`
+  ${({ $color }) => ($color ? `background-color: ${$color};` : ``)}
+  outline: none;
+  width: 15px;
+  height: 15px;
+  float: right;
+  marginright: 4px;
+  marginbottom: 4px;
+  position: relative;
+  cursor: pointer;
+`;

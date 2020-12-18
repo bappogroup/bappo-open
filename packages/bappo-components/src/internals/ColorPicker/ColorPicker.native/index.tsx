@@ -1,4 +1,5 @@
 import * as React from 'react';
+import RN from 'react-native';
 import styled from 'styled-components';
 
 import TextInput from '../../../primitives/TextInput';
@@ -70,8 +71,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
         />
         <Row>
           <ColorInputContainer>
-            <span>Hex</span>
-            <br />
+            <Label>Hex</Label>
             <HexInput
               maxLength={9}
               value={hex}
@@ -82,8 +82,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
           </ColorInputContainer>
           <Row>
             <ColorInputContainer>
-              <span>R</span>
-              <br />
+              <Label>R</Label>
               <ColorInput
                 maxLength={3}
                 value={color.r?.toString() ?? '0'}
@@ -94,8 +93,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
               />
             </ColorInputContainer>
             <ColorInputContainer>
-              <span>G</span>
-              <br />
+              <Label>G</Label>
               <ColorInput
                 maxLength={3}
                 value={color.g?.toString() ?? '0'}
@@ -106,8 +104,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
               />
             </ColorInputContainer>
             <ColorInputContainer>
-              <span>B</span>
-              <br />
+              <Label>B</Label>
               <ColorInput
                 maxLength={3}
                 value={color.b?.toString() ?? '0'}
@@ -118,8 +115,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
               />
             </ColorInputContainer>
             <ColorInputContainer>
-              <span>A</span>
-              <br />
+              <Label>A</Label>
               <ColorInput
                 maxLength={3}
                 value={color.a?.toString() ?? '255'}
@@ -160,11 +156,11 @@ const HexInput = styled(TextInput)`
   width: 80px;
 `;
 
-const ColorInputContainer = styled.span`
-  & span {
-    font-size: 10px;
-    color: gray;
-  }
+const ColorInputContainer = styled(View)``;
+
+const Label = styled(RN.Text)`
+  font-size: 10px;
+  color: gray;
 `;
 
 export default ColorPicker;

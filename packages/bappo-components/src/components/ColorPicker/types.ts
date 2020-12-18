@@ -1,5 +1,3 @@
-import ColorPicker from 'src/internals/ColorPicker';
-
 import { Color } from '../../internals/ColorPicker/types';
 
 export type ColorPickerProps = {

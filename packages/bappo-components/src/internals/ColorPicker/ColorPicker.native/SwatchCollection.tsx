@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import View from '../../../primitives/View';
 import { SwatchCollectionProps } from '../types';
 import Swatch from './Swatch';
 
@@ -31,9 +32,11 @@ const SwatchCollection = ({
   );
 };
 
-const CollectionContainer = styled.div`
-  width: 228px;
-  clear: both;
+const CollectionContainer = styled(View)`
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
 `;
 
 export default SwatchCollection;
