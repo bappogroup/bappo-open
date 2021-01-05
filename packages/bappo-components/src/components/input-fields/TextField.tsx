@@ -20,7 +20,7 @@ function TextField(props: Props, ref: React.Ref<InputField>) {
     ...rest
   } = props;
   warning(
-    !(validate && !reserveErrorSpace),
+    !(validate && typeof reserveErrorSpace === 'boolean' && !reserveErrorSpace),
     `Prop "reserveErrorSpace" is set to false while "validate" is supplied. You will not see the validation error.`,
   );
 
