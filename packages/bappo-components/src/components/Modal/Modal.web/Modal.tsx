@@ -30,6 +30,11 @@ function Modal({
   const [modalContentLayout, setModalContentLayout] = React.useState<Layout>(
     null,
   );
+
+  const [mouseEntered, setMouseEntered] = React.useState(false);
+  const [mouseDown, setMouseDown] = React.useState(false);
+  const [cancelClose, setCancelClose] = React.useState(false);
+
   const modalContentContainerRef = React.useRef<HTMLDivElement>(null);
 
   const prevVisibleRef = React.useRef(visible);
@@ -62,7 +67,13 @@ function Modal({
   };
 
   return (
-    <Overlay onPress={onRequestClose} visible={visible}>
+    <Overlay
+      onPress={() => {
+        if (!cancelClose) onRequestClose();
+        setCancelClose(false);
+      }}
+      visible={visible}
+    >
       <ModalContentContainer
         $deviceKind={deviceKind}
         ref={modalContentContainerRef}
@@ -70,20 +81,34 @@ function Modal({
         onKeyDown={onModalContentKeyDown}
         onLayout={onModalContentLayout}
         $placement={placement}
+        onMouseEnter={(event: React.MouseEvent) => {
+          setMouseEntered(true);
+        }}
+        onMouseLeave={(event: React.MouseEvent) => {
+          setMouseEntered(false);
+          setCancelClose(mouseDown);
+        }}
+        onMouseUp={(event: React.MouseEvent) => {
+          setMouseDown(false);
+          setCancelClose(mouseEntered);
+        }}
+        onMouseDown={(event: React.MouseEvent) => {
+          setMouseDown(true);
+        }}
       >
         {/* There are three condition here
-        1. Bydefault the header will not show as older application using previous version modal,
+        1. By default the header will not show as older application using previous version modal,
         there has been header there.
         2. When user give a title the new modal will show title in a header
         3. When user don't want a title but a header he will use showHeader
         */}
         {title || !hideHeader ? (
-          <ModalHeadr>
+          <ModalHeader>
             <ModalTitleContainer>
               <ModalTitleText $deviceKind={deviceKind}>{title}</ModalTitleText>
             </ModalTitleContainer>
             <ModalCloseIcon name="clear" onPress={onRequestClose} />
-          </ModalHeadr>
+          </ModalHeader>
         ) : null}
 
         {children}
@@ -132,7 +157,7 @@ export const ModalContentContainer = styled(DivViewBase)<{
       : ''};
 `;
 
-const ModalHeadr = styled(View)`
+const ModalHeader = styled(View)`
   flex: none;
   flex-direction: row;
   justify-content: space-between;
@@ -185,6 +210,7 @@ const ModalFooter = styled(FlexDiv)`
   border-top: 1px solid #dddbda;
   height: 64px;
   padding: 16px;
+  margin-top: auto;
 `;
 
 const desktopStyle = ({
