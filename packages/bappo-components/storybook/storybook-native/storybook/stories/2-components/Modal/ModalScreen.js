@@ -77,12 +77,6 @@ const ModalScreen = () => (
           render: () => <ModalWithHeaderFooter />,
         }}
       />
-      <DocItem
-        description="Give a Title"
-        example={{
-          render: () => <ModalWithHeaderFooter />,
-        }}
-      />
     </Section>
   </UIExplorer>
 );

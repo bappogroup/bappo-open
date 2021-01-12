@@ -3,8 +3,9 @@ import React from 'react';
 
 const renderFooter = () => {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-      <Button text="Cancel" type="primary" />
+    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+      <Text>Custom footer</Text>
+      <Button text="Custom Button" type="primary" />
     </View>
   );
 };
