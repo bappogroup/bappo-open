@@ -36,16 +36,12 @@ class ModalWithHeaderFooter extends React.Component {
           renderFooter={renderFooter}
           title="Hello Bappo"
         >
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Text> Hello World </Text>
-            <Button
-              type="primary"
-              onPress={() => this.setState({ visible: false })}
-              text="Close Modal"
-            />
-          </View>
+          <Text> Hello World </Text>
+          <Button
+            type="primary"
+            onPress={() => this.setState({ visible: false })}
+            text="Close Modal"
+          />
         </Modal>
       </View>
     );
