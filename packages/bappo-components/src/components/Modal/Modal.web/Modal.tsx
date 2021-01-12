@@ -72,18 +72,18 @@ function Modal({
         $placement={placement}
       >
         {/* There are three condition here
-        1. Bydefault the header will not show as older application using previous version modal,
+        1. By default the header will not show as older application using previous version modal,
         there has been header there.
         2. When user give a title the new modal will show title in a header
         3. When user don't want a title but a header he will use showHeader
         */}
         {title || !hideHeader ? (
-          <ModalHeadr>
+          <ModalHeader>
             <ModalTitleContainer>
               <ModalTitleText $deviceKind={deviceKind}>{title}</ModalTitleText>
             </ModalTitleContainer>
             <ModalCloseIcon name="clear" onPress={onRequestClose} />
-          </ModalHeadr>
+          </ModalHeader>
         ) : null}
 
         {children}
@@ -132,7 +132,7 @@ export const ModalContentContainer = styled(DivViewBase)<{
       : ''};
 `;
 
-const ModalHeadr = styled(View)`
+const ModalHeader = styled(View)`
   flex: none;
   flex-direction: row;
   justify-content: space-between;
@@ -185,6 +185,7 @@ const ModalFooter = styled(FlexDiv)`
   border-top: 1px solid #dddbda;
   height: 64px;
   padding: 16px;
+  margin-top: auto;
 `;
 
 const desktopStyle = ({
