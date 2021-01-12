@@ -68,7 +68,7 @@ const Footer = styled(View)`
   flex-direction: row;
   justify-content: flex-end;
   padding: 8px;
-  paddingtop: 4px;
+  padding-top: 4px;
 `;
 
 const FooterButton = styled(Button)`

@@ -6,7 +6,7 @@ const ColorPickerExample = () => {
 
   return (
     <View style={outerStyle}>
-      <ColorPicker hex="#FFF" onChange={(color) => setColor(color)} />
+      <ColorPicker hex="#000" onChange={(color) => setColor(color)} />
       {/* <SelectedColor $color={color.hex} /> */}
     </View>
   );

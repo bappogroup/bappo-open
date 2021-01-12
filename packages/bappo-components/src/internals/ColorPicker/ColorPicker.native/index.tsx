@@ -53,6 +53,8 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
 
       newColor && setColor(newColor);
     } else if (value.hex) {
+      value.hex = value.hex?.replace(/[^#A-Fa-f0-9]/g, '');
+
       const newColor = hexAToRGBA(value.hex);
 
       newColor && setColor(newColor);
@@ -87,7 +89,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
                 maxLength={3}
                 value={color.r?.toString() ?? '0'}
                 onValueChange={(value) => {
-                  handleColorChange({ r: +value });
+                  handleColorChange({ r: +value.replace(/[^0-9]/g, '') });
                 }}
                 type="number"
               />
@@ -98,7 +100,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
                 maxLength={3}
                 value={color.g?.toString() ?? '0'}
                 onValueChange={(value) => {
-                  handleColorChange({ g: +value });
+                  handleColorChange({ g: +value.replace(/[^0-9]/g, '') });
                 }}
                 type="number"
               />
@@ -109,7 +111,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
                 maxLength={3}
                 value={color.b?.toString() ?? '0'}
                 onValueChange={(value) => {
-                  handleColorChange({ b: +value });
+                  handleColorChange({ b: +value.replace(/[^0-9]/g, '') });
                 }}
                 type="number"
               />
@@ -120,7 +122,7 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
                 maxLength={3}
                 value={color.a?.toString() ?? '255'}
                 onValueChange={(value) => {
-                  handleColorChange({ a: +value });
+                  handleColorChange({ a: +value.replace(/[^0-9]/g, '') });
                 }}
                 type="number"
               />

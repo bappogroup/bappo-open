@@ -46,8 +46,8 @@ const SwatchControl = styled.div<{ $color?: string }>`
   width: 15px;
   height: 15px;
   float: right;
-  marginright: 4px;
-  marginbottom: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
   position: relative;
   cursor: pointer;
 `;

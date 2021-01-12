@@ -52,6 +52,8 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
 
       newColor && setColor(newColor);
     } else if (value.hex) {
+      value.hex = value.hex?.replace(/[^#A-Fa-f0-9]/g, '');
+
       const newColor = hexAToRGBA(value.hex);
 
       newColor && setColor(newColor);
