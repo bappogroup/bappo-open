@@ -30,6 +30,11 @@ function Modal({
   const [modalContentLayout, setModalContentLayout] = React.useState<Layout>(
     null,
   );
+
+  const [mouseEntered, setMouseEntered] = React.useState(false);
+  const [mouseDown, setMouseDown] = React.useState(false);
+  const [cancelClose, setCancelClose] = React.useState(false);
+
   const modalContentContainerRef = React.useRef<HTMLDivElement>(null);
 
   const prevVisibleRef = React.useRef(visible);
@@ -62,7 +67,13 @@ function Modal({
   };
 
   return (
-    <Overlay onPress={onRequestClose} visible={visible}>
+    <Overlay
+      onPress={() => {
+        if (!cancelClose) onRequestClose();
+        setCancelClose(false);
+      }}
+      visible={visible}
+    >
       <ModalContentContainer
         $deviceKind={deviceKind}
         ref={modalContentContainerRef}
@@ -70,6 +81,20 @@ function Modal({
         onKeyDown={onModalContentKeyDown}
         onLayout={onModalContentLayout}
         $placement={placement}
+        onMouseEnter={(event: React.MouseEvent) => {
+          setMouseEntered(true);
+        }}
+        onMouseLeave={(event: React.MouseEvent) => {
+          setMouseEntered(false);
+          setCancelClose(mouseDown);
+        }}
+        onMouseUp={(event: React.MouseEvent) => {
+          setMouseDown(false);
+          setCancelClose(mouseEntered);
+        }}
+        onMouseDown={(event: React.MouseEvent) => {
+          setMouseDown(true);
+        }}
       >
         {/* There are three condition here
         1. By default the header will not show as older application using previous version modal,
