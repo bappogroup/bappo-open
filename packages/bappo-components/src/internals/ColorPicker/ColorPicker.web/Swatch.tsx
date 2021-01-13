@@ -34,20 +34,21 @@ const Dot = styled.div<{ $color: '#fff' | 'rgba(0,0,0,0.4)' | '#000' }>`
   position: absolute;
   background-color: ${({ $color }) => `${$color}`};
   border-radius: 50%;
-  top: 4px;
-  left: 4px;
-  bottom: 4px;
-  right: 4px;
+  top: 8px;
+  left: 8px;
+  bottom: 8px;
+  right: 8px;
 `;
 
 const SwatchControl = styled.div<{ $color?: string }>`
   ${({ $color }) => ($color ? `background-color: ${$color};` : ``)}
   outline: none;
-  width: 15px;
-  height: 15px;
-  float: right;
+  width: 24px;
+  height: 24px;
+  float: left;
   margin-right: 4px;
   margin-bottom: 4px;
   position: relative;
   cursor: pointer;
+  box-shadow: inset 2px 2px 1px -1px rgba(0, 0, 0, 0.2);
 `;

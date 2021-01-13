@@ -32,7 +32,7 @@ const SwatchCollection = ({
 };
 
 const CollectionContainer = styled.div`
-  width: 228px;
+  width: 342px;
   clear: both;
 `;
 
