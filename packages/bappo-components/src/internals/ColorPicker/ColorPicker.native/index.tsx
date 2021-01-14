@@ -2,7 +2,9 @@ import * as React from 'react';
 import RN from 'react-native';
 import styled from 'styled-components';
 
+import Text from '../../../primitives/Text';
 import TextInput from '../../../primitives/TextInput';
+import TouchableView from '../../../primitives/TouchableView';
 import View from '../../../primitives/View';
 import { Color, ColorPickerProps, DefaultColors } from '../types';
 import { RGBAToHexA, hexAToRGBA } from '../utils';
@@ -71,6 +73,9 @@ const ColorPicker = ({ colors, color, onChange }: ColorPickerProps) => {
           onClick={handleSwatchClick}
           activeColor={color}
         />
+        <TransparentSwatch onPress={() => handleColorChange({ hex: '#0000' })}>
+          <Text>transparent</Text>
+        </TransparentSwatch>
         <Row>
           <ColorInputContainer>
             <Label>Hex</Label>
@@ -152,6 +157,19 @@ const Container = styled(View)`
 
 const ColorInput = styled(TextInput)`
   width: 30px;
+`;
+
+const TransparentSwatch = styled(TouchableView)`
+  width: 100%;
+  font-size: 12px;
+  color: gray;
+  height: 24px;
+  line-height: 24px;
+  align-items: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
+  border-bottom-width: 2px;
 `;
 
 const HexInput = styled(TextInput)`

@@ -32,8 +32,8 @@ const SwatchCollection = ({
 };
 
 const CollectionContainer = styled.div`
-  width: 342px;
-  clear: both;
+  width: 336px;
+  margin-right: -4px;
 `;
 
 export default SwatchCollection;

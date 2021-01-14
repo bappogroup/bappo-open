@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Picker from '../../../internals/ColorPicker';
 import { Color } from '../../../internals/ColorPicker/types';
 import { hexAToRGBA } from '../../../internals/ColorPicker/utils';
+import Text from '../../../primitives/Text';
 import TouchableView from '../../../primitives/TouchableView';
 import View from '../../../primitives/View';
 import Button from '../../Button';
@@ -38,7 +39,13 @@ const ColorPicker = ({
           <Picker color={color} onChange={(value) => setColor(value)} />
           <Footer>
             <Preview>
-              <PreviewColor $color={color?.hex ?? '#0000'} />
+              <PreviewColor $color={color?.hex ?? '#0000'}>
+                {color?.a === 0 ? (
+                  <TransparentPreviewColor>
+                    <Text style={{ lineHeight: 30 }}>transparent</Text>
+                  </TransparentPreviewColor>
+                ) : null}
+              </PreviewColor>
             </Preview>
             <FooterButton
               type="tertiary"
@@ -68,7 +75,7 @@ const Footer = styled(View)`
   flex-direction: row;
   justify-content: flex-end;
   padding: 8px;
-  padding-top: 4px;
+  padding-top: 16px;
 `;
 
 const FooterButton = styled(Button)`
@@ -87,4 +94,12 @@ const PreviewColor = styled(View)<{ $color: string }>`
   left: 0px;
   right: 0px;
   bottom: 0px;
+`;
+
+const TransparentPreviewColor = styled(View)`
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  align-items: center;
 `;
