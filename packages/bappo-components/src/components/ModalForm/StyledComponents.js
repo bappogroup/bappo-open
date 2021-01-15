@@ -26,7 +26,6 @@ export const ModalFormTitleContainer = styled(View)`
 export const modalFormMobileTitleTextStyle = css`
   font-size: 16px;
   color: #2b2826;
-  line-height: 16px;
   text-align: center;
 `;
 
