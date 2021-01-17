@@ -122,7 +122,6 @@ const ModalFormTitleText = styled(Text).attrs((props) => ({
 }>`
   font-size: 20px;
   color: #2b2826;
-  line-height: 20px;
 
   ${(props) =>
     props.$deviceKind === 'phone' || props.$deviceKind === 'large-phone'
