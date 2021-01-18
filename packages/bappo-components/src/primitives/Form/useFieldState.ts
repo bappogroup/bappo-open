@@ -1,6 +1,6 @@
-import invariant from 'invariant';
 import { isEqual } from 'lodash';
 import React from 'react';
+import warning from 'warning';
 
 import { useFormState } from './FormState/Context';
 import { FieldState, FieldValidator } from './FormState/types';
@@ -43,12 +43,15 @@ export function useFieldState<V>(
   const formState = useFormState();
   const mode = fieldState
     ? 'controlled'
-    : formState
+    : formState && name
     ? 'form-field'
     : 'standalone';
 
   /* Begin form field mode */
-  invariant(!(mode === 'form-field' && !name), `prop "name" is required.`);
+  warning(
+    !(formState && !name),
+    `Field is inside a form but is regarded as a standalone field as it doesn't have the "name" prop.`,
+  );
   // register validators with form
   React.useEffect(() => {
     if (mode === 'form-field' && formState && name && validate) {
