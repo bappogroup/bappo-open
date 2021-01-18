@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import IconButton from '../../components/IconButton';
-import View from '../../primitives/View';
 import { IconProps } from '../Icon/Icon';
 import IconModal from './IconModal';
 
@@ -18,7 +17,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({
 }) => {
   const [modalVisable, setModalVisable] = useState(false);
   return (
-    <View>
+    <React.Fragment>
       <IconButton
         name={value}
         onPress={() => {
@@ -34,7 +33,7 @@ const IconSelector: React.FC<IconSelectorProps> = ({
           setIconName={onValueChange}
         />
       ) : null}
-    </View>
+    </React.Fragment>
   );
 };
 
