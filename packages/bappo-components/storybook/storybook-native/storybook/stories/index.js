@@ -36,6 +36,7 @@ require('./2-components/TabPicker/TabPickerScreen');
 require('./2-components/TimePicker/TimePickerScreen');
 require('./2-components/Separator/SeparatorScreen');
 require('./2-components/VerticalSeparator/VerticalSeparatorScreen');
+require('./2-components/ColorPicker/ColorPickerScreen');
 
 require('./3-inputFields/DateField/DateFieldScreen');
 require('./3-inputFields/SelectField/SelectFieldScreen');
