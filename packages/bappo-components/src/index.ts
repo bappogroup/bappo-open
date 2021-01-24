@@ -19,6 +19,7 @@ export { default as Text } from './primitives/Text';
 export { default as TextInput } from './primitives/TextInput';
 export { default as TouchableView } from './primitives/TouchableView';
 export { default as View } from './primitives/View';
+export { default as Checkbox } from './primitives/Checkbox';
 
 // Components
 export { default as Avatar } from './components/Avatar';
