@@ -6,7 +6,9 @@ const CheckboxMinimalExample = () => {
 
   const check = (value) => setValue(value);
 
-  return <Checkbox onValueChange={check} checked={value} />;
+  return (
+    <Checkbox onValueChange={check} checked={value} testID="test-checkbox-1" />
+  );
 };
 
 export default CheckboxMinimalExample;

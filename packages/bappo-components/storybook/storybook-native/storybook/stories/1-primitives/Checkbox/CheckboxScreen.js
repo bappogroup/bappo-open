@@ -91,7 +91,7 @@ const CheckboxScreen = () => (
         description="Minimal"
         example={{
           code: `
-          <Checkbox onValueChange={check} checked={value} />`,
+<Checkbox onValueChange={check} checked={value} testID="test-checkbox-1"/>`,
           render: () => <Minimal />,
         }}
       />
