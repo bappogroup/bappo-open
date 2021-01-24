@@ -7,7 +7,7 @@ import { BadgeProps } from './types';
 
 export default function Badge({ number, testID }: BadgeProps) {
   return (
-    <StyledView selectable testID={testID}>
+    <StyledView testID={testID}>
       <StyledText>{number}</StyledText>
     </StyledView>
   );

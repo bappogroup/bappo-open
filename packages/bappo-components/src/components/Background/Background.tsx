@@ -5,11 +5,7 @@ import View from '../../primitives/View';
 import { BackgroundProps } from './types';
 
 export default function Background({ children, testID }: BackgroundProps) {
-  return (
-    <StyledView selectable testID={testID}>
-      {children}
-    </StyledView>
-  );
+  return <StyledView testID={testID}>{children}</StyledView>;
 }
 
 const StyledView = styled(View)`

@@ -1,15 +1,17 @@
 import React from 'react';
+
 import UIExplorer, {
   AppText,
   Code,
   Description,
   DocItem,
   Section,
-  storiesOf,
   WebLink,
+  storiesOf,
 } from '../../../ui-explorer';
-import Minimal from './examples/Minimal';
 import { url } from '../../../url';
+import Disabled from './examples/Disabled';
+import Minimal from './examples/Minimal';
 const SwitchScreen = () => (
   <UIExplorer title="Switch" url="1-primitives/Switch">
     <WebLink href={`${url}/src/primitives/Switch`} text="Source Code" />
@@ -93,6 +95,15 @@ const SwitchScreen = () => (
   value={this.state.value}
 />`,
           render: () => <Minimal />,
+        }}
+      />
+
+      <DocItem
+        description="Disabled"
+        example={{
+          code: `
+<Switch disabled />`,
+          render: () => <Disabled />,
         }}
       />
     </Section>

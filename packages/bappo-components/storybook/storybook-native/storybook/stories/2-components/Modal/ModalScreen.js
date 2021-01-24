@@ -57,6 +57,11 @@ const ModalScreen = () => (
         typeInfo="boolean"
         description="Determines whether the modal is visible."
       />
+      <DocItem
+        name="renderFooter?"
+        typeInfo="() => JSX.Element"
+        description="Renders a custom footer."
+      />
     </Section>
 
     <Section title="More examples">
@@ -64,12 +69,6 @@ const ModalScreen = () => (
         description="Minimal"
         example={{
           render: () => <Minimal />,
-        }}
-      />
-      <DocItem
-        description="Give a Title"
-        example={{
-          render: () => <ModalWithHeaderFooter />,
         }}
       />
       <DocItem

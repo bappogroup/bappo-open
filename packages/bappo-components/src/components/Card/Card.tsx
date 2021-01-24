@@ -7,7 +7,7 @@ import { CardProps } from './types';
 
 export default function Card({ children, testID, ...rest }: CardProps) {
   return (
-    <StyledView selectable testID={testID} {...rest}>
+    <StyledView testID={testID} {...rest}>
       {children}
     </StyledView>
   );

@@ -21,7 +21,7 @@ export type PopoverProps = {
    * edge of the popup aligns with the top edge of the anchor).
    */
   placement?: GetPopupPosition;
-  visible?: boolean;
+  visible: boolean;
 };
 
 export type GetPopupPosition = (

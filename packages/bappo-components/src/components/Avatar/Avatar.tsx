@@ -42,7 +42,10 @@ export default function Avatar({
   );
 }
 
-const AvatarContainer = styled(View)`
+const AvatarContainer = styled(View)<{
+  $avatarBgColor: string;
+  $size: 'large' | 'medium';
+}>`
   align-items: center;
   justify-content: center;
   background-color: ${({ $avatarBgColor }) => $avatarBgColor};

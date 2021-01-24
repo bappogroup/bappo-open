@@ -1,49 +1,28 @@
+import styled from 'styled-components';
+
 import { DeviceKind } from '../../apis/DeviceKind';
-import { styled } from '../../apis/Style';
-import { breakpoint } from '../../internals/web/breakpoint';
+import { DivTouchableViewBase } from '../../internals/web/TouchableViewBase';
+import ScrollView from '../../primitives/ScrollView';
 import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
-import View from '../../primitives/View';
+import Icon from '../Icon';
 
 export const ActionRow = styled(TouchableView)`
   flex-direction: row;
   border-bottom: 1px solid #ddd;
   height: 40px;
   align-items: center;
-  padding-left: 8px;
   &:hover {
     background-color: #fafafa;
   }
 `;
 
-export const Label = styled(Text)`
-  padding-left: 4px;
-`;
+export const TriggerContainer = styled(DivTouchableViewBase)``;
 
-export const WebContainer = styled.div`
-  display: inline-block;
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
-export const BackLink = styled(TouchableView)`
-  background-color: #eee;
-  flex-direction: row;
-  height: 40px;
-  align-items: center;
-  padding-left: 8px;
-  display: none;
-
-  @media (max-width: ${breakpoint.max}px) {
-    display: flex;
-  }
-`;
-
-export const PopoverContentContainer = styled(View)<{
-  $maxWidth?: any;
-  $minWidth?: any;
-  $maxHeight?: any;
+export const PopoverContentContainer = styled(ScrollView)<{
+  $maxWidth?: number;
+  $minWidth?: number;
+  $maxHeight?: number;
   $deviceKind: DeviceKind;
 }>`
   ${({ $deviceKind, $maxWidth, $minWidth, $maxHeight }) => {
@@ -55,13 +34,15 @@ export const PopoverContentContainer = styled(View)<{
       return `max-height: 50vh;`;
     }
   }}
-
-  overflow-y: scroll;
-  overflow-x: scroll;
 `;
 
-export const MenuItemLabel = styled(Label)`
-  flex-grow: 1;
-  flex-shrink: 1;
-  max-width: initial;
+export const MenuItemIcon = styled(Icon)`
+  margin-left: 8px;
+`;
+
+export const MenuItemLabel = styled(Text)<{
+  $hasIcon: boolean;
+}>`
+  padding-right: 8px;
+  ${({ $hasIcon }) => ($hasIcon ? '' : `padding-left: 8px;`)};
 `;

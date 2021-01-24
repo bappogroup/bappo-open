@@ -1,8 +1,10 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components';
 
+import ScrollView from '../../primitives/ScrollView';
 import Text from '../../primitives/Text';
 import TouchableView from '../../primitives/TouchableView';
-import View from '../../primitives/View';
+import Icon from '../Icon';
 
 export const ActionRow = styled(TouchableView)`
   flex-direction: row;
@@ -12,27 +14,21 @@ export const ActionRow = styled(TouchableView)`
   border-bottom-color: #eee;
   height: 40px;
   align-items: center;
-  padding-left: 8px;
 `;
 
-export const Label = styled(Text)`
-  padding-left: 4px;
+export const TriggerContainer = styled(TouchableView)``;
+
+export const ModalContainer = styled(ScrollView)`
+  max-height: ${Dimensions.get('window').height}px;
 `;
 
-export const LinkContainer = styled(View)`
-  width: 50px;
+export const MenuItemIcon = styled(Icon)`
+  margin-left: 8px;
 `;
 
-export const LinkInner = styled(TouchableView)`
-  width: 50px;
-`;
-
-export const ModalContainer = styled(View)``;
-
-export const BackLink = styled(TouchableView)`
-  background-color: #f8f8f8;
-  flex-direction: row;
-  height: 45px;
-  align-items: center;
-  padding-left: 8px;
+export const MenuItemLabel = styled(Text)<{
+  $hasIcon: boolean;
+}>`
+  padding-right: 8px;
+  ${({ $hasIcon }) => ($hasIcon ? '' : `padding-left: 8px;`)};
 `;

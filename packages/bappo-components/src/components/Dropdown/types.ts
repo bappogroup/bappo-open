@@ -9,7 +9,7 @@ export type ModalFormSubmitButtonProps = {
 
 export type DropdownProps = {
   actions: any;
-  icon: string;
+  icon?: string;
   children?: any;
   iconColor?: string;
   testID?: string;

@@ -53,7 +53,7 @@ const Container = styled(TouchableView)`
 
 const StyledSubHeading = styled(SubHeading)``;
 
-const StyledView = styled(View)`
+const StyledView = styled(View)<{ $size: number; $color?: string }>`
   padding: 8px;
   border-radius: 3px;
   width: 100%;

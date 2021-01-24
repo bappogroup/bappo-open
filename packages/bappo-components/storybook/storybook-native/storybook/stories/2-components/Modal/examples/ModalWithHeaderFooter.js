@@ -3,8 +3,9 @@ import React from 'react';
 
 const renderFooter = () => {
   return (
-    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
-      <Button text="Cancel" type="primary" />
+    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+      <Text>Custom footer</Text>
+      <Button text="Custom Button" type="primary" />
     </View>
   );
 };
@@ -36,16 +37,12 @@ class ModalWithHeaderFooter extends React.Component {
           renderFooter={renderFooter}
           title="Hello Bappo"
         >
-          <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Text> Hello World </Text>
-            <Button
-              type="primary"
-              onPress={() => this.setState({ visible: false })}
-              text="Close Modal"
-            />
-          </View>
+          <Text> Hello World </Text>
+          <Button
+            type="primary"
+            onPress={() => this.setState({ visible: false })}
+            text="Close Modal"
+          />
         </Modal>
       </View>
     );
