@@ -12,7 +12,10 @@ export function IconList({
 }) {
   const [count, setCount] = useState(144);
   useEffect(() => {
-    window.setTimeout(() => setCount(999999), 0);
+    const timeoutId = window.setTimeout(() => setCount(999999), 0);
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
