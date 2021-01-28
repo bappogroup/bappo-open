@@ -42,7 +42,7 @@ const IconModal: React.FC<IconModalProps> = ({
       <IconsContainer>
         <TextField
           {...textFieldProps}
-          placeholder="Type to search Icon"
+          placeholder="Type to search Icons"
           reserveErrorSpace={false}
         />
         <IconList
