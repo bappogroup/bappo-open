@@ -40,7 +40,7 @@ const LinkOuter = styled.div`
 const Link = styled.div`
   display: flex;
   justify-content: center;
-  align-items; center;
+  align-items: center;
   width: 24px;
   height: 24px;
   cursor: pointer;
