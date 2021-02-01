@@ -10,7 +10,8 @@ export function IconList({
   onSelect: (selectedIcon: string) => void;
   selectedIcons: string[];
 }) {
-  const [count, setCount] = useState(144);
+  const [count, setCount] = useState(144); // render 144 items only for super fast response time
+  // then trigger second round of rendering for all itmes, that happens during thinking time
   useEffect(() => {
     const timeoutId = window.setTimeout(() => setCount(999999), 0);
     return () => {
@@ -46,5 +47,5 @@ const Link = styled.div`
   cursor: pointer;
   &: hover {
     background-color: #ddd;
-  }  
+  }
 `;
