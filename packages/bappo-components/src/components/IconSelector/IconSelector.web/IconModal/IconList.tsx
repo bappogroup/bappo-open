@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Icon from '../../Icon';
+import Icon from '../../../Icon';
 
 export function IconList({
   onSelect,
@@ -45,7 +45,7 @@ const Link = styled.div`
   width: 24px;
   height: 24px;
   cursor: pointer;
-  &: hover {
+  &:hover {
     background-color: #ddd;
   }
 `;

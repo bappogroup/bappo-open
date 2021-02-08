@@ -1,1 +1,1 @@
-export { default } from './IconSelector';
+export { default } from './IconSelector.web';

@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import MateriIcon from '../../../../glyphmaps/MaterialIcons.json';
-import { useDebouncedInputProps } from '../../../internals/hooks/useDebouncedInputProps';
-import View from '../../../primitives/View';
-import TextField from '../../input-fields/TextField';
-import Modal from '../../Modal';
+import MateriIcon from '../../../../../glyphmaps/MaterialIcons.json';
+import { useDebouncedInputProps } from '../../../../internals/hooks/useDebouncedInputProps';
+import View from '../../../../primitives/View';
+import TextField from '../../../input-fields/TextField';
+import Modal from '../../../Modal';
 import { IconList } from './IconList';
 
 interface IconModalProps {

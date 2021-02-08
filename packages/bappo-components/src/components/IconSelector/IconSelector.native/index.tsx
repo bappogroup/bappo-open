@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import IconButton from '../../components/IconButton';
-import { IconProps } from '../Icon/Icon';
+import { IconProps } from '../../Icon/Icon';
+import IconButton from '../../IconButton';
 import IconModal from './IconModal';
 
 type IconSelectorProps = Pick<IconProps, 'color' | 'size'> & {

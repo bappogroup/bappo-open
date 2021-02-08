@@ -1,10 +1,4 @@
-import {
-  Background,
-  Colors,
-  IconSelector,
-  Text,
-  styled,
-} from 'bappo-components';
+import { Background, IconSelector, Text } from 'bappo-components';
 import React, { useState } from 'react';
 
 const IconSelectorExample = () => {
