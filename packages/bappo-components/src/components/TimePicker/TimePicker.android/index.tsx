@@ -19,6 +19,8 @@ function TimePicker({
   accessibilityLabel,
   autoFocus,
   onBlur,
+  onFocus,
+  onValueChange,
   renderDropdownIcon,
   style,
   testID,
@@ -26,13 +28,13 @@ function TimePicker({
   placeholder,
 }: TimePickerProps) {
   const [showPicker, setShowPicker] = React.useState(false);
-  const pickerRef = React.useRef();
+  const pickerRef = React.useRef<any>();
 
   const styleProps = {
     style,
   };
 
-  let _time: any;
+  let _time: moment.Moment;
   let _timeStr: string = '';
 
   if (value) {
@@ -51,13 +53,27 @@ function TimePicker({
     return <ValueText>{_timeStr}</ValueText>;
   }
 
+  function blur() {
+    pickerRef.current && pickerRef.current.blur();
+  }
+
+  function focus() {
+    pickerRef.current && pickerRef.current.focus();
+  }
+
   const props = {
     accessibilityLabel,
     autoFocus,
     clearable,
     clearValueText,
-    onBlur,
-    onFocus: () => setShowPicker(true),
+    onBlur: () => {
+      setShowPicker(false);
+      onBlur && onBlur();
+    },
+    onFocus: () => {
+      setShowPicker(true);
+      onFocus && onFocus();
+    },
     readOnly,
     ref: pickerRef,
     renderDropdownIcon,
@@ -65,137 +81,18 @@ function TimePicker({
     testID,
   };
 
-  console.log(pickerRef.current);
-
   return (
     <React.Fragment>
       <PickerNative {...styleProps} {...props} />
-      {showPicker && <DateTimePicker mode="time" value={new Date()} />}
+      {showPicker && <DateTimePicker mode="time" value={_time.toDate()} onChange={(event, newTime) => {
+        blur();
+
+        if (newTime && onValueChange) {
+          onValueChange(moment(newTime).format(valueFormat));
+        }
+      }}/>}
     </React.Fragment>
   );
 }
-
-// type Props = TimePickerProps;
-
-// class TimePicker2 extends React.Component<Props> {
-//   static defaultProps = {
-//     clearable: true,
-//     clearValueText: 'Clear value',
-//     displayFormat: DEFAULT_TIME_DISPLAY_FORMAT,
-//     readOnly: false,
-//     valueFormat: DEFAULT_TIME_VALUE_FORMAT,
-//   };
-
-//   static displayName = 'TimePicker';
-
-//   blur() {
-//     this._picker && this._picker.blur();
-//   }
-
-//   focus() {
-//     this._picker && this._picker.focus();
-//   }
-
-//   render() {
-//     const {
-//       accessibilityLabel,
-//       autoFocus,
-//       clearable,
-//       clearValueText,
-//       displayFormat,
-//       onBlur,
-//       readOnly,
-//       renderDropdownIcon,
-//       style,
-//       testID,
-//       value,
-//       valueFormat,
-//     } = this.props;
-
-//     const styleProps = {
-//       style,
-//     };
-
-//     if (value) {
-//       this._time = moment(value, valueFormat);
-//       this._timeStr = this._time.format(displayFormat);
-//     } else {
-//       this._time = moment();
-//       this._timeStr = '';
-//     }
-
-//     const props = {
-//       accessibilityLabel,
-//       autoFocus,
-//       clearable,
-//       clearValueText,
-//       onBlur,
-//       onFocus: this._openPicker,
-//       readOnly,
-//       ref: this._capturePickerRef,
-//       renderDropdownIcon,
-//       renderValue: this._renderValue,
-//       testID,
-//     };
-
-//     return <PickerNative {...styleProps} {...props} />;
-//   }
-
-//   _picker: ?React.ElementRef<typeof PickerNative>;
-//   _time: Moment;
-//   _timeStr: string;
-
-//   _capturePickerRef = (ref: ?React.ElementRef<typeof PickerNative>) => {
-//     this._picker = ref;
-//   };
-
-//   _openPicker = () =>
-
-//   // _openPicker = () => {
-//   //   const { onFocus } = this.props;
-
-//   //   onFocus && onFocus();
-
-//   //   TimePickerAndroid.open({
-//   //     hour: this._time.hour(),
-//   //     minute: this._time.minute(),
-//   //   }).then(this._onTimeSelect);
-//   // };
-
-//   // _onTimeSelect = ({
-//   //   action,
-//   //   hour,
-//   //   minute,
-//   // }: {
-//   //   action: string,
-//   //   hour: number,
-//   //   minute: number,
-//   // }) => {
-//   //   if (action !== TimePickerAndroid.dismissedAction) {
-//   //     const time = moment({ hour, minute });
-//   //     this._selectTime(time);
-//   //   } else {
-//   //     this.blur();
-//   //   }
-//   // };
-
-//   _renderValue = () => {
-//     const { placeholder } = this.props;
-
-//     if (!this._timeStr) {
-//       return <PlaceholderText>{placeholder}</PlaceholderText>;
-//     }
-
-//     return <ValueText>{this._timeStr}</ValueText>;
-//   };
-
-//   _selectTime = (time: Moment) => {
-//     const { onValueChange, valueFormat } = this.props;
-
-//     this.blur();
-
-//     onValueChange && onValueChange(time.format(valueFormat));
-//   };
-// }
 
 export default TimePicker;
