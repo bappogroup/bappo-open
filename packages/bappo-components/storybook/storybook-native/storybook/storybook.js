@@ -21,5 +21,5 @@ const StorybookUIWrapper = () => (
   </View>
 );
 
-AppRegistry.registerComponent('example', () => StorybookUIWrapper);
+AppRegistry.registerComponent('storybooknative', () => StorybookUIWrapper);
 export default StorybookUI;

@@ -4,8 +4,6 @@
  *
  * @format
  */
-
-const blacklist = require('metro-config/src/defaults/blacklist');
 const path = require('path');
 
 module.exports = {
@@ -31,10 +29,10 @@ module.exports = {
         'node_modules/styled-components',
       ),
     },
-    blacklistRE: blacklist([
+    blockList: [
       /bappo-components\/node_modules\/react\/.*/,
       /bappo-components\/node_modules\/react-native\/.*/,
       /bappo-components\/node_modules\/styled-components\/.*/,
-    ]),
+    ],
   },
 };
