@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Icon from '../../../components/Icon';
+import { InputHandle } from '../../../input-handle';
 import { DivViewBase } from '../../../internals/web/ViewBase';
 import { CheckboxProps } from '../types';
 
@@ -9,90 +10,105 @@ type Props = CheckboxProps & {
   className?: string;
 };
 
-export default function Checkbox({
-  accessibilityLabel,
-  className,
-  checked = false,
-  colorChecked = '#FF7800',
-  colorUnchecked = '#B0ADAB',
-  size = 'medium',
-  disabled = false,
-  style,
-  onBlur,
-  onFocus,
-  onValueChange,
-  testID,
-}: Props) {
-  const sizes = {
-    small: 16,
-    medium: 24,
-    large: 32,
-  };
+const Checkbox = React.forwardRef(
+  (
+    {
+      accessibilityLabel,
+      className,
+      checked = false,
+      colorChecked = '#FF7800',
+      colorUnchecked = '#B0ADAB',
+      size = 'medium',
+      disabled = false,
+      style,
+      onBlur,
+      onFocus,
+      onValueChange,
+      testID,
+    }: Props,
+    ref: React.Ref<InputHandle>,
+  ) => {
+    const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const _onBlur = (_event: React.FocusEvent<HTMLDivElement>) => {
-    onBlur?.({
-      nativeEvent: {
-        checked,
-      },
-    });
-  };
+    React.useImperativeHandle(ref, () => ({
+      focus: () => containerRef.current?.focus(),
+      blur: () => containerRef.current?.blur(),
+    }));
 
-  const _onFocus = (_event: React.FocusEvent<HTMLDivElement>) => {
-    onFocus?.({
-      nativeEvent: {
-        checked,
-      },
-    });
-  };
+    const sizes = {
+      small: 16,
+      medium: 24,
+      large: 32,
+    };
 
-  const _onKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const ENTER = 13;
-    const SPACE = 32;
+    const _onBlur = (_event: React.FocusEvent<HTMLDivElement>) => {
+      onBlur?.({
+        nativeEvent: {
+          checked,
+        },
+      });
+    };
 
-    if (event.which === ENTER || event.which === SPACE) {
-      event.preventDefault();
-      event.stopPropagation();
-      _toggle();
-    }
-  };
+    const _onFocus = (_event: React.FocusEvent<HTMLDivElement>) => {
+      onFocus?.({
+        nativeEvent: {
+          checked,
+        },
+      });
+    };
 
-  const _toggle = () => !disabled && onValueChange?.(!checked);
+    const _onKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const ENTER = 13;
+      const SPACE = 32;
 
-  const containerprops = {
-    accessibilityLabel,
-    onBlur: _onBlur,
-    onClick: _toggle,
-    onFocus: _onFocus,
-    onKeyPress: _onKeyPress,
-    testID,
-    $checked: !!checked,
-    $disabled: disabled,
-  };
+      if (event.which === ENTER || event.which === SPACE) {
+        event.preventDefault();
+        event.stopPropagation();
+        _toggle();
+      }
+    };
 
-  const styleProps = {
-    className,
-    style,
-  };
+    const _toggle = () => !disabled && onValueChange?.(!checked);
 
-  const icon = checked ? 'check-box' : 'check-box-outline-blank';
-  const color = disabled ? 'gray' : checked ? colorChecked : colorUnchecked;
+    const containerprops = {
+      accessibilityLabel,
+      onBlur: _onBlur,
+      onClick: _toggle,
+      onFocus: _onFocus,
+      onKeyPress: _onKeyPress,
+      testID,
+      $checked: !!checked,
+      $disabled: disabled,
+    };
 
-  return (
-    <Container
-      className={className}
-      $size={sizes[size]}
-      {...containerprops}
-      {...styleProps}
-    >
-      <CheckIcon
-        name={icon}
-        color={color}
-        size={sizes[size]}
-        $disabled={disabled}
-      />
-    </Container>
-  );
-}
+    const styleProps = {
+      className,
+      style,
+    };
+
+    const icon = checked ? 'check-box' : 'check-box-outline-blank';
+    const color = disabled ? 'gray' : checked ? colorChecked : colorUnchecked;
+
+    return (
+      <Container
+        className={className}
+        $size={sizes[size]}
+        {...containerprops}
+        {...styleProps}
+        ref={containerRef}
+      >
+        <CheckIcon
+          name={icon}
+          color={color}
+          size={sizes[size]}
+          $disabled={disabled}
+        />
+      </Container>
+    );
+  },
+);
+
+export default Checkbox;
 
 const Container = styled(DivViewBase).attrs<{ $checked: boolean }>(
   ({ $checked }) => ({
