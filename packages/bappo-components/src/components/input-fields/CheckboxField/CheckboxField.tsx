@@ -56,7 +56,7 @@ function CheckboxField(props: Props, ref: React.Ref<InputField>) {
         onBlur={onBlur}
         onFocus={onFocus}
         onValueChange={onValueChange}
-        checked={fieldState.value}
+        value={fieldState.value}
       />
     </CheckboxFieldWrapper>
   );

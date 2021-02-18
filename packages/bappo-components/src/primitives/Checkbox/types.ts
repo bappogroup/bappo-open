@@ -8,7 +8,7 @@ export type CheckboxProps = {
   /**
    * The checked state of the Checkbox. If true the Checkbox will be checked. Default value is false.
    */
-  checked?: boolean | null;
+  value?: boolean | null;
   /**
    * The Checkbox's color when checked is true.
    */

@@ -15,7 +15,7 @@ const Checkbox = React.forwardRef(
     {
       accessibilityLabel,
       className,
-      checked = false,
+      value = false,
       colorChecked = '#FF7800',
       colorUnchecked = '#B0ADAB',
       size = 'medium',
@@ -44,7 +44,7 @@ const Checkbox = React.forwardRef(
     const _onBlur = (_event: React.FocusEvent<HTMLDivElement>) => {
       onBlur?.({
         nativeEvent: {
-          checked,
+          value,
         },
       });
     };
@@ -52,7 +52,7 @@ const Checkbox = React.forwardRef(
     const _onFocus = (_event: React.FocusEvent<HTMLDivElement>) => {
       onFocus?.({
         nativeEvent: {
-          checked,
+          value,
         },
       });
     };
@@ -68,7 +68,7 @@ const Checkbox = React.forwardRef(
       }
     };
 
-    const _toggle = () => !disabled && onValueChange?.(!checked);
+    const _toggle = () => !disabled && onValueChange?.(!value);
 
     const containerprops = {
       accessibilityLabel,
@@ -77,7 +77,7 @@ const Checkbox = React.forwardRef(
       onFocus: _onFocus,
       onKeyPress: _onKeyPress,
       testID,
-      $checked: !!checked,
+      $checked: !!value,
       $disabled: disabled,
     };
 
@@ -86,8 +86,8 @@ const Checkbox = React.forwardRef(
       style,
     };
 
-    const icon = checked ? 'check-box' : 'check-box-outline-blank';
-    const color = disabled ? 'gray' : checked ? colorChecked : colorUnchecked;
+    const icon = value ? 'check-box' : 'check-box-outline-blank';
+    const color = disabled ? 'gray' : value ? colorChecked : colorUnchecked;
 
     return (
       <Container

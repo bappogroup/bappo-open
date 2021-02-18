@@ -14,7 +14,7 @@ const Checkbox = React.forwardRef(
   (
     {
       accessibilityLabel,
-      checked = false,
+      value = false,
       colorChecked = '#FF7800',
       colorUnchecked = '#B0ADAB',
       size = 'medium',
@@ -43,7 +43,7 @@ const Checkbox = React.forwardRef(
     const _onBlur = (_event: NativeSyntheticEvent<TargetedEvent>) => {
       onBlur?.({
         nativeEvent: {
-          checked,
+          value,
         },
       });
     };
@@ -51,32 +51,20 @@ const Checkbox = React.forwardRef(
     const _onFocus = (_event: NativeSyntheticEvent<TargetedEvent>) => {
       onFocus?.({
         nativeEvent: {
-          checked,
+          value,
         },
       });
     };
 
-    const _onKeyPress = (event: React.KeyboardEvent<TouchableOpacity>) => {
-      const ENTER = 13;
-      const SPACE = 32;
-
-      if (event.which === ENTER || event.which === SPACE) {
-        event.preventDefault();
-        event.stopPropagation();
-        _toggle();
-      }
-    };
-
-    const _toggle = () => !disabled && onValueChange?.(!checked);
+    const _toggle = () => !disabled && onValueChange?.(!value);
 
     const containerprops = {
       accessibilityLabel,
       onBlur: _onBlur,
       onPress: _toggle,
       onFocus: _onFocus,
-      onKeyPress: _onKeyPress,
       testID,
-      $checked: !!checked,
+      $checked: !!value,
       $disabled: disabled,
     };
 
@@ -84,8 +72,8 @@ const Checkbox = React.forwardRef(
       style,
     };
 
-    const icon = checked ? 'check-box' : 'check-box-outline-blank';
-    const color = disabled ? 'gray' : checked ? colorChecked : colorUnchecked;
+    const icon = value ? 'check-box' : 'check-box-outline-blank';
+    const color = disabled ? 'gray' : value ? colorChecked : colorUnchecked;
 
     return (
       <CheckboxContainer

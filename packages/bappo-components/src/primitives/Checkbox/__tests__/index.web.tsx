@@ -7,7 +7,7 @@ import { render } from 'react-testing-library';
 import Checkbox from '..';
 
 test('should render a checkbox with value set to true', () => {
-  const { getByTestId } = render(<Checkbox testID="test" checked />);
+  const { getByTestId } = render(<Checkbox testID="test" value />);
   expect(getByTestId('test')).toMatchInlineSnapshot(`
     .c3 {
       box-sizing: border-box;
@@ -118,7 +118,7 @@ test('should render a checkbox with value set to true', () => {
 });
 
 test('should render a checkbox with value set to false', () => {
-  const { getByTestId } = render(<Checkbox testID="test" checked={false} />);
+  const { getByTestId } = render(<Checkbox testID="test" value={false} />);
   expect(getByTestId('test')).toMatchInlineSnapshot(`
     .c3 {
       box-sizing: border-box;
