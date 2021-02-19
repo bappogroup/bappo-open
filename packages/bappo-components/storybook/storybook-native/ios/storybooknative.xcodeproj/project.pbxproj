@@ -145,7 +145,6 @@
 				AF2689E492E7A716B5EE6887 /* Pods-storybooknative-storybooknativeTests.debug.xcconfig */,
 				6660F1D8A185700835B05C66 /* Pods-storybooknative-storybooknativeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
