@@ -21,11 +21,11 @@ const CheckboxScreen = () => (
       <AppText>Renders a boolean input.</AppText>
       <AppText>
         This is a controlled component that requires an{' '}
-        <Code>onValueChange</Code> callback that updates the{' '}
-        <Code>checked</Code> prop in order for the component to reflect user
-        actions. If the <Code>checked</Code> prop is not updated, the component
-        will continue to render the supplied <Code>checked</Code> prop instead
-        of the expected result of any user actions.
+        <Code>onValueChange</Code> callback that updates the <Code>value</Code>{' '}
+        prop in order for the component to reflect user actions. If the{' '}
+        <Code>value</Code> prop is not updated, the component will continue to
+        render the supplied <Code>value</Code> prop instead of the expected
+        result of any user actions.
       </AppText>
     </Description>
 
@@ -75,7 +75,7 @@ const CheckboxScreen = () => (
       />
 
       <DocItem
-        name="checked?"
+        name="value?"
         typeInfo="boolean"
         description={
           <AppText>
@@ -91,7 +91,7 @@ const CheckboxScreen = () => (
         description="Minimal"
         example={{
           code: `
-<Checkbox onValueChange={check} checked={value} testID="test-checkbox-1"/>`,
+<Checkbox onValueChange={check} value={value} testID="test-checkbox-1"/>`,
           render: () => <Minimal />,
         }}
       />

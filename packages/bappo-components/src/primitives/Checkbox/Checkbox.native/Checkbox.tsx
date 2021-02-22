@@ -7,85 +7,93 @@ import {
 import styled from 'styled-components';
 
 import Icon from '../../../components/Icon';
+import { InputHandle } from '../../../input-handle';
 import { CheckboxProps } from '../types';
 
-export default function Checkbox({
-  accessibilityLabel,
-  checked = false,
-  colorChecked = '#FF7800',
-  colorUnchecked = '#B0ADAB',
-  size = 'medium',
-  disabled = false,
-  style,
-  onBlur,
-  onFocus,
-  onValueChange,
-  testID,
-}: CheckboxProps) {
-  const sizes = {
-    small: 16,
-    medium: 24,
-    large: 32,
-  };
+const Checkbox = React.forwardRef(
+  (
+    {
+      accessibilityLabel,
+      value = false,
+      colorChecked = '#FF7800',
+      colorUnchecked = '#B0ADAB',
+      size = 'medium',
+      disabled = false,
+      style,
+      onBlur,
+      onFocus,
+      onValueChange,
+      testID,
+    }: CheckboxProps,
+    ref: React.Ref<InputHandle>,
+  ) => {
+    const containerRef = React.useRef<TouchableOpacity>(null);
 
-  const _onBlur = (_event: NativeSyntheticEvent<TargetedEvent>) => {
-    onBlur?.({
-      nativeEvent: {
-        checked,
-      },
-    });
-  };
+    React.useImperativeHandle(ref, () => ({
+      focus: () => containerRef.current?.focus(),
+      blur: () => containerRef.current?.blur(),
+    }));
 
-  const _onFocus = (_event: NativeSyntheticEvent<TargetedEvent>) => {
-    onFocus?.({
-      nativeEvent: {
-        checked,
-      },
-    });
-  };
+    const sizes = {
+      small: 16,
+      medium: 24,
+      large: 32,
+    };
 
-  const _onKeyPress = (event: React.KeyboardEvent<TouchableOpacity>) => {
-    const ENTER = 13;
-    const SPACE = 32;
+    const _onBlur = (_event: NativeSyntheticEvent<TargetedEvent>) => {
+      onBlur?.({
+        nativeEvent: {
+          value,
+        },
+      });
+    };
 
-    if (event.which === ENTER || event.which === SPACE) {
-      event.preventDefault();
-      event.stopPropagation();
-      _toggle();
-    }
-  };
+    const _onFocus = (_event: NativeSyntheticEvent<TargetedEvent>) => {
+      onFocus?.({
+        nativeEvent: {
+          value,
+        },
+      });
+    };
 
-  const _toggle = () => !disabled && onValueChange?.(!checked);
+    const _toggle = () => !disabled && onValueChange?.(!value);
 
-  const containerprops = {
-    accessibilityLabel,
-    onBlur: _onBlur,
-    onPress: _toggle,
-    onFocus: _onFocus,
-    onKeyPress: _onKeyPress,
-    testID,
-    $checked: !!checked,
-    $disabled: disabled,
-  };
+    const containerprops = {
+      accessibilityLabel,
+      onBlur: _onBlur,
+      onPress: _toggle,
+      onFocus: _onFocus,
+      testID,
+      $checked: !!value,
+      $disabled: disabled,
+    };
 
-  const styleProps = {
-    style,
-  };
+    const styleProps = {
+      style,
+    };
 
-  const icon = checked ? 'check-box' : 'check-box-outline-blank';
-  const color = disabled ? 'gray' : checked ? colorChecked : colorUnchecked;
+    const icon = value ? 'check-box' : 'check-box-outline-blank';
+    const color = disabled ? 'gray' : value ? colorChecked : colorUnchecked;
 
-  return (
-    <CheckboxContainer $size={sizes[size]} {...containerprops} {...styleProps}>
-      <CheckIcon
-        name={icon}
-        color={color}
-        size={sizes[size]}
-        $disabled={disabled}
-      />
-    </CheckboxContainer>
-  );
-}
+    return (
+      <CheckboxContainer
+        ref={containerRef}
+        $size={sizes[size]}
+        {...containerprops}
+        {...styleProps}
+      >
+        <CheckIcon
+          name={icon}
+          color={color}
+          size={sizes[size]}
+          $disabled={disabled}
+        />
+      </CheckboxContainer>
+    );
+  },
+);
+
+export default Checkbox;
 
 const CheckboxContainer = styled(TouchableOpacity).attrs((_props) => ({
   activeOpacity: 1,
