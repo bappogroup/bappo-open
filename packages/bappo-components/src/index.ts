@@ -48,3 +48,4 @@ export { default as TabPicker } from './components/TabPicker';
 export { default as VerticalSeparator } from './components/VerticalSeparator';
 export { default as Menu } from './components/Menu';
 export { default as ColorPicker } from './components/ColorPicker';
+export { default as SplitButton } from './components/SplitButton';

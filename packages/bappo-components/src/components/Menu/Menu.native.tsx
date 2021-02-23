@@ -25,16 +25,17 @@ export default function Menu({
   const [active, setActive] = React.useState(false);
 
   const close = () => setActive(false);
+  const open = () => setActive(true);
 
   return (
-    <Context.Provider value={{ close, active }}>
+    <Context.Provider value={{ open, close, active }}>
       <TriggerContainer
         onPress={() => setActive(true)}
         style={triggerStyle}
         testID={testID}
       >
         {typeof trigger === 'function'
-          ? trigger(active)
+          ? trigger(open, close, active)
           : trigger || <Icon name={icon} color={iconColor} />}
       </TriggerContainer>
       <Modal onRequestClose={close} visible={active}>

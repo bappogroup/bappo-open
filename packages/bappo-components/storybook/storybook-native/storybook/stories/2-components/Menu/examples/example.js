@@ -1,4 +1,4 @@
-import { Menu, Text, View, styled } from 'bappo-components';
+import { Button, Menu, Text, View, styled } from 'bappo-components';
 import React from 'react';
 
 const MenuExample = () => (
@@ -24,6 +24,16 @@ const MenuExample = () => (
         Action 2 - No Icon
       </Menu.Item>
     </Menu>
+
+    <Menu trigger={<Button icon="arrow-drop-down" />}>
+      <Menu.Item onPress={() => alert('You pressed Action 1 - No Icon')}>
+        Action 1 - No Icon
+      </Menu.Item>
+      <Menu.Item onPress={() => alert('You pressed Action 2 - No Icon')}>
+        Action 2 - No Icon
+      </Menu.Item>
+    </Menu>
+
     <Menu icon="cloud" align="right">
       <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
         Home
