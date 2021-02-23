@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Menu from '../../components/Menu';
-import { useMenuContext } from '../../components/Menu/MenuContext';
 import {
   Container,
   MainButton,
