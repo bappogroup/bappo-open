@@ -10,7 +10,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "^3.0.9",
     "axios": "^0.21.1",
-    "bappo-components": "^0.1.0-alpha.187",
+    "bappo-components": "^0.1.0-alpha.188",
     "create-react-class": "^15.7.0",
     "react": "17.0.1",
     "react-native": "0.64.0-rc.3",
