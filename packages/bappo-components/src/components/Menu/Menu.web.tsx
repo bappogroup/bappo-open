@@ -42,6 +42,7 @@ export default function Menu({
   const deviceKind = useDeviceKind();
 
   const close = () => setActive(false);
+  const open = () => setActive(false);
 
   const getPopoverPlacement = (anchorRect, popupContentRect) => {
     const right = anchorRect.left - popupContentRect.width + anchorRect.width;
@@ -59,7 +60,7 @@ export default function Menu({
   };
 
   return (
-    <Context.Provider value={{ close, active }}>
+    <Context.Provider value={{ open, close, active }}>
       <TriggerContainer
         ref={containerRef}
         className={className}
@@ -68,7 +69,7 @@ export default function Menu({
         style={triggerStyle}
       >
         {typeof trigger === 'function'
-          ? trigger(active)
+          ? trigger(open, close, active)
           : trigger || <Icon name={icon} color={iconColor} />}
       </TriggerContainer>
       {active ? (

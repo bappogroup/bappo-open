@@ -3,7 +3,13 @@ export type MenuProps = {
   icon?: string;
   iconColor?: string;
   testID?: string;
-  trigger?: React.ReactNode | ((isActive: boolean) => React.ReactNode);
+  trigger?:
+    | React.ReactNode
+    | ((
+        open: () => void,
+        close: () => void,
+        isActive: boolean,
+      ) => React.ReactNode);
   triggerStyle?: React.CSSProperties;
 };
 

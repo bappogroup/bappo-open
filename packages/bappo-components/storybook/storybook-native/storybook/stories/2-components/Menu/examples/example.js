@@ -4,7 +4,7 @@ import React from 'react';
 const MenuExample = () => (
   <View style={outerStyle}>
     <Menu minWidth={200}>
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Home')}>
         Home
       </Menu.Item>
       <HorizontalLine />
@@ -25,22 +25,22 @@ const MenuExample = () => (
       </Menu.Item>
     </Menu>
     <Menu icon="cloud" align="right">
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Home')}>
         Home
       </Menu.Item>
       <Menu.Item onPress={() => alert('You pressed Timer')}>Timer</Menu.Item>
     </Menu>
     <Menu icon="menu">
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Home')}>
         Home
       </Menu.Item>
       <Menu.Item onPress={() => alert('You pressed Timer')}>Timer</Menu.Item>
     </Menu>
     <Menu icon="computer" iconColor="blue" maxWidth={100}>
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Home')}>
         Option1, this is 600px wide
       </Menu.Item>
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Timer')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Timer')}>
         Option2, this is 600px wide
       </Menu.Item>
     </Menu>
@@ -75,10 +75,10 @@ const MenuExample = () => (
     </Menu>
 
     <Menu>
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Home')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Home')}>
         Option1
       </Menu.Item>
-      <Menu.Item icon="home" onPress={() => console.log('you pressed Timer')}>
+      <Menu.Item icon="home" onPress={() => alert('you pressed Timer')}>
         Option2
       </Menu.Item>
     </Menu>
