@@ -11,9 +11,9 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer';
 import { url } from '../../../url';
-import PropActions from './examples/PropActions';
-import PropIcon from './examples/PropIcon';
-import PropType from './examples/PropType';
+import ButtonActionsExample from './examples/ButtonActionsExample';
+import ButtonIconExample from './examples/ButtonIconExample';
+import ButtonTypeExample from './examples/ButtonTypeExample';
 
 const SplitButtonScreen = () => (
   <UIExplorer title="SplitButton" url="2-components/SplitButton">
@@ -48,7 +48,7 @@ const SplitButtonScreen = () => (
         name="type?"
         typeInfo="primary | secondary | tertiary | destructive"
         example={{
-          render: () => <PropType />,
+          render: () => <ButtonTypeExample />,
         }}
       />
 
@@ -57,7 +57,7 @@ const SplitButtonScreen = () => (
         typeInfo="Array<SplitButtonAction>"
         description="Determines the additional actions made available by the button"
         example={{
-          render: () => <PropActions />,
+          render: () => <ButtonActionsExample />,
         }}
       />
 
@@ -65,7 +65,7 @@ const SplitButtonScreen = () => (
         name="icon?"
         typeInfo="string"
         example={{
-          render: () => <PropIcon />,
+          render: () => <ButtonIconExample />,
         }}
       />
       <DocItem name="style?" typeInfo="style" description="Styles" />

@@ -25,7 +25,7 @@ export default function InsideModalExample() {
             <Menu.Item
               icon="home"
               label="Home"
-              onPress={() => console.log('you pressed Home')}
+              onPress={() => alert('you pressed Home')}
             />
             <Menu.Item
               label="Timer"
