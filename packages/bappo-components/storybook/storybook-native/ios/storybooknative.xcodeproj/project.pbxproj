@@ -13,7 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D09E496325DFE20C00505C7A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D09E496225DFE20C00505C7A /* MaterialIcons.ttf */; };
+		A81F18BA25ECC7A300B9CA25 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A81F18B925ECC7A300B9CA25 /* MaterialIcons.ttf */; };
 		E6B43639AACAA67420093EDA /* libPods-storybooknative-storybooknativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE703AEF8970734EFE2097D9 /* libPods-storybooknative-storybooknativeTests.a */; };
 /* End PBXBuildFile section */
 
@@ -42,8 +42,8 @@
 		6660F1D8A185700835B05C66 /* Pods-storybooknative-storybooknativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storybooknative-storybooknativeTests.release.xcconfig"; path = "Target Support Files/Pods-storybooknative-storybooknativeTests/Pods-storybooknative-storybooknativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = storybooknative/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9ADA938F6748315007BCBA9D /* Pods-storybooknative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storybooknative.release.xcconfig"; path = "Target Support Files/Pods-storybooknative/Pods-storybooknative.release.xcconfig"; sourceTree = "<group>"; };
+		A81F18B925ECC7A300B9CA25 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		AF2689E492E7A716B5EE6887 /* Pods-storybooknative-storybooknativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storybooknative-storybooknativeTests.debug.xcconfig"; path = "Target Support Files/Pods-storybooknative-storybooknativeTests/Pods-storybooknative-storybooknativeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D09E496225DFE20C00505C7A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		DE703AEF8970734EFE2097D9 /* libPods-storybooknative-storybooknativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-storybooknative-storybooknativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -118,7 +118,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				D09E496C25E12E0000505C7A /* Fonts */,
+				A81F18B825ECC7A300B9CA25 /* fonts */,
 				13B07FAE1A68108700A75B9A /* storybooknative */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* storybooknativeTests */,
@@ -140,12 +140,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D09E496C25E12E0000505C7A /* Fonts */ = {
+		A81F18B825ECC7A300B9CA25 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				D09E496225DFE20C00505C7A /* MaterialIcons.ttf */,
+				A81F18B925ECC7A300B9CA25 /* MaterialIcons.ttf */,
 			);
-			path = Fonts;
+			name = fonts;
+			path = "../node_modules/bappo-components/fonts";
 			sourceTree = "<group>";
 		};
 		D36CC78153EBDC89663700E2 /* Pods */ = {
@@ -255,7 +256,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				D09E496325DFE20C00505C7A /* MaterialIcons.ttf in Resources */,
+				A81F18BA25ECC7A300B9CA25 /* MaterialIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
