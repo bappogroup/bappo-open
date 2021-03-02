@@ -9,6 +9,7 @@ export * from './apis/Style';
 export { default as ActivityIndicator } from './primitives/ActivityIndicator';
 export { default as FlatList } from './primitives/FlatList';
 export { default as Font } from './primitives/Font';
+export { default as FontContext } from './primitives/Font/FontContext';
 export { Form, useFieldState } from './primitives/Form';
 export { default as Image } from './primitives/Image';
 export { default as Overlay } from './primitives/Overlay';
