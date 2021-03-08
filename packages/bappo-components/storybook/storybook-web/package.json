@@ -11,13 +11,13 @@
     "babel-loader": "^8.0.6",
     "bappo-components": "0.1.0-alpha.189",
     "create-react-class": "^15.6.2",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "styled-components": "^5.1.0",
     "validator": "^10.4.0"
   },
   "resolutions": {
-    "@storybook/react/**/react": "16.8.3",
-    "@storybook/react/**/react-dom": "16.8.3"
+    "@storybook/react/**/react": "17.0.1",
+    "@storybook/react/**/react-dom": "17.0.1"
   }
 }
