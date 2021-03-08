@@ -43,6 +43,7 @@ module.exports = ({ config, mode }) => {
   };
 
   prdConfig = {
+    '@babel/runtime': path.join(__dirname, '../node_modules/@babel/runtime'),
     '@storybook/react-native': path.join(
       __dirname,
       '../node_modules/@storybook/react',
