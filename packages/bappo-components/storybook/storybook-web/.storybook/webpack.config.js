@@ -50,24 +50,14 @@ module.exports = ({ config, mode }) => {
     ),
     react: path.join(__dirname, '../node_modules/react'),
     'react-dom': path.join(__dirname, '../node_modules/react-dom'),
-    'react-dom/unstable-native-dependencies': path.join(
+    'styled-components': path.join(
       __dirname,
-      '../node_modules/react-dom/unstable-native-dependencies',
+      '../node_modules/styled-components',
     ),
   };
 
   devConfig = {
     'bappo-components': path.join(__dirname, '../../../'),
-    react: path.join(__dirname, '../node_modules/react'),
-    'react-dom': path.join(__dirname, '../node_modules/react-dom'),
-    'react-dom/unstable-native-dependencies': path.join(
-      __dirname,
-      '../node_modules/react-dom/unstable-native-dependencies',
-    ),
-    'styled-components': path.join(
-      __dirname,
-      '../node_modules/styled-components',
-    ),
   };
 
   if (mode === 'DEVELOPMENT') {
