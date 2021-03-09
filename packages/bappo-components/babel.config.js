@@ -1,5 +1,5 @@
-// https://github.com/facebook/create-react-app/blob/v3.4.1/packages/babel-preset-react-app/create.js
-const useESModules = process.env.BABEL_ENV === 'es';
+// https://github.com/facebook/create-react-app/blob/v4.0.3/packages/babel-preset-react-app/create.js
+const useESModules = process.env.BAPPO_OUTPUT === 'es';
 
 module.exports = {
   presets: [
@@ -11,18 +11,15 @@ module.exports = {
         useBuiltIns: 'entry',
         // Set the corejs version we are using to avoid warnings in console
         corejs: 3,
-        // Do not transform modules to CJS
-        modules: useESModules ? false : 'commonjs',
         // Exclude transforms that make all code slower
         exclude: ['transform-typeof-symbol'],
+        modules: useESModules ? false : 'commonjs',
       },
     ],
     [
       require('@babel/preset-react').default,
       {
-        // Will use the native built-in instead of trying to polyfill
-        // behavior for any plugins that require one.
-        useBuiltIns: true,
+        runtime: 'automatic',
       },
     ],
     [require('@babel/preset-typescript').default],
@@ -75,7 +72,7 @@ module.exports = {
       require('@babel/plugin-transform-runtime').default,
       {
         corejs: false,
-        helpers: true,
+        helpers: false,
         // By default, babel assumes babel/runtime version 7.0.0-beta.0,
         // explicitly resolving to match the provided helper functions.
         // https://github.com/babel/babel/issues/10261
@@ -85,6 +82,10 @@ module.exports = {
         // We should turn this on once the lowest version of Node LTS
         // supports ES Modules.
         useESModules,
+        // Undocumented option that lets us encapsulate our runtime, ensuring
+        // the correct version is used
+        // https://github.com/babel/babel/blob/090c364a90fe73d36a30707fc612ce037bdbbb24/packages/babel-plugin-transform-runtime/src/index.js#L35-L42
+        absoluteRuntime: false,
       },
     ],
     [

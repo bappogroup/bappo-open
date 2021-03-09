@@ -8,6 +8,7 @@
     "storybook": "react-native start --projectRoot storybook"
   },
   "dependencies": {
+    "@babel/runtime": "7.12.1",
     "@react-native-community/datetimepicker": "^3.0.9",
     "axios": "^0.21.1",
     "bappo-components": "^0.1.0-alpha.189",
@@ -21,7 +22,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
-    "@babel/runtime": "^7.12.13",
     "@emotion/core": "10.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@storybook/addon-actions": "^6.1.17",
