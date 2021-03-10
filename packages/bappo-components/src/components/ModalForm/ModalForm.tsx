@@ -29,6 +29,7 @@ type OptionalProps = {
   testID?: string;
   title?: string;
   visible?: boolean;
+  holdSubmit?: boolean;
 };
 type Props = RequiredProps & OptionalProps;
 
@@ -45,6 +46,7 @@ function ModalForm({
   title,
   visible,
   onCancel,
+  holdSubmit,
 }: Props) {
   const handleCancel = async ({
     dirty,
@@ -90,7 +92,7 @@ function ModalForm({
   }: FormStateAndHelpersAndActions) => {
     actions.touchAll();
 
-    if (Object.keys(fieldErrors).length === 0) {
+    if (Object.keys(fieldErrors).length === 0 && !holdSubmit) {
       await actions.submit(async () => {
         if (onSubmit) {
           await onSubmit(values);

@@ -12,6 +12,7 @@ import UIExplorer, {
 import { url } from '../../../url';
 import DependentField from './examples/DependentField';
 import FieldLevelValidation from './examples/FieldLevelValidation';
+import HoldSubmit from './examples/HoldSubmit';
 import Minimal from './examples/Minimal';
 import PropSubmitButtonText from './examples/PropSubmitButtonText';
 import ShowHideFieldBasedOnFormState from './examples/ShowHideFieldBasedOnFormState';
@@ -62,6 +63,47 @@ const ModalFormScreen = () => (
         description="Submit button text. Can be a string or a function that returns a string. The function will be called with the form state."
         example={{
           render: () => <PropSubmitButtonText />,
+        }}
+      />
+      <DocItem
+        name="placement?"
+        typeInfo="{
+          type: 'dropdown';
+          align: 'left';
+          top: number;
+          left: number;
+          height: number;
+          width: number;
+        }
+      | {
+          type: 'dropdown';
+          align: 'right';
+          top: number;
+          right: number;
+          height: number;
+          width: number;
+        }
+      | {
+          type: 'fullscreen';
+        };"
+        description="Setting the placement of the modal."
+      />
+      <DocItem
+        name="title?"
+        typeInfo="string"
+        description="Title to appear in the Header of the component"
+      />
+      <DocItem
+        name="visible?"
+        typeInfo="boolean"
+        description="Determines whether the modal is visible."
+      />
+      <DocItem
+        name="holdSubmit?"
+        typeInfo="boolean"
+        description="Boolean value to disable submit button until set to false. This is useful when nesting modals since the top-most modal onSubmit function may also trigger an onSubmit action on the lower modal."
+        example={{
+          render: () => <HoldSubmit />,
         }}
       />
     </Section>
