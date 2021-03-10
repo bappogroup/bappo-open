@@ -9,6 +9,7 @@ import UIExplorer, {
   storiesOf,
 } from '../../../ui-explorer';
 import { url } from '../../../url';
+import CustomPlacementExample from './examples/CustomPlacement';
 import Minimal from './examples/Minimal';
 import ModalWithHeaderFooter from './examples/ModalWithHeaderFooter';
 import PropOnOverlayPress from './examples/PropOnOverlayPress';
@@ -62,6 +63,14 @@ const ModalScreen = () => (
         typeInfo="() => JSX.Element"
         description="Renders a custom footer."
       />
+      <DocItem
+        name="placement?"
+        typeInfo="{ top?: number, left?: number, width?: number, height?: number, type: 'custom' }"
+        description="Optionally determines the dimensions and position of the modal."
+        example={{
+          render: () => <CustomPlacementExample />,
+        }}
+      />
     </Section>
 
     <Section title="More examples">
@@ -72,7 +81,7 @@ const ModalScreen = () => (
         }}
       />
       <DocItem
-        description="Give a Title"
+        description="Header and Footer"
         example={{
           render: () => <ModalWithHeaderFooter />,
         }}

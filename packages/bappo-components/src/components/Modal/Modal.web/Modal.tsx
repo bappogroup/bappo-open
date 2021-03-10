@@ -258,6 +258,33 @@ const desktopStyle = ({
     `;
   }
 
+  if ($placement && $placement.type === 'custom') {
+    return `
+      ${
+        $placement.left
+          ? `left: ${$placement.left}px;`
+          : `left: 0;
+      right: 0;
+      margin: auto;`
+      }
+      ${
+        $placement.height
+          ? `height: ${$placement.height}px;`
+          : `max-height: 768px;
+      min-height: 200px;`
+      }
+      width: ${$placement.width ? `${$placement.width}px` : '576px'};
+
+      ${
+        $placement.top && $placement.top > 0
+          ? `top: ${$placement.top}px;`
+          : $layout
+          ? `top: calc(50vh - ${Math.ceil($layout.height / 2)}px);`
+          : `opacity: 0;`
+      }
+    `;
+  }
+
   return `
     left: 0;
     right: 0;
