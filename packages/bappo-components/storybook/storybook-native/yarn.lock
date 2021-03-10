@@ -2515,10 +2515,10 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
-bappo-components@^0.1.0-alpha.190:
-  version "0.1.0-alpha.190"
-  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.190.tgz#60ef7162f8e6621dc69a702262fe31f7d00d40bf"
-  integrity sha512-EBv5/z3Owejh/JdmyNCG+6g7BeIIG0X2Z8JniF7JGprjHJ81WNMQqCYjbRH7cRMn1Dw+6f4vIsWWtPrSo70Nwg==
+bappo-components@^0.1.0-alpha.191:
+  version "0.1.0-alpha.191"
+  resolved "https://registry.yarnpkg.com/bappo-components/-/bappo-components-0.1.0-alpha.191.tgz#7fb32579a49e25444485593e0a0b0f6f24d29951"
+  integrity sha512-35dBsa0aAxOa8zxVHwN+VQCduYDnG8HPGvTp7vpiW/JfZ8QtXn0yjJ+RPBkg6VRMKD3tI6N8wWPwP37uBogK1g==
   dependencies:
     "@reach/tooltip" "^0.10.1"
     es6-error "^4.1.1"
