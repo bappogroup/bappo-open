@@ -148,7 +148,12 @@ export const ModalContentContainer = styled(DivViewBase)<{
       : desktopStyle(props)}
 
   ${(props) =>
-    props.$deviceKind === 'desktop' || props.$deviceKind === 'tablet'
+    (props.$deviceKind === 'desktop' || props.$deviceKind === 'tablet') &&
+    !(
+      props.$placement &&
+      props.$placement.type === 'custom' &&
+      props.$placement.height
+    ) //max-height will be calculated if set using $placement
       ? `
       @media (max-height: 768px) {
         max-height: 100%;
@@ -264,17 +269,30 @@ const desktopStyle = ({
         $placement.left
           ? `left: ${$placement.left}px;`
           : `left: 0;
-      right: 0;
-      margin: auto;`
+          right: 0;
+          margin: auto;`
       }
       ${
         $placement.height
-          ? `height: ${$placement.height}px;`
+          ? `height: ${$placement.height}px;
+          max-height: calc(100vh - 16px${
+            $placement.top && $placement.top > 0
+              ? ` - ${$placement.top}px`
+              : ` - 16px`
+          });`
           : `max-height: 768px;
-      min-height: 200px;`
+          min-height: 200px;`
       }
-      width: ${$placement.width ? `${$placement.width}px` : '576px'};
-
+      ${
+        $placement.width
+          ? `width: ${$placement.width}px;
+        max-width: calc(100vw - 16px${
+          $placement.left && $placement.left > 0
+            ? ` - ${$placement.left}px`
+            : `- 16px`
+        });`
+          : 'width: 576px;'
+      }
       ${
         $placement.top && $placement.top > 0
           ? `top: ${$placement.top}px;`
