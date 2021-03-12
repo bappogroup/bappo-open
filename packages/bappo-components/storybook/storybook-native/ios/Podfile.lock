@@ -320,7 +320,7 @@ PODS:
     - React-perflogger (= 0.64.0-rc.3)
   - rn-fetch-blob (0.12.0):
     - React-Core
-  - RNDateTimePicker (3.0.9):
+  - RNDateTimePicker (3.2.0):
     - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -464,7 +464,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 9cafb8520d334de0720e1119b41db4cc16d3fbc9
-  FBReactNativeSpec: 3590cd37c7b111808100c108af2665a7104cd01b
+  FBReactNativeSpec: 8e81a7f1e058966faebd766f4a04d5b497df544f
   Flipper: c1ad50344bffdce628b1906b48f6e7cd06724236
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: f7a3caafbd74bda4827954fd7a6e000e36355489
@@ -500,7 +500,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 973fcbe10f76f42e3a9a98b9358836971e9ac4aa
   ReactCommon: 33191ccc8250b4e206884a1e3b68b2011b6b7899
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
-  RNDateTimePicker: 8a51a2216c307769e69ef827293d59549ab1ca23
+  RNDateTimePicker: 17593e41b6b1585aeb8ecbe1c1cbc30cba3d0b4b
   Yoga: 31313df467e58b5b53f26a0319fa100159c79fa3
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
