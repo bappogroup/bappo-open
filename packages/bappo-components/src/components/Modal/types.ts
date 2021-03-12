@@ -27,5 +27,12 @@ export interface ModalProps {
       }
     | {
         type: 'fullscreen';
+      }
+    | {
+        type: 'custom';
+        top?: number;
+        left?: number;
+        height?: number;
+        width?: number;
       };
 }
