@@ -5,6 +5,7 @@ import Button from '../Button';
 export const MainButton = styled(Button)`
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  flex: 1;
 `;
 
 export const MenuButton = styled(Button)`
