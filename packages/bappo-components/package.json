@@ -69,7 +69,7 @@
   "devDependencies": {
     "@babel/cli": "^7.13.0",
     "@bappo/scripts": "^1.4.0",
-    "@react-native-community/datetimepicker": "^3.0.9",
+    "@react-native-community/datetimepicker": "^3.2.0",
     "@testing-library/dom": "^7.28.0",
     "@testing-library/user-event": "^12.2.2",
     "@types/invariant": "^2.2.32",

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.12.1",
-    "@react-native-community/datetimepicker": "^3.0.9",
+    "@react-native-community/datetimepicker": "^3.2.0",
     "axios": "^0.21.1",
     "bappo-components": "^0.1.0-alpha.191",
     "create-react-class": "^15.7.0",
