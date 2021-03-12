@@ -289,7 +289,7 @@ const desktopStyle = ({
         max-width: calc(100vw - 16px${
           $placement.left && $placement.left > 0
             ? ` - ${$placement.left}px`
-            : `- 16px`
+            : ` - 16px`
         });`
           : 'width: 576px;'
       }
