@@ -15,7 +15,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "styled-components": "^5.1.0",
-    "validator": "^10.4.0"
+    "validator": "^13.7.0"
   },
   "resolutions": {
     "@storybook/react/**/react": "17.0.1",
